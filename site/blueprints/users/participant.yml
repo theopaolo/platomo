@@ -1,0 +1,16 @@
+title: Participant
+
+fields:
+  description:
+      label: Writer
+      type: writer
+  liens:
+    label: liens
+    type: structure
+    fields:
+      lien:
+        label: Lien
+        type: link
+      url_name:
+        label: Nom
+        type: text

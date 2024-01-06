@@ -1,0 +1,13 @@
+@import 'fonts.css';
+@import 'nav.css';
+@import 'blocks.css';
+@import 'varnish.css';
+
+@tailwind base;
+@tailwind components;
+
+body {
+  @apply font-general-sans;
+}
+
+@tailwind utilities;

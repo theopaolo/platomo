@@ -1,0 +1,40 @@
+Title: Un nom de labo
+
+----
+
+Text: [{"content":{"level":"h2","text":"Introduction"},"id":"ba01a609-0615-4bc6-a839-a2d6223a8e90","isHidden":false,"type":"heading"},{"content":{"text":"<p>Le mouvement corporel est le catalyseur initial de tout acte artistique. Au-delà de la danse, l'art de la marche, de la flânerie et de la psychogéographie émerge comme une critique de la mécanique moderne de l'urbanisme. En se référant aux expérimentations de la<a href=\"https://theogoedert.com\" target=\"_blank\"> Situationniste Internationale</a>, et à des artistes tels que Richard Long avec ses \"Land Arts\", ce mouvement artistique inscrit l'action de marcher comme un acte poétique, contemplatif, et surtout comme un moyen d'interaction directe avec le paysage, urbain ou naturel.</p>"},"id":"910320f1-cddf-4ece-a57e-67ec0aeaf447","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://COCT5Z7e
+- user://0teAfnWa
+- user://82nWn29x
+
+----
+
+Contributions:
+
+- page://FMKbmqzuYL7KX7uB
+- page://c52VsC6RiYBt6jyw
+
+----
+
+Gallery: [{"content":{"level":"h2","text":"Retours en images"},"id":"03f0cc85-579a-4d0e-9c9a-0bb5ec84c8c2","isHidden":false,"type":"heading"},{"content":{"images":["file://dbEcAFdzBxeTP4kV","file://LYo3XphuKWtdI4aY","file://YXWTquweJtBGnUfj"],"ratio":"","crop":"false","slider":"false"},"id":"df8feba9-9726-4243-8ddc-f6f927fad9f3","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: xUzVmSCPYWkfN2zW
+
+----
+
+Author: 
+
+----
+
+Tags: 
+
+----
+
+Extra: 

@@ -1,0 +1,18 @@
+nav ul{
+  opacity: 0;
+  transform: rotate3d(0, 0, 1, 10deg) translateX(100%) translateY(-100%);
+  transition: all 0.5s ease-in-out;
+}
+
+nav ul.navin{
+  display: flex;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  transform: rotate(0deg) translateX(0%) translateY(0%);
+}
+
+nav ul.navout{
+  opacity: 0;
+  transform: rotate3d(0, 0, 1, -10deg) translateY(100%);
+  transition: all 0.5s ease-in-out;
+}

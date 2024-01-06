@@ -1,0 +1,5 @@
+Uuid: Njazt4GC2l8JRAQS
+
+----
+
+Template: blocks/image

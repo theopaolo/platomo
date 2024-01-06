@@ -1,0 +1,17 @@
+{
+  "name": "platomo",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./src/css/tailwind.css -o ./assets/css/styles.css --content './site/**/*.php' -w",
+    "build": "npx tailwindcss -i ./src/css/tailwind.css -o ./assets/css/styles.css --content './site/**/*.php' -m",
+    "pwatch": "parcel watch assets/js/app.js --dist-dir assets/dist/js"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.3",
+    "plyr": "^3.7.8",
+    "swup": "^4.5.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}

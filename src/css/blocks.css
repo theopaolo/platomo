@@ -1,0 +1,41 @@
+.block-type-heading h2 {
+  @apply text-paragraph-title leading-paragraph-title font-medium mb-4;
+}
+
+.block-type-text p {
+  @apply text-lg leading-8 ml-20 my-4;
+}
+
+.block-type-text p a {
+  @apply border-b border-black;
+  cursor: url('../images/tinyarrow.png'), auto;
+}
+
+.block-type-image figure figcaption{
+  @apply text-sm text-gray-500 mt-2;
+}
+
+
+.block-type-gallery
+{
+  @apply mb-4;
+}
+
+.block-type-gallery ul
+{
+  @apply flex gap-4 mt-4;
+}
+
+.block-type-gallery ul li
+{
+  @apply w-full;
+}
+
+.block-type-gallery ul li img
+{
+  @apply w-full h-full object-cover;
+}
+
+.page{
+  margin-left: clamp(2rem, 10vw, 15vw);
+}

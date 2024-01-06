@@ -1,0 +1,9 @@
+Caption: Guy Debord n’as pas pris cette photo
+
+----
+
+Uuid: CWaKR12q0imDHvrc
+
+----
+
+Template: blocks/image

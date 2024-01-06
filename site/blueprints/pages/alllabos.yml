@@ -1,0 +1,23 @@
+title: Labos
+
+columns:
+  left:
+    width: 1/2
+    sections:
+      drafts:
+        extends: sections/labos
+        label: Drafts
+        status: draft
+
+      unlisted:
+        extends: sections/labos
+        label: In Review
+        status: unlisted
+
+  right:
+    width: 1/2
+    sections:
+      listed:
+        extends: sections/labos
+        label: Published
+        status: listed

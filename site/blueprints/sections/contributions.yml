@@ -1,0 +1,6 @@
+type: pages
+label: Contributions
+info: "{{ page.date.toDate('d.m.Y') }}"
+template: contribution
+empty: Pas de contribution
+sortBy: date desc

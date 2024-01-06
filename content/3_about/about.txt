@@ -1,0 +1,25 @@
+Title: À propos
+
+----
+
+Text: [{"content":{"level":"h2","text":"La LABO"},"id":"11a0ac92-6c55-4ffb-9b5a-7f20710b1d1d","isHidden":false,"type":"heading"},{"content":{"text":"<p>Le mouvement corporel est le catalyseur initial de tout acte artistique. Au-delà de la danse, l'art de la marche, de la flânerie et de la psychogéographie émerge comme une critique de la mécanique moderne de l'urbanisme. En se référant aux expérimentations de la Situationniste Internationale, et à des artistes tels que Richard Long avec ses \"Land Arts\", ce <a href=\"https://randompage.com\" target=\"_blank\">mouvement artistique</a> inscrit l'action de marcher comme un acte poétique, contemplatif, et surtout comme un moyen d'interaction directe avec le paysage, urbain ou naturel.</p>"},"id":"d7a28190-f8ef-49b0-9adc-bf650d9aeaf8","isHidden":false,"type":"text"},{"content":{"level":"h2","text":"Le blabla"},"id":"450437e3-4b57-4993-a411-c4ddee637f3c","isHidden":false,"type":"heading"},{"content":{"text":"<p>La théorie derrière la flânerie est profondément enracinée dans les écrits de Charles Baudelaire, qui y voyait une manière d'explorer le paysage urbain en se laissant guider par ses pieds et son intuition, plutôt que par un objectif précis. Walter Benjamin reprend cette idée en y intégrant une dimension critique, où le flâneur devient un observateur aiguisé de la modernité. Guy Debord, avec sa notion de dérive, emprunte à la psychogéographie en tant qu'étude des effets du milieu géographique sur les comportements des individus. Dans cette démarche, l'artiste chercheur est appelé à redécouvrir et à questionner son environnement par la marche, une forme d'errance dirigée par l'émotion et la perception.</p>"},"id":"54c73360-b5f1-4968-9252-3d9518c4767d","isHidden":false,"type":"text"},{"content":{"level":"h2","text":"Partenaires - logos"},"id":"b52fa007-9fb4-4ece-ab78-6333e7314333","isHidden":false,"type":"heading"},{"content":{"images":["file://8WpM53OO4VitJnzB","file://IAs9xlX0FG4dwzFs","file://sT3HdK6K37HWORfE","file://dg8OWYim65rHCaBE"],"ratio":"","crop":"false","slider":"false"},"id":"4b2ab8fb-c83f-4638-8af3-4cc296a43324","isHidden":false,"type":"gallery"},{"content":{"images":["file://CWaKR12q0imDHvrc","file://XkkqtSVT4X5JgCeM","file://Njazt4GC2l8JRAQS"],"ratio":"","crop":"false","slider":"true"},"id":"3d1727ab-4ee8-457e-8378-77f980aaca20","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Plus de texte - mais entre des images"},"id":"4bb7abe6-a6a4-4012-9b1f-3bbd3916af77","isHidden":false,"type":"heading"},{"content":{"text":"<p>La théorie derrière la flânerie est profondément enracinée dans les écrits de Charles Baudelaire, qui y voyait une manière d'explorer le paysage urbain en se laissant guider par ses pieds et son intuition, plutôt que par un objectif précis. Walter Benjamin reprend cette idée en y intégrant une dimension critique, où le flâneur devient un observateur aiguisé de la modernité. Guy Debord, avec sa notion de dérive, emprunte à la psychogéographie en tant qu'étude des effets du milieu géographique sur les comportements des individus. Dans cette démarche, l'artiste chercheur est appelé à redécouvrir et à questionner son environnement par la marche, une forme d'errance dirigée par l'émotion et la perception.</p>"},"id":"ad87d72c-20a3-4102-9571-6b1bd82afa72","isHidden":false,"type":"text"},{"content":{"images":["file://CWaKR12q0imDHvrc","file://XkkqtSVT4X5JgCeM"],"ratio":"","crop":"false","slider":"false"},"id":"527262d3-a21f-48d5-9bc3-2d956fd5b36e","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: 4tg3z9aqL26Bqu6H
+
+----
+
+Author: 
+
+----
+
+Tags: 
+
+----
+
+Ressources: 
+
+----
+
+Extra: 

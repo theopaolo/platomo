@@ -1,0 +1,9 @@
+Caption: Walter Bejamin serait passé par là
+
+----
+
+Uuid: XkkqtSVT4X5JgCeM
+
+----
+
+Template: blocks/image

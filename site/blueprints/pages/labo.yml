@@ -1,0 +1,48 @@
+title: Contribution
+num: '{{ page.date.toDate("Ymd") }}'
+icon: 📖
+
+status:
+  draft:
+    label: Draft
+    text: The article is still in draft mode. It can only be seen by editors with panel access.
+  unlisted:
+    label: In Review
+    text: The article is online and can be visited with the direct URL. The team must still give the final go to publish it.
+  listed:
+    label: Published
+    text: The article is online and listed in the blog
+
+fields:
+  text:
+    type: blocks
+    size: large
+    fieldsets:
+      - heading
+      - text
+      - image
+      button:
+        name: Button
+        icon: bolt
+        fields:
+          link:
+            type: url
+          text:
+            type: text
+          files:
+            label: Documents
+            multiple: false
+            type: files
+  participants:
+    label: Particpants
+    type: users
+  contributions:
+    label: Contributions
+    type: pages
+    query: site.find('contributions').children.listed
+  gallery:
+    label: Images
+    type: blocks
+    fieldsets:
+      - heading
+      - gallery

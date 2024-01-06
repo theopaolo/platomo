@@ -1,0 +1,23 @@
+title: Contributions
+
+columns:
+  left:
+    width: 1/2
+    sections:
+      drafts:
+        extends: sections/contributions
+        label: Drafts
+        status: draft
+
+      unlisted:
+        extends: sections/contributions
+        label: In Review
+        status: unlisted
+
+  right:
+    width: 1/2
+    sections:
+      listed:
+        extends: sections/contributions
+        label: Published
+        status: listed

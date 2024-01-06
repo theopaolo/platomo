@@ -1,0 +1,11 @@
+title: A propos
+icon: ℹ️
+
+columns:
+  main:
+    width: 1/1
+    fields:
+      text:
+        type: blocks
+        size: large
+

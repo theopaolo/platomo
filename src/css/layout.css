@@ -1,0 +1,10 @@
+:root {
+  --plyr-color-main: #ffffff;
+}
+
+.page-wrapper {
+  main {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+}

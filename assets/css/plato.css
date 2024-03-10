@@ -77,40 +77,42 @@ canvas#front-layer {
 #nodes-container p.active:hover {
   text-shadow: var(--main-text-color) 0 0 1px;
 }
+
 #search {
   position: absolute;
   height: 36px;
-  bottom: 10px;
+  bottom: 16px;
   width: 350px;
   padding: 0 5px;
   background: var(--main-background-color);
-  border-radius: 50px;
-  outline: solid 1px var(--main-outline-color);
   margin: auto;
   left: 0;
   right: 0;
   z-index: 15;
 }
+
 #search #filters {
   height: 100%;
   display: flex;
   flex-flow: row;
-  justify-content: center;
+  justify-content: space-between;
 }
+
 #search .filter {
   position: relative;
   transition: border-color 200ms ease-in;
   border-bottom: solid 2px transparent;
   border-top: solid 2px transparent;
 }
+
 #search .filter h3 {
   margin: 2px .3em;
   padding: 0.5em 0.7em;
-  font-size: .8em;
+  font-size: 1rem;
   border-radius: 1em;
   user-select: none;
-  opacity: .7;
 }
+
 #search .filter.active {
   opacity: 1;
   border-color: var(--main-text-color);

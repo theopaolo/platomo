@@ -16,12 +16,6 @@ html.dark-mode {
   background: black; /* When resizing */
 }
 
-h3, p, li {
-  font-family: 'Raleway', 'Comic Sans MS', serif;
-  color: var(--main-text-color);
-  font-weight: 300;
-}
-
 .flexrow {
   display: flex;
   flex-flow: row;
@@ -86,14 +80,8 @@ canvas#front-layer {
 
 #search {
   position: absolute;
-  height: 36px;
-  bottom: 10px;
-  width: 350px;
-  padding: 0 5px;
-  background: var(--main-background-color);
-  border-radius: 50px;
-  outline: solid 1px var(--main-outline-color);
-  margin: auto;
+  bottom: 1rem;
+  margin: 0 auto;
   left: 0;
   right: 0;
   z-index: 15;
@@ -102,6 +90,7 @@ canvas#front-layer {
 #search #filters {
   height: 100%;
   display: flex;
+  gap: 1rem;
   flex-flow: row;
   justify-content: center;
 }
@@ -114,12 +103,13 @@ canvas#front-layer {
 }
 
 #search .filter h3 {
-  margin: 2px .3em;
-  padding: 0.5em 0.7em;
-  font-size: .8em;
-  border-radius: 1em;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500  ;
+  border-radius: 9999px;
+  border: solid 1px var(--main-text-color);
+  padding: .25rem 1rem;
   user-select: none;
-  opacity: .7;
 }
 
 #search .filter.active {

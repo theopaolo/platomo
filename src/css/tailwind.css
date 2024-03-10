@@ -1,7 +1,9 @@
 @import 'fonts.css';
+@import 'layout.css';
 @import 'nav.css';
 @import 'blocks.css';
 @import 'varnish.css';
+@import 'video.css';
 
 @tailwind base;
 @tailwind components;

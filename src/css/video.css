@@ -1,0 +1,68 @@
+.plyr--video {
+  overflow: hidden;
+  border-radius: 8px;
+  .plyr__control {
+    color: var(--plyr-color-main) !important;
+    padding: 14px 10px;
+  }
+}
+
+
+
+.plyr__control svg {
+  fill: var(--plyr-color-main) !important;
+  stroke: var(--plyr-color-main) !important;
+}
+
+
+button.plyr__control[aria-label="Play"] {
+  border: 1px solid var(--plyr-color-main);
+  padding: 1.5rem;
+
+  &:hover {
+    background-color: none;
+    scale: 1.1;
+
+    svg {
+      fill: #000000 !important;
+      stroke: #000000 !important;
+    }
+  }
+}
+
+.plyr--video .plyr__control:hover {
+  background-color: transparent;
+}
+
+.plyr__controls button.plyr__controls__item[aria-label="Play"] {
+  background-color: transparent;
+  border: unset;
+}
+
+.plyr__controls {
+  position: relative;
+  justify-content: space-between;
+}
+
+.plyr_duration_times {
+  display: flex;
+}
+
+.plyr__progress {
+  position: absolute;
+  bottom: 2px;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 22px;
+  margin: unset ;
+}
+
+.plyr__progress__buffer {
+  padding: 0 22px;
+}
+
+.plyr__time+.plyr__time:before  {
+  content: "-";
+  margin-right: 0px;
+}

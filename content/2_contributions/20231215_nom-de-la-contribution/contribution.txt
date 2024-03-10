@@ -10,7 +10,15 @@ Author: - user://COCT5Z7e
 
 ----
 
-Tags: contribution, catégories
+Tags: Objet, Récit
+
+----
+
+Formats: jpg, texte, github
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
 
 ----
 
@@ -39,3 +47,32 @@ Uuid: c52VsC6RiYBt6jyw
 ----
 
 Date: 2023-12-15 15:45:20
+
+----
+
+Labo:
+
+- 
+  id: labos/un-nom-de-labo
+  image:
+    back: pattern
+    color: gray-500
+    cover: false
+    icon: 📖
+    url: >
+      http://platomo.test/media/pages/labos/un-nom-de-labo/3bc91ee7be-1704412577/wpp-overview.png
+    src: >
+      data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw
+    srcset: >
+      http://platomo.test/media/pages/labos/un-nom-de-labo/3bc91ee7be-1704412577/wpp-overview-38x.png
+      38w,
+      http://platomo.test/media/pages/labos/un-nom-de-labo/3bc91ee7be-1704412577/wpp-overview-76x.png
+      76w
+  info: ""
+  link: /pages/labos+un-nom-de-labo
+  sortable: true
+  text: Un nom de labo
+  uuid: page://xUzVmSCPYWkfN2zW
+  dragText: '(link: page://xUzVmSCPYWkfN2zW text: Un nom de labo)'
+  hasChildren: false
+  url: http://platomo.test/labos/un-nom-de-labo

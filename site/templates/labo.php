@@ -64,7 +64,7 @@
                           if($images->isNotEmpty()):
                               $firstImage = $images->first();
                           ?>
-                              <img class="w-8 h-8 object-cover rounded-full" src="<?= $firstImage->url() ?>" alt="<?= $firstImage->alt() ?>">
+                              <img class="lazyload w-8 h-8 object-cover rounded-full" src="<?= $firstImage->url() ?>" alt="<?= $firstImage->alt() ?>">
                           <?php else: ?>
                               <div class="w-8 h-8 rounded-full bg-transparent"></div>
                           <?php endif ?>
@@ -78,7 +78,7 @@
         <?php foreach($page->gallery()->toBlocks() as $block): ?>
             <?php if($block->_key() == 'gallery'): ?>
                 <?php foreach($block->images()->toFiles() as $image): ?>
-                    <img src="<?= $image->url() ?>" alt="<?= $image->alt()->or($image->filename()) ?>">
+                    <img class="lazyload" src="<?= $image->url() ?>" alt="<?= $image->alt()->or($image->filename()) ?>">
                 <?php endforeach ?>
             <?php endif ?>
         <?php endforeach ?>

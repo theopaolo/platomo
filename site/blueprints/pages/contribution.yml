@@ -49,7 +49,14 @@ columns:
           author:
             type: users
           tags:
+            label: Categories
             type: tags
+          formats:
+            label: Formats
+            type: tags
+          labos:
+            type: pages
+            query: site.find('labos')
           extra:
             label: Ressources
             type: structure

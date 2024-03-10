@@ -7,7 +7,7 @@
     <?php foreach ($page->children()->listed() as $contribution): ?>
       <a class="hover:bg-tertiary rounded-full transition-colors duration-300" href="<?= $contribution->url() ?>">
         <article class="border border-black p-2 pl-8 rounded-full flex items-center gap-4">
-          <h2 class="text-subtitle uppercase"><?= $contribution->title() ?></h2>
+          <h2 class="text-subtitle no-effect uppercase"><?= $contribution->title() ?></h2>
           <?php if($user = $contribution->author()->toUser()): ?>
             <p class="text-lg"><?= $user->username() ?></p>
           <?php endif ?>
@@ -21,7 +21,7 @@
             if($images->isNotEmpty()):
                 $firstImage = $images->first();
             ?>
-                <img class="w-14 h-14 object-cover rounded-full" src="<?= $firstImage->url() ?>" alt="<?= $firstImage->alt() ?>">
+                <img class="lazyload w-14 h-14 object-cover rounded-full" src="<?= $firstImage->url() ?>" alt="<?= $firstImage->alt() ?>">
             <?php else: ?>
               <div class="w-14 h-14 rounded-full bg-transparent"></div>
             <?php endif ?>

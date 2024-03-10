@@ -49,3 +49,5 @@ Icon
 
 /site/config/.license
 node_modules
+
+.parcel-cache

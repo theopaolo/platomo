@@ -4,7 +4,6 @@
 // node and filtertag states are updated on search change by user (click on a FilterTag)
 
 // Globals
-require('dotenv').config();
 const htmlNode = document.getElementsByTagName('html')[0]
 const labosNode = document.getElementById('filter-labo').getElementsByTagName('ul')[0]
 const categoriesNode = document.getElementById('filter-category').getElementsByTagName('ul')[0]

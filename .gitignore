@@ -54,3 +54,6 @@ node_modules
 
 media
 content/2_contribution/2
+
+# -- ENV
+.env.local

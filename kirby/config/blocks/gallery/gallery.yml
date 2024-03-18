@@ -14,11 +14,11 @@ fields:
       template: blocks/image
     image:
       ratio: 1/1
-  # caption:
-  #   label: field.blocks.image.caption
-  #   type: writer
-  #   icon: text
-  #   inline: true
+  caption:
+    label: field.blocks.image.caption
+    type: writer
+    icon: text
+    inline: true
   ratio:
     label: field.blocks.image.ratio
     type: select
@@ -38,9 +38,3 @@ fields:
     label: field.blocks.image.crop
     type: toggle
     width: 1/2
-  slider:
-    label: Mode caroussel
-    type: toggle
-    text:
-      - "no"
-      - "yes"

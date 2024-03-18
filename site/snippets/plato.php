@@ -18,19 +18,19 @@
     <div class="filter" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
       <h3 class="hover:bg-black hover:text-white transition-colors duration-300">Laboratoires</h3>
       <ul class="filter-tags">
-        <!--<li data-tag="1" class="round-btn">Labo #1</li>-->
+        <li data-tag="1" class="round-btn">Labo #1</li>
       </ul>
     </div>
     <div class="filter" data-filter="category" data-filter-name="Catégorie" id="filter-category">
       <h3 class="hover:bg-black hover:text-white transition-colors duration-300">Catégories</h3>
       <ul class="filter-tags">
-        <!--<li data-tag="1" class="round-btn">Objet</li>-->
+        <li data-tag="1" class="round-btn">Objet</li>
       </ul>
     </div>
     <div class="filter" data-filter="author" data-filter-name="Auteur" id="filter-author">
       <h3 class="hover:bg-black hover:text-white transition-colors duration-300">Auteur·e·s</h3>
       <ul class="filter-tags">
-        <!--<li data-tag="1" class="round-btn">John Doe</li>-->
+        <li data-tag="1" class="round-btn">John Doe</li>
       </ul>
     </div>
     <?php

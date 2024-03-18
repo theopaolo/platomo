@@ -4,6 +4,7 @@
 // node and filtertag states are updated on search change by user (click on a FilterTag)
 
 // Globals
+require('dotenv').config();
 const htmlNode = document.getElementsByTagName('html')[0]
 const labosNode = document.getElementById('filter-labo').getElementsByTagName('ul')[0]
 const categoriesNode = document.getElementById('filter-category').getElementsByTagName('ul')[0]
@@ -53,6 +54,7 @@ class Particle {
   }
 }
 
+// const dataUrl = "https://4negiv.n0c.world/platomo/contributions.json";
 const dataUrl = "http://platomo.test/contributions.json";
 let data = [];
 let nodesPop = 0;
@@ -85,12 +87,18 @@ let addIdsToData = () => {
   let isInArray = (el, arr) => arr.some(n => n === el);
 
   data.forEach(d => {
-    if (!isInArray(d.labo, labos)) labos.push(d.labo)
+    if (!isInArray(d.labo, labos)) labos.push(d.title)
     d.categories.forEach(c => {
       if (!isInArray(c, categories)) categories.push(c)
     })
+
     if (!isInArray(d.author, authors)) authors.push(d.author)
   })
+
+  console.log("Labos: ", labos);
+  console.log("Categories: ", categories);
+  console.log("Authors: ", authors);
+  console.log("Data: ", data);
 
   // Add ids by checking index in arrays
   data.forEach(d => {
@@ -108,6 +116,7 @@ let search = {}
 let filterTags = []
 class FilterTag {
   type; id; content; domNode; isActive;
+
   constructor (type = 'labo', id = 1, content = "") {
     this.type = type
     this.id = id
@@ -115,7 +124,8 @@ class FilterTag {
     this.inject()
     this.setActive(false)
   }
-  inject () {
+
+  inject() {
     // Create node
     let liNode = document.createElement('li')
     liNode.classList.add('round-btn');
@@ -132,18 +142,19 @@ class FilterTag {
       //updateSearchInfo("", false)
     })
     liNode.addEventListener('click', e => {
+      console.log('click', e.target.innerHTML);
       let newText = this.isActive ? "" : filterText + e.target.innerHTML
       updateSearchInfo(newText, true)
       updateSearch(this.type, this.id)
     })
 
     // Append
-    //if (mode == 'desktop') {
+    if (mode == 'desktop') {
       let parentNode = this.type == 'labo' ? labosNode : (this.type == 'category' ? categoriesNode : authorsNode)
       parentNode.append(liNode)
-    //} else if (mode == 'mobile') {
-      //mobileFiltersNode.append(liNode)
-    //}
+    } else if (mode == 'mobile') {
+      mobileFiltersNode.append(liNode)
+    }
   }
 
   setActive (isActive) {

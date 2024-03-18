@@ -657,8 +657,15 @@ swup.hooks.on("visit:start", (visit)=>{
 // Initialize Alpine.js
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).start();
+let newUrl = 123;
+console.log("object");
+console.log("undefined");
+console.log("string");
+console.log("number");
+console.log("number");
+console.log(typeof goBackWithSwup);
 
-},{"alpinejs":"69hXP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","swup":"5QjrV","plyr":"aqcBy"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","swup":"5QjrV","plyr":"aqcBy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);

@@ -93,3 +93,11 @@ swup.hooks.on('visit:start', (visit) => {
 // Initialize Alpine.js
 window.Alpine = Alpine;
 Alpine.start();
+
+let newUrl = 123;
+console.log(typeof(null));
+console.log(typeof(undefined));
+console.log(typeof(''));
+console.log(typeof(0));
+console.log(typeof(-1));
+console.log(typeof(goBackWithSwup));

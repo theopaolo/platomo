@@ -244,6 +244,17 @@ canvas#front-layer, #nodes-container {
   right: 1rem;
 }
 
+@media (width <= 700px) {
+  #pages {
+    flex-flow: column;
+    align-items: flex-end;
+  }
+
+  #pages h3 {
+    margin: -.4rem auto;
+  }
+}
+
 #bottom-items.search-toggle-on #search #filters-nav {
   opacity: 0;
   left: -12rem;

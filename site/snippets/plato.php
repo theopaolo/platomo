@@ -12,50 +12,65 @@
 		<p></p>
 	</div>
 
-	<div id="search">
+	<div id="bottom-items" class="search-toggle-off">
 
-		<div id="filters">
-			<div class="filter" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
-				<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Laboratoires</h3>
-				<ul class="filter-tags">
-					<li data-tag="1" class="round-btn">Labo #1</li>
-				</ul>
+		<div id="search">
+
+			<div id="filters-nav">
+				<div class="rounded-btn">
+					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Navigation</h3>
+				</div>
 			</div>
-			<div class="filter" data-filter="category" data-filter-name="Catégorie" id="filter-category">
-				<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Catégories</h3>
-				<ul class="filter-tags">
-					<li data-tag="1" class="round-btn">Objet</li>
-				</ul>
+
+			<div id="exit-nav" class="rounded-btn">
+				<h3 class="hover:bg-black hover:text-white transition-colors duration-300">X</h3>
 			</div>
-			<div class="filter" data-filter="author" data-filter-name="Auteur" id="filter-author">
-				<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Auteur·e·s</h3>
-				<ul class="filter-tags">
-					<li data-tag="1" class="round-btn">John Doe</li>
-				</ul>
+
+			<div id="filters">
+				<div class="filter rounded-btn" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
+					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Laboratoires</h3>
+					<ul class="filter-tags">
+						<li data-tag="1" class="round-btn">Labo #1</li>
+					</ul>
+				</div>
+				<div class="filter rounded-btn" data-filter="category" data-filter-name="Catégorie" id="filter-category">
+					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Catégories</h3>
+					<ul class="filter-tags">
+						<li data-tag="1" class="round-btn">Objet</li>
+					</ul>
+				</div>
+				<div class="filter rounded-btn" data-filter="author" data-filter-name="Auteur" id="filter-author">
+					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Auteur·e·s</h3>
+					<ul class="filter-tags">
+						<li data-tag="1" class="round-btn">John Doe</li>
+					</ul>
+				</div>
 			</div>
+
+			<div id="expand-search">
+				<div id="square"></div>
+			</div>
+
 		</div>
 
-		<div id="expand-search">
-			<div id="square"></div>
-		</div>
+		<nav id="pages">
+			<?php
+			$items = $pages->listed();
+			if($items->isNotEmpty()):
+			?>
+				<?php foreach($items as $item): ?>
+					<div class="page-link uppercase rounded-btn">
+						<h3 class="hover:bg-black hover:text-white transition-colors duration-300">
+							<a class="w-full block" <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
+						</h3>
+					</div>
+				<?php endforeach ?>
 
+			<?php endif ?>
+		</nav>
 	</div>
 
-	<nav id="pages">
-		<?php
-		$items = $pages->listed();
-		if($items->isNotEmpty()):
-		?>
-			<?php foreach($items as $item): ?>
-				<div class="page-link uppercase rounded-full">
-					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">
-						<a class="w-full block" <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
-					</h3>
-				</div>
-			<?php endforeach ?>
-
-		<?php endif ?>
-	</nav>
+	
 
 </div>
 

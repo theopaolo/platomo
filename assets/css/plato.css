@@ -45,6 +45,26 @@ h3, p, li {
   outline: solid 1px var(--dense-outline-color);
 }
 
+.rounded-btn {
+  cursor: pointer;
+  border-top: 2px solid #0000;
+  border-bottom: 2px solid #0000;
+  transition: border-color .3s ease-in;
+  position: relative;
+}
+
+.rounded-btn h3 {
+  text-transform: uppercase;
+  border: solid 1px var(--main-text-color);
+  -webkit-user-select: none;
+  user-select: none;
+  border-radius: 9999px;
+  width: max-content;
+  padding: .25rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -84,24 +104,6 @@ canvas#front-layer, #nodes-container {
   text-shadow: var(--main-text-color) 0 0 1px;
 }
 
-.filter, .page-link {
-  border-top: 2px solid #0000;
-  border-bottom: 2px solid #0000;
-  transition: border-color .2s ease-in;
-  position: relative;
-}
-
-.filter h3, .page-link h3 {
-  text-transform: uppercase;
-  border: solid 1px var(--main-text-color);
-  -webkit-user-select: none;
-  user-select: none;
-  border-radius: 9999px;
-  padding: .25rem 1rem;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
 #search {
   margin: 0 auto;
   position: absolute;
@@ -109,18 +111,47 @@ canvas#front-layer, #nodes-container {
   left: 1rem;
 }
 
+#search #filters-nav {
+  opacity: 1;
+  transition: left .5s ease-in-out, opacity .5s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#search #exit-nav {
+  opacity: 0;
+  z-index: 20;
+  transition: left .5s ease-in-out, opacity .5s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: -12rem;
+}
+
+#search #exit-nav h3 {
+  height: 2.3rem;
+  padding: .35rem .8rem;
+}
+
 #search #filters {
   flex-flow: row;
   justify-content: center;
   gap: 1rem;
+  width: 100vw;
+  margin: auto;
+  transition: bottom .5s ease-in-out;
   display: flex;
+  position: absolute;
+  bottom: -50vh;
+  left: 0;
+  right: 0;
 }
 
-#search .filter.active {
+#search #filters .filter.active {
   border-color: var(--main-text-color);
 }
 
-#search .filter ul.filter-tags {
+#search #filters .filter ul.filter-tags {
   flex-flow: wrap;
   justify-content: center;
   width: 165px;
@@ -132,7 +163,7 @@ canvas#front-layer, #nodes-container {
   overflow-x: hidden !important;
 }
 
-#search .filter ul.filter-tags li {
+#search #filters .filter ul.filter-tags li {
   text-align: center;
   cursor: pointer;
   -webkit-user-select: none;
@@ -142,39 +173,39 @@ canvas#front-layer, #nodes-container {
   font-size: .85em;
 }
 
-#search .filter ul.filter-tags li:hover {
+#search #filters .filter ul.filter-tags li:hover {
   outline: var(--dense-outline-color) solid 1px;
 }
 
-#search .filter ul.filter-tags li.active {
+#search #filters .filter ul.filter-tags li.active {
   background: var(--main-text-color);
   color: var(--main-background-color);
 }
 
-#search .filter:hover ul.filter-tags {
+#search #filters .filter:hover ul.filter-tags {
   display: flex;
 }
 
-#search .filter#filter-labo ul.filter-tags {
+#search #filters .filter#filter-labo ul.filter-tags {
   left: -32px;
 }
 
-#search .filter#filter-category ul.filter-tags {
+#search #filters .filter#filter-category ul.filter-tags {
   left: -37px;
 }
 
-#search .filter#filter-author ul.filter-tags {
+#search #filters .filter#filter-author ul.filter-tags {
   width: 335px;
   bottom: 17px;
   left: -122px;
 }
 
-#search .filter#filter-author ul.filter-tags li {
+#search #filters .filter#filter-author ul.filter-tags li {
   order: 2;
   margin: 3px;
 }
 
-#search .filter#filter-author ul.filter-tags li:last-of-type:nth-child(odd) {
+#search #filters .filter#filter-author ul.filter-tags li:last-of-type:nth-child(odd) {
   order: 1;
   margin: 3px 10px;
 }
@@ -201,26 +232,51 @@ canvas#front-layer, #nodes-container {
 }
 
 #pages {
+  opacity: 1;
   flex-flow: row;
   justify-content: center;
   gap: 1rem;
   margin: 0 auto;
+  transition: bottom .5s, opacity .5s;
   display: flex;
   position: absolute;
   bottom: 1rem;
   right: 1rem;
 }
 
+#bottom-items.search-toggle-on #search #filters-nav {
+  opacity: 0;
+  left: -12rem;
+}
+
+#bottom-items.search-toggle-on #search #exit-nav {
+  opacity: 1;
+  left: 0;
+}
+
+#bottom-items.search-toggle-on #search #filters {
+  bottom: 0;
+}
+
+#bottom-items.search-toggle-on #pages {
+  opacity: 0;
+  bottom: -5rem;
+}
+
+#bottom-items.search-toggle-on {
+  display: inherit;
+}
+
 #dark-mode-toggle {
   cursor: pointer;
   background: var(--main-text-color);
-  z-index: 11;
+  z-index: 100;
   border: 1px solid #0003;
   border-radius: 50%;
   width: 35px;
   height: 35px;
   position: absolute;
-  bottom: 4rem;
+  top: 1rem;
   right: 1rem;
 }
 

@@ -18,6 +18,9 @@ const searchNode = document.getElementById("search");
 const searchInfoNode = document
   .getElementById("search-info")
   .getElementsByTagName("p")[0];
+const bottomItemsNode = document.getElementById("bottom-items")
+const filtersNavOnNode = document.querySelector("#filters-nav h3")
+const filtersNavOffNode = document.querySelector("#exit-nav h3")
 
 const breakpoint = 550; //px
 let colorMode = "light"; // "dark"
@@ -592,6 +595,15 @@ document.getElementById("dark-mode-toggle").addEventListener("click", (e) => {
   colorMode = colorMode == "light" ? "dark" : "light";
   fullReset();
 });
+
+// Bottom items interactions
+bottomItemsNode.classList = "search-toggle-off"
+filtersNavOnNode.addEventListener("click", () => {
+  bottomItemsNode.classList = "search-toggle-on"
+})
+filtersNavOffNode.addEventListener("click", () => {
+  bottomItemsNode.classList = "search-toggle-off"
+})
 
 // Window resize
 let timeout;

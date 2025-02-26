@@ -56,4 +56,4 @@
 </div>
 
 <?= js('assets/js/plato.js') ?>
-<?= css('src/css/plato.css') ?>
+<?= css('assets/css/plato.css') ?>

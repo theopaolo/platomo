@@ -20,9 +20,8 @@ const searchInfoNode = document
   .getElementsByTagName("p")[0];
 
 const breakpoint = 550; //px
-let colorMode = "light"; // 'dark'
-let saturation = 0;
-let lum;
+let colorMode = "light"; // "dark"
+let saturatedColors = true // true // false
 
 let mode; // 'desktop' || 'mobile'
 let w, h;
@@ -490,22 +489,19 @@ let step = () => {
         let x = rn.x + r * Math.cos(randomAngle);
         let y = rn.y + r * Math.sin(randomAngle);
 
-        // let hue = colorMode == 'light' ? 190 : 0
-        // let lum = colorMode == 'light' ? 78 : 55
-
-        if (colorMode === "light") {
-          // Light mode: lighter greys (closer to white)
-          lum = 70 + Math.random() * 30; // Range from 70% to 100% for a range of light greys to white
-        } else {
-          // Dark mode: darker greys (closer to black)
-          lum = 0 + Math.random() * 50; // Range from 0% to 50% for a range of dark greys to black
+        let hue = colorMode == "light" ? 190 : 0
+        let sat = saturatedColors ? 100 : 0
+        let lum
+        if (colorMode == "light" && saturatedColors) lum = 78
+        else if (colorMode == "dark" && saturatedColors) lum = 55
+        else if (colorMode == "light" && !saturatedColors) lum = 70 + Math.random() * 30
+        else if (colorMode == "dark" && !saturatedColors) lum = 0 + Math.random() * 50
+        else {
+          console.error("Theme configuration not recognized in plato.js")
         }
 
-        let color = `hsla(0, ${saturation}%, ${lum}%, 0.8)`; // Alpha set to 0.8 for slight transparency
-        let particle = new Particle(x, y, 0.5, color);
-
-        // let color = 'hsla(' + (hue + 30 * Math.random()) + ', 100%, ' + lum + '%, .8)'
-        // let particle = new Particle(x, y, .5, color)
+        let color = `hsla(${hue + 30 * Math.random()}, ${sat}%, ${lum}%, 0.8)`
+        let particle = new Particle(x, y, .5, color)
 
         if (rn.active) particles.push(particle);
       }

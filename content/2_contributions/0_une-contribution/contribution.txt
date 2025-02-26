@@ -1,4 +1,4 @@
-Title: Nom de la contribution
+Title: une contribution
 
 ----
 
@@ -22,12 +22,8 @@ Labos: - page://xUzVmSCPYWkfN2zW
 
 ----
 
-Extra:
-
--
-  lien: ""
-  fichier: [ ]
+Extra: 
 
 ----
 
-Uuid: c52VsC6RiYBt6jyw
+Uuid: VczY2mZt3stoJa9t

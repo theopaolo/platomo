@@ -1,0 +1,29 @@
+Title: Digital Art & Technology
+
+----
+
+Text: [{"content":{"level":"h2","text":"Intersection of Art and Technology"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>The convergence of artistic expression and technological innovation has created entirely new forms of creative output. Digital art encompasses a broad spectrum of practices, from algorithmic generation to virtual reality experiences, all united by their use of computational processes as a fundamental creative tool.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"images":["file://zniA3zxbxTyf2Klg","file://VvhSH2EjpdDsfpgH"],"ratio":"","crop":"false","slider":"true"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Generative Systems"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Generative art systems use algorithms, artificial intelligence, and other computational processes to create works that evolve beyond the direct control of the artist. These systems introduce elements of emergence and unpredictability, challenging traditional notions of authorship and creative control.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://VvhSH2EjpdDsfpgH"],"src":"","alt":"Generative art visualization","caption":"Visual representation of a generative art system output","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Interactive Experiences"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Digital art often incorporates interactive elements that transform the viewer from passive observer to active participant. Through sensors, interfaces, and responsive systems, these works create dynamic experiences that adapt to human input and environmental conditions.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"url":"https://player.vimeo.com/video/645903440","caption":"Interactive digital art installation responding to viewer movement"},"id":"e9cd71bc-8fa1-4b33-8757-bef517cd9d9b","isHidden":false,"type":"video"}]
+
+----
+
+Author: - user://COCT5Z7e
+
+----
+
+Tags: Digital, Art, Technology, Interactive
+
+----
+
+Formats: png, video, web
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
+
+----
+
+Extra:
+
+----
+
+Uuid: DiGaRt7tE3cH9nL4

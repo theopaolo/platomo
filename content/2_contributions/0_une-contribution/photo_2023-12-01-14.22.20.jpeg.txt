@@ -1,5 +1,0 @@
-Uuid: sBbRbhPzxxPE14tv
-
-----
-
-Template: blocks/image

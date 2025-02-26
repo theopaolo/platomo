@@ -67,8 +67,9 @@ class Particle {
   }
 }
 
-// const dataUrl = "https://4negiv.n0c.world/platomo/contributions.json";
-const dataUrl = "http://platomo.test/contributions.json";
+const dataUrl = "http://localhost/platomo/contributions.json";
+//const dataUrl = "http://platomo.test/contributions.json";
+
 let data = [];
 let nodesPop = 0;
 

@@ -1,0 +1,18 @@
+{
+  "data": [
+    { "title": "Faire retour", "labo": "Labo #3", "author": "Elise Garraud", "categories": ["Récit", "Pensée"], "formats": ["texte"] },
+    { "title": "Portrait d’un jardin potager", "labo": "Labo #3", "author": "Cédric Jaburek", "categories": ["Objet"], "formats": ["texte", "jpg", "mp4", "mov"] },
+    { "title": "Le pull de robinson", "labo": "Labo #3", "author": "Louise Deltrieux", "categories": ["Objet", "Récit"], "formats": ["pdf"] },
+    { "title": "Au bout du geste", "labo": "Labo #3", "author": "Arnaud Chevalier", "categories": ["Pensée"], "formats": ["texte"] },
+    { "title": "Le geste et sa trace", "labo": "Labo #3", "author": "Félix Côte", "categories": ["Outil"], "formats": ["texte", "mp4", "github", "jpg"] },
+    { "title": "Pour l’instant", "labo": "Labo #3", "author": "Malvina Migné", "categories": ["Objet"], "formats": ["texte"] },
+    { "title": "Capsule écholaliques", "labo": "Labo #4", "author": "Cassiel Bruder", "categories": ["Objet"], "formats": ["pdf"] },
+    { "title": "Mémoires é-maillées", "labo": "Labo #4", "author": "Cynthia Caubisens", "categories": ["Objet"], "formats": ["texte", "wav"] },
+    { "title": "Réflexions inceptives", "labo": "Labo #4", "author": "Alex Andrix", "categories": ["Objet", "Récit"], "formats": ["pdf"] },
+    { "title": "L’eau de nos lumières", "labo": "Labo #4", "author": "Hugo Montero", "categories": ["Objet", "Récit"], "formats": ["jpg"] },
+    { "title": "Portrait sensible Miroir", "labo": "Labo #4", "author": "Julie Arménio", "categories": ["Outil"], "formats": ["pdf"] },
+    { "title": "Récit illustré d’une expérience", "labo": "Labo #4", "author": "Marilou Boulay", "categories": ["Récit"], "formats": ["texte", "jpg"] },
+    { "title": "La peau", "author": "Milan Otal", "labo": "Labo #4", "categories": ["Objet"], "formats": ["texte"] },
+    { "title": "LABOZ", "author": "Rachel Testard", "labo": "Labo #4", "categories": ["Récit", "Outil"], "formats": ["texte"] }
+  ]
+}

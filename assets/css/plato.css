@@ -1,319 +1,364 @@
 :root {
   --main-background-color: white;
-  --secondary-background-color: linear-gradient(#73b3f2,#8adaf4);
+  --secondary-background-color: linear-gradient(#73b3f2, #8adaf4);
   --main-text-color: black;
-  --main-outline-color: rgba(0,0,0,0.15);
-  --dense-outline-color: rgba(0,0,0,0.5);
+  --main-outline-color: #00000026;
+  --dense-outline-color: #00000080;
 }
+
 html.dark-mode {
   --main-background-color: black;
-  --secondary-background-color: linear-gradient(#c20a0a,#c2380a);
+  --secondary-background-color: linear-gradient(#c20a0a, #c2380a);
   --main-text-color: white;
-  --main-outline-color: rgba(255,255,255,0.5);
-  --dense-outline-color: rgba(255,255,255,0.8);
-  background: black;
+  --main-outline-color: #ffffff80;
+  --dense-outline-color: #fffc;
+  background: #000;
 }
-h3,
-p,
-li {
-  font-family: 'GeneralSans-Variable', sans-serif;
+
+h3, p, li {
   color: var(--main-text-color);
-  font-weight: 400;
+  font-family: Raleway, Comic Sans MS, serif;
+  font-weight: 300;
 }
+
 .flexrow {
-  display: flex;
   flex-flow: row;
+  display: flex;
 }
+
 .flexcenter {
   justify-content: center;
 }
+
 .flexend {
   justify-content: flex-end;
 }
+
 .round-btn {
-  padding: 5px;
   background: var(--main-background-color);
-  border-radius: 50px;
   outline: solid 1px var(--main-outline-color);
+  border-radius: 50px;
+  padding: 5px;
 }
+
 .round-btn:hover {
   outline: solid 1px var(--dense-outline-color);
 }
-html,
-body {
-  height: 100%;
+
+html, body {
   width: 100%;
+  height: 100%;
   margin: 0;
   position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 }
+
 #board {
   position: relative;
 }
-canvas#front-layer {
+
+canvas#front-layer, #nodes-container {
   position: absolute;
   top: 0;
   left: 0;
 }
-#nodes-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 #nodes-container p {
-  position: absolute;
   text-align: center;
-  margin: 0;
+  -webkit-user-select: none;
   user-select: none;
   word-wrap: auto;
   opacity: .15;
   text-transform: uppercase;
+  margin: 0;
+  position: absolute;
 }
+
 #nodes-container p.active {
   cursor: pointer;
   opacity: 1;
 }
+
 #nodes-container p.active:hover {
   text-shadow: var(--main-text-color) 0 0 1px;
 }
 
 #search {
-  position: absolute;
-  height: 36px;
-  bottom: 16px;
-  width: 350px;
-  padding: 0 5px;
   background: var(--main-background-color);
+  outline: solid 1px var(--main-outline-color);
+  z-index: 15;
+  border-radius: 50px;
+  width: 350px;
+  height: 36px;
   margin: auto;
+  padding: 0 5px;
+  position: absolute;
+  bottom: 10px;
   left: 0;
   right: 0;
-  z-index: 15;
 }
 
 #search #filters {
+  flex-flow: row;
+  justify-content: center;
   height: 100%;
   display: flex;
-  flex-flow: row;
-  justify-content: space-between;
 }
 
 #search .filter {
+  border-top: 2px solid #0000;
+  border-bottom: 2px solid #0000;
+  transition: border-color .2s ease-in;
   position: relative;
-  transition: border-color 200ms ease-in;
-  border-bottom: solid 2px transparent;
-  border-top: solid 2px transparent;
 }
 
 #search .filter h3 {
-  margin: 2px .3em;
-  padding: 0.5em 0.7em;
-  font-size: 1rem;
-  border-radius: 1em;
+  -webkit-user-select: none;
   user-select: none;
+  opacity: .7;
+  border-radius: 1em;
+  margin: 2px .3em;
+  padding: .5em .7em;
+  font-size: .8em;
 }
 
 #search .filter.active {
   opacity: 1;
   border-color: var(--main-text-color);
 }
-#search .filter:hover h3,
-#search .filter.active h3 {
+
+#search .filter:hover h3, #search .filter.active h3 {
   opacity: 1;
 }
+
 #search .filter ul.filter-tags {
+  flex-flow: wrap;
+  justify-content: center;
+  width: 165px;
+  padding: 0 0 5px;
   list-style-type: none;
+  display: none;
   position: absolute;
   bottom: 15px;
-  width: 165px;
-  padding: 0 0 5px 0;
-  display: none;
-  flex-flow: row;
-  flex-wrap: wrap;
-  justify-content: center;
   overflow-x: hidden !important;
 }
+
 #search .filter ul.filter-tags li {
   text-align: center;
   cursor: pointer;
+  -webkit-user-select: none;
   user-select: none;
   width: 150px;
   margin: 3px;
   font-size: .85em;
 }
+
 #search .filter ul.filter-tags li:hover {
   outline: var(--dense-outline-color) solid 1px;
 }
+
 #search .filter ul.filter-tags li.active {
   background: var(--main-text-color);
   color: var(--main-background-color);
 }
+
 #search .filter:hover ul.filter-tags {
   display: flex;
 }
+
 #search .filter#filter-labo ul.filter-tags {
   left: -32px;
 }
+
 #search .filter#filter-category ul.filter-tags {
   left: -37px;
 }
+
 #search .filter#filter-author ul.filter-tags {
-  left: -122px;
   width: 335px;
   bottom: 17px;
+  left: -122px;
 }
+
 #search .filter#filter-author ul.filter-tags li {
-  margin: 3px;
   order: 2;
+  margin: 3px;
 }
+
 #search .filter#filter-author ul.filter-tags li:last-of-type:nth-child(odd) {
   order: 1;
   margin: 3px 10px;
 }
+
 #search #expand-search {
   display: none;
 }
+
 #search-info {
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  user-select: none;
 }
+
 #search-info p {
-  font-size: 2rem;
-  line-height: 1em;
   text-align: center;
-  font-weight: 200;
   padding: 0 1em;
+  font-size: 2rem;
+  font-weight: 200;
+  line-height: 1em;
 }
+
 #dark-mode-toggle {
-  position: absolute;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  bottom: 10px;
-  right: 10px;
   cursor: pointer;
   background: var(--main-text-color);
-  border: solid 1px rgba(0,0,0,0.2);
   z-index: 11;
+  border: 1px solid #0003;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
+
 #dark-mode-toggle:hover {
   box-shadow: var(--main-text-color) 0 0 6px;
 }
-@media (max-width: 550px) {
-  html,
-  body {
+
+@media (width <= 550px) {
+  html, body {
     overflow-y: inherit;
   }
+
   #dark-mode-toggle {
     top: 10px;
     right: 10px;
   }
+
   #mobile-search {
     display: inherit;
   }
+
   #search {
-    bottom: calc(65%);
+    bottom: calc(100% - 35px);
     left: inherit;
     background: var(--secondary-background-color);
-    height: auto;
     border-radius: 0;
-    width: 100%;
     outline: none;
+    width: 100%;
+    height: auto;
     padding: 0;
-    box-shadow: rgba(0,0,0,0.5) 0 0 6px;
+    box-shadow: 0 0 6px #00000080;
   }
+
   #search:not(.active) .filter {
     opacity: 1;
   }
+
   #search #filters {
     flex-flow: column;
   }
+
   #search .filter {
-    padding: 0 3px;
     opacity: .6;
+    padding: 0 3px;
   }
+
   #search .filter.active {
-    border-color: transparent;
     opacity: 1;
+    border-color: #0000;
   }
+
   #search .filter h3 {
     text-align: center;
-    padding: 0.2rem;
+    padding: .2rem;
     font-size: 1.2rem;
   }
-  #search .filter#filter-labo ul.filter-tags,
-  #search .filter#filter-category ul.filter-tags,
-  #search .filter#filter-author ul.filter-tags {
+
+  #search .filter#filter-labo ul.filter-tags, #search .filter#filter-category ul.filter-tags, #search .filter#filter-author ul.filter-tags {
     left: inherit;
     width: inherit;
   }
+
   #search .filter:hover ul.filter-tags {
     display: flex;
   }
+
   #search .filter ul.filter-tags {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    overflow-x: scroll;
     bottom: inherit;
     left: inherit;
+    flex-flow: wrap;
+    justify-content: center;
+    width: 100%;
     margin: 0;
+    display: flex;
+    position: relative;
+    overflow-x: scroll;
   }
+
   #search .filter ul.filter-tags li {
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
     width: 90px;
     margin: 3px;
     padding: 2px 3px;
     font-size: .8rem;
     display: flex;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
   }
+
   #search .filter#filter-author ul.filter-tags {
     bottom: inherit;
   }
+
   #search .filter#filter-author ul.filter-tags li:last-of-type:nth-child(odd) {
     margin: 3px;
   }
+
   #search #expand-search {
-    display: flex;
     flex-flow: rox;
+    cursor: pointer;
+    background: #0000000f;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.06);
     height: 35px;
-    cursor: pointer;
+    display: flex;
   }
+
   #search #expand-search #square {
+    border-top: 1px solid #000000b3;
+    border-left: 1px solid #000000b3;
     width: 12px;
     height: 12px;
     margin-top: -9px;
+    transition: transform .2s ease-out;
     transform: rotate(225deg);
-    border-top: solid 1px rgba(0,0,0,0.7);
-    border-left: solid 1px rgba(0,0,0,0.7);
-    transition: transform 200ms ease-out;
   }
+
   #search #expand-search:hover #square {
-    border-color: black;
+    border-color: #000;
   }
+
   #search:not(.expanded) {
     bottom: inherit;
   }
+
   #search:not(.expanded) #expand-search #square {
     margin-top: 7px;
     transform: rotate(45deg);
   }
+
   #board {
     margin-top: 35px;
   }
+
   #search-info p {
     padding: 0 2.8rem;
     font-size: 1.7rem;
   }
 }
+
+/*# sourceMappingURL=plato.css.map */

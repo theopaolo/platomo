@@ -1,5 +1,1 @@
-Uuid: VvhSH2EjpdDsfpgH
-
-----
-
-Template: blocks/image
+Uuid: 5B0fIUqNPrIpuEDJ

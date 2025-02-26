@@ -1,0 +1,29 @@
+Title: Interior Harmony
+
+----
+
+Text: [{"content":{"level":"h2","text":"Minimalist Spaces"},"id":"3e811d3b-0c52-4fc2-98e0-8dbbe8a90ef8","isHidden":false,"type":"heading"},{"content":{"text":"<p>Minimalist interior design emphasizes simplicity, clean lines, and a monochromatic palette. The philosophy behind minimalism is that by reducing visual clutter, we create spaces that promote tranquility and mindfulness in our daily lives.</p>"},"id":"339d78a8-46e8-4501-9340-19921fbc01cb","isHidden":false,"type":"text"},{"content":{"images":["file://BsJkZrymzfxyat9e","file://vR8Vf0Gt7qTzuO0G","file://FjDgNce64HhRrQC7"],"caption":"Minimalist bedroom designs featuring clean lines and neutral colors","ratio":"","crop":"false"},"id":"a1d47433-bc29-477b-9c0f-3e63e2369439","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Design Principles"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>The key principles of minimalist interior design include functional furniture, thoughtful spatial arrangement, and a focus on quality over quantity. Each element serves a purpose, and nothing is superfluous or merely decorative without intention.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"link":"https://www.minimalism.com","text":"Explore Minimalist Design","files":[]},"id":"8736d75d-2348-4e12-b084-96fbd4558db9","isHidden":false,"type":"button"}]
+
+----
+
+Author: - user://82nWn29x
+
+----
+
+Tags: Interior, Design, Minimalism
+
+----
+
+Formats: jpg, texte
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
+
+----
+
+Extra:
+
+----
+
+Uuid: InTrHrMn9yDe2sG7

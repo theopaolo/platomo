@@ -1,0 +1,29 @@
+Title: Urban Perspectives
+
+----
+
+Text: [{"content":{"level":"h2","text":"City Landscapes"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>The urban landscape is a complex tapestry of architectural forms, spatial relationships, and human interactions. Modern cities represent the culmination of centuries of design evolution, where each building and street contributes to the overall narrative of urban development.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"images":["file://5B0fIUqNPrIpuEDJ","file://t6PiAfqjazMz6cks"],"ratio":"","crop":"false","slider":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Theoretical Framework"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>The theory of urban spaces is deeply rooted in the writings of contemporary architects and urban planners. From Le Corbusier's vision of the city as a machine for living to Jane Jacobs' emphasis on community and street life, these perspectives shape our understanding of how cities function and evolve over time.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"}]
+
+----
+
+Author: - user://0teAfnWa
+
+----
+
+Tags: Architecture, Urban, Theory
+
+----
+
+Formats: jpg, texte
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
+
+----
+
+Extra:
+
+----
+
+Uuid: URbNpErS7eCt1vE5

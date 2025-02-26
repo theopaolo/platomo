@@ -1,0 +1,29 @@
+Title: Collaborative Methodologies
+
+----
+
+Text: [{"content":{"level":"h2","text":"Co-Design Approaches"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Co-design represents a fundamental shift in the design process, moving from designing for users to designing with users. This collaborative approach recognizes that the expertise needed to address complex challenges is distributed among many stakeholders, each bringing unique perspectives and knowledge to the table.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"images":["file://zniA3zxbxTyf2Klg","file://VvhSH2EjpdDsfpgH"],"ratio":"","crop":"false","slider":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Interdisciplinary Collaboration"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>The most innovative solutions often emerge at the intersection of different disciplines. Effective collaborative methodologies create frameworks for meaningful exchange between diverse fields, enabling cross-pollination of ideas and approaches that can lead to breakthrough innovations.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://VvhSH2EjpdDsfpgH"],"src":"","alt":"Collaborative design workshop","caption":"Interdisciplinary team working on a collaborative design challenge","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Digital Collaboration Tools"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Digital platforms have transformed collaborative design by enabling real-time cooperation across geographic boundaries. From shared design software to virtual whiteboarding tools, these technologies create new possibilities for inclusive, distributed collaboration while presenting unique challenges for facilitation and coordination.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"url":"https://player.vimeo.com/video/645903440","caption":"Digital collaboration tools in action during a remote design sprint"},"id":"e9cd71bc-8fa1-4b33-8757-bef517cd9d9b","isHidden":false,"type":"video"}]
+
+----
+
+Author: - user://82nWn29x
+
+----
+
+Tags: Collaboration, Methodology, Design, Interdisciplinary
+
+----
+
+Formats: png, video, texte
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
+
+----
+
+Extra:
+
+----
+
+Uuid: CoLmEt8dO2lG5yP1

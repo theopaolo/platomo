@@ -54,6 +54,7 @@ html, body {
 }
 
 #board {
+  height: 100vh;
   position: relative;
 }
 
@@ -83,52 +84,40 @@ canvas#front-layer, #nodes-container {
   text-shadow: var(--main-text-color) 0 0 1px;
 }
 
-#search {
-  background: var(--main-background-color);
-  outline: solid 1px var(--main-outline-color);
-  z-index: 15;
-  border-radius: 50px;
-  width: 350px;
-  height: 36px;
-  margin: auto;
-  padding: 0 5px;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-}
-
-#search #filters {
-  flex-flow: row;
-  justify-content: center;
-  height: 100%;
-  display: flex;
-}
-
-#search .filter {
+.filter, .page-link {
   border-top: 2px solid #0000;
   border-bottom: 2px solid #0000;
   transition: border-color .2s ease-in;
   position: relative;
 }
 
-#search .filter h3 {
+.filter h3, .page-link h3 {
+  text-transform: uppercase;
+  border: solid 1px var(--main-text-color);
   -webkit-user-select: none;
   user-select: none;
-  opacity: .7;
-  border-radius: 1em;
-  margin: 2px .3em;
-  padding: .5em .7em;
-  font-size: .8em;
+  border-radius: 9999px;
+  padding: .25rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#search {
+  margin: 0 auto;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+#search #filters {
+  flex-flow: row;
+  justify-content: center;
+  gap: 1rem;
+  display: flex;
 }
 
 #search .filter.active {
-  opacity: 1;
   border-color: var(--main-text-color);
-}
-
-#search .filter:hover h3, #search .filter.active h3 {
-  opacity: 1;
 }
 
 #search .filter ul.filter-tags {
@@ -211,6 +200,17 @@ canvas#front-layer, #nodes-container {
   line-height: 1em;
 }
 
+#pages {
+  flex-flow: row;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
 #dark-mode-toggle {
   cursor: pointer;
   background: var(--main-text-color);
@@ -220,8 +220,8 @@ canvas#front-layer, #nodes-container {
   width: 35px;
   height: 35px;
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 4rem;
+  right: 1rem;
 }
 
 #dark-mode-toggle:hover {

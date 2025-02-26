@@ -22,7 +22,7 @@ if ($children->isNotEmpty()) {
       $data['data'][] = [
           'title' => $child->title()->value(),
           'labos' => $labosData, // Include the 'labos' data here
-          'author' => $child->author()->toUser()->name()->value(),
+          // 'author' => $child->author()->toUser()->name()->value(),
           'categories' => $child->tags()->split(),
           'formats' => $child->formats()->split(),
           'url' => $child->url(),

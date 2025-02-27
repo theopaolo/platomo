@@ -5,9 +5,12 @@
 
 // Globals
 const htmlNode = document.getElementsByTagName("html")[0]
-const labosNode = document.getElementById("filters-labo")
-const categoriesNode = document.getElementById("filters-category")
-const authorsNode = document.getElementById("filters-author")
+const labosNode = document.getElementById("filter-labo")
+const categoriesNode = document.getElementById("filter-category")
+const authorsNode = document.getElementById("filter-author")
+const laboTagsNode = document.getElementById("filters-labo")
+const categoryTagsNode = document.getElementById("filters-category")
+const authorTagsNode = document.getElementById("filters-author")
 const searchNode = document.getElementById("search")
 const searchInfoNode = document.getElementById("search-info").getElementsByTagName("p")[0]
 const bottomItemsNode = document.getElementById("bottom-items")
@@ -196,9 +199,8 @@ class FilterTag {
   }
 }
 
-let isSearchActive = () => {
-  return !!(search.labo || search.category || search.author)
-}
+let isSearchActive = () => !!(search.labo || search.category || search.author)
+let isSearchOpen = () => !!(search.laboOpen || search.categoryOpen || search.authorOpen)
 
 let selectedSearchInfo = ""
 let updateSearchInfo = (info = "", save = false) => {
@@ -216,21 +218,26 @@ let updateSearchInfo = (info = "", save = false) => {
 let updateSearchStatus = () => {
   // Adds .active classes if applicable
   searchNode.classList.toggle("active", isSearchActive())
-  document
-    .querySelector(".filter[data-filter=labo]")
-    .classList.toggle("active", !!search.labo)
-  document
-    .querySelector(".filter[data-filter=category]")
-    .classList.toggle("active", !!search.category)
-  document
-    .querySelector(".filter[data-filter=author]")
-    .classList.toggle("active", !!search.author)
+
+  // Main filters
+  labosNode.classList.toggle("active", !!search.laboOpen)
+  categoriesNode.classList.toggle("active", !!search.categoryOpen)
+  authorsNode.classList.toggle("active", !!search.authorOpen)
+
+  // Filter tags
+  laboTagsNode.classList.toggle("active", !!search.laboOpen)
+  categoryTagsNode.classList.toggle("active", !!search.categoryOpen)
+  authorTagsNode.classList.toggle("active", !!search.authorOpen)
+
 }
 
+/*
 let toggleMobileSearch = () => {
   searchNode.classList.toggle("expanded")
 }
+*/
 
+/*
 let initMobileSearchToggle = () => {
   document
     .getElementById("expand-search")
@@ -239,6 +246,7 @@ let initMobileSearchToggle = () => {
     .getElementById("expand-search")
     .addEventListener("click", toggleMobileSearch)
 }
+*/
 
 let initFilters = () => {
   // Create and inject filter tags
@@ -260,8 +268,37 @@ let initFilters = () => {
     filterTags.push(new FilterTag("author", i + 1, a))
   })
 
+  // Open filters on main filters click
+  const laboFilter = document.querySelector("#filter-labo")
+  const categoryFilter = document.querySelector("#filter-category")
+  const authorFilter = document.querySelector("#filter-author")
+  laboFilter.addEventListener("click", () => {
+    if (isSearchOpen() && search.laboOpen) {
+      updateSearch(undefined, undefined)
+    } else {
+      updateSearch("labo", undefined)
+    }
+    updateSearchStatus()
+  })
+  categoryFilter.addEventListener("click", () => {
+    if (isSearchOpen() && search.categoryOpen) {
+      updateSearch(undefined, undefined)
+    } else {
+      updateSearch("category", undefined)
+    }
+    updateSearchStatus()
+  })
+  authorFilter.addEventListener("click", () => {
+    if (isSearchOpen() && search.authorOpen) {
+      updateSearch(undefined, undefined)
+    } else {
+      updateSearch("author", undefined)
+    }
+    updateSearchStatus()
+  })
+
   // Search UI toggle (mobile)
-  initMobileSearchToggle()
+  //initMobileSearchToggle()
 
   // Search activation status
   updateSearchStatus()
@@ -279,6 +316,10 @@ let updateSearch = (type, id) => {
   search.author =
     type == "author" ? (id == search.author ? undefined : id) : undefined
 
+  search.laboOpen = type == "labo" && !id
+  search.categoryOpen = type == "category" && !id
+  search.authorOpen = type == "author" && !id
+
   // Update active nodes
   nodes.forEach((n) => n.updateActive())
 
@@ -290,7 +331,7 @@ let updateSearch = (type, id) => {
 
   // Clear front layer and add semi-transparent layer if new active filter
   resetFrontLayer()
-  if (isSearchActive()) {
+  if (isSearchActive() && search.id != 9999) {
     ctx2.fillStyle =
       colorMode == "light" ? "rgba(255, 255, 255, .5)" : "rgba(0, 0, 12, .75)"
     ctx2.fillRect(0, 0, w, h)
@@ -594,6 +635,7 @@ filtersNavOnNode.addEventListener("click", () => {
 })
 filtersNavOffNode.addEventListener("click", () => {
   bottomItemsNode.classList = "search-toggle-off"
+  search.open = false
 })
 
 // Window resize

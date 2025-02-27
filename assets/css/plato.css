@@ -67,12 +67,14 @@ h3, p, li {
   transition: color .3s ease-in;
 }
 
-.rounded-btn:hover {
+.rounded-btn:hover, .rounded-btn.active {
   background-color: var(--main-text-color);
+  border-color: var(--main-text-color) !important;
 }
 
-.rounded-btn:hover h3 {
+.rounded-btn:hover h3, .rounded-btn.active h3 {
   color: var(--main-background-color);
+  border-color: var(--main-text-color);
 }
 
 html, body {
@@ -132,6 +134,7 @@ canvas#front-layer, #nodes-container {
 #search #exit-nav {
   opacity: 0;
   z-index: 20;
+  margin: .2rem .3rem;
   transition: left .5s ease-in-out, opacity .5s ease-in-out;
   position: absolute;
   bottom: 0;
@@ -139,8 +142,8 @@ canvas#front-layer, #nodes-container {
 }
 
 #search #exit-nav h3 {
-  height: 2.3rem;
-  padding: .35rem .8rem;
+  height: 2rem;
+  padding: .25rem .7rem;
 }
 
 #search #filters {
@@ -157,18 +160,25 @@ canvas#front-layer, #nodes-container {
 #search #filters #main-filters {
   flex-flow: row;
   justify-content: flex-start;
-  gap: 1rem;
-  padding: 1rem 3rem 0;
+  padding: 0 3rem;
   display: flex;
 }
 
+#search #filters #main-filters li {
+  margin: .2rem .3rem;
+}
+
 #search #filters #filter-tags {
-  padding: 1rem 3rem 0;
+  padding: 0 3rem;
 }
 
 #search #filters #filter-tags ul {
   flex-flow: wrap;
   justify-content: flex-start;
+  display: none;
+}
+
+#search #filters #filter-tags ul.active {
   display: flex;
 }
 
@@ -177,66 +187,12 @@ canvas#front-layer, #nodes-container {
 }
 
 #search #filters .filter.active {
-  border-color: var(--main-text-color);
-}
-
-#search #filters .filter ul.filter-tags {
-  flex-flow: wrap;
-  justify-content: center;
-  width: 165px;
-  padding: 0 0 5px;
-  list-style-type: none;
-  display: none;
-  position: absolute;
-  bottom: 15px;
-  overflow-x: hidden !important;
-}
-
-#search #filters .filter ul.filter-tags li {
-  text-align: center;
-  cursor: pointer;
-  -webkit-user-select: none;
-  user-select: none;
-  width: 150px;
-  margin: 3px;
-  font-size: .85em;
-}
-
-#search #filters .filter ul.filter-tags li:hover {
-  outline: var(--dense-outline-color) solid 1px;
-}
-
-#search #filters .filter ul.filter-tags li.active {
   background: var(--main-text-color);
+  border-color: var(--main-background-color);
+}
+
+#search #filters .filter.active h3 {
   color: var(--main-background-color);
-}
-
-#search #filters .filter:hover ul.filter-tags {
-  display: flex;
-}
-
-#search #filters .filter#filter-labo ul.filter-tags {
-  left: -32px;
-}
-
-#search #filters .filter#filter-category ul.filter-tags {
-  left: -37px;
-}
-
-#search #filters .filter#filter-author ul.filter-tags {
-  width: 335px;
-  bottom: 17px;
-  left: -122px;
-}
-
-#search #filters .filter#filter-author ul.filter-tags li {
-  order: 2;
-  margin: 3px;
-}
-
-#search #filters .filter#filter-author ul.filter-tags li:last-of-type:nth-child(odd) {
-  order: 1;
-  margin: 3px 10px;
 }
 
 #search #expand-search {

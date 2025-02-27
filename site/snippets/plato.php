@@ -28,17 +28,17 @@
 
 			<div id="filters">
 
-				<div id="main-filters">
-					<div class="filter rounded-btn" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
+				<ul id="main-filters">
+					<li class="filter rounded-btn" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
 						<h3>Laboratoires</h3>
-					</div>
-					<div class="filter rounded-btn" data-filter="category" data-filter-name="Catégorie" id="filter-category">
+					</li>
+					<li class="filter rounded-btn" data-filter="category" data-filter-name="Catégorie" id="filter-category">
 						<h3>Catégories</h3>
-					</div>
-					<div class="filter rounded-btn" data-filter="author" data-filter-name="Auteur" id="filter-author">
+					</li>
+					<li class="filter rounded-btn" data-filter="author" data-filter-name="Auteur" id="filter-author">
 						<h3>Auteur·e·s</h3>
-					</div>
-				</div>
+					</li>
+				</ul>
 
 				<div id="filter-tags">
 

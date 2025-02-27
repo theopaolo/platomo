@@ -51,6 +51,7 @@ h3, p, li {
 	background-color: var(--main-background-color);
 	border-radius: 50px;
 	border: solid 1px var(--main-text-color);
+	height: max-content;
 
 	h3 {
 		font-size: 1rem;
@@ -169,16 +170,38 @@ canvas#front-layer {
 		}
 		#filter-tags {
 			padding: 0 3rem;
+			//background: lightpink;
 
 			ul {
 				display: flex;
 				flex-flow: row;
 				flex-wrap: wrap;
 				justify-content: flex-start;
-				display: none;
+				display: flex;
+				max-height: 0;
+				opacity: 0;
+				height: auto;
+				transition: opacity 200ms, max-height 400ms;
+
+				/*
+				&:nth-of-type(1) {
+					background: red;
+				}
+				&:nth-of-type(2) {
+					background: blue;
+				}
+				&:nth-of-type(3) {
+					background: green;
+				}
+					*/
 
 				&.active {
-					display: flex;
+					opacity: 1;
+					transition: opacity 500ms, max-height 500ms ease-in;
+					transition-delay: 600ms, 400ms;
+					//transition: opacity 500ms ease-in, max-height 0ms ease-in;
+					//transition-delay: 200ms, 0ms;
+					max-height: 10rem;
 				}
 
 				li {

@@ -52,6 +52,7 @@ h3, p, li {
   border-bottom: 2px solid #0000;
   border: solid 1px var(--main-text-color);
   border-radius: 50px;
+  height: max-content;
   transition: background-color .3s ease-in, border-color .3s ease-in;
   position: relative;
 }
@@ -173,13 +174,19 @@ canvas#front-layer, #nodes-container {
 }
 
 #search #filters #filter-tags ul {
+  opacity: 0;
   flex-flow: wrap;
   justify-content: flex-start;
-  display: none;
+  height: auto;
+  max-height: 0;
+  transition: opacity .2s, max-height .4s;
+  display: flex;
 }
 
 #search #filters #filter-tags ul.active {
-  display: flex;
+  opacity: 1;
+  max-height: 10rem;
+  transition: opacity .5s .6s, max-height .5s ease-in .4s;
 }
 
 #search #filters #filter-tags ul li {

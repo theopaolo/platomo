@@ -156,18 +156,19 @@ canvas#front-layer, #nodes-container {
 
 #search #filters #main-filters {
   flex-flow: row;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
+  padding: 1rem 3rem 0;
   display: flex;
 }
 
 #search #filters #filter-tags {
-  padding: 1rem 3rem;
+  padding: 1rem 3rem 0;
 }
 
 #search #filters #filter-tags ul {
   flex-flow: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
 }
 

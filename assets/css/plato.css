@@ -210,8 +210,8 @@ canvas#front-layer, #nodes-container {
   -webkit-user-select: none;
   user-select: none;
   width: 100%;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 1rem;
   left: 0;
 }
 

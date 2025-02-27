@@ -159,10 +159,10 @@ class FilterTag {
     let filterText =
       this.type == "labo" ? "Laboratoire : " : this.type == "category" ? "Catégorie : " : "Auteur·e : "
     liNode.addEventListener("pointerenter", (e) => {
-      //updateSearchInfo(e.target.innerHTML, false)
+      updateSearchInfo(e.target.innerHTML, false)
     })
     liNode.addEventListener("pointerleave", (e) => {
-      //updateSearchInfo("", false)
+      updateSearchInfo("", false)
     })
     liNode.addEventListener("click", (e) => {
       console.log("click", e.target.innerHTML)
@@ -619,7 +619,6 @@ filtersNavOnNode.addEventListener("click", () => {
 })
 filtersNavOffNode.addEventListener("click", () => {
   bottomItemsNode.classList = "search-toggle-off"
-  search.open = false
 })
 
 // Window resize

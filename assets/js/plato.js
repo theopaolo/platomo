@@ -19,8 +19,8 @@ const filtersNavOnNode = document.querySelector("#filters-nav h3")
 const filtersNavOffNode = document.querySelector("#exit-nav h3")
 
 const breakpoint = 550 //px
-let colorMode = "light" // "dark"
-let saturatedColors = true // true // false
+let colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
+let saturatedColors = true // false
 
 let mode // 'desktop' || 'mobile'
 let w, h
@@ -592,6 +592,7 @@ let fullReset = () => {
   mode = w < breakpoint ? "mobile" : "desktop"
   h = mode == "desktop" ? window.innerHeight : (2 * 60 + (nodesPop + 1) * 100) // 60px as top&bottom margin
   boardNode.style.height = h + "px"
+  colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
   configureCanvas(ctx1, w, h)
   configureCanvas(ctx2, w, h)
   resetBackLayer()
@@ -602,7 +603,7 @@ let fullReset = () => {
 }
 
 // Boot
-// fullReset()
+fullReset()
 window.requestAnimationFrame(step)
 
 // Dark mode
@@ -615,8 +616,9 @@ document.getElementById("dark-mode-toggle").addEventListener("click", (e) => {
 */
 document.getElementById("theme-toggle").addEventListener("click", (e) => {
   console.log("clickos")
-  colorMode = colorMode == "light" ? "dark" : "light"
-  fullReset()
+  //colorMode = colorMode == "light" ? "dark" : "light"
+  colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
+  setTimeout(fullReset, 100)
 })
 
 // Bottom items interactions

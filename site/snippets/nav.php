@@ -10,7 +10,7 @@
 
     <button @click="toggleNav"
             :class="{'bg-slate-950 text-white': isOpen, 'bg-white text-black': !isOpen}"
-            class="hidden flex items-center border-slate-950 border border-b text-sm font-medium uppercase pl-2 pr-1 py-1 rounded-full hover:bg-slate-950 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-75 group">
+            class="flex items-center border-slate-950 border border-b text-sm font-medium uppercase pl-2 pr-1 py-1 rounded-full hover:bg-slate-950 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-75 group">
       Navigation
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
           :class="{'fill-secondary': isOpen, 'rotate-45': isOpen}"

@@ -1,6 +1,7 @@
-import Alpine from 'alpinejs';
-import Swup from 'swup';
-import Plyr from 'plyr';
+import focus from "@alpinejs/focus";
+import Alpine from "alpinejs";
+import Plyr from "plyr";
+import Swup from "swup";
 // import 'lazysizes';
 
 const controls = `
@@ -30,74 +31,79 @@ const controls = `
 
 // Initialize Swup
 const swup = new Swup();
-const pageWrapper = document.querySelector('#swup');
+const pageWrapper = document.querySelector("#swup");
 let previousURL = window.location.href;
 
-const player = new Plyr('#player', {
-  controls
+const player = new Plyr("#player", {
+  controls,
 });
 
 function goBackWithSwup() {
-    const pageWrapper = document.querySelector('.swup-page-home .page-wrapper');
-    document.body.classList.remove('no-scroll');
+  const pageWrapper = document.querySelector(".swup-page-home .page-wrapper");
+  document.body.classList.remove("no-scroll");
 
-      if (pageWrapper) {
-        // Add the fade-out-animation class to trigger the fade out
-        pageWrapper.classList.add('fade-out-animation');
-        // Listen for the end of the fade-out animation on the main element
-        const mainElement = pageWrapper.querySelector('main');
+  if (pageWrapper) {
+    // Add the fade-out-animation class to trigger the fade out
+    pageWrapper.classList.add("fade-out-animation");
+    // Listen for the end of the fade-out animation on the main element
+    const mainElement = pageWrapper.querySelector("main");
 
-        mainElement.addEventListener('animationend', () => {
-          // Perform any cleanup after the animation (like hiding or removing the element)
+    mainElement.addEventListener(
+      "animationend",
+      () => {
+        // Perform any cleanup after the animation (like hiding or removing the element)
 
-          swup.navigate(previousURL);
-        }, { once: true });
-      }
+        swup.navigate(previousURL);
+      },
+      { once: true }
+    );
+  }
 }
 
 // Add event listener for all links with 'data-swup-transition' attribute
-document.addEventListener('click', (event) => {
-  if (event.target.matches('a[data-swup]')) {
-    document.body.classList.add('no-scroll');
+document.addEventListener("click", (event) => {
+  if (event.target.matches("a[data-swup]")) {
+    document.body.classList.add("no-scroll");
   }
   // Add event listener for page background to close swup page
-  if (event.target.matches('.bg-blur')) {
+  if (event.target.matches(".bg-blur")) {
     goBackWithSwup();
   }
 });
 
 // listen to esc key and close swup page
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
     goBackWithSwup();
   }
 });
 
 // Init Plyr player when swup page is loaded
-swup.hooks.on('content:replace', () => {
-  const player = new Plyr('#player', {
-    controls
+swup.hooks.on("content:replace", () => {
+  const player = new Plyr("#player", {
+    controls,
   });
 });
 
-swup.hooks.on('page:view', (visit) => {
+swup.hooks.on("page:view", (visit) => {
   newUrl = visit.to.url;
-  console.log('newUrl', newUrl);
-  console.log('prevUrl', previousURL);
+  console.log("newUrl", newUrl);
+  console.log("prevUrl", previousURL);
 });
 
-swup.hooks.on('visit:start', (visit) => {
-  console.log('visit:start', visit);
+swup.hooks.on("visit:start", (visit) => {
+  console.log("visit:start", visit);
 });
 
 // Initialize Alpine.js
 window.Alpine = Alpine;
+Alpine.plugin(focus);
 Alpine.start();
 
 let newUrl = 123;
-console.log(typeof(null));
-console.log(typeof(undefined));
-console.log(typeof(''));
-console.log(typeof(0));
-console.log(typeof(-1));
-console.log(typeof(goBackWithSwup));
+console.log(typeof null);
+console.log(typeof undefined);
+console.log(typeof "");
+console.log(typeof 0);
+console.log(typeof -1);
+console.log(typeof goBackWithSwup);

@@ -64,9 +64,9 @@ class Particle {
   }
 }
 
-//const dataUrl = "http://localhost/platomo/contributions.json"
+const dataUrl = "http://localhost/platomo/contributions.json"
 //const dataUrl = "http://platomo.test/contributions.json";
-const dataUrl = "http://4negiv.n0c.world/platomo/contributions.json";
+//const dataUrl = "http://4negiv.n0c.world/platomo/contributions.json";
 
 let data = [];
 let nodesPop = 0;
@@ -593,8 +593,14 @@ let fullReset = () => {
 window.requestAnimationFrame(step);
 
 // Dark mode
+/*
 document.getElementById("dark-mode-toggle").addEventListener("click", (e) => {
-  htmlNode.classList.toggle("dark-mode");
+  htmlNode.classList.toggle("dark")
+  colorMode = colorMode == "light" ? "dark" : "light"
+  fullReset()
+})
+*/
+document.getElementById("theme-toggle").addEventListener("click", (e) => {
   colorMode = colorMode == "light" ? "dark" : "light";
   fullReset();
 });

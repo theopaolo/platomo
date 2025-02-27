@@ -1,0 +1,57 @@
+/*
+ * Media Styling for Responsive Images and Videos
+ * Include this in your main CSS file or link it in your header
+ */
+
+/* Responsive Image Styling */
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive Video Container */
+.responsive-video {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.responsive-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: #000;
+}
+
+/* Caption Styling */
+.responsive-video figcaption,
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Aspect Ratio Container for Videos */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container video,
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Background Video Style */
+.background-video video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

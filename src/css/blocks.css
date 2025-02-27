@@ -7,7 +7,7 @@
 }
 
 .block-type-text p a {
-  @apply border-b border-black;
+  @apply border-b border-black dark:border-white;
   cursor: url('../images/tinyarrow.png'), auto;
 }
 

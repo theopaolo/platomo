@@ -65,7 +65,7 @@ class Particle {
 }
 
 //const dataUrl = "http://localhost/platomo/contributions.json"
-// const dataUrl = "http://platomo.test/contributions.json";
+//const dataUrl = "http://platomo.test/contributions.json";
 const dataUrl = "http://4negiv.n0c.world/platomo/contributions.json";
 
 let data = [];

@@ -117,8 +117,12 @@ body.no-scroll {
 
     main {
       opacity: 0;
-      @apply border border-black max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
+      @apply border border-black dark:border-white max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
       animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .5s forwards;
+
+      .dark & {
+        background-color: var(--color-bg);
+      }
     }
   }
 }
@@ -130,8 +134,12 @@ body.no-scroll {
 
     main {
       opacity: 0;
-      @apply border border-black max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
+      @apply border border-black dark:border-white max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
       animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .5s forwards;
+
+      .dark & {
+        background-color: var(--color-bg);
+      }
     }
   }
 

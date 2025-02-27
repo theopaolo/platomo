@@ -1,0 +1,15 @@
+title: Image
+accept:
+  mime: image/jpeg, image/png, image/gif, image/webp
+  maxsize: 8000000 # 8MB limit
+options:
+  create:
+    width: 2000     # max width
+    quality: 80     # compression level (0-100)
+fields:
+  alt:
+    label: Alt Text
+    type: text
+  caption:
+    label: Caption
+    type: text

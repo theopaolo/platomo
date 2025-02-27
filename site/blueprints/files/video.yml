@@ -1,0 +1,40 @@
+title: Video
+accept:
+  mime: video/mp4, video/webm, video/ogg
+  maxsize: 100000000 # 100MB limit
+fields:
+  alt:
+    label: Alt Text
+    type: text
+    help: Description for screen readers
+  caption:
+    label: Caption
+    type: text
+    help: Short description displayed below the video
+  poster:
+    label: Poster Image
+    type: files
+    multiple: false
+    help: Image to display before the video plays
+    query: site.index.images
+  autoplay:
+    label: Autoplay
+    type: toggle
+    text:
+      - "No"
+      - "Yes"
+    help: Automatically start playing the video when the page loads
+  loop:
+    label: Loop
+    type: toggle
+    text:
+      - "No"
+      - "Yes"
+    help: Continuously loop the video
+  muted:
+    label: Muted
+    type: toggle
+    text:
+      - "No"
+      - "Yes"
+    help: Mute the video by default

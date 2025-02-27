@@ -1,0 +1,36 @@
+/* Logo hover effect - makes letters and text visible only on hover */
+.logo-letter,
+.logo-text,
+.logo-border {
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Hide the letters (white paths) by default */
+.logo-letter {
+  fill: transparent !important;
+}
+
+/* Hide the "mobile" text (black paths) by default */
+.logo-text {
+  fill: transparent !important;
+}
+
+/* Hide the border of the mobile text container by default */
+.logo-border {
+  stroke: transparent !important;
+}
+
+/* Show the letters on hover */
+a:hover .logo-letter {
+  fill: white !important;
+}
+
+/* Show the "mobile" text on hover */
+a:hover .logo-text {
+  fill: black !important;
+}
+
+/* Show the border on hover */
+a:hover .logo-border {
+  stroke: black !important;
+}

@@ -10,11 +10,7 @@ Author: - user://82nWn29x
 
 ----
 
-Tags: Interior, Design, Minimalism
-
-----
-
-Formats: jpg, texte
+Tags: Objet
 
 ----
 
@@ -22,7 +18,11 @@ Labos: - page://xUzVmSCPYWkfN2zW
 
 ----
 
-Extra:
+Extra: 
+
+----
+
+Formats: jpg, texte
 
 ----
 

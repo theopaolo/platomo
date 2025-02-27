@@ -1,0 +1,31 @@
+Title: un autre labo
+
+----
+
+Text: [{"content":{"level":"h2","text":"Titre"},"id":"a2b0bd60-d65f-414f-9c33-7fcc09a2f127","isHidden":false,"type":"heading"},{"content":{"text":"<p>Du text</p>"},"id":"d0269da8-e748-49f1-bf11-5f1c1db6cb8c","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://COCT5Z7e
+- user://0teAfnWa
+- user://82nWn29x
+
+----
+
+Contributions:
+
+- page://VczY2mZt3stoJa9t
+- page://MvMnTaRt5pF8rL2k
+- page://MuLtMdA9eX4pL7rT
+- page://FMKbmqzuYL7KX7uB
+- page://SuStDe9pR4cT6iC3
+
+----
+
+Gallery: 
+
+----
+
+Uuid: jJoHtX8ETwqibrZL

@@ -2,7 +2,7 @@ Title: Digital Documentation
 
 ----
 
-Text: [{"content":{"level":"h2","text":"Visual Documentation Methods"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Effective digital documentation requires clear visual representation of complex processes and systems. Through carefully designed diagrams, flowcharts, and timelines, we can communicate intricate concepts in an accessible format.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://zniA3zxbxTyf2Klg"],"src":"","alt":"Project timeline visualization","caption":"Timeline visualization showing project milestones and dependencies","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Implementation Strategies"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>When implementing digital documentation systems, it's essential to consider both technical requirements and user experience. The most effective documentation combines technical accuracy with intuitive navigation and visual clarity.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://VvhSH2EjpdDsfpgH"],"ratio":"","crop":"false","slider":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"link":"","text":"Download Documentation Guide","files":["file://aMxeyVaSQo3bzBnz"]},"id":"3834a868-cb92-4bd7-853d-0c2180bea493","isHidden":false,"type":"button"}]
+Text: [{"content":{"level":"h2","text":"Visual Documentation Methods"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Effective digital documentation requires clear visual representation of complex processes and systems. Through carefully designed diagrams, flowcharts, and timelines, we can communicate intricate concepts in an accessible format.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://R9C1auiQeKJO4SJs"],"src":"","alt":"Project timeline visualization","caption":"Timeline visualization showing project milestones and dependencies","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Implementation Strategies"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>When implementing digital documentation systems, it's essential to consider both technical requirements and user experience. The most effective documentation combines technical accuracy with intuitive navigation and visual clarity.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://5B0fIUqNPrIpuEDJ"],"caption":"","ratio":"","crop":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"link":"","text":"Download Documentation Guide","files":["file://aMxeyVaSQo3bzBnz"]},"id":"3834a868-cb92-4bd7-853d-0c2180bea493","isHidden":false,"type":"button"}]
 
 ----
 
@@ -10,11 +10,7 @@ Author: - user://COCT5Z7e
 
 ----
 
-Tags: Documentation, Digital, Technical
-
-----
-
-Formats: png, pdf
+Tags: Pensée
 
 ----
 
@@ -22,7 +18,11 @@ Labos: - page://xUzVmSCPYWkfN2zW
 
 ----
 
-Extra:
+Extra: 
+
+----
+
+Formats: png, pdf
 
 ----
 

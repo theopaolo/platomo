@@ -1,5 +1,20 @@
 title: Site
 
-sections:
-  pages:
-    type: pages
+tabs:
+
+# content tab
+  content:
+    label: Pages
+    icon: text
+    sections:
+      pages:
+        type: pages
+
+# config tab
+  config:
+    label: Config
+    icon: cog
+    fields:
+      categories:
+        label: Catégories
+        type: tags

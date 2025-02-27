@@ -2,7 +2,7 @@ Title: Sustainable Design Practices
 
 ----
 
-Text: [{"content":{"level":"h2","text":"Circular Economy Principles"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Sustainable design increasingly adopts circular economy principles that eliminate waste and pollution by design, keep products and materials in use, and regenerate natural systems. This approach represents a fundamental shift from the traditional linear 'take-make-waste' model to one that is regenerative by design.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://BsJkZrymzfxyat9e"],"src":"","alt":"Sustainable materials in design","caption":"Natural materials used in sustainable interior design","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Biomimicry and Biophilic Design"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Biomimicry draws inspiration from nature's time-tested patterns and strategies to solve human design challenges. Complementary to this, biophilic design incorporates natural elements and patterns into built environments, recognizing humans' innate connection to nature and the health benefits this connection provides.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://FjDgNce64HhRrQC7","file://vR8Vf0Gt7qTzuO0G"],"ratio":"","crop":"false","slider":"true"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Life Cycle Assessment"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Comprehensive sustainability requires evaluating environmental impacts across a product's entire life cycle, from raw material extraction through manufacturing, distribution, use, and end-of-life disposal or recycling. This holistic approach prevents burden-shifting, where solving one environmental problem creates another elsewhere in the system.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"link":"","text":"Sustainable Design Guide","files":["file://aMxeyVaSQo3bzBnz"]},"id":"3834a868-cb92-4bd7-853d-0c2180bea493","isHidden":false,"type":"button"}]
+Text: [{"content":{"level":"h2","text":"Circular Economy Principles"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Sustainable design increasingly adopts circular economy principles that eliminate waste and pollution by design, keep products and materials in use, and regenerate natural systems. This approach represents a fundamental shift from the traditional linear 'take-make-waste' model to one that is regenerative by design.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://BsJkZrymzfxyat9e"],"src":"","alt":"Sustainable materials in design","caption":"Natural materials used in sustainable interior design","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Biomimicry and Biophilic Design"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Biomimicry draws inspiration from nature's time-tested patterns and strategies to solve human design challenges. Complementary to this, biophilic design incorporates natural elements and patterns into built environments, recognizing humans' innate connection to nature and the health benefits this connection provides.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://FjDgNce64HhRrQC7","file://vR8Vf0Gt7qTzuO0G"],"caption":"","ratio":"","crop":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Life Cycle Assessment"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Comprehensive sustainability requires evaluating environmental impacts across a product's entire life cycle, from raw material extraction through manufacturing, distribution, use, and end-of-life disposal or recycling. This holistic approach prevents burden-shifting, where solving one environmental problem creates another elsewhere in the system.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"link":"","text":"Sustainable Design Guide","files":["file://aMxeyVaSQo3bzBnz"]},"id":"3834a868-cb92-4bd7-853d-0c2180bea493","isHidden":false,"type":"button"}]
 
 ----
 
@@ -10,11 +10,7 @@ Author: - user://vgDHhyES
 
 ----
 
-Tags: Sustainability, Design, Ecology, Innovation
-
-----
-
-Formats: jpg, pdf, texte
+Tags: Pensée
 
 ----
 
@@ -23,6 +19,14 @@ Labos: - page://xUzVmSCPYWkfN2zW
 ----
 
 Extra:
+
+- 
+  lien: https://github.com/theopaolo/
+  fichier: [ ]
+
+----
+
+Formats: jpg, pdf, texte
 
 ----
 

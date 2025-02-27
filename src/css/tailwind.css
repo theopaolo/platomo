@@ -9,7 +9,7 @@
 @tailwind components;
 
 body {
-  @apply font-general-sans;
+  @apply font-general-sans bg-[#F9F8F8];
 }
 
 @tailwind utilities;

@@ -2,7 +2,7 @@ Title: Multimedia Exploration
 
 ----
 
-Text: [{"content":{"level":"h2","text":"Integrating Multiple Media"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Contemporary digital presentations increasingly rely on the integration of multiple media formats to create immersive and engaging experiences. By combining visual, audio, and interactive elements, creators can communicate complex ideas more effectively than through any single medium.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"url":"https://player.vimeo.com/video/645903440","caption":"Exploration of multimedia integration in contemporary presentations"},"id":"e9cd71bc-8fa1-4b33-8757-bef517cd9d9b","isHidden":false,"type":"video"},{"content":{"level":"h2","text":"Visual Elements"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Visual components form the foundation of most multimedia presentations. From high-resolution photography to animated graphics, these elements provide immediate impact and help establish the aesthetic direction of the overall experience.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://t6PiAfqjazMz6cks","file://BsJkZrymzfxyat9e"],"ratio":"","crop":"false","slider":"true"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Interactive Components"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>The most effective multimedia presentations incorporate interactive elements that invite audience participation. These components transform passive viewers into active participants, creating a more memorable and impactful experience.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"link":"https://www.multimedia-resources.com","text":"Explore More Resources","files":[]},"id":"c2f81a2a-92a3-422d-ad68-46920a1a6dda","isHidden":false,"type":"button"}]
+Text: [{"content":{"level":"h2","text":"Integrating Multiple Media"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Contemporary digital presentations increasingly rely on the integration of multiple media formats to create immersive and engaging experiences. By combining visual, audio, and interactive elements, creators can communicate complex ideas more effectively than through any single medium.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"","url":"https://player.vimeo.com/video/645903440","video":[],"poster":[],"caption":"Exploration of multimedia integration in contemporary presentations","autoplay":"false","muted":"true","loop":"false","controls":"true","preload":""},"id":"e9cd71bc-8fa1-4b33-8757-bef517cd9d9b","isHidden":false,"type":"video"},{"content":{"level":"h2","text":"Visual Elements"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Visual components form the foundation of most multimedia presentations. From high-resolution photography to animated graphics, these elements provide immediate impact and help establish the aesthetic direction of the overall experience.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://gaVRwNa2CZ2ExCF2","file://BsJkZrymzfxyat9e"],"caption":"","ratio":"","crop":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Interactive Components"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>The most effective multimedia presentations incorporate interactive elements that invite audience participation. These components transform passive viewers into active participants, creating a more memorable and impactful experience.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"link":"https://www.multimedia-resources.com","text":"Explore More Resources","files":[]},"id":"c2f81a2a-92a3-422d-ad68-46920a1a6dda","isHidden":false,"type":"button"}]
 
 ----
 
@@ -10,11 +10,7 @@ Author: - user://vgDHhyES
 
 ----
 
-Tags: Multimedia, Digital, Interactive
-
-----
-
-Formats: jpg, video, web
+Tags: Recit
 
 ----
 
@@ -22,7 +18,11 @@ Labos: - page://xUzVmSCPYWkfN2zW
 
 ----
 
-Extra:
+Extra: 
+
+----
+
+Formats: jpg, video, web
 
 ----
 

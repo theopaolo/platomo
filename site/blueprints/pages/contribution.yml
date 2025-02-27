@@ -50,10 +50,11 @@ columns:
             type: users
           tags:
             label: Categories
-            type: tags
-          formats:
-            label: Formats
-            type: tags
+            type: select
+            options:
+              type: query
+              query: site.categories.split
+
           labos:
             type: pages
             query: site.find('labos')

@@ -2,7 +2,7 @@ Title: Architectural Innovation
 
 ----
 
-Text: [{"content":{"level":"h2","text":"Vertical Urban Development"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>As urban populations continue to grow, architects and urban planners are increasingly looking upward to maximize limited space. Modern skyscrapers represent not just engineering achievements but also innovative approaches to creating sustainable vertical communities within dense urban environments.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://5B0fIUqNPrIpuEDJ"],"src":"","alt":"Modern high-rise building","caption":"Contemporary high-rise architecture demonstrating vertical urban development principles","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Sustainable Design Principles"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Contemporary architectural innovation is increasingly defined by sustainability. From passive cooling systems to integrated renewable energy generation, modern buildings are being designed to minimize environmental impact while maximizing occupant comfort and well-being.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://t6PiAfqjazMz6cks","file://VvhSH2EjpdDsfpgH"],"ratio":"","crop":"false","slider":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Future Directions"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>The future of architectural innovation lies at the intersection of advanced materials science, computational design, and ecological awareness. Emerging technologies like 3D-printed construction and self-healing materials promise to revolutionize how we conceive, build, and inhabit architectural spaces.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"}]
+Text: [{"content":{"level":"h2","text":"Vertical Urban Development"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>As urban populations continue to grow, architects and urban planners are increasingly looking upward to maximize limited space. Modern skyscrapers represent not just engineering achievements but also innovative approaches to creating sustainable vertical communities within dense urban environments.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://5B0fIUqNPrIpuEDJ"],"src":"","alt":"Modern high-rise building","caption":"Contemporary high-rise architecture demonstrating vertical urban development principles","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Sustainable Design Principles"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Contemporary architectural innovation is increasingly defined by sustainability. From passive cooling systems to integrated renewable energy generation, modern buildings are being designed to minimize environmental impact while maximizing occupant comfort and well-being.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"images":["file://gaVRwNa2CZ2ExCF2","file://5B0fIUqNPrIpuEDJ"],"caption":"","ratio":"","crop":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Future Directions"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>The future of architectural innovation lies at the intersection of advanced materials science, computational design, and ecological awareness. Emerging technologies like 3D-printed construction and self-healing materials promise to revolutionize how we conceive, build, and inhabit architectural spaces.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"}]
 
 ----
 
@@ -10,19 +10,22 @@ Author: - user://82nWn29x
 
 ----
 
-Tags: Architecture, Innovation, Sustainability
+Tags: Pensée
+
+----
+
+Labos:
+
+- page://xUzVmSCPYWkfN2zW
+- page://jJoHtX8ETwqibrZL
+
+----
+
+Extra: 
 
 ----
 
 Formats: jpg, texte
-
-----
-
-Labos: - page://xUzVmSCPYWkfN2zW
-
-----
-
-Extra:
 
 ----
 

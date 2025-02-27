@@ -4,20 +4,28 @@
   <?= snippet('pagetitle')?>
 
   <section class="listing flex flex-col gap-4 mt-20">
-    <?php foreach ($page->children()->listed() as $contribution): ?>
-      <a class="hover:bg-tertiary rounded-full transition-colors duration-300" href="<?= $contribution->url() ?>">
+    <?php foreach ($page->children()->listed() as $labo): ?>
+      <a class="hover:bg-tertiary rounded-full transition-colors duration-300" href="<?= $labo->url() ?>">
         <article class="border border-black p-2 pl-8 rounded-full flex items-center gap-4">
-          <h2 class="text-subtitle no-effect uppercase"><?= $contribution->title() ?></h2>
-          <?php if($user = $contribution->author()->toUser()): ?>
+          <h2 class="text-subtitle no-effect uppercase"><?= $labo->title() ?></h2>
+          <?php if($user = $labo->author()->toUser()): ?>
             <p class="text-lg"><?= $user->username() ?></p>
           <?php endif ?>
           <ul class="flex gap-2">
-            <?php foreach ($contribution->tags()->split() as $category): ?>
+            <?php foreach ($labo->tags()->split() as $category): ?>
               <li class="text-sm uppercase leading-none bg-purple rounded-full py-1 px-2"><?= $category ?></li>
             <?php endforeach ?>
           </ul>
+
+          <!-- Display associated contributions count -->
+          <?php $contributions = $labo->contributions()->toPages(); if($contributions->isNotEmpty()): ?>
+            <p class="text-sm uppercase leading-none bg-neutral-200 rounded-full py-1 px-4">
+              <?= $contributions->count() ?> contribution<?= $contributions->count() > 1 ? 's' : '' ?>
+            </p>
+          <?php endif ?>
+
           <figure class="ml-auto">
-          <?php $images = $contribution->images();
+          <?php $images = $labo->images();
             if($images->isNotEmpty()):
                 $firstImage = $images->first();
             ?>

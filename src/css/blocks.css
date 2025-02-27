@@ -3,7 +3,7 @@
 }
 
 .block-type-text p {
-  @apply text-lg leading-8 ml-20 my-4;
+  @apply text-lg leading-normal md:leading-8 ml-4 md:ml-20 my-4;
 }
 
 .block-type-text p a {

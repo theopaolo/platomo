@@ -2,7 +2,7 @@ Title: Urban Community Design
 
 ----
 
-Text: [{"content":{"level":"h2","text":"Human-Centered Urban Planning"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Contemporary urban planning increasingly prioritizes human experience over vehicular efficiency. This shift represents a return to traditional city-making principles that emphasize walkability, mixed-use development, and public spaces that foster community interaction and social cohesion.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"images":["file://t6PiAfqjazMz6cks","file://5B0fIUqNPrIpuEDJ"],"ratio":"","crop":"false","slider":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Participatory Design Processes"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Effective community design emerges from inclusive, participatory processes that engage residents in shaping their own environments. By incorporating local knowledge and preferences, designers can create spaces that authentically reflect community values and address specific neighborhood needs.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://VvhSH2EjpdDsfpgH"],"src":"","alt":"Community design workshop","caption":"Residents participating in a collaborative urban design workshop","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Ecological Integration"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Urban community design increasingly incorporates ecological systems as essential infrastructure. From bioswales that manage stormwater to urban forests that mitigate heat islands, these natural elements provide multiple benefits while reconnecting urban residents with natural processes.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"link":"https://www.urbandesign.org","text":"Urban Design Resources","files":[]},"id":"c2f81a2a-92a3-422d-ad68-46920a1a6dda","isHidden":false,"type":"button"}]
+Text: [{"content":{"level":"h2","text":"Human-Centered Urban Planning"},"id":"ab8a1ea2-ed8c-4b19-9e0e-436d1c44d039","isHidden":false,"type":"heading"},{"content":{"text":"<p>Contemporary urban planning increasingly prioritizes human experience over vehicular efficiency. This shift represents a return to traditional city-making principles that emphasize walkability, mixed-use development, and public spaces that foster community interaction and social cohesion.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"images":["file://gaVRwNa2CZ2ExCF2","file://5B0fIUqNPrIpuEDJ"],"caption":"","ratio":"","crop":"false"},"id":"0e2afd5b-5905-47b5-a218-ecce2bd4dc83","isHidden":false,"type":"gallery"},{"content":{"level":"h2","text":"Participatory Design Processes"},"id":"51e236c5-d102-4428-abbc-ce24befeb306","isHidden":false,"type":"heading"},{"content":{"text":"<p>Effective community design emerges from inclusive, participatory processes that engage residents in shaping their own environments. By incorporating local knowledge and preferences, designers can create spaces that authentically reflect community values and address specific neighborhood needs.</p>"},"id":"08ea2c79-484a-4c33-ae7c-6c978c058495","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://5B0fIUqNPrIpuEDJ"],"src":"","alt":"Community design workshop","caption":"Residents participating in a collaborative urban design workshop","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"},{"content":{"level":"h2","text":"Ecological Integration"},"id":"00dc22b0-e84c-4a13-8a24-47f26f818a54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Urban community design increasingly incorporates ecological systems as essential infrastructure. From bioswales that manage stormwater to urban forests that mitigate heat islands, these natural elements provide multiple benefits while reconnecting urban residents with natural processes.</p>"},"id":"33948181-6ab6-40f1-aafe-1e06da85f2c7","isHidden":false,"type":"text"},{"content":{"link":"https://www.urbandesign.org","text":"Urban Design Resources","files":[]},"id":"c2f81a2a-92a3-422d-ad68-46920a1a6dda","isHidden":false,"type":"button"}]
 
 ----
 
@@ -10,11 +10,7 @@ Author: - user://0teAfnWa
 
 ----
 
-Tags: Urban, Community, Design, Planning
-
-----
-
-Formats: jpg, texte, web
+Tags: Pensée
 
 ----
 
@@ -22,7 +18,11 @@ Labos: - page://xUzVmSCPYWkfN2zW
 
 ----
 
-Extra:
+Extra: 
+
+----
+
+Formats: jpg, texte, web
 
 ----
 

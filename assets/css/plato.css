@@ -106,6 +106,8 @@ canvas#front-layer, #nodes-container {
   opacity: .15;
   text-transform: uppercase;
   margin: 0;
+  font-size: 12px;
+  font-weight: 500;
   position: absolute;
 }
 
@@ -139,7 +141,7 @@ canvas#front-layer, #nodes-container {
   z-index: 20;
   width: 2.1rem;
   margin: .2rem .3rem;
-  transition: left .5s ease-in-out, opacity .5s ease-in-out;
+  transition: left .3s ease-in-out, opacity .3s ease-in-out .1s;
   position: absolute;
   bottom: 0;
   left: -12rem;
@@ -152,11 +154,10 @@ canvas#front-layer, #nodes-container {
 
 #search #filters {
   width: 100vw;
-  height: max-content;
   margin: auto;
-  transition: bottom .5s ease-in-out, height .5s ease-in;
+  transition: bottom .5s ease-in-out;
   position: absolute;
-  bottom: -80vh;
+  bottom: -60vh;
   left: 0;
   right: 0;
 }
@@ -182,14 +183,14 @@ canvas#front-layer, #nodes-container {
   justify-content: flex-start;
   height: auto;
   max-height: 0;
-  transition: opacity .2s, max-height .4s;
+  transition: opacity .2s, max-height .25s;
   display: flex;
 }
 
 #search #filters #filter-tags ul.active {
   opacity: 1;
   max-height: 10rem;
-  transition: opacity .5s .6s, max-height .5s ease-in .4s;
+  transition: opacity .5s .4s, max-height .3s ease-in .25s;
 }
 
 #search #filters #filter-tags ul li {
@@ -228,7 +229,7 @@ canvas#front-layer, #nodes-container {
   justify-content: center;
   gap: 1rem;
   margin: 0 auto;
-  transition: bottom .5s, opacity .5s;
+  transition: bottom .3s, opacity .5s .15s;
   display: flex;
   position: absolute;
   bottom: 1rem;

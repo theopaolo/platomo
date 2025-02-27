@@ -313,7 +313,7 @@ let updateSearch = (type, id) => {
 
   // Clear front layer and add semi-transparent layer if new active filter
   resetFrontLayer()
-  if (isSearchActive() && search.id != 9999) {
+  if (isSearchActive()) {
     ctx2.fillStyle =
       colorMode == "light" ? "rgba(255, 255, 255, .5)" : "rgba(0, 0, 12, .75)"
     ctx2.fillRect(0, 0, w, h)
@@ -417,8 +417,8 @@ let initNodes = () => {
   if (mode == "desktop") {
     // Generate, but not to close to each other
     let maxIterations = 2500, i = 0
-    let minDist = 120, maxDist = 290
-    let xMargin = 140, yMargin = 240
+    let minDist = 100, maxDist = 230
+    let xMargin = 140, yMargin = 140
 
     // Position first node at center
     let x0 = w / 2,
@@ -454,6 +454,7 @@ let initNodes = () => {
         i +
         " iterations in initNodes()."
     )
+
   } else if (mode == "mobile") {
     let nodeYdist = 100
     for (let i = 0; i < nodesPop; i++) {
@@ -500,7 +501,7 @@ let step = () => {
         let randomNodeIndex = Math.floor(selectedNodes.length * Math.random())
         let rn = selectedNodes[randomNodeIndex]
         let randomAngle = 2 * Math.PI * Math.random()
-        let r = 90 + rn.size * Math.random()
+        let r = 70 + rn.size * Math.random()
 
         // Spawn around nodes
         let x = rn.x + r * Math.cos(randomAngle)

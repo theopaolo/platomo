@@ -1,39 +1,35 @@
 <?= snippet('header')?>
+<?php $total = $page->children()->listed()->count() ?>
+<main class="lg:container mx-auto mt-8 md:mt-20 px-4">
+  <?= snippet('pagetitle', ['total' => $total])?>
 
-<main class="container mx-auto mt-20 px-4">
-  <?= snippet('pagetitle')?>
-
-  <section class="listing flex flex-col gap-4 mt-20">
+  <section class="listing flex flex-col gap-4 mt-8 md:mt-20">
     <?php foreach ($page->children()->listed() as $labo): ?>
-      <a class="hover:bg-tertiary rounded-full transition-colors duration-300" href="<?= $labo->url() ?>">
-        <article class="border border-black p-2 pl-8 rounded-full flex items-center gap-4">
-          <h2 class="text-subtitle no-effect uppercase"><?= $labo->title() ?></h2>
-          <?php if($user = $labo->author()->toUser()): ?>
-            <p class="text-lg"><?= $user->username() ?></p>
-          <?php endif ?>
-          <ul class="flex gap-2">
-            <?php foreach ($labo->tags()->split() as $category): ?>
-              <li class="text-sm uppercase leading-none bg-purple rounded-full py-1 px-2"><?= $category ?></li>
-            <?php endforeach ?>
-          </ul>
+      <a class="hover:bg-secondary bg-white rounded-full transition-colors duration-300 w-full" href="<?= $labo->url() ?>">
+        <article class="p-2 px-4 rounded-full">
 
-          <!-- Display associated contributions count -->
-          <?php $contributions = $labo->contributions()->toPages(); if($contributions->isNotEmpty()): ?>
-            <p class="text-sm uppercase leading-none bg-neutral-200 rounded-full py-1 px-4">
-              <?= $contributions->count() ?> contribution<?= $contributions->count() > 1 ? 's' : '' ?>
-            </p>
-          <?php endif ?>
+            <div class="flex flex-row items-center gap-2 md:gap-4 justify-between w-max md:w-full">
+              <h2 class="text-sm md:text-subtitle no-effect uppercase font-medium"><?= $labo->title() ?></h2>
 
-          <figure class="ml-auto">
-          <?php $images = $labo->images();
-            if($images->isNotEmpty()):
-                $firstImage = $images->first();
-            ?>
-                <img class="lazyload w-14 h-14 object-cover rounded-full" src="<?= $firstImage->url() ?>" alt="<?= $firstImage->alt() ?>">
+              <?php if($user = $labo->author()->toUser()): ?>
+                <p class="text-sm md:text-base rounded-full border border-black py-1 px-2 md:px-4 w-fit"><?= $user->username() ?></p>
+              <?php endif ?>
+
+              <ul class="flex gap-2">
+                <?php foreach ($labo->tags()->split() as $category): ?>
+                  <li class="text-sm uppercase bg-neutral-950 text-white rounded-full py-1 px-4 h-fit"><?= $category ?></li>
+                <?php endforeach ?>
+              </ul>
+
+            <!-- Display associated contributions count -->
+            <?php $contributions = $labo->contributions()->toPages(); if($contributions->isNotEmpty()): ?>
+              <p class="text-sm uppercase bg-neutral-200 rounded-full py-1 px-4 h-fit">
+                <?= $contributions->count() ?> contribution<?= $contributions->count() > 1 ? 's' : '' ?>
+              </p>
             <?php else: ?>
-              <div class="w-14 h-14 rounded-full bg-transparent"></div>
+              <p class="text-sm uppercase bg-neutral-200 rounded-full py-1 px-4"> 0 contribution</p>
             <?php endif ?>
-          </figure>
+            </div>
         </article>
       </a>
     <?php endforeach ?>

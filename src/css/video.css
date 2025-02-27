@@ -7,13 +7,10 @@
   }
 }
 
-
-
 .plyr__control svg {
   fill: var(--plyr-color-main) !important;
   stroke: var(--plyr-color-main) !important;
 }
-
 
 button.plyr__control[aria-label="Play"] {
   border: 1px solid var(--plyr-color-main);

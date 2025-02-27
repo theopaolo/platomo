@@ -142,10 +142,10 @@
       this[globalName] = mainExports;
     }
   }
-})({"eYaZo":[function(require,module,exports) {
+})({"6dc0E":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
-var HMR_PORT = 57298;
+var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "061eebfa9d09263a";
@@ -576,12 +576,14 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"6Bv9J":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _focus = require("@alpinejs/focus");
+var _focusDefault = parcelHelpers.interopDefault(_focus);
 var _alpinejs = require("alpinejs");
 var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
-var _swup = require("swup");
-var _swupDefault = parcelHelpers.interopDefault(_swup);
 var _plyr = require("plyr");
 var _plyrDefault = parcelHelpers.interopDefault(_plyr);
+var _swup = require("swup");
+var _swupDefault = parcelHelpers.interopDefault(_swup);
 // import 'lazysizes';
 const controls = `
 <div class="plyr__controls">
@@ -656,6 +658,7 @@ swup.hooks.on("visit:start", (visit)=>{
 });
 // Initialize Alpine.js
 window.Alpine = (0, _alpinejsDefault.default);
+(0, _alpinejsDefault.default).plugin((0, _focusDefault.default));
 (0, _alpinejsDefault.default).start();
 let newUrl = 123;
 console.log("object");
@@ -665,10 +668,908 @@ console.log("number");
 console.log("number");
 console.log(typeof goBackWithSwup);
 
-},{"alpinejs":"69hXP","swup":"5QjrV","plyr":"aqcBy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"69hXP":[function(require,module,exports) {
+},{"@alpinejs/focus":"iY8M2","alpinejs":"69hXP","plyr":"aqcBy","swup":"5QjrV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iY8M2":[function(require,module,exports) {
+// node_modules/tabbable/dist/index.esm.js
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>module_default) /*! Bundled license information:
+
+tabbable/dist/index.esm.js:
+  (*!
+  * tabbable 5.3.3
+  * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
+  *)
+
+focus-trap/dist/focus-trap.esm.js:
+  (*!
+  * focus-trap 6.9.4
+  * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
+  *)
+*/ ;
+parcelHelpers.export(exports, "focus", ()=>src_default);
+var candidateSelectors = [
+    "input",
+    "select",
+    "textarea",
+    "a[href]",
+    "button",
+    "[tabindex]:not(slot)",
+    "audio[controls]",
+    "video[controls]",
+    '[contenteditable]:not([contenteditable="false"])',
+    "details>summary:first-of-type",
+    "details"
+];
+var candidateSelector = /* @__PURE__ */ candidateSelectors.join(",");
+var NoElement = typeof Element === "undefined";
+var matches = NoElement ? function() {} : Element.prototype.matches || Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+var getRootNode = !NoElement && Element.prototype.getRootNode ? function(element) {
+    return element.getRootNode();
+} : function(element) {
+    return element.ownerDocument;
+};
+var getCandidates = function getCandidates2(el, includeContainer, filter) {
+    var candidates = Array.prototype.slice.apply(el.querySelectorAll(candidateSelector));
+    if (includeContainer && matches.call(el, candidateSelector)) candidates.unshift(el);
+    candidates = candidates.filter(filter);
+    return candidates;
+};
+var getCandidatesIteratively = function getCandidatesIteratively2(elements, includeContainer, options) {
+    var candidates = [];
+    var elementsToCheck = Array.from(elements);
+    while(elementsToCheck.length){
+        var element = elementsToCheck.shift();
+        if (element.tagName === "SLOT") {
+            var assigned = element.assignedElements();
+            var content = assigned.length ? assigned : element.children;
+            var nestedCandidates = getCandidatesIteratively2(content, true, options);
+            if (options.flatten) candidates.push.apply(candidates, nestedCandidates);
+            else candidates.push({
+                scope: element,
+                candidates: nestedCandidates
+            });
+        } else {
+            var validCandidate = matches.call(element, candidateSelector);
+            if (validCandidate && options.filter(element) && (includeContainer || !elements.includes(element))) candidates.push(element);
+            var shadowRoot = element.shadowRoot || // check for an undisclosed shadow
+            typeof options.getShadowRoot === "function" && options.getShadowRoot(element);
+            var validShadowRoot = !options.shadowRootFilter || options.shadowRootFilter(element);
+            if (shadowRoot && validShadowRoot) {
+                var _nestedCandidates = getCandidatesIteratively2(shadowRoot === true ? element.children : shadowRoot.children, true, options);
+                if (options.flatten) candidates.push.apply(candidates, _nestedCandidates);
+                else candidates.push({
+                    scope: element,
+                    candidates: _nestedCandidates
+                });
+            } else elementsToCheck.unshift.apply(elementsToCheck, element.children);
+        }
+    }
+    return candidates;
+};
+var getTabindex = function getTabindex2(node, isScope) {
+    if (node.tabIndex < 0) {
+        if ((isScope || /^(AUDIO|VIDEO|DETAILS)$/.test(node.tagName) || node.isContentEditable) && isNaN(parseInt(node.getAttribute("tabindex"), 10))) return 0;
+    }
+    return node.tabIndex;
+};
+var sortOrderedTabbables = function sortOrderedTabbables2(a, b) {
+    return a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex;
+};
+var isInput = function isInput2(node) {
+    return node.tagName === "INPUT";
+};
+var isHiddenInput = function isHiddenInput2(node) {
+    return isInput(node) && node.type === "hidden";
+};
+var isDetailsWithSummary = function isDetailsWithSummary2(node) {
+    var r = node.tagName === "DETAILS" && Array.prototype.slice.apply(node.children).some(function(child) {
+        return child.tagName === "SUMMARY";
+    });
+    return r;
+};
+var getCheckedRadio = function getCheckedRadio2(nodes, form) {
+    for(var i = 0; i < nodes.length; i++){
+        if (nodes[i].checked && nodes[i].form === form) return nodes[i];
+    }
+};
+var isTabbableRadio = function isTabbableRadio2(node) {
+    if (!node.name) return true;
+    var radioScope = node.form || getRootNode(node);
+    var queryRadios = function queryRadios2(name) {
+        return radioScope.querySelectorAll('input[type="radio"][name="' + name + '"]');
+    };
+    var radioSet;
+    if (typeof window !== "undefined" && typeof window.CSS !== "undefined" && typeof window.CSS.escape === "function") radioSet = queryRadios(window.CSS.escape(node.name));
+    else try {
+        radioSet = queryRadios(node.name);
+    } catch (err) {
+        console.error("Looks like you have a radio button with a name attribute containing invalid CSS selector characters and need the CSS.escape polyfill: %s", err.message);
+        return false;
+    }
+    var checked = getCheckedRadio(radioSet, node.form);
+    return !checked || checked === node;
+};
+var isRadio = function isRadio2(node) {
+    return isInput(node) && node.type === "radio";
+};
+var isNonTabbableRadio = function isNonTabbableRadio2(node) {
+    return isRadio(node) && !isTabbableRadio(node);
+};
+var isZeroArea = function isZeroArea2(node) {
+    var _node$getBoundingClie = node.getBoundingClientRect(), width = _node$getBoundingClie.width, height = _node$getBoundingClie.height;
+    return width === 0 && height === 0;
+};
+var isHidden = function isHidden2(node, _ref) {
+    var displayCheck = _ref.displayCheck, getShadowRoot = _ref.getShadowRoot;
+    if (getComputedStyle(node).visibility === "hidden") return true;
+    var isDirectSummary = matches.call(node, "details>summary:first-of-type");
+    var nodeUnderDetails = isDirectSummary ? node.parentElement : node;
+    if (matches.call(nodeUnderDetails, "details:not([open]) *")) return true;
+    var nodeRootHost = getRootNode(node).host;
+    var nodeIsAttached = (nodeRootHost === null || nodeRootHost === void 0 ? void 0 : nodeRootHost.ownerDocument.contains(nodeRootHost)) || node.ownerDocument.contains(node);
+    if (!displayCheck || displayCheck === "full") {
+        if (typeof getShadowRoot === "function") {
+            var originalNode = node;
+            while(node){
+                var parentElement = node.parentElement;
+                var rootNode = getRootNode(node);
+                if (parentElement && !parentElement.shadowRoot && getShadowRoot(parentElement) === true) return isZeroArea(node);
+                else if (node.assignedSlot) node = node.assignedSlot;
+                else if (!parentElement && rootNode !== node.ownerDocument) node = rootNode.host;
+                else node = parentElement;
+            }
+            node = originalNode;
+        }
+        if (nodeIsAttached) return !node.getClientRects().length;
+    } else if (displayCheck === "non-zero-area") return isZeroArea(node);
+    return false;
+};
+var isDisabledFromFieldset = function isDisabledFromFieldset2(node) {
+    if (/^(INPUT|BUTTON|SELECT|TEXTAREA)$/.test(node.tagName)) {
+        var parentNode = node.parentElement;
+        while(parentNode){
+            if (parentNode.tagName === "FIELDSET" && parentNode.disabled) {
+                for(var i = 0; i < parentNode.children.length; i++){
+                    var child = parentNode.children.item(i);
+                    if (child.tagName === "LEGEND") return matches.call(parentNode, "fieldset[disabled] *") ? true : !child.contains(node);
+                }
+                return true;
+            }
+            parentNode = parentNode.parentElement;
+        }
+    }
+    return false;
+};
+var isNodeMatchingSelectorFocusable = function isNodeMatchingSelectorFocusable2(options, node) {
+    if (node.disabled || isHiddenInput(node) || isHidden(node, options) || // For a details element with a summary, the summary element gets the focus
+    isDetailsWithSummary(node) || isDisabledFromFieldset(node)) return false;
+    return true;
+};
+var isNodeMatchingSelectorTabbable = function isNodeMatchingSelectorTabbable2(options, node) {
+    if (isNonTabbableRadio(node) || getTabindex(node) < 0 || !isNodeMatchingSelectorFocusable(options, node)) return false;
+    return true;
+};
+var isValidShadowRootTabbable = function isValidShadowRootTabbable2(shadowHostNode) {
+    var tabIndex = parseInt(shadowHostNode.getAttribute("tabindex"), 10);
+    if (isNaN(tabIndex) || tabIndex >= 0) return true;
+    return false;
+};
+var sortByOrder = function sortByOrder2(candidates) {
+    var regularTabbables = [];
+    var orderedTabbables = [];
+    candidates.forEach(function(item, i) {
+        var isScope = !!item.scope;
+        var element = isScope ? item.scope : item;
+        var candidateTabindex = getTabindex(element, isScope);
+        var elements = isScope ? sortByOrder2(item.candidates) : element;
+        if (candidateTabindex === 0) isScope ? regularTabbables.push.apply(regularTabbables, elements) : regularTabbables.push(element);
+        else orderedTabbables.push({
+            documentOrder: i,
+            tabIndex: candidateTabindex,
+            item,
+            isScope,
+            content: elements
+        });
+    });
+    return orderedTabbables.sort(sortOrderedTabbables).reduce(function(acc, sortable) {
+        sortable.isScope ? acc.push.apply(acc, sortable.content) : acc.push(sortable.content);
+        return acc;
+    }, []).concat(regularTabbables);
+};
+var tabbable = function tabbable2(el, options) {
+    options = options || {};
+    var candidates;
+    if (options.getShadowRoot) candidates = getCandidatesIteratively([
+        el
+    ], options.includeContainer, {
+        filter: isNodeMatchingSelectorTabbable.bind(null, options),
+        flatten: false,
+        getShadowRoot: options.getShadowRoot,
+        shadowRootFilter: isValidShadowRootTabbable
+    });
+    else candidates = getCandidates(el, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
+    return sortByOrder(candidates);
+};
+var focusable = function focusable2(el, options) {
+    options = options || {};
+    var candidates;
+    if (options.getShadowRoot) candidates = getCandidatesIteratively([
+        el
+    ], options.includeContainer, {
+        filter: isNodeMatchingSelectorFocusable.bind(null, options),
+        flatten: true,
+        getShadowRoot: options.getShadowRoot
+    });
+    else candidates = getCandidates(el, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
+    return candidates;
+};
+var isTabbable = function isTabbable2(node, options) {
+    options = options || {};
+    if (!node) throw new Error("No node provided");
+    if (matches.call(node, candidateSelector) === false) return false;
+    return isNodeMatchingSelectorTabbable(options, node);
+};
+var focusableCandidateSelector = /* @__PURE__ */ candidateSelectors.concat("iframe").join(",");
+var isFocusable = function isFocusable2(node, options) {
+    options = options || {};
+    if (!node) throw new Error("No node provided");
+    if (matches.call(node, focusableCandidateSelector) === false) return false;
+    return isNodeMatchingSelectorFocusable(options, node);
+};
+// node_modules/focus-trap/dist/focus-trap.esm.js
+function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        enumerableOnly && (symbols = symbols.filter(function(sym) {
+            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        })), keys.push.apply(keys, symbols);
+    }
+    return keys;
+}
+function _objectSpread2(target) {
+    for(var i = 1; i < arguments.length; i++){
+        var source = null != arguments[i] ? arguments[i] : {};
+        i % 2 ? ownKeys(Object(source), true).forEach(function(key) {
+            _defineProperty(target, key, source[key]);
+        }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+    }
+    return target;
+}
+function _defineProperty(obj, key, value) {
+    if (key in obj) Object.defineProperty(obj, key, {
+        value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+    });
+    else obj[key] = value;
+    return obj;
+}
+var activeFocusTraps = function() {
+    var trapQueue = [];
+    return {
+        activateTrap: function activateTrap(trap) {
+            if (trapQueue.length > 0) {
+                var activeTrap = trapQueue[trapQueue.length - 1];
+                if (activeTrap !== trap) activeTrap.pause();
+            }
+            var trapIndex = trapQueue.indexOf(trap);
+            if (trapIndex === -1) trapQueue.push(trap);
+            else {
+                trapQueue.splice(trapIndex, 1);
+                trapQueue.push(trap);
+            }
+        },
+        deactivateTrap: function deactivateTrap(trap) {
+            var trapIndex = trapQueue.indexOf(trap);
+            if (trapIndex !== -1) trapQueue.splice(trapIndex, 1);
+            if (trapQueue.length > 0) trapQueue[trapQueue.length - 1].unpause();
+        }
+    };
+}();
+var isSelectableInput = function isSelectableInput2(node) {
+    return node.tagName && node.tagName.toLowerCase() === "input" && typeof node.select === "function";
+};
+var isEscapeEvent = function isEscapeEvent2(e) {
+    return e.key === "Escape" || e.key === "Esc" || e.keyCode === 27;
+};
+var isTabEvent = function isTabEvent2(e) {
+    return e.key === "Tab" || e.keyCode === 9;
+};
+var delay = function delay2(fn) {
+    return setTimeout(fn, 0);
+};
+var findIndex = function findIndex2(arr, fn) {
+    var idx = -1;
+    arr.every(function(value, i) {
+        if (fn(value)) {
+            idx = i;
+            return false;
+        }
+        return true;
+    });
+    return idx;
+};
+var valueOrHandler = function valueOrHandler2(value) {
+    for(var _len = arguments.length, params = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)params[_key - 1] = arguments[_key];
+    return typeof value === "function" ? value.apply(void 0, params) : value;
+};
+var getActualTarget = function getActualTarget2(event) {
+    return event.target.shadowRoot && typeof event.composedPath === "function" ? event.composedPath()[0] : event.target;
+};
+var createFocusTrap = function createFocusTrap2(elements, userOptions) {
+    var doc = (userOptions === null || userOptions === void 0 ? void 0 : userOptions.document) || document;
+    var config = _objectSpread2({
+        returnFocusOnDeactivate: true,
+        escapeDeactivates: true,
+        delayInitialFocus: true
+    }, userOptions);
+    var state = {
+        // containers given to createFocusTrap()
+        // @type {Array<HTMLElement>}
+        containers: [],
+        // list of objects identifying tabbable nodes in `containers` in the trap
+        // NOTE: it's possible that a group has no tabbable nodes if nodes get removed while the trap
+        //  is active, but the trap should never get to a state where there isn't at least one group
+        //  with at least one tabbable node in it (that would lead to an error condition that would
+        //  result in an error being thrown)
+        // @type {Array<{
+        //   container: HTMLElement,
+        //   tabbableNodes: Array<HTMLElement>, // empty if none
+        //   focusableNodes: Array<HTMLElement>, // empty if none
+        //   firstTabbableNode: HTMLElement|null,
+        //   lastTabbableNode: HTMLElement|null,
+        //   nextTabbableNode: (node: HTMLElement, forward: boolean) => HTMLElement|undefined
+        // }>}
+        containerGroups: [],
+        // same order/length as `containers` list
+        // references to objects in `containerGroups`, but only those that actually have
+        //  tabbable nodes in them
+        // NOTE: same order as `containers` and `containerGroups`, but __not necessarily__
+        //  the same length
+        tabbableGroups: [],
+        nodeFocusedBeforeActivation: null,
+        mostRecentlyFocusedNode: null,
+        active: false,
+        paused: false,
+        // timer ID for when delayInitialFocus is true and initial focus in this trap
+        //  has been delayed during activation
+        delayInitialFocusTimer: void 0
+    };
+    var trap;
+    var getOption = function getOption2(configOverrideOptions, optionName, configOptionName) {
+        return configOverrideOptions && configOverrideOptions[optionName] !== void 0 ? configOverrideOptions[optionName] : config[configOptionName || optionName];
+    };
+    var findContainerIndex = function findContainerIndex2(element) {
+        return state.containerGroups.findIndex(function(_ref) {
+            var container = _ref.container, tabbableNodes = _ref.tabbableNodes;
+            return container.contains(element) || // fall back to explicit tabbable search which will take into consideration any
+            //  web components if the `tabbableOptions.getShadowRoot` option was used for
+            //  the trap, enabling shadow DOM support in tabbable (`Node.contains()` doesn't
+            //  look inside web components even if open)
+            tabbableNodes.find(function(node) {
+                return node === element;
+            });
+        });
+    };
+    var getNodeForOption = function getNodeForOption2(optionName) {
+        var optionValue = config[optionName];
+        if (typeof optionValue === "function") {
+            for(var _len2 = arguments.length, params = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)params[_key2 - 1] = arguments[_key2];
+            optionValue = optionValue.apply(void 0, params);
+        }
+        if (optionValue === true) optionValue = void 0;
+        if (!optionValue) {
+            if (optionValue === void 0 || optionValue === false) return optionValue;
+            throw new Error("`".concat(optionName, "` was specified but was not a node, or did not return a node"));
+        }
+        var node = optionValue;
+        if (typeof optionValue === "string") {
+            node = doc.querySelector(optionValue);
+            if (!node) throw new Error("`".concat(optionName, "` as selector refers to no known node"));
+        }
+        return node;
+    };
+    var getInitialFocusNode = function getInitialFocusNode2() {
+        var node = getNodeForOption("initialFocus");
+        if (node === false) return false;
+        if (node === void 0) {
+            if (findContainerIndex(doc.activeElement) >= 0) node = doc.activeElement;
+            else {
+                var firstTabbableGroup = state.tabbableGroups[0];
+                var firstTabbableNode = firstTabbableGroup && firstTabbableGroup.firstTabbableNode;
+                node = firstTabbableNode || getNodeForOption("fallbackFocus");
+            }
+        }
+        if (!node) throw new Error("Your focus-trap needs to have at least one focusable element");
+        return node;
+    };
+    var updateTabbableNodes = function updateTabbableNodes2() {
+        state.containerGroups = state.containers.map(function(container) {
+            var tabbableNodes = tabbable(container, config.tabbableOptions);
+            var focusableNodes = focusable(container, config.tabbableOptions);
+            return {
+                container,
+                tabbableNodes,
+                focusableNodes,
+                firstTabbableNode: tabbableNodes.length > 0 ? tabbableNodes[0] : null,
+                lastTabbableNode: tabbableNodes.length > 0 ? tabbableNodes[tabbableNodes.length - 1] : null,
+                /**
+         * Finds the __tabbable__ node that follows the given node in the specified direction,
+         *  in this container, if any.
+         * @param {HTMLElement} node
+         * @param {boolean} [forward] True if going in forward tab order; false if going
+         *  in reverse.
+         * @returns {HTMLElement|undefined} The next tabbable node, if any.
+         */ nextTabbableNode: function nextTabbableNode(node) {
+                    var forward = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
+                    var nodeIdx = focusableNodes.findIndex(function(n) {
+                        return n === node;
+                    });
+                    if (nodeIdx < 0) return void 0;
+                    if (forward) return focusableNodes.slice(nodeIdx + 1).find(function(n) {
+                        return isTabbable(n, config.tabbableOptions);
+                    });
+                    return focusableNodes.slice(0, nodeIdx).reverse().find(function(n) {
+                        return isTabbable(n, config.tabbableOptions);
+                    });
+                }
+            };
+        });
+        state.tabbableGroups = state.containerGroups.filter(function(group) {
+            return group.tabbableNodes.length > 0;
+        });
+        if (state.tabbableGroups.length <= 0 && !getNodeForOption("fallbackFocus")) throw new Error("Your focus-trap must have at least one container with at least one tabbable node in it at all times");
+    };
+    var tryFocus = function tryFocus2(node) {
+        if (node === false) return;
+        if (node === doc.activeElement) return;
+        if (!node || !node.focus) {
+            tryFocus2(getInitialFocusNode());
+            return;
+        }
+        node.focus({
+            preventScroll: !!config.preventScroll
+        });
+        state.mostRecentlyFocusedNode = node;
+        if (isSelectableInput(node)) node.select();
+    };
+    var getReturnFocusNode = function getReturnFocusNode2(previousActiveElement) {
+        var node = getNodeForOption("setReturnFocus", previousActiveElement);
+        return node ? node : node === false ? false : previousActiveElement;
+    };
+    var checkPointerDown = function checkPointerDown2(e) {
+        var target = getActualTarget(e);
+        if (findContainerIndex(target) >= 0) return;
+        if (valueOrHandler(config.clickOutsideDeactivates, e)) {
+            trap.deactivate({
+                // if, on deactivation, we should return focus to the node originally-focused
+                //  when the trap was activated (or the configured `setReturnFocus` node),
+                //  then assume it's also OK to return focus to the outside node that was
+                //  just clicked, causing deactivation, as long as that node is focusable;
+                //  if it isn't focusable, then return focus to the original node focused
+                //  on activation (or the configured `setReturnFocus` node)
+                // NOTE: by setting `returnFocus: false`, deactivate() will do nothing,
+                //  which will result in the outside click setting focus to the node
+                //  that was clicked, whether it's focusable or not; by setting
+                //  `returnFocus: true`, we'll attempt to re-focus the node originally-focused
+                //  on activation (or the configured `setReturnFocus` node)
+                returnFocus: config.returnFocusOnDeactivate && !isFocusable(target, config.tabbableOptions)
+            });
+            return;
+        }
+        if (valueOrHandler(config.allowOutsideClick, e)) return;
+        e.preventDefault();
+    };
+    var checkFocusIn = function checkFocusIn2(e) {
+        var target = getActualTarget(e);
+        var targetContained = findContainerIndex(target) >= 0;
+        if (targetContained || target instanceof Document) {
+            if (targetContained) state.mostRecentlyFocusedNode = target;
+        } else {
+            e.stopImmediatePropagation();
+            tryFocus(state.mostRecentlyFocusedNode || getInitialFocusNode());
+        }
+    };
+    var checkTab = function checkTab2(e) {
+        var target = getActualTarget(e);
+        updateTabbableNodes();
+        var destinationNode = null;
+        if (state.tabbableGroups.length > 0) {
+            var containerIndex = findContainerIndex(target);
+            var containerGroup = containerIndex >= 0 ? state.containerGroups[containerIndex] : void 0;
+            if (containerIndex < 0) {
+                if (e.shiftKey) destinationNode = state.tabbableGroups[state.tabbableGroups.length - 1].lastTabbableNode;
+                else destinationNode = state.tabbableGroups[0].firstTabbableNode;
+            } else if (e.shiftKey) {
+                var startOfGroupIndex = findIndex(state.tabbableGroups, function(_ref2) {
+                    var firstTabbableNode = _ref2.firstTabbableNode;
+                    return target === firstTabbableNode;
+                });
+                if (startOfGroupIndex < 0 && (containerGroup.container === target || isFocusable(target, config.tabbableOptions) && !isTabbable(target, config.tabbableOptions) && !containerGroup.nextTabbableNode(target, false))) startOfGroupIndex = containerIndex;
+                if (startOfGroupIndex >= 0) {
+                    var destinationGroupIndex = startOfGroupIndex === 0 ? state.tabbableGroups.length - 1 : startOfGroupIndex - 1;
+                    var destinationGroup = state.tabbableGroups[destinationGroupIndex];
+                    destinationNode = destinationGroup.lastTabbableNode;
+                }
+            } else {
+                var lastOfGroupIndex = findIndex(state.tabbableGroups, function(_ref3) {
+                    var lastTabbableNode = _ref3.lastTabbableNode;
+                    return target === lastTabbableNode;
+                });
+                if (lastOfGroupIndex < 0 && (containerGroup.container === target || isFocusable(target, config.tabbableOptions) && !isTabbable(target, config.tabbableOptions) && !containerGroup.nextTabbableNode(target))) lastOfGroupIndex = containerIndex;
+                if (lastOfGroupIndex >= 0) {
+                    var _destinationGroupIndex = lastOfGroupIndex === state.tabbableGroups.length - 1 ? 0 : lastOfGroupIndex + 1;
+                    var _destinationGroup = state.tabbableGroups[_destinationGroupIndex];
+                    destinationNode = _destinationGroup.firstTabbableNode;
+                }
+            }
+        } else destinationNode = getNodeForOption("fallbackFocus");
+        if (destinationNode) {
+            e.preventDefault();
+            tryFocus(destinationNode);
+        }
+    };
+    var checkKey = function checkKey2(e) {
+        if (isEscapeEvent(e) && valueOrHandler(config.escapeDeactivates, e) !== false) {
+            e.preventDefault();
+            trap.deactivate();
+            return;
+        }
+        if (isTabEvent(e)) {
+            checkTab(e);
+            return;
+        }
+    };
+    var checkClick = function checkClick2(e) {
+        var target = getActualTarget(e);
+        if (findContainerIndex(target) >= 0) return;
+        if (valueOrHandler(config.clickOutsideDeactivates, e)) return;
+        if (valueOrHandler(config.allowOutsideClick, e)) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    };
+    var addListeners = function addListeners2() {
+        if (!state.active) return;
+        activeFocusTraps.activateTrap(trap);
+        state.delayInitialFocusTimer = config.delayInitialFocus ? delay(function() {
+            tryFocus(getInitialFocusNode());
+        }) : tryFocus(getInitialFocusNode());
+        doc.addEventListener("focusin", checkFocusIn, true);
+        doc.addEventListener("mousedown", checkPointerDown, {
+            capture: true,
+            passive: false
+        });
+        doc.addEventListener("touchstart", checkPointerDown, {
+            capture: true,
+            passive: false
+        });
+        doc.addEventListener("click", checkClick, {
+            capture: true,
+            passive: false
+        });
+        doc.addEventListener("keydown", checkKey, {
+            capture: true,
+            passive: false
+        });
+        return trap;
+    };
+    var removeListeners = function removeListeners2() {
+        if (!state.active) return;
+        doc.removeEventListener("focusin", checkFocusIn, true);
+        doc.removeEventListener("mousedown", checkPointerDown, true);
+        doc.removeEventListener("touchstart", checkPointerDown, true);
+        doc.removeEventListener("click", checkClick, true);
+        doc.removeEventListener("keydown", checkKey, true);
+        return trap;
+    };
+    trap = {
+        get active () {
+            return state.active;
+        },
+        get paused () {
+            return state.paused;
+        },
+        activate: function activate(activateOptions) {
+            if (state.active) return this;
+            var onActivate = getOption(activateOptions, "onActivate");
+            var onPostActivate = getOption(activateOptions, "onPostActivate");
+            var checkCanFocusTrap = getOption(activateOptions, "checkCanFocusTrap");
+            if (!checkCanFocusTrap) updateTabbableNodes();
+            state.active = true;
+            state.paused = false;
+            state.nodeFocusedBeforeActivation = doc.activeElement;
+            if (onActivate) onActivate();
+            var finishActivation = function finishActivation2() {
+                if (checkCanFocusTrap) updateTabbableNodes();
+                addListeners();
+                if (onPostActivate) onPostActivate();
+            };
+            if (checkCanFocusTrap) {
+                checkCanFocusTrap(state.containers.concat()).then(finishActivation, finishActivation);
+                return this;
+            }
+            finishActivation();
+            return this;
+        },
+        deactivate: function deactivate(deactivateOptions) {
+            if (!state.active) return this;
+            var options = _objectSpread2({
+                onDeactivate: config.onDeactivate,
+                onPostDeactivate: config.onPostDeactivate,
+                checkCanReturnFocus: config.checkCanReturnFocus
+            }, deactivateOptions);
+            clearTimeout(state.delayInitialFocusTimer);
+            state.delayInitialFocusTimer = void 0;
+            removeListeners();
+            state.active = false;
+            state.paused = false;
+            activeFocusTraps.deactivateTrap(trap);
+            var onDeactivate = getOption(options, "onDeactivate");
+            var onPostDeactivate = getOption(options, "onPostDeactivate");
+            var checkCanReturnFocus = getOption(options, "checkCanReturnFocus");
+            var returnFocus = getOption(options, "returnFocus", "returnFocusOnDeactivate");
+            if (onDeactivate) onDeactivate();
+            var finishDeactivation = function finishDeactivation2() {
+                delay(function() {
+                    if (returnFocus) tryFocus(getReturnFocusNode(state.nodeFocusedBeforeActivation));
+                    if (onPostDeactivate) onPostDeactivate();
+                });
+            };
+            if (returnFocus && checkCanReturnFocus) {
+                checkCanReturnFocus(getReturnFocusNode(state.nodeFocusedBeforeActivation)).then(finishDeactivation, finishDeactivation);
+                return this;
+            }
+            finishDeactivation();
+            return this;
+        },
+        pause: function pause() {
+            if (state.paused || !state.active) return this;
+            state.paused = true;
+            removeListeners();
+            return this;
+        },
+        unpause: function unpause() {
+            if (!state.paused || !state.active) return this;
+            state.paused = false;
+            updateTabbableNodes();
+            addListeners();
+            return this;
+        },
+        updateContainerElements: function updateContainerElements(containerElements) {
+            var elementsAsArray = [].concat(containerElements).filter(Boolean);
+            state.containers = elementsAsArray.map(function(element) {
+                return typeof element === "string" ? doc.querySelector(element) : element;
+            });
+            if (state.active) updateTabbableNodes();
+            return this;
+        }
+    };
+    trap.updateContainerElements(elements);
+    return trap;
+};
+// packages/focus/src/index.js
+function src_default(Alpine) {
+    let lastFocused;
+    let currentFocused;
+    window.addEventListener("focusin", ()=>{
+        lastFocused = currentFocused;
+        currentFocused = document.activeElement;
+    });
+    Alpine.magic("focus", (el)=>{
+        let within = el;
+        return {
+            __noscroll: false,
+            __wrapAround: false,
+            within (el2) {
+                within = el2;
+                return this;
+            },
+            withoutScrolling () {
+                this.__noscroll = true;
+                return this;
+            },
+            noscroll () {
+                this.__noscroll = true;
+                return this;
+            },
+            withWrapAround () {
+                this.__wrapAround = true;
+                return this;
+            },
+            wrap () {
+                return this.withWrapAround();
+            },
+            focusable (el2) {
+                return isFocusable(el2);
+            },
+            previouslyFocused () {
+                return lastFocused;
+            },
+            lastFocused () {
+                return lastFocused;
+            },
+            focused () {
+                return currentFocused;
+            },
+            focusables () {
+                if (Array.isArray(within)) return within;
+                return focusable(within, {
+                    displayCheck: "none"
+                });
+            },
+            all () {
+                return this.focusables();
+            },
+            isFirst (el2) {
+                let els = this.all();
+                return els[0] && els[0].isSameNode(el2);
+            },
+            isLast (el2) {
+                let els = this.all();
+                return els.length && els.slice(-1)[0].isSameNode(el2);
+            },
+            getFirst () {
+                return this.all()[0];
+            },
+            getLast () {
+                return this.all().slice(-1)[0];
+            },
+            getNext () {
+                let list = this.all();
+                let current = document.activeElement;
+                if (list.indexOf(current) === -1) return;
+                if (this.__wrapAround && list.indexOf(current) === list.length - 1) return list[0];
+                return list[list.indexOf(current) + 1];
+            },
+            getPrevious () {
+                let list = this.all();
+                let current = document.activeElement;
+                if (list.indexOf(current) === -1) return;
+                if (this.__wrapAround && list.indexOf(current) === 0) return list.slice(-1)[0];
+                return list[list.indexOf(current) - 1];
+            },
+            first () {
+                this.focus(this.getFirst());
+            },
+            last () {
+                this.focus(this.getLast());
+            },
+            next () {
+                this.focus(this.getNext());
+            },
+            previous () {
+                this.focus(this.getPrevious());
+            },
+            prev () {
+                return this.previous();
+            },
+            focus (el2) {
+                if (!el2) return;
+                setTimeout(()=>{
+                    if (!el2.hasAttribute("tabindex")) el2.setAttribute("tabindex", "0");
+                    el2.focus({
+                        preventScroll: this.__noscroll
+                    });
+                });
+            }
+        };
+    });
+    Alpine.directive("trap", Alpine.skipDuringClone((el, { expression, modifiers }, { effect, evaluateLater, cleanup })=>{
+        let evaluator = evaluateLater(expression);
+        let oldValue = false;
+        let options = {
+            escapeDeactivates: false,
+            allowOutsideClick: true,
+            fallbackFocus: ()=>el
+        };
+        if (modifiers.includes("noautofocus")) options.initialFocus = false;
+        else {
+            let autofocusEl = el.querySelector("[autofocus]");
+            if (autofocusEl) options.initialFocus = autofocusEl;
+        }
+        let trap = createFocusTrap(el, options);
+        let undoInert = ()=>{};
+        let undoDisableScrolling = ()=>{};
+        const releaseFocus = ()=>{
+            undoInert();
+            undoInert = ()=>{};
+            undoDisableScrolling();
+            undoDisableScrolling = ()=>{};
+            trap.deactivate({
+                returnFocus: !modifiers.includes("noreturn")
+            });
+        };
+        effect(()=>evaluator((value)=>{
+                if (oldValue === value) return;
+                if (value && !oldValue) {
+                    if (modifiers.includes("noscroll")) undoDisableScrolling = disableScrolling();
+                    if (modifiers.includes("inert")) undoInert = setInert(el);
+                    setTimeout(()=>{
+                        trap.activate();
+                    }, 15);
+                }
+                if (!value && oldValue) releaseFocus();
+                oldValue = !!value;
+            }));
+        cleanup(releaseFocus);
+    }, // When cloning, we only want to add aria-hidden attributes to the
+    // DOM and not try to actually trap, as trapping can mess with the
+    // live DOM and isn't just isolated to the cloned DOM.
+    (el, { expression, modifiers }, { evaluate })=>{
+        if (modifiers.includes("inert") && evaluate(expression)) setInert(el);
+    }));
+}
+function setInert(el) {
+    let undos = [];
+    crawlSiblingsUp(el, (sibling)=>{
+        let cache = sibling.hasAttribute("aria-hidden");
+        sibling.setAttribute("aria-hidden", "true");
+        undos.push(()=>cache || sibling.removeAttribute("aria-hidden"));
+    });
+    return ()=>{
+        while(undos.length)undos.pop()();
+    };
+}
+function crawlSiblingsUp(el, callback) {
+    if (el.isSameNode(document.body) || !el.parentNode) return;
+    Array.from(el.parentNode.children).forEach((sibling)=>{
+        if (sibling.isSameNode(el)) crawlSiblingsUp(el.parentNode, callback);
+        else callback(sibling);
+    });
+}
+function disableScrolling() {
+    let overflow = document.documentElement.style.overflow;
+    let paddingRight = document.documentElement.style.paddingRight;
+    let scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
+    return ()=>{
+        document.documentElement.style.overflow = overflow;
+        document.documentElement.style.paddingRight = paddingRight;
+    };
+}
+// packages/focus/builds/module.js
+var module_default = src_default;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Alpine", ()=>src_default);
 parcelHelpers.export(exports, "default", ()=>module_default);
 var flushPending = false;
 var flushing = false;
@@ -752,104 +1653,20 @@ function elementBoundEffect(el) {
         }
     ];
 }
-// packages/alpinejs/src/utils/dispatch.js
-function dispatch(el, name, detail = {}) {
-    el.dispatchEvent(new CustomEvent(name, {
-        detail,
-        bubbles: true,
-        // Allows events to pass the shadow DOM barrier.
-        composed: true,
-        cancelable: true
-    }));
-}
-// packages/alpinejs/src/utils/walk.js
-function walk(el, callback) {
-    if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
-        Array.from(el.children).forEach((el2)=>walk(el2, callback));
-        return;
-    }
-    let skip = false;
-    callback(el, ()=>skip = true);
-    if (skip) return;
-    let node = el.firstElementChild;
-    while(node){
-        walk(node, callback, false);
-        node = node.nextElementSibling;
-    }
-}
-// packages/alpinejs/src/utils/warn.js
-function warn(message, ...args) {
-    console.warn(`Alpine Warning: ${message}`, ...args);
-}
-// packages/alpinejs/src/lifecycle.js
-var started = false;
-function start() {
-    if (started) warn("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems.");
-    started = true;
-    if (!document.body) warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
-    dispatch(document, "alpine:init");
-    dispatch(document, "alpine:initializing");
-    startObservingMutations();
-    onElAdded((el)=>initTree(el, walk));
-    onElRemoved((el)=>destroyTree(el));
-    onAttributesAdded((el, attrs)=>{
-        directives(el, attrs).forEach((handle)=>handle());
-    });
-    let outNestedComponents = (el)=>!closestRoot(el.parentElement, true);
-    Array.from(document.querySelectorAll(allSelectors().join(","))).filter(outNestedComponents).forEach((el)=>{
-        initTree(el);
-    });
-    dispatch(document, "alpine:initialized");
-}
-var rootSelectorCallbacks = [];
-var initSelectorCallbacks = [];
-function rootSelectors() {
-    return rootSelectorCallbacks.map((fn)=>fn());
-}
-function allSelectors() {
-    return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn)=>fn());
-}
-function addRootSelector(selectorCallback) {
-    rootSelectorCallbacks.push(selectorCallback);
-}
-function addInitSelector(selectorCallback) {
-    initSelectorCallbacks.push(selectorCallback);
-}
-function closestRoot(el, includeInitSelectors = false) {
-    return findClosest(el, (element)=>{
-        const selectors = includeInitSelectors ? allSelectors() : rootSelectors();
-        if (selectors.some((selector)=>element.matches(selector))) return true;
-    });
-}
-function findClosest(el, callback) {
-    if (!el) return;
-    if (callback(el)) return el;
-    if (el._x_teleportBack) el = el._x_teleportBack;
-    if (!el.parentElement) return;
-    return findClosest(el.parentElement, callback);
-}
-function isRoot(el) {
-    return rootSelectors().some((selector)=>el.matches(selector));
-}
-var initInterceptors = [];
-function interceptInit(callback) {
-    initInterceptors.push(callback);
-}
-function initTree(el, walker = walk, intercept = ()=>{}) {
-    deferHandlingDirectives(()=>{
-        walker(el, (el2, skip)=>{
-            intercept(el2, skip);
-            initInterceptors.forEach((i)=>i(el2, skip));
-            directives(el2, el2.attributes).forEach((handle)=>handle());
-            el2._x_ignore && skip();
+function watch(getter, callback) {
+    let firstTime = true;
+    let oldValue;
+    let effectReference = effect(()=>{
+        let value = getter();
+        JSON.stringify(value);
+        if (!firstTime) queueMicrotask(()=>{
+            callback(value, oldValue);
+            oldValue = value;
         });
+        else oldValue = value;
+        firstTime = false;
     });
-}
-function destroyTree(root) {
-    walk(root, (el)=>{
-        cleanupAttributes(el);
-        cleanupElement(el);
-    });
+    return ()=>release(effectReference);
 }
 // packages/alpinejs/src/mutation.js
 var onAttributeAddeds = [];
@@ -885,7 +1702,8 @@ function cleanupAttributes(el, names) {
     });
 }
 function cleanupElement(el) {
-    if (el._x_cleanups) while(el._x_cleanups.length)el._x_cleanups.pop()();
+    el._x_effects?.forEach(dequeueJob);
+    while(el._x_cleanups?.length)el._x_cleanups.pop()();
 }
 var observer = new MutationObserver(onMutate);
 var currentlyObserving = false;
@@ -903,21 +1721,14 @@ function stopObservingMutations() {
     observer.disconnect();
     currentlyObserving = false;
 }
-var recordQueue = [];
-var willProcessRecordQueue = false;
+var queuedMutations = [];
 function flushObserver() {
-    recordQueue = recordQueue.concat(observer.takeRecords());
-    if (recordQueue.length && !willProcessRecordQueue) {
-        willProcessRecordQueue = true;
-        queueMicrotask(()=>{
-            processRecordQueue();
-            willProcessRecordQueue = false;
-        });
-    }
-}
-function processRecordQueue() {
-    onMutate(recordQueue);
-    recordQueue.length = 0;
+    let records = observer.takeRecords();
+    queuedMutations.push(()=>records.length > 0 && onMutate(records));
+    let queueLengthWhenTriggered = queuedMutations.length;
+    queueMicrotask(()=>{
+        if (queuedMutations.length === queueLengthWhenTriggered) while(queuedMutations.length > 0)queuedMutations.shift()();
+    });
 }
 function mutateDom(callback) {
     if (!currentlyObserving) return callback();
@@ -942,14 +1753,26 @@ function onMutate(mutations) {
         return;
     }
     let addedNodes = [];
-    let removedNodes = [];
+    let removedNodes = /* @__PURE__ */ new Set();
     let addedAttributes = /* @__PURE__ */ new Map();
     let removedAttributes = /* @__PURE__ */ new Map();
     for(let i = 0; i < mutations.length; i++){
         if (mutations[i].target._x_ignoreMutationObserver) continue;
         if (mutations[i].type === "childList") {
-            mutations[i].addedNodes.forEach((node)=>node.nodeType === 1 && addedNodes.push(node));
-            mutations[i].removedNodes.forEach((node)=>node.nodeType === 1 && removedNodes.push(node));
+            mutations[i].removedNodes.forEach((node)=>{
+                if (node.nodeType !== 1) return;
+                if (!node._x_marker) return;
+                removedNodes.add(node);
+            });
+            mutations[i].addedNodes.forEach((node)=>{
+                if (node.nodeType !== 1) return;
+                if (removedNodes.has(node)) {
+                    removedNodes.delete(node);
+                    return;
+                }
+                if (node._x_marker) return;
+                addedNodes.push(node);
+            });
         }
         if (mutations[i].type === "attributes") {
             let el = mutations[i].target;
@@ -980,27 +1803,13 @@ function onMutate(mutations) {
         onAttributeAddeds.forEach((i)=>i(el, attrs));
     });
     for (let node of removedNodes){
-        if (addedNodes.includes(node)) continue;
+        if (addedNodes.some((i)=>i.contains(node))) continue;
         onElRemoveds.forEach((i)=>i(node));
-        destroyTree(node);
     }
-    addedNodes.forEach((node)=>{
-        node._x_ignoreSelf = true;
-        node._x_ignore = true;
-    });
     for (let node of addedNodes){
-        if (removedNodes.includes(node)) continue;
         if (!node.isConnected) continue;
-        delete node._x_ignoreSelf;
-        delete node._x_ignore;
         onElAddeds.forEach((i)=>i(node));
-        node._x_ignore = true;
-        node._x_ignoreSelf = true;
     }
-    addedNodes.forEach((node)=>{
-        delete node._x_ignoreSelf;
-        delete node._x_ignore;
-    });
     addedNodes = null;
     removedNodes = null;
     addedAttributes = null;
@@ -1036,16 +1845,16 @@ var mergeProxyTrap = {
     },
     has ({ objects }, name) {
         if (name == Symbol.unscopables) return false;
-        return objects.some((obj)=>Object.prototype.hasOwnProperty.call(obj, name));
+        return objects.some((obj)=>Object.prototype.hasOwnProperty.call(obj, name) || Reflect.has(obj, name));
     },
     get ({ objects }, name, thisProxy) {
         if (name == "toJSON") return collapseProxies;
-        return Reflect.get(objects.find((obj)=>Object.prototype.hasOwnProperty.call(obj, name)) || {}, name, thisProxy);
+        return Reflect.get(objects.find((obj)=>Reflect.has(obj, name)) || {}, name, thisProxy);
     },
     set ({ objects }, name, value, thisProxy) {
         const target = objects.find((obj)=>Object.prototype.hasOwnProperty.call(obj, name)) || objects[objects.length - 1];
         const descriptor = Object.getOwnPropertyDescriptor(target, name);
-        if (descriptor?.set && descriptor?.get) return Reflect.set(target, name, value, thisProxy);
+        if (descriptor?.set && descriptor?.get) return descriptor.set.call(thisProxy, value) || true;
         return Reflect.set(target, name, value);
     }
 };
@@ -1057,11 +1866,12 @@ function collapseProxies() {
     }, {});
 }
 // packages/alpinejs/src/interceptor.js
-function initInterceptors2(data2) {
+function initInterceptors(data2) {
     let isObject2 = (val)=>typeof val === "object" && !Array.isArray(val) && val !== null;
     let recurse = (obj, basePath = "")=>{
         Object.entries(Object.getOwnPropertyDescriptors(obj)).forEach(([key, { value, enumerable }])=>{
             if (enumerable === false || value === void 0) return;
+            if (typeof value === "object" && value !== null && value.__v_skip) return;
             let path = basePath === "" ? key : `${basePath}.${key}`;
             if (typeof value === "object" && value !== null && value._x_interceptor) obj[key] = value.initialize(data2, path, key);
             else if (isObject2(value) && value !== obj && !(value instanceof Element)) recurse(value, path);
@@ -1111,28 +1921,25 @@ function magic(name, callback) {
     magics[name] = callback;
 }
 function injectMagics(obj, el) {
+    let memoizedUtilities = getUtilities(el);
     Object.entries(magics).forEach(([name, callback])=>{
-        let memoizedUtilities = null;
-        function getUtilities() {
-            if (memoizedUtilities) return memoizedUtilities;
-            else {
-                let [utilities, cleanup2] = getElementBoundUtilities(el);
-                memoizedUtilities = {
-                    interceptor,
-                    ...utilities
-                };
-                onElRemoved(el, cleanup2);
-                return memoizedUtilities;
-            }
-        }
         Object.defineProperty(obj, `$${name}`, {
             get () {
-                return callback(el, getUtilities());
+                return callback(el, memoizedUtilities);
             },
             enumerable: false
         });
     });
     return obj;
+}
+function getUtilities(el) {
+    let [utilities, cleanup2] = getElementBoundUtilities(el);
+    let utils = {
+        interceptor,
+        ...utilities
+    };
+    onElRemoved(el, cleanup2);
+    return utils;
 }
 // packages/alpinejs/src/utils/error.js
 function tryCatch(el, expression, callback, ...args) {
@@ -1143,7 +1950,9 @@ function tryCatch(el, expression, callback, ...args) {
     }
 }
 function handleError(error2, el, expression) {
-    Object.assign(error2, {
+    error2 = Object.assign(error2 ?? {
+        message: "No error message given."
+    }, {
         el,
         expression
     });
@@ -1260,13 +2069,16 @@ function directive(name, callback) {
     return {
         before (directive2) {
             if (!directiveHandlers[directive2]) {
-                console.warn("Cannot find directive `${directive}`. `${name}` will use the default order of execution");
+                console.warn(String.raw`Cannot find directive \`${directive2}\`. \`${name}\` will use the default order of execution`);
                 return;
             }
             const pos = directiveOrder.indexOf(directive2);
             directiveOrder.splice(pos >= 0 ? pos : directiveOrder.indexOf("DEFAULT"), 0, name);
         }
     };
+}
+function directiveExists(name) {
+    return Object.keys(directiveHandlers).includes(name);
 }
 function directives(el, attributes, originalAttributeOverride) {
     attributes = Array.from(attributes);
@@ -1413,6 +2225,147 @@ function byPriority(a, b) {
     let typeA = directiveOrder.indexOf(a.type) === -1 ? DEFAULT : a.type;
     let typeB = directiveOrder.indexOf(b.type) === -1 ? DEFAULT : b.type;
     return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
+}
+// packages/alpinejs/src/utils/dispatch.js
+function dispatch(el, name, detail = {}) {
+    el.dispatchEvent(new CustomEvent(name, {
+        detail,
+        bubbles: true,
+        // Allows events to pass the shadow DOM barrier.
+        composed: true,
+        cancelable: true
+    }));
+}
+// packages/alpinejs/src/utils/walk.js
+function walk(el, callback) {
+    if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
+        Array.from(el.children).forEach((el2)=>walk(el2, callback));
+        return;
+    }
+    let skip = false;
+    callback(el, ()=>skip = true);
+    if (skip) return;
+    let node = el.firstElementChild;
+    while(node){
+        walk(node, callback, false);
+        node = node.nextElementSibling;
+    }
+}
+// packages/alpinejs/src/utils/warn.js
+function warn(message, ...args) {
+    console.warn(`Alpine Warning: ${message}`, ...args);
+}
+// packages/alpinejs/src/lifecycle.js
+var started = false;
+function start() {
+    if (started) warn("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems.");
+    started = true;
+    if (!document.body) warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
+    dispatch(document, "alpine:init");
+    dispatch(document, "alpine:initializing");
+    startObservingMutations();
+    onElAdded((el)=>initTree(el, walk));
+    onElRemoved((el)=>destroyTree(el));
+    onAttributesAdded((el, attrs)=>{
+        directives(el, attrs).forEach((handle)=>handle());
+    });
+    let outNestedComponents = (el)=>!closestRoot(el.parentElement, true);
+    Array.from(document.querySelectorAll(allSelectors().join(","))).filter(outNestedComponents).forEach((el)=>{
+        initTree(el);
+    });
+    dispatch(document, "alpine:initialized");
+    setTimeout(()=>{
+        warnAboutMissingPlugins();
+    });
+}
+var rootSelectorCallbacks = [];
+var initSelectorCallbacks = [];
+function rootSelectors() {
+    return rootSelectorCallbacks.map((fn)=>fn());
+}
+function allSelectors() {
+    return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn)=>fn());
+}
+function addRootSelector(selectorCallback) {
+    rootSelectorCallbacks.push(selectorCallback);
+}
+function addInitSelector(selectorCallback) {
+    initSelectorCallbacks.push(selectorCallback);
+}
+function closestRoot(el, includeInitSelectors = false) {
+    return findClosest(el, (element)=>{
+        const selectors = includeInitSelectors ? allSelectors() : rootSelectors();
+        if (selectors.some((selector)=>element.matches(selector))) return true;
+    });
+}
+function findClosest(el, callback) {
+    if (!el) return;
+    if (callback(el)) return el;
+    if (el._x_teleportBack) el = el._x_teleportBack;
+    if (!el.parentElement) return;
+    return findClosest(el.parentElement, callback);
+}
+function isRoot(el) {
+    return rootSelectors().some((selector)=>el.matches(selector));
+}
+var initInterceptors2 = [];
+function interceptInit(callback) {
+    initInterceptors2.push(callback);
+}
+var markerDispenser = 1;
+function initTree(el, walker = walk, intercept = ()=>{}) {
+    if (findClosest(el, (i)=>i._x_ignore)) return;
+    deferHandlingDirectives(()=>{
+        walker(el, (el2, skip)=>{
+            if (el2._x_marker) return;
+            intercept(el2, skip);
+            initInterceptors2.forEach((i)=>i(el2, skip));
+            directives(el2, el2.attributes).forEach((handle)=>handle());
+            if (!el2._x_ignore) el2._x_marker = markerDispenser++;
+            el2._x_ignore && skip();
+        });
+    });
+}
+function destroyTree(root, walker = walk) {
+    walker(root, (el)=>{
+        cleanupElement(el);
+        cleanupAttributes(el);
+        delete el._x_marker;
+    });
+}
+function warnAboutMissingPlugins() {
+    let pluginDirectives = [
+        [
+            "ui",
+            "dialog",
+            [
+                "[x-dialog], [x-popover]"
+            ]
+        ],
+        [
+            "anchor",
+            "anchor",
+            [
+                "[x-anchor]"
+            ]
+        ],
+        [
+            "sort",
+            "sort",
+            [
+                "[x-sort]"
+            ]
+        ]
+    ];
+    pluginDirectives.forEach(([plugin2, directive2, selectors])=>{
+        if (directiveExists(directive2)) return;
+        selectors.some((selector)=>{
+            if (document.querySelector(selector)) {
+                warn(`found "${selector}", but missing ${plugin2} plugin`);
+                return true;
+            }
+        });
+    });
 }
 // packages/alpinejs/src/nextTick.js
 var tickStack = [];
@@ -1658,7 +2611,7 @@ window.Element.prototype._x_toggleAndCascadeWithTransitions = function(el, value
                 let carry = Promise.all([
                     el2._x_hidePromise,
                     ...(el2._x_hideChildren || []).map(hideAfterChildren)
-                ]).then(([i])=>i());
+                ]).then(([i])=>i?.());
                 delete el2._x_hidePromise;
                 delete el2._x_hideChildren;
                 return carry;
@@ -1856,13 +2809,13 @@ function bind(el, name, value, modifiers = []) {
     }
 }
 function bindInputValue(el, value) {
-    if (el.type === "radio") {
+    if (isRadio(el)) {
         if (el.attributes.value === void 0) el.value = value;
         if (window.fromModel) {
             if (typeof value === "boolean") el.checked = safeParseBoolean(el.value) === value;
             else el.checked = checkedAttrLooseCompare(el.value, value);
         }
-    } else if (el.type === "checkbox") {
+    } else if (isCheckbox(el)) {
         if (Number.isInteger(value)) el.value = value;
         else if (!Array.isArray(value) && typeof value !== "boolean" && ![
             null,
@@ -1938,35 +2891,37 @@ function safeParseBoolean(rawValue) {
     ].includes(rawValue)) return false;
     return rawValue ? Boolean(rawValue) : null;
 }
+var booleanAttributes = /* @__PURE__ */ new Set([
+    "allowfullscreen",
+    "async",
+    "autofocus",
+    "autoplay",
+    "checked",
+    "controls",
+    "default",
+    "defer",
+    "disabled",
+    "formnovalidate",
+    "inert",
+    "ismap",
+    "itemscope",
+    "loop",
+    "multiple",
+    "muted",
+    "nomodule",
+    "novalidate",
+    "open",
+    "playsinline",
+    "readonly",
+    "required",
+    "reversed",
+    "selected",
+    "shadowrootclonable",
+    "shadowrootdelegatesfocus",
+    "shadowrootserializable"
+]);
 function isBooleanAttr(attrName) {
-    const booleanAttributes = [
-        "disabled",
-        "checked",
-        "required",
-        "readonly",
-        "hidden",
-        "open",
-        "selected",
-        "autofocus",
-        "itemscope",
-        "multiple",
-        "novalidate",
-        "allowfullscreen",
-        "allowpaymentrequest",
-        "formnovalidate",
-        "autoplay",
-        "controls",
-        "loop",
-        "muted",
-        "playsinline",
-        "default",
-        "ismap",
-        "reversed",
-        "async",
-        "defer",
-        "nomodule"
-    ];
-    return booleanAttributes.includes(attrName);
+    return booleanAttributes.has(attrName);
 }
 function attributeShouldntBePreservedIfFalsy(name) {
     return ![
@@ -2001,6 +2956,12 @@ function getAttributeBinding(el, name, fallback) {
     ].includes(attr);
     return attr;
 }
+function isCheckbox(el) {
+    return el.type === "checkbox" || el.localName === "ui-checkbox" || el.localName === "ui-switch";
+}
+function isRadio(el) {
+    return el.type === "radio" || el.localName === "ui-radio";
+}
 // packages/alpinejs/src/utils/debounce.js
 function debounce(func, wait) {
     var timeout;
@@ -2030,25 +2991,21 @@ function throttle(func, limit) {
 function entangle({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
     let firstRun = true;
     let outerHash;
+    let innerHash;
     let reference = effect(()=>{
-        const outer = outerGet();
-        const inner = innerGet();
+        let outer = outerGet();
+        let inner = innerGet();
         if (firstRun) {
             innerSet(cloneIfObject(outer));
             firstRun = false;
-            outerHash = JSON.stringify(outer);
         } else {
-            const outerHashLatest = JSON.stringify(outer);
-            if (outerHashLatest !== outerHash) {
-                innerSet(cloneIfObject(outer));
-                outerHash = outerHashLatest;
-            } else {
-                outerSet(cloneIfObject(inner));
-                outerHash = JSON.stringify(inner);
-            }
+            let outerHashLatest = JSON.stringify(outer);
+            let innerHashLatest = JSON.stringify(inner);
+            if (outerHashLatest !== outerHash) innerSet(cloneIfObject(outer));
+            else if (outerHashLatest !== innerHashLatest) outerSet(cloneIfObject(inner));
         }
-        JSON.stringify(innerGet());
-        JSON.stringify(outerGet());
+        outerHash = JSON.stringify(outerGet());
+        innerHash = JSON.stringify(innerGet());
     });
     return ()=>{
         release(reference);
@@ -2074,8 +3031,8 @@ function store(name, value) {
     }
     if (value === void 0) return stores[name];
     stores[name] = value;
+    initInterceptors(stores[name]);
     if (typeof value === "object" && value !== null && value.hasOwnProperty("init") && typeof value.init === "function") stores[name].init();
-    initInterceptors2(stores[name]);
 }
 function getStores() {
     return stores;
@@ -2155,7 +3112,7 @@ var Alpine = {
     get raw () {
         return raw;
     },
-    version: "3.13.3",
+    version: "3.14.8",
     flushAndStopDeferringMutations,
     dontAutoEvaluateFunctions,
     disableEffectScheduling,
@@ -2208,6 +3165,7 @@ var Alpine = {
     // INTERNAL
     bound: getBinding,
     $data: scope,
+    watch,
     walk,
     data,
     bind: bind2
@@ -2783,20 +3741,15 @@ magic("nextTick", ()=>nextTick);
 // packages/alpinejs/src/magics/$dispatch.js
 magic("dispatch", (el)=>dispatch.bind(dispatch, el));
 // packages/alpinejs/src/magics/$watch.js
-magic("watch", (el, { evaluateLater: evaluateLater2, effect: effect3 })=>(key, callback)=>{
+magic("watch", (el, { evaluateLater: evaluateLater2, cleanup: cleanup2 })=>(key, callback)=>{
         let evaluate2 = evaluateLater2(key);
-        let firstTime = true;
-        let oldValue;
-        let effectReference = effect3(()=>evaluate2((value)=>{
-                JSON.stringify(value);
-                if (!firstTime) queueMicrotask(()=>{
-                    callback(value, oldValue);
-                    oldValue = value;
-                });
-                else oldValue = value;
-                firstTime = false;
-            }));
-        el._x_effects.delete(effectReference);
+        let getter = ()=>{
+            let value;
+            evaluate2((i)=>value = i);
+            return value;
+        };
+        let unwatch = watch(getter, callback);
+        cleanup2(unwatch);
     });
 // packages/alpinejs/src/magics/$store.js
 magic("store", getStores);
@@ -2812,11 +3765,9 @@ magic("refs", (el)=>{
 });
 function getArrayOfRefObject(el) {
     let refObjects = [];
-    let currentEl = el;
-    while(currentEl){
-        if (currentEl._x_refs) refObjects.push(currentEl._x_refs);
-        currentEl = currentEl.parentNode;
-    }
+    findClosest(el, (i)=>{
+        if (i._x_refs) refObjects.push(i._x_refs);
+    });
     return refObjects;
 }
 // packages/alpinejs/src/ids.js
@@ -2835,11 +3786,27 @@ function setIdRoot(el, name) {
     if (!el._x_ids[name]) el._x_ids[name] = findAndIncrementId(name);
 }
 // packages/alpinejs/src/magics/$id.js
-magic("id", (el)=>(name, key = null)=>{
-        let root = closestIdRoot(el, name);
-        let id = root ? root._x_ids[name] : findAndIncrementId(name);
-        return key ? `${name}-${id}-${key}` : `${name}-${id}`;
+magic("id", (el, { cleanup: cleanup2 })=>(name, key = null)=>{
+        let cacheKey = `${name}${key ? `-${key}` : ""}`;
+        return cacheIdByNameOnElement(el, cacheKey, cleanup2, ()=>{
+            let root = closestIdRoot(el, name);
+            let id = root ? root._x_ids[name] : findAndIncrementId(name);
+            return key ? `${name}-${id}-${key}` : `${name}-${id}`;
+        });
     });
+interceptClone((from, to)=>{
+    if (from._x_id) to._x_id = from._x_id;
+});
+function cacheIdByNameOnElement(el, cacheKey, cleanup2, callback) {
+    if (!el._x_id) el._x_id = {};
+    if (el._x_id[cacheKey]) return el._x_id[cacheKey];
+    let output = callback();
+    el._x_id[cacheKey] = output;
+    cleanup2(()=>{
+        delete el._x_id[cacheKey];
+    });
+    return output;
+}
 // packages/alpinejs/src/magics/$el.js
 magic("el", (el)=>el);
 // packages/alpinejs/src/magics/index.js
@@ -2910,8 +3877,9 @@ directive("teleport", (el, { modifiers, expression }, { cleanup: cleanup2 })=>{
     };
     mutateDom(()=>{
         placeInDom(clone2, target, modifiers);
-        initTree(clone2);
-        clone2._x_ignore = true;
+        skipDuringClone(()=>{
+            initTree(clone2);
+        })();
     });
     el._x_teleportPutBack = ()=>{
         let target2 = getTarget(expression);
@@ -2919,7 +3887,10 @@ directive("teleport", (el, { modifiers, expression }, { cleanup: cleanup2 })=>{
             placeInDom(el._x_teleport, target2, modifiers);
         });
     };
-    cleanup2(()=>clone2.remove());
+    cleanup2(()=>mutateDom(()=>{
+            clone2.remove();
+            destroyTree(clone2);
+        }));
 });
 var teleportContainerDuringClone = document.createElement("div");
 function getTarget(expression) {
@@ -2974,8 +3945,9 @@ function on(el, event, modifiers, callback) {
         e.stopPropagation();
         next(e);
     });
-    if (modifiers.includes("self")) handler4 = wrapHandler(handler4, (next, e)=>{
-        e.target === el && next(e);
+    if (modifiers.includes("once")) handler4 = wrapHandler(handler4, (next, e)=>{
+        next(e);
+        listenerTarget.removeEventListener(event, handler4, options);
     });
     if (modifiers.includes("away") || modifiers.includes("outside")) {
         listenerTarget = document;
@@ -2987,14 +3959,11 @@ function on(el, event, modifiers, callback) {
             next(e);
         });
     }
-    if (modifiers.includes("once")) handler4 = wrapHandler(handler4, (next, e)=>{
-        next(e);
-        listenerTarget.removeEventListener(event, handler4, options);
+    if (modifiers.includes("self")) handler4 = wrapHandler(handler4, (next, e)=>{
+        e.target === el && next(e);
     });
-    handler4 = wrapHandler(handler4, (next, e)=>{
-        if (isKeyEvent(event)) {
-            if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) return;
-        }
+    if (isKeyEvent(event) || isClickEvent(event)) handler4 = wrapHandler(handler4, (next, e)=>{
+        if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) return;
         next(e);
     });
     listenerTarget.addEventListener(event, handler4, options);
@@ -3024,6 +3993,13 @@ function isKeyEvent(event) {
         "keyup"
     ].includes(event);
 }
+function isClickEvent(event) {
+    return [
+        "contextmenu",
+        "click",
+        "mouse"
+    ].some((i)=>event.includes(i));
+}
 function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
     let keyModifiers = modifiers.filter((i)=>{
         return ![
@@ -3032,7 +4008,11 @@ function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
             "prevent",
             "stop",
             "once",
-            "capture"
+            "capture",
+            "self",
+            "away",
+            "outside",
+            "passive"
         ].includes(i);
     });
     if (keyModifiers.includes("debounce")) {
@@ -3061,6 +4041,7 @@ function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
             return e[`${modifier}Key`];
         });
         if (activelyPressedKeyModifiers.length === selectedSystemKeyModifiers.length) {
+            if (isClickEvent(e.type)) return false;
             if (keyToModifiers(e.key).includes(keyModifiers[0])) return false;
         }
     }
@@ -3081,6 +4062,7 @@ function keyToModifiers(key) {
         "left": "arrow-left",
         "right": "arrow-right",
         "period": ".",
+        "comma": ",",
         "equal": "=",
         "minus": "-",
         "underscore": "_"
@@ -3126,16 +4108,21 @@ directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: c
     });
     if (modifiers.includes("fill")) {
         if ([
+            void 0,
             null,
             ""
-        ].includes(getValue()) || el.type === "checkbox" && Array.isArray(getValue())) el.dispatchEvent(new Event(event, {}));
+        ].includes(getValue()) || isCheckbox(el) && Array.isArray(getValue()) || el.tagName.toLowerCase() === "select" && el.multiple) setValue(getInputValue(el, modifiers, {
+            target: el
+        }, getValue()));
     }
     if (!el._x_removeModelListeners) el._x_removeModelListeners = {};
     el._x_removeModelListeners["default"] = removeListener;
     cleanup2(()=>el._x_removeModelListeners["default"]());
     if (el.form) {
         let removeResetListener = on(el.form, "reset", [], (e)=>{
-            nextTick(()=>el._x_model && el._x_model.set(el.value));
+            nextTick(()=>el._x_model && el._x_model.set(getInputValue(el, modifiers, {
+                    target: el
+                }, getValue())));
         });
         cleanup2(()=>removeResetListener());
     }
@@ -3162,13 +4149,13 @@ directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: c
 function getInputValue(el, modifiers, event, currentValue) {
     return mutateDom(()=>{
         if (event instanceof CustomEvent && event.detail !== void 0) return event.detail !== null && event.detail !== void 0 ? event.detail : event.target.value;
-        else if (el.type === "checkbox") {
+        else if (isCheckbox(el)) {
             if (Array.isArray(currentValue)) {
                 let newValue = null;
                 if (modifiers.includes("number")) newValue = safeParseNumber(event.target.value);
                 else if (modifiers.includes("boolean")) newValue = safeParseBoolean(event.target.value);
                 else newValue = event.target.value;
-                return event.target.checked ? currentValue.concat([
+                return event.target.checked ? currentValue.includes(newValue) ? currentValue : currentValue.concat([
                     newValue
                 ]) : currentValue.filter((el2)=>!checkedAttrLooseCompare2(el2, newValue));
             } else return event.target.checked;
@@ -3185,9 +4172,15 @@ function getInputValue(el, modifiers, event, currentValue) {
                 return option.value || option.text;
             });
         } else {
-            if (modifiers.includes("number")) return safeParseNumber(event.target.value);
-            else if (modifiers.includes("boolean")) return safeParseBoolean(event.target.value);
-            return modifiers.includes("trim") ? event.target.value.trim() : event.target.value;
+            let newValue;
+            if (isRadio(el)) {
+                if (event.target.checked) newValue = event.target.value;
+                else newValue = currentValue;
+            } else newValue = event.target.value;
+            if (modifiers.includes("number")) return safeParseNumber(newValue);
+            else if (modifiers.includes("boolean")) return safeParseBoolean(newValue);
+            else if (modifiers.includes("trim")) return newValue.trim();
+            else return newValue;
         }
     });
 }
@@ -3239,7 +4232,7 @@ directive("html", (el, { expression }, { effect: effect3, evaluateLater: evaluat
 });
 // packages/alpinejs/src/directives/x-bind.js
 mapAttributes(startingWith(":", into(prefix("bind:"))));
-var handler2 = (el, { value, modifiers, expression, original }, { effect: effect3 })=>{
+var handler2 = (el, { value, modifiers, expression, original }, { effect: effect3, cleanup: cleanup2 })=>{
     if (!value) {
         let bindingProviders = {};
         injectBindingProviders(bindingProviders);
@@ -3258,6 +4251,10 @@ var handler2 = (el, { value, modifiers, expression, original }, { effect: effect
             if (result === void 0 && typeof expression === "string" && expression.match(/\./)) result = "";
             mutateDom(()=>bind(el, value, result, modifiers));
         }));
+    cleanup2(()=>{
+        el._x_undoAddedClasses && el._x_undoAddedClasses();
+        el._x_undoAddedStyles && el._x_undoAddedStyles();
+    });
 };
 handler2.inline = (el, { value, modifiers, expression })=>{
     if (!value) return;
@@ -3286,7 +4283,7 @@ directive("data", (el, { expression }, { cleanup: cleanup2 })=>{
     if (data2 === void 0 || data2 === true) data2 = {};
     injectMagics(data2, el);
     let reactiveData = reactive(data2);
-    initInterceptors2(reactiveData);
+    initInterceptors(reactiveData);
     let undo = addScopeToNode(el, reactiveData);
     reactiveData["init"] && evaluate(el, reactiveData["init"]);
     cleanup2(()=>{
@@ -3352,7 +4349,10 @@ directive("for", (el, { expression }, { effect: effect3, cleanup: cleanup2 })=>{
     el._x_lookup = {};
     effect3(()=>loop(el, iteratorNames, evaluateItems, evaluateKey));
     cleanup2(()=>{
-        Object.values(el._x_lookup).forEach((el2)=>el2.remove());
+        Object.values(el._x_lookup).forEach((el2)=>mutateDom(()=>{
+                destroyTree(el2);
+                el2.remove();
+            }));
         delete el._x_prevKeys;
         delete el._x_lookup;
     });
@@ -3369,7 +4369,10 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
         let keys = [];
         if (isObject2(items)) items = Object.entries(items).map(([key, value])=>{
             let scope2 = getIterationScopeVariables(iteratorNames, value, key, items);
-            evaluateKey((value2)=>keys.push(value2), {
+            evaluateKey((value2)=>{
+                if (keys.includes(value2)) warn("Duplicate key on x-for", el);
+                keys.push(value2);
+            }, {
                 scope: {
                     index: key,
                     ...scope2
@@ -3379,7 +4382,10 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
         });
         else for(let i = 0; i < items.length; i++){
             let scope2 = getIterationScopeVariables(iteratorNames, items[i], i, items);
-            evaluateKey((value)=>keys.push(value), {
+            evaluateKey((value)=>{
+                if (keys.includes(value)) warn("Duplicate key on x-for", el);
+                keys.push(value);
+            }, {
                 scope: {
                     index: i,
                     ...scope2
@@ -3420,9 +4426,11 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
         }
         for(let i = 0; i < removes.length; i++){
             let key = removes[i];
-            if (!!lookup[key]._x_effects) lookup[key]._x_effects.forEach(dequeueJob);
-            lookup[key].remove();
-            lookup[key] = null;
+            if (!(key in lookup)) continue;
+            mutateDom(()=>{
+                destroyTree(lookup[key]);
+                lookup[key].remove();
+            });
             delete lookup[key];
         }
         for(let i = 0; i < moves.length; i++){
@@ -3431,7 +4439,7 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
             let elForSpot = lookup[keyForSpot];
             let marker = document.createElement("div");
             mutateDom(()=>{
-                if (!elForSpot) warn(`x-for ":key" is undefined or invalid`, templateEl);
+                if (!elForSpot) warn(`x-for ":key" is undefined or invalid`, templateEl, keyForSpot, lookup);
                 elForSpot.after(marker);
                 elInSpot.after(elForSpot);
                 elForSpot._x_currentIfEl && elForSpot.after(elForSpot._x_currentIfEl);
@@ -3457,7 +4465,7 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
             };
             mutateDom(()=>{
                 lastEl.after(clone2);
-                initTree(clone2);
+                skipDuringClone(()=>initTree(clone2))();
             });
             if (typeof key === "object") warn("x-for key cannot be an object, it must be a string or an integer", templateEl);
             lookup[key] = clone2;
@@ -3522,14 +4530,14 @@ directive("if", (el, { expression }, { effect: effect3, cleanup: cleanup2 })=>{
         addScopeToNode(clone2, {}, el);
         mutateDom(()=>{
             el.after(clone2);
-            initTree(clone2);
+            skipDuringClone(()=>initTree(clone2))();
         });
         el._x_currentIfEl = clone2;
         el._x_undoIf = ()=>{
-            walk(clone2, (node)=>{
-                if (!!node._x_effects) node._x_effects.forEach(dequeueJob);
+            mutateDom(()=>{
+                destroyTree(clone2);
+                clone2.remove();
             });
-            clone2.remove();
             delete el._x_currentIfEl;
         };
         return clone2;
@@ -3548,6 +4556,9 @@ directive("if", (el, { expression }, { effect: effect3, cleanup: cleanup2 })=>{
 directive("id", (el, { expression }, { evaluate: evaluate2 })=>{
     let names = evaluate2(expression);
     names.forEach((name)=>setIdRoot(el, name));
+});
+interceptClone((from, to)=>{
+    if (from._x_ids) to._x_ids = from._x_ids;
 });
 // packages/alpinejs/src/directives/x-on.js
 mapAttributes(startingWith("@", into(prefix("on:"))));
@@ -3588,1525 +4599,6 @@ alpine_default.setReactivityEngine({
 var src_default = alpine_default;
 // packages/alpinejs/builds/module.js
 var module_default = src_default;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"5QjrV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Location", ()=>a);
-parcelHelpers.export(exports, "classify", ()=>n);
-parcelHelpers.export(exports, "createHistoryRecord", ()=>o);
-parcelHelpers.export(exports, "default", ()=>z);
-parcelHelpers.export(exports, "delegateEvent", ()=>s);
-parcelHelpers.export(exports, "escapeCssIdentifier", ()=>w);
-parcelHelpers.export(exports, "forceReflow", ()=>g);
-parcelHelpers.export(exports, "getCurrentUrl", ()=>r);
-parcelHelpers.export(exports, "isPromise", ()=>p);
-parcelHelpers.export(exports, "matchPath", ()=>c);
-parcelHelpers.export(exports, "nextTick", ()=>f);
-parcelHelpers.export(exports, "query", ()=>d);
-parcelHelpers.export(exports, "queryAll", ()=>m);
-parcelHelpers.export(exports, "runAsPromise", ()=>v);
-parcelHelpers.export(exports, "toMs", ()=>y);
-parcelHelpers.export(exports, "updateHistoryRecord", ()=>i);
-var _delegateIt = require("delegate-it");
-var _delegateItDefault = parcelHelpers.interopDefault(_delegateIt);
-var _pathToRegexp = require("path-to-regexp");
-const n = (t, e)=>String(t).toLowerCase().replace(/[\s/_.]+/g, "-").replace(/[^\w-]+/g, "").replace(/--+/g, "-").replace(/^-+|-+$/g, "") || e || "", r = ({ hash: t } = {})=>location.pathname + location.search + (t ? location.hash : ""), o = (t, e = {})=>{
-    const n = {
-        url: t = t || r({
-            hash: !0
-        }),
-        random: Math.random(),
-        source: "swup",
-        ...e
-    };
-    history.pushState(n, "", t);
-}, i = (t = null, e = {})=>{
-    t = t || r({
-        hash: !0
-    });
-    const n = {
-        ...history.state || {},
-        url: t,
-        random: Math.random(),
-        source: "swup",
-        ...e
-    };
-    history.replaceState(n, "", t);
-}, s = (e, n, r, o)=>{
-    const i = new AbortController;
-    return o = {
-        ...o,
-        signal: i.signal
-    }, (0, _delegateItDefault.default)(e, n, r, o), {
-        destroy: ()=>i.abort()
-    };
-};
-class a extends URL {
-    constructor(t, e = document.baseURI){
-        super(t.toString(), e), Object.setPrototypeOf(this, a.prototype);
-    }
-    get url() {
-        return this.pathname + this.search;
-    }
-    static fromElement(t) {
-        const e = t.getAttribute("href") || t.getAttribute("xlink:href") || "";
-        return new a(e);
-    }
-    static fromUrl(t) {
-        return new a(t);
-    }
-}
-const c = (t, n)=>{
-    try {
-        return (0, _pathToRegexp.match)(t, n);
-    } catch (e) {
-        throw new Error(`[swup] Error parsing path "${String(t)}":\n${String(e)}`);
-    }
-}, l = function(t, e = {}) {
-    try {
-        const r = this;
-        function n(n) {
-            const { status: i, url: s } = u;
-            return Promise.resolve(u.text()).then(function(n) {
-                if (500 === i) throw r.hooks.call("fetch:error", o, {
-                    status: i,
-                    response: u,
-                    url: s
-                }), new h(`Server error: ${s}`, {
-                    status: i,
-                    url: s
-                });
-                if (!n) throw new h(`Empty response: ${s}`, {
-                    status: i,
-                    url: s
-                });
-                const { url: c } = a.fromUrl(s), l = {
-                    url: c,
-                    html: n
-                };
-                return !o.cache.write || e.method && "GET" !== e.method || t !== c || r.cache.set(l.url, l), l;
-            });
-        }
-        t = a.fromUrl(t).url;
-        const { visit: o = r.visit } = e, i = {
-            ...r.options.requestHeaders,
-            ...e.headers
-        }, s = e.timeout ?? r.options.timeout, c = new AbortController, { signal: l } = c;
-        e = {
-            ...e,
-            headers: i,
-            signal: l
-        };
-        let u, d = !1, m = null;
-        s && s > 0 && (m = setTimeout(()=>{
-            d = !0, c.abort("timeout");
-        }, s));
-        const f = function(n, i) {
-            try {
-                var s = Promise.resolve(r.hooks.call("fetch:request", o, {
-                    url: t,
-                    options: e
-                }, (t, { url: e, options: n })=>fetch(e, n))).then(function(t) {
-                    u = t, m && clearTimeout(m);
-                });
-            } catch (t) {
-                return i(t);
-            }
-            return s && s.then ? s.then(void 0, i) : s;
-        }(0, function(e) {
-            if (d) throw r.hooks.call("fetch:timeout", o, {
-                url: t
-            }), new h(`Request timed out: ${t}`, {
-                url: t,
-                timedOut: d
-            });
-            if ("AbortError" === e?.name || l.aborted) throw new h(`Request aborted: ${t}`, {
-                url: t,
-                aborted: !0
-            });
-            throw e;
-        });
-        return Promise.resolve(f && f.then ? f.then(n) : n());
-    } catch (p) {
-        return Promise.reject(p);
-    }
-};
-class h extends Error {
-    constructor(t, e){
-        super(t), this.url = void 0, this.status = void 0, this.aborted = void 0, this.timedOut = void 0, this.name = "FetchError", this.url = e.url, this.status = e.status, this.aborted = e.aborted || !1, this.timedOut = e.timedOut || !1;
-    }
-}
-class u {
-    constructor(t){
-        this.swup = void 0, this.pages = new Map, this.swup = t;
-    }
-    get size() {
-        return this.pages.size;
-    }
-    get all() {
-        const t = new Map;
-        return this.pages.forEach((e, n)=>{
-            t.set(n, {
-                ...e
-            });
-        }), t;
-    }
-    has(t) {
-        return this.pages.has(this.resolve(t));
-    }
-    get(t) {
-        const e = this.pages.get(this.resolve(t));
-        return e ? {
-            ...e
-        } : e;
-    }
-    set(t, e) {
-        t = this.resolve(t), e = {
-            ...e,
-            url: t
-        }, this.pages.set(t, e), this.swup.hooks.callSync("cache:set", void 0, {
-            page: e
-        });
-    }
-    update(t, e) {
-        t = this.resolve(t);
-        const n = {
-            ...this.get(t),
-            ...e,
-            url: t
-        };
-        this.pages.set(t, n);
-    }
-    delete(t) {
-        this.pages.delete(this.resolve(t));
-    }
-    clear() {
-        this.pages.clear(), this.swup.hooks.callSync("cache:clear", void 0, void 0);
-    }
-    prune(t) {
-        this.pages.forEach((e, n)=>{
-            t(n, e) && this.delete(n);
-        });
-    }
-    resolve(t) {
-        const { url: e } = a.fromUrl(t);
-        return this.swup.resolveUrl(e);
-    }
-}
-const d = (t, e = document)=>e.querySelector(t), m = (t, e = document)=>Array.from(e.querySelectorAll(t)), f = ()=>new Promise((t)=>{
-        requestAnimationFrame(()=>{
-            requestAnimationFrame(()=>{
-                t();
-            });
-        });
-    });
-function p(t) {
-    return !!t && ("object" == typeof t || "function" == typeof t) && "function" == typeof t.then;
-}
-function v(t, e = []) {
-    return new Promise((n, r)=>{
-        const o = t(...e);
-        p(o) ? o.then(n, r) : n(o);
-    });
-}
-function g(t) {
-    return t = t || document.body, t?.offsetHeight;
-}
-const w = (t)=>window.CSS && window.CSS.escape ? CSS.escape(t) : t, y = (t)=>1e3 * Number(t.slice(0, -1).replace(",", "."));
-class P {
-    constructor(t){
-        this.swup = void 0, this.swupClasses = [
-            "to-",
-            "is-changing",
-            "is-rendering",
-            "is-popstate",
-            "is-animating",
-            "is-leaving"
-        ], this.swup = t;
-    }
-    get selectors() {
-        const { scope: t } = this.swup.visit.animation;
-        return "containers" === t ? this.swup.visit.containers : "html" === t ? [
-            "html"
-        ] : Array.isArray(t) ? t : [];
-    }
-    get selector() {
-        return this.selectors.join(",");
-    }
-    get targets() {
-        return this.selector.trim() ? m(this.selector) : [];
-    }
-    add() {
-        this.targets.forEach((t)=>t.classList.add(...[].slice.call(arguments)));
-    }
-    remove() {
-        this.targets.forEach((t)=>t.classList.remove(...[].slice.call(arguments)));
-    }
-    clear() {
-        this.targets.forEach((t)=>{
-            const e = t.className.split(" ").filter((t)=>this.isSwupClass(t));
-            t.classList.remove(...e);
-        });
-    }
-    isSwupClass(t) {
-        return this.swupClasses.some((e)=>t.startsWith(e));
-    }
-}
-class k {
-    constructor(t, e){
-        this.id = void 0, this.state = void 0, this.from = void 0, this.to = void 0, this.containers = void 0, this.animation = void 0, this.trigger = void 0, this.cache = void 0, this.history = void 0, this.scroll = void 0;
-        const { to: n, from: r = t.currentPageUrl, hash: o, el: i, event: s } = e;
-        this.id = Math.random(), this.state = 1, this.from = {
-            url: r
-        }, this.to = {
-            url: n,
-            hash: o
-        }, this.containers = t.options.containers, this.animation = {
-            animate: !0,
-            wait: !1,
-            name: void 0,
-            native: t.options.native,
-            scope: t.options.animationScope,
-            selector: t.options.animationSelector
-        }, this.trigger = {
-            el: i,
-            event: s
-        }, this.cache = {
-            read: t.options.cache,
-            write: t.options.cache
-        }, this.history = {
-            action: "push",
-            popstate: !1,
-            direction: void 0
-        }, this.scroll = {
-            reset: !0,
-            target: void 0
-        };
-    }
-    advance(t) {
-        this.state < t && (this.state = t);
-    }
-    abort() {
-        this.state = 8;
-    }
-    get done() {
-        return this.state >= 7;
-    }
-}
-function b(t) {
-    return new k(this, t);
-}
-const S = "undefined" != typeof Symbol ? Symbol.iterator || (Symbol.iterator = Symbol("Symbol.iterator")) : "@@iterator";
-function E(t, e, n) {
-    if (!t.s) {
-        if (n instanceof U) {
-            if (!n.s) return void (n.o = E.bind(null, t, e));
-            1 & e && (e = n.s), n = n.v;
-        }
-        if (n && n.then) return void n.then(E.bind(null, t, e), E.bind(null, t, 2));
-        t.s = e, t.v = n;
-        const r = t.o;
-        r && r(t);
-    }
-}
-const U = /*#__PURE__*/ function() {
-    function t() {}
-    return t.prototype.then = function(e, n) {
-        const r = new t, o = this.s;
-        if (o) {
-            const t = 1 & o ? e : n;
-            if (t) {
-                try {
-                    E(r, 1, t(this.v));
-                } catch (t) {
-                    E(r, 2, t);
-                }
-                return r;
-            }
-            return this;
-        }
-        return this.o = function(t) {
-            try {
-                const o = t.v;
-                1 & t.s ? E(r, 1, e ? e(o) : o) : n ? E(r, 1, n(o)) : E(r, 2, o);
-            } catch (t) {
-                E(r, 2, t);
-            }
-        }, r;
-    }, t;
-}();
-function C(t) {
-    return t instanceof U && 1 & t.s;
-}
-class $ {
-    constructor(t){
-        this.swup = void 0, this.registry = new Map, this.hooks = [
-            "animation:out:start",
-            "animation:out:await",
-            "animation:out:end",
-            "animation:in:start",
-            "animation:in:await",
-            "animation:in:end",
-            "animation:skip",
-            "cache:clear",
-            "cache:set",
-            "content:replace",
-            "content:scroll",
-            "enable",
-            "disable",
-            "fetch:request",
-            "fetch:error",
-            "fetch:timeout",
-            "history:popstate",
-            "link:click",
-            "link:self",
-            "link:anchor",
-            "link:newtab",
-            "page:load",
-            "page:view",
-            "scroll:top",
-            "scroll:anchor",
-            "visit:start",
-            "visit:transition",
-            "visit:abort",
-            "visit:end"
-        ], this.swup = t, this.init();
-    }
-    init() {
-        this.hooks.forEach((t)=>this.create(t));
-    }
-    create(t) {
-        this.registry.has(t) || this.registry.set(t, new Map);
-    }
-    exists(t) {
-        return this.registry.has(t);
-    }
-    get(t) {
-        const e = this.registry.get(t);
-        if (e) return e;
-        console.error(`Unknown hook '${t}'`);
-    }
-    clear() {
-        this.registry.forEach((t)=>t.clear());
-    }
-    on(t, e, n = {}) {
-        const r = this.get(t);
-        if (!r) return console.warn(`Hook '${t}' not found.`), ()=>{};
-        const o = {
-            ...n,
-            id: r.size + 1,
-            hook: t,
-            handler: e
-        };
-        return r.set(e, o), ()=>this.off(t, e);
-    }
-    before(t, e, n = {}) {
-        return this.on(t, e, {
-            ...n,
-            before: !0
-        });
-    }
-    replace(t, e, n = {}) {
-        return this.on(t, e, {
-            ...n,
-            replace: !0
-        });
-    }
-    once(t, e, n = {}) {
-        return this.on(t, e, {
-            ...n,
-            once: !0
-        });
-    }
-    off(t, e) {
-        const n = this.get(t);
-        n && e ? n.delete(e) || console.warn(`Handler for hook '${t}' not found.`) : n && n.clear();
-    }
-    call(t, e, n, r) {
-        try {
-            const o = this, [i, s, a] = o.parseCallArgs(t, e, n, r), { before: c, handler: l, after: h } = o.getHandlers(t, a);
-            return Promise.resolve(o.run(c, i, s)).then(function() {
-                return Promise.resolve(o.run(l, i, s)).then(function([e]) {
-                    return Promise.resolve(o.run(h, i, s)).then(function() {
-                        return o.dispatchDomEvent(t, i, s), e;
-                    });
-                });
-            });
-        } catch (t) {
-            return Promise.reject(t);
-        }
-    }
-    callSync(t, e, n, r) {
-        const [o, i, s] = this.parseCallArgs(t, e, n, r), { before: a, handler: c, after: l } = this.getHandlers(t, s);
-        this.runSync(a, o, i);
-        const [h] = this.runSync(c, o, i);
-        return this.runSync(l, o, i), this.dispatchDomEvent(t, o, i), h;
-    }
-    parseCallArgs(t, e, n, r) {
-        return e instanceof k || "object" != typeof e && "function" != typeof n ? [
-            e,
-            n,
-            r
-        ] : [
-            void 0,
-            e,
-            n
-        ];
-    }
-    run(t, e, n) {
-        try {
-            const r = this, o = [], i = function(t, e, n) {
-                if ("function" == typeof t[S]) {
-                    var r, o, i, s = t[S]();
-                    if (function t(n) {
-                        try {
-                            for(; !(r = s.next()).done;)if ((n = e(r.value)) && n.then) {
-                                if (!C(n)) return void n.then(t, i || (i = E.bind(null, o = new U, 2)));
-                                n = n.v;
-                            }
-                            o ? E(o, 1, n) : o = n;
-                        } catch (t) {
-                            E(o || (o = new U), 2, t);
-                        }
-                    }(), s.return) {
-                        var a = function(t) {
-                            try {
-                                r.done || s.return();
-                            } catch (t) {}
-                            return t;
-                        };
-                        if (o && o.then) return o.then(a, function(t) {
-                            throw a(t);
-                        });
-                        a();
-                    }
-                    return o;
-                }
-                if (!("length" in t)) throw new TypeError("Object is not iterable");
-                for(var c = [], l = 0; l < t.length; l++)c.push(t[l]);
-                return function(t, e, n) {
-                    var r, o, i = -1;
-                    return function n(s) {
-                        try {
-                            for(; ++i < t.length;)if ((s = e(i)) && s.then) {
-                                if (!C(s)) return void s.then(n, o || (o = E.bind(null, r = new U, 2)));
-                                s = s.v;
-                            }
-                            r ? E(r, 1, s) : r = s;
-                        } catch (t) {
-                            E(r || (r = new U), 2, t);
-                        }
-                    }(), r;
-                }(c, function(t) {
-                    return e(c[t]);
-                });
-            }(t, function({ hook: t, handler: i, defaultHandler: s, once: a }) {
-                if (!e?.done) return a && r.off(t, i), Promise.resolve(v(i, [
-                    e || r.swup.visit,
-                    n,
-                    s
-                ])).then(function(t) {
-                    o.push(t);
-                });
-            });
-            return Promise.resolve(i && i.then ? i.then(function() {
-                return o;
-            }) : o);
-        } catch (t) {
-            return Promise.reject(t);
-        }
-    }
-    runSync(t, e, n) {
-        const r = [];
-        for (const { hook: o, handler: i, defaultHandler: s, once: a } of t){
-            if (e?.done) continue;
-            a && this.off(o, i);
-            const t = i(e || this.swup.visit, n, s);
-            r.push(t), p(t) && console.warn(`Promise returned from handler for synchronous hook '${o}'.Swup will not wait for it to resolve.`);
-        }
-        return r;
-    }
-    getHandlers(t, e) {
-        const n = this.get(t);
-        if (!n) return {
-            found: !1,
-            before: [],
-            handler: [],
-            after: [],
-            replaced: !1
-        };
-        const r = Array.from(n.values()), o = this.sortRegistrations, i = r.filter(({ before: t, replace: e })=>t && !e).sort(o), s = r.filter(({ replace: t })=>t).filter((t)=>!0).sort(o), a = r.filter(({ before: t, replace: e })=>!t && !e).sort(o), c = s.length > 0;
-        let l = [];
-        if (e && (l = [
-            {
-                id: 0,
-                hook: t,
-                handler: e
-            }
-        ], c)) {
-            const n = s.length - 1, r = (t)=>{
-                const n = s[t - 1];
-                return n ? (e, o)=>n.handler(e, o, r(t - 1)) : e;
-            };
-            l = [
-                {
-                    id: 0,
-                    hook: t,
-                    handler: s[n].handler,
-                    defaultHandler: r(n)
-                }
-            ];
-        }
-        return {
-            found: !0,
-            before: i,
-            handler: l,
-            after: a,
-            replaced: c
-        };
-    }
-    sortRegistrations(t, e) {
-        return (t.priority ?? 0) - (e.priority ?? 0) || t.id - e.id || 0;
-    }
-    dispatchDomEvent(t, e, n) {
-        if (e?.done) return;
-        const r = {
-            hook: t,
-            args: n,
-            visit: e || this.swup.visit
-        };
-        document.dispatchEvent(new CustomEvent("swup:any", {
-            detail: r,
-            bubbles: !0
-        })), document.dispatchEvent(new CustomEvent(`swup:${t}`, {
-            detail: r,
-            bubbles: !0
-        }));
-    }
-}
-const x = (t)=>{
-    if (t && "#" === t.charAt(0) && (t = t.substring(1)), !t) return null;
-    const e = decodeURIComponent(t);
-    let n = document.getElementById(t) || document.getElementById(e) || d(`a[name='${w(t)}']`) || d(`a[name='${w(e)}']`);
-    return n || "top" !== t || (n = document.body), n;
-}, A = function({ elements: t, selector: e }) {
-    try {
-        if (!1 === e && !t) return Promise.resolve();
-        let n = [];
-        if (t) n = Array.from(t);
-        else if (e && (n = m(e, document.body), !n.length)) return console.warn(`[swup] No elements found matching animationSelector \`${e}\``), Promise.resolve();
-        const r = n.map((t)=>(function(t) {
-                const { type: e, timeout: n, propCount: r } = function(t, e) {
-                    const n = window.getComputedStyle(t), r = q(n, `${H}Delay`), o = q(n, `${H}Duration`), i = V(r, o), s = q(n, `${j}Delay`), a = q(n, `${j}Duration`), c = V(s, a);
-                    let l = null, h = 0, u = 0;
-                    return e === H ? i > 0 && (l = H, h = i, u = o.length) : e === j ? c > 0 && (l = j, h = c, u = a.length) : (h = Math.max(i, c), l = h > 0 ? i > c ? H : j : null, u = l ? l === H ? o.length : a.length : 0), {
-                        type: l,
-                        timeout: h,
-                        propCount: u
-                    };
-                }(t);
-                return !(!e || !n) && new Promise((o)=>{
-                    const i = `${e}end`, s = performance.now();
-                    let a = 0;
-                    const c = ()=>{
-                        t.removeEventListener(i, l), o();
-                    }, l = (e)=>{
-                        if (e.target === t) {
-                            if (!function(t) {
-                                return [
-                                    `${H}end`,
-                                    `${j}end`
-                                ].includes(t.type);
-                            }(e)) throw new Error("Not a transition or animation event.");
-                            (performance.now() - s) / 1e3 < e.elapsedTime || ++a >= r && c();
-                        }
-                    };
-                    setTimeout(()=>{
-                        a < r && c();
-                    }, n + 1), t.addEventListener(i, l);
-                });
-            })(t));
-        return r.filter(Boolean).length > 0 ? Promise.resolve(Promise.all(r)).then(function() {}) : (e && console.warn(`[swup] No CSS animation duration defined on elements matching \`${e}\``), Promise.resolve());
-    } catch (t) {
-        return Promise.reject(t);
-    }
-}, H = "transition", j = "animation";
-function q(t, e) {
-    return (t[e] || "").split(", ");
-}
-function V(t, e) {
-    for(; t.length < e.length;)t = t.concat(t);
-    return Math.max(...e.map((e, n)=>y(e) + y(t[n])));
-}
-const I = function(t, e = {}) {
-    try {
-        let a;
-        const c = this;
-        function s(s) {
-            if (a) return s;
-            c.navigating = !0, c.visit = t;
-            const { el: l } = t.trigger;
-            e.referrer = e.referrer || c.currentPageUrl, !1 === e.animate && (t.animation.animate = !1), t.animation.animate || c.classes.clear();
-            const h = e.history || l?.getAttribute("data-swup-history") || void 0;
-            h && [
-                "push",
-                "replace"
-            ].includes(h) && (t.history.action = h);
-            const u = e.animation || l?.getAttribute("data-swup-animation") || void 0;
-            return u && (t.animation.name = u), "object" == typeof e.cache ? (t.cache.read = e.cache.read ?? t.cache.read, t.cache.write = e.cache.write ?? t.cache.write) : void 0 !== e.cache && (t.cache = {
-                read: !!e.cache,
-                write: !!e.cache
-            }), delete e.cache, function(s, a) {
-                try {
-                    var l = Promise.resolve(c.hooks.call("visit:start", t, void 0)).then(function() {
-                        function s() {
-                            if (!t.done) return Promise.resolve(c.hooks.call("visit:transition", t, void 0, function() {
-                                try {
-                                    let n;
-                                    function e(e) {
-                                        return n ? e : (t.advance(4), Promise.resolve(c.animatePageOut(t)).then(function() {
-                                            function e() {
-                                                return Promise.resolve(c.animatePageIn(t)).then(function() {});
-                                            }
-                                            const n = function() {
-                                                if (t.animation.native && document.startViewTransition) return Promise.resolve(document.startViewTransition(function() {
-                                                    try {
-                                                        const e = c.renderPage;
-                                                        return Promise.resolve(a).then(function(n) {
-                                                            return Promise.resolve(e.call(c, t, n));
-                                                        });
-                                                    } catch (t) {
-                                                        return Promise.reject(t);
-                                                    }
-                                                }).finished).then(function() {});
-                                                {
-                                                    const e = c.renderPage;
-                                                    return Promise.resolve(a).then(function(n) {
-                                                        return Promise.resolve(e.call(c, t, n)).then(function() {});
-                                                    });
-                                                }
-                                            }();
-                                            return n && n.then ? n.then(e) : e();
-                                        }));
-                                    }
-                                    const r = function() {
-                                        if (!t.animation.animate) return Promise.resolve(c.hooks.call("animation:skip", void 0)).then(function() {
-                                            const e = c.renderPage;
-                                            return Promise.resolve(a).then(function(r) {
-                                                return Promise.resolve(e.call(c, t, r)).then(function() {
-                                                    n = 1;
-                                                });
-                                            });
-                                        });
-                                    }();
-                                    return Promise.resolve(r && r.then ? r.then(e) : e(r));
-                                } catch (o) {
-                                    return Promise.reject(o);
-                                }
-                            })).then(function() {
-                                if (!t.done) return Promise.resolve(c.hooks.call("visit:end", t, void 0, ()=>c.classes.clear())).then(function() {
-                                    t.state = 7, c.navigating = !1, c.onVisitEnd && (c.onVisitEnd(), c.onVisitEnd = void 0);
-                                });
-                            });
-                        }
-                        t.state = 3;
-                        const a = c.hooks.call("page:load", t, {
-                            options: e
-                        }, function(t, e) {
-                            try {
-                                function n(t) {
-                                    return e.page = t, e.cache = !!r, e.page;
-                                }
-                                let r;
-                                return t.cache.read && (r = c.cache.get(t.to.url)), Promise.resolve(r ? n(r) : Promise.resolve(c.fetchPage(t.to.url, e.options)).then(n));
-                            } catch (o) {
-                                return Promise.reject(o);
-                            }
-                        });
-                        if (a.then(({ html: e })=>{
-                            t.advance(5), t.to.html = e;
-                        }), !t.history.popstate) {
-                            const e = t.to.url + t.to.hash;
-                            "replace" === t.history.action || t.to.url === c.currentPageUrl ? i(e) : (c.currentHistoryIndex++, o(e, {
-                                index: c.currentHistoryIndex
-                            }));
-                        }
-                        c.currentPageUrl = r(), t.history.popstate && c.classes.add("is-popstate"), t.animation.name && c.classes.add(`to-${n(t.animation.name)}`);
-                        const l = function() {
-                            if (t.animation.wait) return Promise.resolve(a).then(function() {});
-                        }();
-                        return l && l.then ? l.then(s) : s();
-                    });
-                } catch (t) {
-                    return a(t);
-                }
-                return l && l.then ? l.then(void 0, a) : l;
-            }(0, function(e) {
-                e && !e?.aborted ? (t.state = 9, console.error(e), c.options.skipPopStateHandling = ()=>(window.location.href = t.to.url + t.to.hash, !0), window.history.go(-1)) : t.state = 8;
-            });
-        }
-        const l = function() {
-            if (c.navigating) return function() {
-                if (!(c.visit.state >= 6)) return Promise.resolve(c.hooks.call("visit:abort", c.visit, void 0)).then(function() {
-                    c.visit.state = 8;
-                });
-                t.state = 2, c.onVisitEnd = ()=>c.performNavigation(t, e), a = 1;
-            }();
-        }();
-        return Promise.resolve(l && l.then ? l.then(s) : s(l));
-    } catch (h) {
-        return Promise.reject(h);
-    }
-};
-function L(t, e = {}, n = {}) {
-    if ("string" != typeof t) throw new Error("swup.navigate() requires a URL parameter");
-    if (this.shouldIgnoreVisit(t, {
-        el: n.el,
-        event: n.event
-    })) return void (window.location.href = t);
-    const { url: r, hash: o } = a.fromUrl(t), i = this.createVisit({
-        ...n,
-        to: r,
-        hash: o
-    });
-    this.performNavigation(i, e);
-}
-const R = function(t) {
-    try {
-        const e = this;
-        return Promise.resolve(e.hooks.call("animation:out:start", t, void 0, ()=>{
-            e.classes.add("is-changing", "is-animating", "is-leaving");
-        })).then(function() {
-            return Promise.resolve(e.hooks.call("animation:out:await", t, {
-                skip: !1
-            }, (t, { skip: n })=>{
-                if (!n) return e.awaitAnimations({
-                    selector: t.animation.selector
-                });
-            })).then(function() {
-                return Promise.resolve(e.hooks.call("animation:out:end", t, void 0)).then(function() {});
-            });
-        });
-    } catch (t) {
-        return Promise.reject(t);
-    }
-}, T = function({ html: t }, { containers: e } = this.options) {
-    const n = (new DOMParser).parseFromString(t, "text/html"), r = n.querySelector("title")?.innerText || "";
-    document.title = r;
-    const o = m('[data-swup-persist]:not([data-swup-persist=""])'), i = e.map((t)=>{
-        const e = document.querySelector(t), r = n.querySelector(t);
-        return e && r ? (e.replaceWith(r), !0) : (e || console.warn(`[swup] Container missing in current document: ${t}`), r || console.warn(`[swup] Container missing in incoming document: ${t}`), !1);
-    }).filter(Boolean);
-    return o.forEach((t)=>{
-        const e = t.getAttribute("data-swup-persist"), n = d(`[data-swup-persist="${e}"]`);
-        n && n !== t && n.replaceWith(t);
-    }), i.length === e.length;
-}, N = function(t) {
-    const e = {
-        behavior: "auto"
-    }, { target: n, reset: r } = t.scroll, o = n ?? t.to.hash;
-    let i = !1;
-    return o && (i = this.hooks.callSync("scroll:anchor", t, {
-        hash: o,
-        options: e
-    }, (t, { hash: e, options: n })=>{
-        const r = this.getAnchorElement(e);
-        return r && r.scrollIntoView(n), !!r;
-    })), r && !i && (i = this.hooks.callSync("scroll:top", t, {
-        options: e
-    }, (t, { options: e })=>(window.scrollTo({
-            top: 0,
-            left: 0,
-            ...e
-        }), !0))), i;
-}, D = function(t) {
-    try {
-        const e = this;
-        if (t.done) return Promise.resolve();
-        const n = e.hooks.call("animation:in:await", t, {
-            skip: !1
-        }, (t, { skip: n })=>{
-            if (!n) return e.awaitAnimations({
-                selector: t.animation.selector
-            });
-        });
-        return Promise.resolve(f()).then(function() {
-            return Promise.resolve(e.hooks.call("animation:in:start", t, void 0, ()=>{
-                e.classes.remove("is-animating");
-            })).then(function() {
-                return Promise.resolve(n).then(function() {
-                    return Promise.resolve(e.hooks.call("animation:in:end", t, void 0)).then(function() {});
-                });
-            });
-        });
-    } catch (t) {
-        return Promise.reject(t);
-    }
-}, M = function(t, e) {
-    try {
-        const o = this;
-        if (t.done) return Promise.resolve();
-        t.advance(6);
-        const { url: s } = e;
-        return o.classes.remove("is-leaving"), o.isSameResolvedUrl(r(), s) || (i(s), o.currentPageUrl = r(), t.to.url = o.currentPageUrl), t.animation.animate && o.classes.add("is-rendering"), Promise.resolve(o.hooks.call("content:replace", t, {
-            page: e
-        }, (t, { page: e })=>{
-            if (!o.replaceContent(e, {
-                containers: t.containers
-            })) throw new Error("[swup] Container mismatch, aborting");
-            t.animation.animate && (o.classes.add("is-changing", "is-animating", "is-rendering"), t.animation.name && o.classes.add(`to-${n(t.animation.name)}`));
-        })).then(function() {
-            return Promise.resolve(o.hooks.call("content:scroll", t, void 0, ()=>o.scrollToContent(t))).then(function() {
-                return Promise.resolve(o.hooks.call("page:view", t, {
-                    url: o.currentPageUrl,
-                    title: document.title
-                })).then(function() {});
-            });
-        });
-    } catch (t) {
-        return Promise.reject(t);
-    }
-}, O = function(t) {
-    var e;
-    if (e = t, Boolean(e?.isSwupPlugin)) {
-        if (t.swup = this, !t._checkRequirements || t._checkRequirements()) return t._beforeMount && t._beforeMount(), t.mount(), this.plugins.push(t), this.plugins;
-    } else console.error("Not a swup plugin instance", t);
-};
-function W(t) {
-    const e = this.findPlugin(t);
-    if (e) return e.unmount(), e._afterUnmount && e._afterUnmount(), this.plugins = this.plugins.filter((t)=>t !== e), this.plugins;
-    console.error("No such plugin", e);
-}
-function B(t) {
-    return this.plugins.find((e)=>e === t || e.name === t || e.name === `Swup${String(t)}`);
-}
-function _(t) {
-    if ("function" != typeof this.options.resolveUrl) return console.warn("[swup] options.resolveUrl expects a callback function."), t;
-    const e = this.options.resolveUrl(t);
-    return e && "string" == typeof e ? e.startsWith("//") || e.startsWith("http") ? (console.warn("[swup] options.resolveUrl needs to return a relative url"), t) : e : (console.warn("[swup] options.resolveUrl needs to return a url"), t);
-}
-function F(t, e) {
-    return this.resolveUrl(t) === this.resolveUrl(e);
-}
-const K = {
-    animateHistoryBrowsing: !1,
-    animationSelector: '[class*="transition-"]',
-    animationScope: "html",
-    cache: !0,
-    containers: [
-        "#swup"
-    ],
-    ignoreVisit: (t, { el: e } = {})=>!!e?.closest("[data-no-swup]"),
-    linkSelector: "a[href]",
-    linkToSelf: "scroll",
-    native: !1,
-    plugins: [],
-    resolveUrl: (t)=>t,
-    requestHeaders: {
-        "X-Requested-With": "swup",
-        Accept: "text/html, application/xhtml+xml"
-    },
-    skipPopStateHandling: (t)=>"swup" !== t.state?.source,
-    timeout: 0
-};
-class z {
-    constructor(t = {}){
-        this.version = "4.5.0", this.options = void 0, this.defaults = K, this.plugins = [], this.visit = void 0, this.cache = void 0, this.hooks = void 0, this.classes = void 0, this.currentPageUrl = r(), this.currentHistoryIndex = void 0, this.clickDelegate = void 0, this.navigating = !1, this.onVisitEnd = void 0, this.use = O, this.unuse = W, this.findPlugin = B, this.log = ()=>{}, this.navigate = L, this.performNavigation = I, this.createVisit = b, this.delegateEvent = s, this.fetchPage = l, this.awaitAnimations = A, this.renderPage = M, this.replaceContent = T, this.animatePageIn = D, this.animatePageOut = R, this.scrollToContent = N, this.getAnchorElement = x, this.getCurrentUrl = r, this.resolveUrl = _, this.isSameResolvedUrl = F, this.options = {
-            ...this.defaults,
-            ...t
-        }, this.handleLinkClick = this.handleLinkClick.bind(this), this.handlePopState = this.handlePopState.bind(this), this.cache = new u(this), this.classes = new P(this), this.hooks = new $(this), this.visit = this.createVisit({
-            to: ""
-        }), this.currentHistoryIndex = history.state?.index ?? 1, this.checkRequirements() && this.enable();
-    }
-    checkRequirements() {
-        return "undefined" != typeof Promise || (console.warn("Promise is not supported"), !1);
-    }
-    enable() {
-        try {
-            const t = this, { linkSelector: e } = t.options;
-            return t.clickDelegate = t.delegateEvent(e, "click", t.handleLinkClick), window.addEventListener("popstate", t.handlePopState), t.options.animateHistoryBrowsing && (window.history.scrollRestoration = "manual"), t.options.native = t.options.native && !!document.startViewTransition, t.options.plugins.forEach((e)=>t.use(e)), "swup" !== history.state?.source && i(null, {
-                index: t.currentHistoryIndex
-            }), Promise.resolve(f()).then(function() {
-                return Promise.resolve(t.hooks.call("enable", void 0, void 0, ()=>{
-                    const e = document.documentElement;
-                    e.classList.add("swup-enabled"), e.classList.toggle("swup-native", t.options.native);
-                })).then(function() {});
-            });
-        } catch (t) {
-            return Promise.reject(t);
-        }
-    }
-    destroy() {
-        try {
-            const t = this;
-            return t.clickDelegate.destroy(), window.removeEventListener("popstate", t.handlePopState), t.cache.clear(), t.options.plugins.forEach((e)=>t.unuse(e)), Promise.resolve(t.hooks.call("disable", void 0, void 0, ()=>{
-                const t = document.documentElement;
-                t.classList.remove("swup-enabled"), t.classList.remove("swup-native");
-            })).then(function() {
-                t.hooks.clear();
-            });
-        } catch (t) {
-            return Promise.reject(t);
-        }
-    }
-    shouldIgnoreVisit(t, { el: e, event: n } = {}) {
-        const { origin: r, url: o, hash: i } = a.fromUrl(t);
-        return r !== window.location.origin || !(!e || !this.triggerWillOpenNewWindow(e)) || !!this.options.ignoreVisit(o + i, {
-            el: e,
-            event: n
-        });
-    }
-    handleLinkClick(t) {
-        const e = t.delegateTarget, { href: n, url: r, hash: o } = a.fromElement(e);
-        if (this.shouldIgnoreVisit(n, {
-            el: e,
-            event: t
-        })) return;
-        if (this.navigating && r === this.visit.to.url) return void t.preventDefault();
-        const s = this.createVisit({
-            to: r,
-            hash: o,
-            el: e,
-            event: t
-        });
-        t.metaKey || t.ctrlKey || t.shiftKey || t.altKey ? this.hooks.callSync("link:newtab", s, {
-            href: n
-        }) : 0 === t.button && this.hooks.callSync("link:click", s, {
-            el: e,
-            event: t
-        }, ()=>{
-            const e = s.from.url ?? "";
-            t.preventDefault(), r && r !== e ? this.isSameResolvedUrl(r, e) || this.performNavigation(s) : o ? this.hooks.callSync("link:anchor", s, {
-                hash: o
-            }, ()=>{
-                i(r + o), this.scrollToContent(s);
-            }) : this.hooks.callSync("link:self", s, void 0, ()=>{
-                "navigate" === this.options.linkToSelf ? this.performNavigation(s) : (i(r), this.scrollToContent(s));
-            });
-        });
-    }
-    handlePopState(t) {
-        const e = t.state?.url ?? location.href;
-        if (this.options.skipPopStateHandling(t)) return;
-        if (this.isSameResolvedUrl(r(), this.currentPageUrl)) return;
-        const { url: n, hash: o } = a.fromUrl(e), i = this.createVisit({
-            to: n,
-            hash: o,
-            event: t
-        });
-        i.history.popstate = !0;
-        const s = t.state?.index ?? 0;
-        s && s !== this.currentHistoryIndex && (i.history.direction = s - this.currentHistoryIndex > 0 ? "forwards" : "backwards", this.currentHistoryIndex = s), i.animation.animate = !1, i.scroll.reset = !1, i.scroll.target = !1, this.options.animateHistoryBrowsing && (i.animation.animate = !0, i.scroll.reset = !0), this.hooks.callSync("history:popstate", i, {
-            event: t
-        }, ()=>{
-            this.performNavigation(i);
-        });
-    }
-    triggerWillOpenNewWindow(t) {
-        return !!t.matches('[download], [target="_blank"]');
-    }
-}
-
-},{"delegate-it":"8XKdG","path-to-regexp":"4T8UM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8XKdG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>(0, _delegateJsDefault.default));
-parcelHelpers.export(exports, "oneEvent", ()=>(0, _oneEventJsDefault.default));
-var _delegateJs = require("./delegate.js");
-parcelHelpers.exportAll(_delegateJs, exports);
-var _delegateJsDefault = parcelHelpers.interopDefault(_delegateJs);
-var _oneEventJs = require("./one-event.js");
-var _oneEventJsDefault = parcelHelpers.interopDefault(_oneEventJs);
-
-},{"./delegate.js":"5OGHy","./one-event.js":"iETTn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5OGHy":[function(require,module,exports) {
-/** Keeps track of raw listeners added to the base elements to avoid duplication */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const ledger = new WeakMap();
-function editLedger(wanted, baseElement, callback, setup) {
-    if (!wanted && !ledger.has(baseElement)) return false;
-    const elementMap = ledger.get(baseElement) ?? new WeakMap();
-    ledger.set(baseElement, elementMap);
-    const setups = elementMap.get(callback) ?? new Set();
-    elementMap.set(callback, setups);
-    const existed = setups.has(setup);
-    if (wanted) setups.add(setup);
-    else setups.delete(setup);
-    return existed && wanted;
-}
-function safeClosest(event, selector) {
-    let target = event.target;
-    if (target instanceof Text) target = target.parentElement;
-    if (target instanceof Element && event.currentTarget instanceof Element) {
-        // `.closest()` may match ancestors of `currentTarget` but we only need its children
-        const closest = target.closest(selector);
-        if (closest && event.currentTarget.contains(closest)) return closest;
-    }
-}
-// This type isn't exported as a declaration, so it needs to be duplicated above
-function delegate(selector, type, callback, options = {}) {
-    const { signal, base = document } = options;
-    if (signal?.aborted) return;
-    // Don't pass `once` to `addEventListener` because it needs to be handled in `delegate-it`
-    const { once, ...nativeListenerOptions } = options;
-    // `document` should never be the base, it's just an easy way to define "global event listeners"
-    const baseElement = base instanceof Document ? base.documentElement : base;
-    // Handle the regular Element usage
-    const capture = Boolean(typeof options === "object" ? options.capture : options);
-    const listenerFn = (event)=>{
-        const delegateTarget = safeClosest(event, selector);
-        if (delegateTarget) {
-            const delegateEvent = Object.assign(event, {
-                delegateTarget
-            });
-            callback.call(baseElement, delegateEvent);
-            if (once) {
-                baseElement.removeEventListener(type, listenerFn, nativeListenerOptions);
-                editLedger(false, baseElement, callback, setup);
-            }
-        }
-    };
-    const setup = JSON.stringify({
-        selector,
-        type,
-        capture
-    });
-    const isAlreadyListening = editLedger(true, baseElement, callback, setup);
-    if (!isAlreadyListening) baseElement.addEventListener(type, listenerFn, nativeListenerOptions);
-    signal?.addEventListener("abort", ()=>{
-        editLedger(false, baseElement, callback, setup);
-    });
-}
-exports.default = delegate;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iETTn":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _delegateJs = require("./delegate.js");
-var _delegateJsDefault = parcelHelpers.interopDefault(_delegateJs);
-// This type isn't exported as a declaration, so it needs to be duplicated above
-async function oneEvent(selector, type, options = {}) {
-    return new Promise((resolve)=>{
-        options.once = true;
-        if (options.signal?.aborted) resolve(undefined);
-        options.signal?.addEventListener("abort", ()=>{
-            resolve(undefined);
-        });
-        (0, _delegateJsDefault.default)(selector, type, // @ts-expect-error Seems to work fine
-        resolve, options);
-    });
-}
-exports.default = oneEvent;
-
-},{"./delegate.js":"5OGHy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4T8UM":[function(require,module,exports) {
-/**
- * Tokenize input string.
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Parse a string for the raw tokens.
- */ parcelHelpers.export(exports, "parse", ()=>parse);
-/**
- * Compile a string to a template function for the path.
- */ parcelHelpers.export(exports, "compile", ()=>compile);
-/**
- * Expose a method for transforming tokens into the path function.
- */ parcelHelpers.export(exports, "tokensToFunction", ()=>tokensToFunction);
-/**
- * Create path match function from `path-to-regexp` spec.
- */ parcelHelpers.export(exports, "match", ()=>match);
-/**
- * Create a path match function from `path-to-regexp` output.
- */ parcelHelpers.export(exports, "regexpToFunction", ()=>regexpToFunction);
-/**
- * Expose a function for taking tokens and returning a RegExp.
- */ parcelHelpers.export(exports, "tokensToRegexp", ()=>tokensToRegexp);
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- */ parcelHelpers.export(exports, "pathToRegexp", ()=>pathToRegexp);
-function lexer(str) {
-    var tokens = [];
-    var i = 0;
-    while(i < str.length){
-        var char = str[i];
-        if (char === "*" || char === "+" || char === "?") {
-            tokens.push({
-                type: "MODIFIER",
-                index: i,
-                value: str[i++]
-            });
-            continue;
-        }
-        if (char === "\\") {
-            tokens.push({
-                type: "ESCAPED_CHAR",
-                index: i++,
-                value: str[i++]
-            });
-            continue;
-        }
-        if (char === "{") {
-            tokens.push({
-                type: "OPEN",
-                index: i,
-                value: str[i++]
-            });
-            continue;
-        }
-        if (char === "}") {
-            tokens.push({
-                type: "CLOSE",
-                index: i,
-                value: str[i++]
-            });
-            continue;
-        }
-        if (char === ":") {
-            var name = "";
-            var j = i + 1;
-            while(j < str.length){
-                var code = str.charCodeAt(j);
-                if (// `0-9`
-                code >= 48 && code <= 57 || // `A-Z`
-                code >= 65 && code <= 90 || // `a-z`
-                code >= 97 && code <= 122 || // `_`
-                code === 95) {
-                    name += str[j++];
-                    continue;
-                }
-                break;
-            }
-            if (!name) throw new TypeError("Missing parameter name at ".concat(i));
-            tokens.push({
-                type: "NAME",
-                index: i,
-                value: name
-            });
-            i = j;
-            continue;
-        }
-        if (char === "(") {
-            var count = 1;
-            var pattern = "";
-            var j = i + 1;
-            if (str[j] === "?") throw new TypeError('Pattern cannot start with "?" at '.concat(j));
-            while(j < str.length){
-                if (str[j] === "\\") {
-                    pattern += str[j++] + str[j++];
-                    continue;
-                }
-                if (str[j] === ")") {
-                    count--;
-                    if (count === 0) {
-                        j++;
-                        break;
-                    }
-                } else if (str[j] === "(") {
-                    count++;
-                    if (str[j + 1] !== "?") throw new TypeError("Capturing groups are not allowed at ".concat(j));
-                }
-                pattern += str[j++];
-            }
-            if (count) throw new TypeError("Unbalanced pattern at ".concat(i));
-            if (!pattern) throw new TypeError("Missing pattern at ".concat(i));
-            tokens.push({
-                type: "PATTERN",
-                index: i,
-                value: pattern
-            });
-            i = j;
-            continue;
-        }
-        tokens.push({
-            type: "CHAR",
-            index: i,
-            value: str[i++]
-        });
-    }
-    tokens.push({
-        type: "END",
-        index: i,
-        value: ""
-    });
-    return tokens;
-}
-function parse(str, options) {
-    if (options === void 0) options = {};
-    var tokens = lexer(str);
-    var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a;
-    var defaultPattern = "[^".concat(escapeString(options.delimiter || "/#?"), "]+?");
-    var result = [];
-    var key = 0;
-    var i = 0;
-    var path = "";
-    var tryConsume = function(type) {
-        if (i < tokens.length && tokens[i].type === type) return tokens[i++].value;
-    };
-    var mustConsume = function(type) {
-        var value = tryConsume(type);
-        if (value !== undefined) return value;
-        var _a = tokens[i], nextType = _a.type, index = _a.index;
-        throw new TypeError("Unexpected ".concat(nextType, " at ").concat(index, ", expected ").concat(type));
-    };
-    var consumeText = function() {
-        var result = "";
-        var value;
-        while(value = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR"))result += value;
-        return result;
-    };
-    while(i < tokens.length){
-        var char = tryConsume("CHAR");
-        var name = tryConsume("NAME");
-        var pattern = tryConsume("PATTERN");
-        if (name || pattern) {
-            var prefix = char || "";
-            if (prefixes.indexOf(prefix) === -1) {
-                path += prefix;
-                prefix = "";
-            }
-            if (path) {
-                result.push(path);
-                path = "";
-            }
-            result.push({
-                name: name || key++,
-                prefix: prefix,
-                suffix: "",
-                pattern: pattern || defaultPattern,
-                modifier: tryConsume("MODIFIER") || ""
-            });
-            continue;
-        }
-        var value = char || tryConsume("ESCAPED_CHAR");
-        if (value) {
-            path += value;
-            continue;
-        }
-        if (path) {
-            result.push(path);
-            path = "";
-        }
-        var open = tryConsume("OPEN");
-        if (open) {
-            var prefix = consumeText();
-            var name_1 = tryConsume("NAME") || "";
-            var pattern_1 = tryConsume("PATTERN") || "";
-            var suffix = consumeText();
-            mustConsume("CLOSE");
-            result.push({
-                name: name_1 || (pattern_1 ? key++ : ""),
-                pattern: name_1 && !pattern_1 ? defaultPattern : pattern_1,
-                prefix: prefix,
-                suffix: suffix,
-                modifier: tryConsume("MODIFIER") || ""
-            });
-            continue;
-        }
-        mustConsume("END");
-    }
-    return result;
-}
-function compile(str, options) {
-    return tokensToFunction(parse(str, options), options);
-}
-function tokensToFunction(tokens, options) {
-    if (options === void 0) options = {};
-    var reFlags = flags(options);
-    var _a = options.encode, encode = _a === void 0 ? function(x) {
-        return x;
-    } : _a, _b = options.validate, validate = _b === void 0 ? true : _b;
-    // Compile all the tokens into regexps.
-    var matches = tokens.map(function(token) {
-        if (typeof token === "object") return new RegExp("^(?:".concat(token.pattern, ")$"), reFlags);
-    });
-    return function(data) {
-        var path = "";
-        for(var i = 0; i < tokens.length; i++){
-            var token = tokens[i];
-            if (typeof token === "string") {
-                path += token;
-                continue;
-            }
-            var value = data ? data[token.name] : undefined;
-            var optional = token.modifier === "?" || token.modifier === "*";
-            var repeat = token.modifier === "*" || token.modifier === "+";
-            if (Array.isArray(value)) {
-                if (!repeat) throw new TypeError('Expected "'.concat(token.name, '" to not repeat, but got an array'));
-                if (value.length === 0) {
-                    if (optional) continue;
-                    throw new TypeError('Expected "'.concat(token.name, '" to not be empty'));
-                }
-                for(var j = 0; j < value.length; j++){
-                    var segment = encode(value[j], token);
-                    if (validate && !matches[i].test(segment)) throw new TypeError('Expected all "'.concat(token.name, '" to match "').concat(token.pattern, '", but got "').concat(segment, '"'));
-                    path += token.prefix + segment + token.suffix;
-                }
-                continue;
-            }
-            if (typeof value === "string" || typeof value === "number") {
-                var segment = encode(String(value), token);
-                if (validate && !matches[i].test(segment)) throw new TypeError('Expected "'.concat(token.name, '" to match "').concat(token.pattern, '", but got "').concat(segment, '"'));
-                path += token.prefix + segment + token.suffix;
-                continue;
-            }
-            if (optional) continue;
-            var typeOfMessage = repeat ? "an array" : "a string";
-            throw new TypeError('Expected "'.concat(token.name, '" to be ').concat(typeOfMessage));
-        }
-        return path;
-    };
-}
-function match(str, options) {
-    var keys = [];
-    var re = pathToRegexp(str, keys, options);
-    return regexpToFunction(re, keys, options);
-}
-function regexpToFunction(re, keys, options) {
-    if (options === void 0) options = {};
-    var _a = options.decode, decode = _a === void 0 ? function(x) {
-        return x;
-    } : _a;
-    return function(pathname) {
-        var m = re.exec(pathname);
-        if (!m) return false;
-        var path = m[0], index = m.index;
-        var params = Object.create(null);
-        var _loop_1 = function(i) {
-            if (m[i] === undefined) return "continue";
-            var key = keys[i - 1];
-            if (key.modifier === "*" || key.modifier === "+") params[key.name] = m[i].split(key.prefix + key.suffix).map(function(value) {
-                return decode(value, key);
-            });
-            else params[key.name] = decode(m[i], key);
-        };
-        for(var i = 1; i < m.length; i++)_loop_1(i);
-        return {
-            path: path,
-            index: index,
-            params: params
-        };
-    };
-}
-/**
- * Escape a regular expression string.
- */ function escapeString(str) {
-    return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-}
-/**
- * Get the flags for a regexp from the options.
- */ function flags(options) {
-    return options && options.sensitive ? "" : "i";
-}
-/**
- * Pull out keys from a regexp.
- */ function regexpToRegexp(path, keys) {
-    if (!keys) return path;
-    var groupsRegex = /\((?:\?<(.*?)>)?(?!\?)/g;
-    var index = 0;
-    var execResult = groupsRegex.exec(path.source);
-    while(execResult){
-        keys.push({
-            // Use parenthesized substring match if available, index otherwise
-            name: execResult[1] || index++,
-            prefix: "",
-            suffix: "",
-            modifier: "",
-            pattern: ""
-        });
-        execResult = groupsRegex.exec(path.source);
-    }
-    return path;
-}
-/**
- * Transform an array into a regexp.
- */ function arrayToRegexp(paths, keys, options) {
-    var parts = paths.map(function(path) {
-        return pathToRegexp(path, keys, options).source;
-    });
-    return new RegExp("(?:".concat(parts.join("|"), ")"), flags(options));
-}
-/**
- * Create a path regexp from string input.
- */ function stringToRegexp(path, keys, options) {
-    return tokensToRegexp(parse(path, options), keys, options);
-}
-function tokensToRegexp(tokens, keys, options) {
-    if (options === void 0) options = {};
-    var _a = options.strict, strict = _a === void 0 ? false : _a, _b = options.start, start = _b === void 0 ? true : _b, _c = options.end, end = _c === void 0 ? true : _c, _d = options.encode, encode = _d === void 0 ? function(x) {
-        return x;
-    } : _d, _e = options.delimiter, delimiter = _e === void 0 ? "/#?" : _e, _f = options.endsWith, endsWith = _f === void 0 ? "" : _f;
-    var endsWithRe = "[".concat(escapeString(endsWith), "]|$");
-    var delimiterRe = "[".concat(escapeString(delimiter), "]");
-    var route = start ? "^" : "";
-    // Iterate over the tokens and create our regexp string.
-    for(var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++){
-        var token = tokens_1[_i];
-        if (typeof token === "string") route += escapeString(encode(token));
-        else {
-            var prefix = escapeString(encode(token.prefix));
-            var suffix = escapeString(encode(token.suffix));
-            if (token.pattern) {
-                if (keys) keys.push(token);
-                if (prefix || suffix) {
-                    if (token.modifier === "+" || token.modifier === "*") {
-                        var mod = token.modifier === "*" ? "?" : "";
-                        route += "(?:".concat(prefix, "((?:").concat(token.pattern, ")(?:").concat(suffix).concat(prefix, "(?:").concat(token.pattern, "))*)").concat(suffix, ")").concat(mod);
-                    } else route += "(?:".concat(prefix, "(").concat(token.pattern, ")").concat(suffix, ")").concat(token.modifier);
-                } else if (token.modifier === "+" || token.modifier === "*") route += "((?:".concat(token.pattern, ")").concat(token.modifier, ")");
-                else route += "(".concat(token.pattern, ")").concat(token.modifier);
-            } else route += "(?:".concat(prefix).concat(suffix, ")").concat(token.modifier);
-        }
-    }
-    if (end) {
-        if (!strict) route += "".concat(delimiterRe, "?");
-        route += !options.endsWith ? "$" : "(?=".concat(endsWithRe, ")");
-    } else {
-        var endToken = tokens[tokens.length - 1];
-        var isEndDelimited = typeof endToken === "string" ? delimiterRe.indexOf(endToken[endToken.length - 1]) > -1 : endToken === undefined;
-        if (!strict) route += "(?:".concat(delimiterRe, "(?=").concat(endsWithRe, "))?");
-        if (!isEndDelimited) route += "(?=".concat(delimiterRe, "|").concat(endsWithRe, ")");
-    }
-    return new RegExp(route, flags(options));
-}
-function pathToRegexp(path, keys, options) {
-    if (path instanceof RegExp) return regexpToRegexp(path, keys);
-    if (Array.isArray(path)) return arrayToRegexp(path, keys, options);
-    return stringToRegexp(path, keys, options);
-}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aqcBy":[function(require,module,exports) {
 var global = arguments[3];
@@ -8556,6 +8048,1536 @@ var global = arguments[3];
     return st.defaults = (nt = Le, JSON.parse(JSON.stringify(nt))), st;
 });
 
-},{}]},["eYaZo","6Bv9J"], "6Bv9J", "parcelRequire0d4e")
+},{}],"5QjrV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Location", ()=>a);
+parcelHelpers.export(exports, "classify", ()=>n);
+parcelHelpers.export(exports, "createHistoryRecord", ()=>r);
+parcelHelpers.export(exports, "default", ()=>z);
+parcelHelpers.export(exports, "delegateEvent", ()=>s);
+parcelHelpers.export(exports, "forceReflow", ()=>g);
+parcelHelpers.export(exports, "getContextualAttr", ()=>w);
+parcelHelpers.export(exports, "getCurrentUrl", ()=>o);
+parcelHelpers.export(exports, "isPromise", ()=>p);
+parcelHelpers.export(exports, "matchPath", ()=>c);
+parcelHelpers.export(exports, "nextTick", ()=>f);
+parcelHelpers.export(exports, "query", ()=>d);
+parcelHelpers.export(exports, "queryAll", ()=>m);
+parcelHelpers.export(exports, "runAsPromise", ()=>v);
+parcelHelpers.export(exports, "updateHistoryRecord", ()=>i);
+var _delegateIt = require("delegate-it");
+var _delegateItDefault = parcelHelpers.interopDefault(_delegateIt);
+var _pathToRegexp = require("path-to-regexp");
+const n = (t, e)=>String(t).toLowerCase().replace(/[\s/_.]+/g, "-").replace(/[^\w-]+/g, "").replace(/--+/g, "-").replace(/^-+|-+$/g, "") || e || "", o = ({ hash: t } = {})=>window.location.pathname + window.location.search + (t ? window.location.hash : ""), r = (t, e = {})=>{
+    const n = {
+        url: t = t || o({
+            hash: !0
+        }),
+        random: Math.random(),
+        source: "swup",
+        ...e
+    };
+    window.history.pushState(n, "", t);
+}, i = (t = null, e = {})=>{
+    t = t || o({
+        hash: !0
+    });
+    const n = {
+        ...window.history.state || {},
+        url: t,
+        random: Math.random(),
+        source: "swup",
+        ...e
+    };
+    window.history.replaceState(n, "", t);
+}, s = (e, n, o, r)=>{
+    const i = new AbortController;
+    return r = {
+        ...r,
+        signal: i.signal
+    }, (0, _delegateItDefault.default)(e, n, o, r), {
+        destroy: ()=>i.abort()
+    };
+};
+class a extends URL {
+    constructor(t, e = document.baseURI){
+        super(t.toString(), e), Object.setPrototypeOf(this, a.prototype);
+    }
+    get url() {
+        return this.pathname + this.search;
+    }
+    static fromElement(t) {
+        const e = t.getAttribute("href") || t.getAttribute("xlink:href") || "";
+        return new a(e);
+    }
+    static fromUrl(t) {
+        return new a(t);
+    }
+}
+const c = (t, n)=>{
+    try {
+        return (0, _pathToRegexp.match)(t, n);
+    } catch (e) {
+        throw new Error(`[swup] Error parsing path "${String(t)}":\n${String(e)}`);
+    }
+}, l = function(t, e = {}) {
+    try {
+        const o = this;
+        function n(n) {
+            const { status: i, url: s } = u;
+            return Promise.resolve(u.text()).then(function(n) {
+                if (500 === i) throw o.hooks.call("fetch:error", r, {
+                    status: i,
+                    response: u,
+                    url: s
+                }), new h(`Server error: ${s}`, {
+                    status: i,
+                    url: s
+                });
+                if (!n) throw new h(`Empty response: ${s}`, {
+                    status: i,
+                    url: s
+                });
+                const { url: c } = a.fromUrl(s), l = {
+                    url: c,
+                    html: n
+                };
+                return !r.cache.write || e.method && "GET" !== e.method || t !== c || o.cache.set(l.url, l), l;
+            });
+        }
+        t = a.fromUrl(t).url;
+        const { visit: r = o.visit } = e, i = {
+            ...o.options.requestHeaders,
+            ...e.headers
+        }, s = e.timeout ?? o.options.timeout, c = new AbortController, { signal: l } = c;
+        e = {
+            ...e,
+            headers: i,
+            signal: l
+        };
+        let u, d = !1, m = null;
+        s && s > 0 && (m = setTimeout(()=>{
+            d = !0, c.abort("timeout");
+        }, s));
+        const f = function(n, i) {
+            try {
+                var s = Promise.resolve(o.hooks.call("fetch:request", r, {
+                    url: t,
+                    options: e
+                }, (t, { url: e, options: n })=>fetch(e, n))).then(function(t) {
+                    u = t, m && clearTimeout(m);
+                });
+            } catch (t) {
+                return i(t);
+            }
+            return s && s.then ? s.then(void 0, i) : s;
+        }(0, function(e) {
+            if (d) throw o.hooks.call("fetch:timeout", r, {
+                url: t
+            }), new h(`Request timed out: ${t}`, {
+                url: t,
+                timedOut: d
+            });
+            if ("AbortError" === e?.name || l.aborted) throw new h(`Request aborted: ${t}`, {
+                url: t,
+                aborted: !0
+            });
+            throw e;
+        });
+        return Promise.resolve(f && f.then ? f.then(n) : n());
+    } catch (p) {
+        return Promise.reject(p);
+    }
+};
+class h extends Error {
+    constructor(t, e){
+        super(t), this.url = void 0, this.status = void 0, this.aborted = void 0, this.timedOut = void 0, this.name = "FetchError", this.url = e.url, this.status = e.status, this.aborted = e.aborted || !1, this.timedOut = e.timedOut || !1;
+    }
+}
+class u {
+    constructor(t){
+        this.swup = void 0, this.pages = new Map, this.swup = t;
+    }
+    get size() {
+        return this.pages.size;
+    }
+    get all() {
+        const t = new Map;
+        return this.pages.forEach((e, n)=>{
+            t.set(n, {
+                ...e
+            });
+        }), t;
+    }
+    has(t) {
+        return this.pages.has(this.resolve(t));
+    }
+    get(t) {
+        const e = this.pages.get(this.resolve(t));
+        return e ? {
+            ...e
+        } : e;
+    }
+    set(t, e) {
+        t = this.resolve(t), e = {
+            ...e,
+            url: t
+        }, this.pages.set(t, e), this.swup.hooks.callSync("cache:set", void 0, {
+            page: e
+        });
+    }
+    update(t, e) {
+        t = this.resolve(t);
+        const n = {
+            ...this.get(t),
+            ...e,
+            url: t
+        };
+        this.pages.set(t, n);
+    }
+    delete(t) {
+        this.pages.delete(this.resolve(t));
+    }
+    clear() {
+        this.pages.clear(), this.swup.hooks.callSync("cache:clear", void 0, void 0);
+    }
+    prune(t) {
+        this.pages.forEach((e, n)=>{
+            t(n, e) && this.delete(n);
+        });
+    }
+    resolve(t) {
+        const { url: e } = a.fromUrl(t);
+        return this.swup.resolveUrl(e);
+    }
+}
+const d = (t, e = document)=>e.querySelector(t), m = (t, e = document)=>Array.from(e.querySelectorAll(t)), f = ()=>new Promise((t)=>{
+        requestAnimationFrame(()=>{
+            requestAnimationFrame(()=>{
+                t();
+            });
+        });
+    });
+function p(t) {
+    return !!t && ("object" == typeof t || "function" == typeof t) && "function" == typeof t.then;
+}
+function v(t, e = []) {
+    return new Promise((n, o)=>{
+        const r = t(...e);
+        p(r) ? r.then(n, o) : n(r);
+    });
+}
+function g(t) {
+    t = t || document.body, t?.getBoundingClientRect();
+}
+function w(t, e) {
+    const n = t?.closest(`[${e}]`);
+    return n?.hasAttribute(e) ? n?.getAttribute(e) || !0 : void 0;
+}
+class y {
+    constructor(t){
+        this.swup = void 0, this.swupClasses = [
+            "to-",
+            "is-changing",
+            "is-rendering",
+            "is-popstate",
+            "is-animating",
+            "is-leaving"
+        ], this.swup = t;
+    }
+    get selectors() {
+        const { scope: t } = this.swup.visit.animation;
+        return "containers" === t ? this.swup.visit.containers : "html" === t ? [
+            "html"
+        ] : Array.isArray(t) ? t : [];
+    }
+    get selector() {
+        return this.selectors.join(",");
+    }
+    get targets() {
+        return this.selector.trim() ? m(this.selector) : [];
+    }
+    add() {
+        this.targets.forEach((t)=>t.classList.add(...[].slice.call(arguments)));
+    }
+    remove() {
+        this.targets.forEach((t)=>t.classList.remove(...[].slice.call(arguments)));
+    }
+    clear() {
+        this.targets.forEach((t)=>{
+            const e = t.className.split(" ").filter((t)=>this.isSwupClass(t));
+            t.classList.remove(...e);
+        });
+    }
+    isSwupClass(t) {
+        return this.swupClasses.some((e)=>t.startsWith(e));
+    }
+}
+class k {
+    constructor(t, e){
+        this.id = void 0, this.state = void 0, this.from = void 0, this.to = void 0, this.containers = void 0, this.animation = void 0, this.trigger = void 0, this.cache = void 0, this.history = void 0, this.scroll = void 0, this.meta = void 0;
+        const { to: n, from: o, hash: r, el: i, event: s } = e;
+        this.id = Math.random(), this.state = 1, this.from = {
+            url: o ?? t.location.url,
+            hash: t.location.hash
+        }, this.to = {
+            url: n,
+            hash: r
+        }, this.containers = t.options.containers, this.animation = {
+            animate: !0,
+            wait: !1,
+            name: void 0,
+            native: t.options.native,
+            scope: t.options.animationScope,
+            selector: t.options.animationSelector
+        }, this.trigger = {
+            el: i,
+            event: s
+        }, this.cache = {
+            read: t.options.cache,
+            write: t.options.cache
+        }, this.history = {
+            action: "push",
+            popstate: !1,
+            direction: void 0
+        }, this.scroll = {
+            reset: !0,
+            target: void 0
+        }, this.meta = {};
+    }
+    advance(t) {
+        this.state < t && (this.state = t);
+    }
+    abort() {
+        this.state = 8;
+    }
+    get done() {
+        return this.state >= 7;
+    }
+}
+function P(t) {
+    return new k(this, t);
+}
+const b = "undefined" != typeof Symbol ? Symbol.iterator || (Symbol.iterator = Symbol("Symbol.iterator")) : "@@iterator";
+function S(t, e, n) {
+    if (!t.s) {
+        if (n instanceof E) {
+            if (!n.s) return void (n.o = S.bind(null, t, e));
+            1 & e && (e = n.s), n = n.v;
+        }
+        if (n && n.then) return void n.then(S.bind(null, t, e), S.bind(null, t, 2));
+        t.s = e, t.v = n;
+        const o = t.o;
+        o && o(t);
+    }
+}
+const E = /*#__PURE__*/ function() {
+    function t() {}
+    return t.prototype.then = function(e, n) {
+        const o = new t, r = this.s;
+        if (r) {
+            const t = 1 & r ? e : n;
+            if (t) {
+                try {
+                    S(o, 1, t(this.v));
+                } catch (t) {
+                    S(o, 2, t);
+                }
+                return o;
+            }
+            return this;
+        }
+        return this.o = function(t) {
+            try {
+                const r = t.v;
+                1 & t.s ? S(o, 1, e ? e(r) : r) : n ? S(o, 1, n(r)) : S(o, 2, r);
+            } catch (t) {
+                S(o, 2, t);
+            }
+        }, o;
+    }, t;
+}();
+function C(t) {
+    return t instanceof E && 1 & t.s;
+}
+class U {
+    constructor(t){
+        this.swup = void 0, this.registry = new Map, this.hooks = [
+            "animation:out:start",
+            "animation:out:await",
+            "animation:out:end",
+            "animation:in:start",
+            "animation:in:await",
+            "animation:in:end",
+            "animation:skip",
+            "cache:clear",
+            "cache:set",
+            "content:replace",
+            "content:scroll",
+            "enable",
+            "disable",
+            "fetch:request",
+            "fetch:error",
+            "fetch:timeout",
+            "history:popstate",
+            "link:click",
+            "link:self",
+            "link:anchor",
+            "link:newtab",
+            "page:load",
+            "page:view",
+            "scroll:top",
+            "scroll:anchor",
+            "visit:start",
+            "visit:transition",
+            "visit:abort",
+            "visit:end"
+        ], this.swup = t, this.init();
+    }
+    init() {
+        this.hooks.forEach((t)=>this.create(t));
+    }
+    create(t) {
+        this.registry.has(t) || this.registry.set(t, new Map);
+    }
+    exists(t) {
+        return this.registry.has(t);
+    }
+    get(t) {
+        const e = this.registry.get(t);
+        if (e) return e;
+        console.error(`Unknown hook '${t}'`);
+    }
+    clear() {
+        this.registry.forEach((t)=>t.clear());
+    }
+    on(t, e, n = {}) {
+        const o = this.get(t);
+        if (!o) return console.warn(`Hook '${t}' not found.`), ()=>{};
+        const r = {
+            ...n,
+            id: o.size + 1,
+            hook: t,
+            handler: e
+        };
+        return o.set(e, r), ()=>this.off(t, e);
+    }
+    before(t, e, n = {}) {
+        return this.on(t, e, {
+            ...n,
+            before: !0
+        });
+    }
+    replace(t, e, n = {}) {
+        return this.on(t, e, {
+            ...n,
+            replace: !0
+        });
+    }
+    once(t, e, n = {}) {
+        return this.on(t, e, {
+            ...n,
+            once: !0
+        });
+    }
+    off(t, e) {
+        const n = this.get(t);
+        n && e ? n.delete(e) || console.warn(`Handler for hook '${t}' not found.`) : n && n.clear();
+    }
+    call(t, e, n, o) {
+        try {
+            const r = this, [i, s, a] = r.parseCallArgs(t, e, n, o), { before: c, handler: l, after: h } = r.getHandlers(t, a);
+            return Promise.resolve(r.run(c, i, s)).then(function() {
+                return Promise.resolve(r.run(l, i, s, !0)).then(function([e]) {
+                    return Promise.resolve(r.run(h, i, s)).then(function() {
+                        return r.dispatchDomEvent(t, i, s), e;
+                    });
+                });
+            });
+        } catch (t) {
+            return Promise.reject(t);
+        }
+    }
+    callSync(t, e, n, o) {
+        const [r, i, s] = this.parseCallArgs(t, e, n, o), { before: a, handler: c, after: l } = this.getHandlers(t, s);
+        this.runSync(a, r, i);
+        const [h] = this.runSync(c, r, i, !0);
+        return this.runSync(l, r, i), this.dispatchDomEvent(t, r, i), h;
+    }
+    parseCallArgs(t, e, n, o) {
+        return e instanceof k || "object" != typeof e && "function" != typeof n ? [
+            e,
+            n,
+            o
+        ] : [
+            void 0,
+            e,
+            n
+        ];
+    }
+    run(t, e, n, o = !1) {
+        try {
+            let r;
+            const i = this;
+            void 0 === e && (e = i.swup.visit);
+            const s = [], a = function(t, e, n) {
+                if ("function" == typeof t[b]) {
+                    var o, r, i, s = t[b]();
+                    if (function t(a) {
+                        try {
+                            for(; !((o = s.next()).done || n && n());)if ((a = e(o.value)) && a.then) {
+                                if (!C(a)) return void a.then(t, i || (i = S.bind(null, r = new E, 2)));
+                                a = a.v;
+                            }
+                            r ? S(r, 1, a) : r = a;
+                        } catch (t) {
+                            S(r || (r = new E), 2, t);
+                        }
+                    }(), s.return) {
+                        var a = function(t) {
+                            try {
+                                o.done || s.return();
+                            } catch (t) {}
+                            return t;
+                        };
+                        if (r && r.then) return r.then(a, function(t) {
+                            throw a(t);
+                        });
+                        a();
+                    }
+                    return r;
+                }
+                if (!("length" in t)) throw new TypeError("Object is not iterable");
+                for(var c = [], l = 0; l < t.length; l++)c.push(t[l]);
+                return function(t, e, n) {
+                    var o, r, i = -1;
+                    return function s(a) {
+                        try {
+                            for(; ++i < t.length && (!n || !n());)if ((a = e(i)) && a.then) {
+                                if (!C(a)) return void a.then(s, r || (r = S.bind(null, o = new E, 2)));
+                                a = a.v;
+                            }
+                            o ? S(o, 1, a) : o = a;
+                        } catch (t) {
+                            S(o || (o = new E), 2, t);
+                        }
+                    }(), o;
+                }(c, function(t) {
+                    return e(c[t]);
+                }, n);
+            }(t, function({ hook: t, handler: r, defaultHandler: a, once: c }) {
+                if (!e?.done) return c && i.off(t, r), function(t, o) {
+                    try {
+                        var i = Promise.resolve(v(r, [
+                            e,
+                            n,
+                            a
+                        ])).then(function(t) {
+                            s.push(t);
+                        });
+                    } catch (t) {
+                        return o(t);
+                    }
+                    return i && i.then ? i.then(void 0, o) : i;
+                }(0, function(e) {
+                    if (o) throw e;
+                    console.error(`Error in hook '${t}':`, e);
+                });
+            }, function() {
+                return r;
+            });
+            return Promise.resolve(a && a.then ? a.then(function(t) {
+                return r ? t : s;
+            }) : r ? a : s);
+        } catch (t) {
+            return Promise.reject(t);
+        }
+    }
+    runSync(t, e = this.swup.visit, n, o = !1) {
+        const r = [];
+        for (const { hook: i, handler: s, defaultHandler: a, once: c } of t)if (!e?.done) {
+            c && this.off(i, s);
+            try {
+                const t = s(e, n, a);
+                r.push(t), p(t) && console.warn(`Swup will not await Promises in handler for synchronous hook '${i}'.`);
+            } catch (t) {
+                if (o) throw t;
+                console.error(`Error in hook '${i}':`, t);
+            }
+        }
+        return r;
+    }
+    getHandlers(t, e) {
+        const n = this.get(t);
+        if (!n) return {
+            found: !1,
+            before: [],
+            handler: [],
+            after: [],
+            replaced: !1
+        };
+        const o = Array.from(n.values()), r = this.sortRegistrations, i = o.filter(({ before: t, replace: e })=>t && !e).sort(r), s = o.filter(({ replace: t })=>t).filter((t)=>!0).sort(r), a = o.filter(({ before: t, replace: e })=>!t && !e).sort(r), c = s.length > 0;
+        let l = [];
+        if (e && (l = [
+            {
+                id: 0,
+                hook: t,
+                handler: e
+            }
+        ], c)) {
+            const n = s.length - 1, { handler: o, once: r } = s[n], i = (t)=>{
+                const n = s[t - 1];
+                return n ? (e, o)=>n.handler(e, o, i(t - 1)) : e;
+            };
+            l = [
+                {
+                    id: 0,
+                    hook: t,
+                    once: r,
+                    handler: o,
+                    defaultHandler: i(n)
+                }
+            ];
+        }
+        return {
+            found: !0,
+            before: i,
+            handler: l,
+            after: a,
+            replaced: c
+        };
+    }
+    sortRegistrations(t, e) {
+        return (t.priority ?? 0) - (e.priority ?? 0) || t.id - e.id || 0;
+    }
+    dispatchDomEvent(t, e, n) {
+        if (e?.done) return;
+        const o = {
+            hook: t,
+            args: n,
+            visit: e || this.swup.visit
+        };
+        document.dispatchEvent(new CustomEvent("swup:any", {
+            detail: o,
+            bubbles: !0
+        })), document.dispatchEvent(new CustomEvent(`swup:${t}`, {
+            detail: o,
+            bubbles: !0
+        }));
+    }
+    parseName(t) {
+        const [e, ...n] = t.split(".");
+        return [
+            e,
+            n.reduce((t, e)=>({
+                    ...t,
+                    [e]: !0
+                }), {})
+        ];
+    }
+}
+const $ = (t)=>{
+    if (t && "#" === t.charAt(0) && (t = t.substring(1)), !t) return null;
+    const e = decodeURIComponent(t);
+    let n = document.getElementById(t) || document.getElementById(e) || d(`a[name='${CSS.escape(t)}']`) || d(`a[name='${CSS.escape(e)}']`);
+    return n || "top" !== t || (n = document.body), n;
+}, x = function({ selector: t, elements: e }) {
+    try {
+        if (!1 === t && !e) return Promise.resolve();
+        let n = [];
+        if (e) n = Array.from(e);
+        else if (t && (n = m(t, document.body), !n.length)) return console.warn(`[swup] No elements found matching animationSelector \`${t}\``), Promise.resolve();
+        const o = n.map((t)=>(function(t) {
+                const { type: e, timeout: n, propCount: o } = function(t) {
+                    const e = window.getComputedStyle(t), n = j(e, `${A}Delay`), o = j(e, `${A}Duration`), r = V(n, o), i = j(e, `${H}Delay`), s = j(e, `${H}Duration`), a = V(i, s), c = Math.max(r, a), l = c > 0 ? r > a ? A : H : null;
+                    return {
+                        type: l,
+                        timeout: c,
+                        propCount: l ? l === A ? o.length : s.length : 0
+                    };
+                }(t);
+                return !(!e || !n) && new Promise((r)=>{
+                    const i = `${e}end`, s = performance.now();
+                    let a = 0;
+                    const c = ()=>{
+                        t.removeEventListener(i, l), r();
+                    }, l = (e)=>{
+                        e.target === t && ((performance.now() - s) / 1e3 < e.elapsedTime || ++a >= o && c());
+                    };
+                    setTimeout(()=>{
+                        a < o && c();
+                    }, n + 1), t.addEventListener(i, l);
+                });
+            })(t));
+        return o.filter(Boolean).length > 0 ? Promise.resolve(Promise.all(o)).then(function() {}) : (t && console.warn(`[swup] No CSS animation duration defined on elements matching \`${t}\``), Promise.resolve());
+    } catch (t) {
+        return Promise.reject(t);
+    }
+}, A = "transition", H = "animation";
+function j(t, e) {
+    return (t[e] || "").split(", ");
+}
+function V(t, e) {
+    for(; t.length < e.length;)t = t.concat(t);
+    return Math.max(...e.map((e, n)=>I(e) + I(t[n])));
+}
+function I(t) {
+    return 1e3 * parseFloat(t);
+}
+const L = function(t, e = {}) {
+    try {
+        let s;
+        const c = this;
+        function o(o) {
+            if (s) return o;
+            c.navigating = !0, c.visit = t;
+            const { el: l } = t.trigger;
+            e.referrer = e.referrer || c.location.url, !1 === e.animate && (t.animation.animate = !1), t.animation.animate || c.classes.clear();
+            const h = e.history || w(l, "data-swup-history");
+            "string" == typeof h && [
+                "push",
+                "replace"
+            ].includes(h) && (t.history.action = h);
+            const u = e.animation || w(l, "data-swup-animation");
+            return "string" == typeof u && (t.animation.name = u), t.meta = e.meta || {}, "object" == typeof e.cache ? (t.cache.read = e.cache.read ?? t.cache.read, t.cache.write = e.cache.write ?? t.cache.write) : void 0 !== e.cache && (t.cache = {
+                read: !!e.cache,
+                write: !!e.cache
+            }), delete e.cache, function(o, s) {
+                try {
+                    var l = function(o, s) {
+                        try {
+                            var l = Promise.resolve(c.hooks.call("visit:start", t, void 0)).then(function() {
+                                function o() {
+                                    if (!t.done) return Promise.resolve(c.hooks.call("visit:transition", t, void 0, function() {
+                                        try {
+                                            let n;
+                                            function e(e) {
+                                                return n ? e : (t.advance(4), Promise.resolve(c.animatePageOut(t)).then(function() {
+                                                    function e() {
+                                                        return Promise.resolve(c.animatePageIn(t)).then(function() {});
+                                                    }
+                                                    const n = function() {
+                                                        if (t.animation.native && document.startViewTransition) return Promise.resolve(document.startViewTransition(function() {
+                                                            try {
+                                                                const e = c.renderPage;
+                                                                return Promise.resolve(s).then(function(n) {
+                                                                    return Promise.resolve(e.call(c, t, n));
+                                                                });
+                                                            } catch (t) {
+                                                                return Promise.reject(t);
+                                                            }
+                                                        }).finished).then(function() {});
+                                                        {
+                                                            const e = c.renderPage;
+                                                            return Promise.resolve(s).then(function(n) {
+                                                                return Promise.resolve(e.call(c, t, n)).then(function() {});
+                                                            });
+                                                        }
+                                                    }();
+                                                    return n && n.then ? n.then(e) : e();
+                                                }));
+                                            }
+                                            const o = function() {
+                                                if (!t.animation.animate) return Promise.resolve(c.hooks.call("animation:skip", void 0)).then(function() {
+                                                    const e = c.renderPage;
+                                                    return Promise.resolve(s).then(function(o) {
+                                                        return Promise.resolve(e.call(c, t, o)).then(function() {
+                                                            n = 1;
+                                                        });
+                                                    });
+                                                });
+                                            }();
+                                            return Promise.resolve(o && o.then ? o.then(e) : e(o));
+                                        } catch (r) {
+                                            return Promise.reject(r);
+                                        }
+                                    })).then(function() {
+                                        if (!t.done) return Promise.resolve(c.hooks.call("visit:end", t, void 0, ()=>c.classes.clear())).then(function() {
+                                            t.state = 7, c.navigating = !1, c.onVisitEnd && (c.onVisitEnd(), c.onVisitEnd = void 0);
+                                        });
+                                    });
+                                }
+                                t.state = 3;
+                                const s = c.hooks.call("page:load", t, {
+                                    options: e
+                                }, function(t, e) {
+                                    try {
+                                        function n(t) {
+                                            return e.page = t, e.cache = !!o, e.page;
+                                        }
+                                        let o;
+                                        return t.cache.read && (o = c.cache.get(t.to.url)), Promise.resolve(o ? n(o) : Promise.resolve(c.fetchPage(t.to.url, e.options)).then(n));
+                                    } catch (r) {
+                                        return Promise.reject(r);
+                                    }
+                                });
+                                s.then(({ html: e })=>{
+                                    t.advance(5), t.to.html = e, t.to.document = (new DOMParser).parseFromString(e, "text/html");
+                                });
+                                const l = t.to.url + t.to.hash;
+                                t.history.popstate || ("replace" === t.history.action || t.to.url === c.location.url ? i(l) : (c.currentHistoryIndex++, r(l, {
+                                    index: c.currentHistoryIndex
+                                }))), c.location = a.fromUrl(l), t.history.popstate && c.classes.add("is-popstate"), t.animation.name && c.classes.add(`to-${n(t.animation.name)}`);
+                                const h = function() {
+                                    if (t.animation.wait) return Promise.resolve(s).then(function() {});
+                                }();
+                                return h && h.then ? h.then(o) : o();
+                            });
+                        } catch (t) {
+                            return s(t);
+                        }
+                        return l && l.then ? l.then(void 0, s) : l;
+                    }(0, function(e) {
+                        e && !e?.aborted ? (t.state = 9, console.error(e), c.options.skipPopStateHandling = ()=>(window.location.assign(t.to.url + t.to.hash), !0), window.history.back()) : t.state = 8;
+                    });
+                } catch (t) {
+                    return s(!0, t);
+                }
+                return l && l.then ? l.then(s.bind(null, !1), s.bind(null, !0)) : s(!1, l);
+            }(0, function(e, n) {
+                if (delete t.to.document, e) throw n;
+                return n;
+            });
+        }
+        const l = function() {
+            if (c.navigating) return function() {
+                if (!(c.visit.state >= 6)) return Promise.resolve(c.hooks.call("visit:abort", c.visit, void 0)).then(function() {
+                    delete c.visit.to.document, c.visit.state = 8;
+                });
+                t.state = 2, c.onVisitEnd = ()=>c.performNavigation(t, e), s = 1;
+            }();
+        }();
+        return Promise.resolve(l && l.then ? l.then(o) : o(l));
+    } catch (h) {
+        return Promise.reject(h);
+    }
+};
+function T(t, e = {}, n = {}) {
+    if ("string" != typeof t) throw new Error("swup.navigate() requires a URL parameter");
+    if (this.shouldIgnoreVisit(t, {
+        el: n.el,
+        event: n.event
+    })) return void window.location.assign(t);
+    const { url: o, hash: r } = a.fromUrl(t), i = this.createVisit({
+        ...n,
+        to: o,
+        hash: r
+    });
+    this.performNavigation(i, e);
+}
+const q = function(t) {
+    try {
+        const e = this;
+        return Promise.resolve(e.hooks.call("animation:out:start", t, void 0, ()=>{
+            e.classes.add("is-changing", "is-animating", "is-leaving");
+        })).then(function() {
+            return Promise.resolve(e.hooks.call("animation:out:await", t, {
+                skip: !1
+            }, (t, { skip: n })=>{
+                if (!n) return e.awaitAnimations({
+                    selector: t.animation.selector
+                });
+            })).then(function() {
+                return Promise.resolve(e.hooks.call("animation:out:end", t, void 0)).then(function() {});
+            });
+        });
+    } catch (t) {
+        return Promise.reject(t);
+    }
+}, R = function(t) {
+    const e = t.to.document;
+    if (!e) return !1;
+    const n = e.querySelector("title")?.innerText || "";
+    document.title = n;
+    const o = m('[data-swup-persist]:not([data-swup-persist=""])'), r = t.containers.map((t)=>{
+        const n = document.querySelector(t), o = e.querySelector(t);
+        return n && o ? (n.replaceWith(o.cloneNode(!0)), !0) : (n || console.warn(`[swup] Container missing in current document: ${t}`), o || console.warn(`[swup] Container missing in incoming document: ${t}`), !1);
+    }).filter(Boolean);
+    return o.forEach((t)=>{
+        const e = t.getAttribute("data-swup-persist"), n = d(`[data-swup-persist="${e}"]`);
+        n && n !== t && n.replaceWith(t);
+    }), r.length === t.containers.length;
+}, N = function(t) {
+    const e = {
+        behavior: "auto"
+    }, { target: n, reset: o } = t.scroll, r = n ?? t.to.hash;
+    let i = !1;
+    return r && (i = this.hooks.callSync("scroll:anchor", t, {
+        hash: r,
+        options: e
+    }, (t, { hash: e, options: n })=>{
+        const o = this.getAnchorElement(e);
+        return o && o.scrollIntoView(n), !!o;
+    })), o && !i && (i = this.hooks.callSync("scroll:top", t, {
+        options: e
+    }, (t, { options: e })=>(window.scrollTo({
+            top: 0,
+            left: 0,
+            ...e
+        }), !0))), i;
+}, D = function(t) {
+    try {
+        const e = this;
+        if (t.done) return Promise.resolve();
+        const n = e.hooks.call("animation:in:await", t, {
+            skip: !1
+        }, (t, { skip: n })=>{
+            if (!n) return e.awaitAnimations({
+                selector: t.animation.selector
+            });
+        });
+        return Promise.resolve(f()).then(function() {
+            return Promise.resolve(e.hooks.call("animation:in:start", t, void 0, ()=>{
+                e.classes.remove("is-animating");
+            })).then(function() {
+                return Promise.resolve(n).then(function() {
+                    return Promise.resolve(e.hooks.call("animation:in:end", t, void 0)).then(function() {});
+                });
+            });
+        });
+    } catch (t) {
+        return Promise.reject(t);
+    }
+}, O = function(t, e) {
+    try {
+        const r = this;
+        if (t.done) return Promise.resolve();
+        t.advance(6);
+        const { url: s } = e;
+        return r.isSameResolvedUrl(o(), s) || (i(s), r.location = a.fromUrl(s), t.to.url = r.location.url, t.to.hash = r.location.hash), Promise.resolve(r.hooks.call("content:replace", t, {
+            page: e
+        }, (t, {})=>{
+            if (r.classes.remove("is-leaving"), t.animation.animate && r.classes.add("is-rendering"), !r.replaceContent(t)) throw new Error("[swup] Container mismatch, aborting");
+            t.animation.animate && (r.classes.add("is-changing", "is-animating", "is-rendering"), t.animation.name && r.classes.add(`to-${n(t.animation.name)}`));
+        })).then(function() {
+            return Promise.resolve(r.hooks.call("content:scroll", t, void 0, ()=>r.scrollToContent(t))).then(function() {
+                return Promise.resolve(r.hooks.call("page:view", t, {
+                    url: r.location.url,
+                    title: document.title
+                })).then(function() {});
+            });
+        });
+    } catch (t) {
+        return Promise.reject(t);
+    }
+}, M = function(t) {
+    var e;
+    if (e = t, Boolean(e?.isSwupPlugin)) {
+        if (t.swup = this, !t._checkRequirements || t._checkRequirements()) return t._beforeMount && t._beforeMount(), t.mount(), this.plugins.push(t), this.plugins;
+    } else console.error("Not a swup plugin instance", t);
+};
+function W(t) {
+    const e = this.findPlugin(t);
+    if (e) return e.unmount(), e._afterUnmount && e._afterUnmount(), this.plugins = this.plugins.filter((t)=>t !== e), this.plugins;
+    console.error("No such plugin", e);
+}
+function B(t) {
+    return this.plugins.find((e)=>e === t || e.name === t || e.name === `Swup${String(t)}`);
+}
+function _(t) {
+    if ("function" != typeof this.options.resolveUrl) return console.warn("[swup] options.resolveUrl expects a callback function."), t;
+    const e = this.options.resolveUrl(t);
+    return e && "string" == typeof e ? e.startsWith("//") || e.startsWith("http") ? (console.warn("[swup] options.resolveUrl needs to return a relative url"), t) : e : (console.warn("[swup] options.resolveUrl needs to return a url"), t);
+}
+function F(t, e) {
+    return this.resolveUrl(t) === this.resolveUrl(e);
+}
+const K = {
+    animateHistoryBrowsing: !1,
+    animationSelector: '[class*="transition-"]',
+    animationScope: "html",
+    cache: !0,
+    containers: [
+        "#swup"
+    ],
+    hooks: {},
+    ignoreVisit: (t, { el: e } = {})=>!!e?.closest("[data-no-swup]"),
+    linkSelector: "a[href]",
+    linkToSelf: "scroll",
+    native: !1,
+    plugins: [],
+    resolveUrl: (t)=>t,
+    requestHeaders: {
+        "X-Requested-With": "swup",
+        Accept: "text/html, application/xhtml+xml"
+    },
+    skipPopStateHandling: (t)=>"swup" !== t.state?.source,
+    timeout: 0
+};
+class z {
+    get currentPageUrl() {
+        return this.location.url;
+    }
+    constructor(t = {}){
+        this.version = "4.8.1", this.options = void 0, this.defaults = K, this.plugins = [], this.visit = void 0, this.cache = void 0, this.hooks = void 0, this.classes = void 0, this.location = a.fromUrl(window.location.href), this.currentHistoryIndex = void 0, this.clickDelegate = void 0, this.navigating = !1, this.onVisitEnd = void 0, this.use = M, this.unuse = W, this.findPlugin = B, this.log = ()=>{}, this.navigate = T, this.performNavigation = L, this.createVisit = P, this.delegateEvent = s, this.fetchPage = l, this.awaitAnimations = x, this.renderPage = O, this.replaceContent = R, this.animatePageIn = D, this.animatePageOut = q, this.scrollToContent = N, this.getAnchorElement = $, this.getCurrentUrl = o, this.resolveUrl = _, this.isSameResolvedUrl = F, this.options = {
+            ...this.defaults,
+            ...t
+        }, this.handleLinkClick = this.handleLinkClick.bind(this), this.handlePopState = this.handlePopState.bind(this), this.cache = new u(this), this.classes = new y(this), this.hooks = new U(this), this.visit = this.createVisit({
+            to: ""
+        }), this.currentHistoryIndex = window.history.state?.index ?? 1, this.enable();
+    }
+    enable() {
+        try {
+            const t = this, { linkSelector: e } = t.options;
+            t.clickDelegate = t.delegateEvent(e, "click", t.handleLinkClick), window.addEventListener("popstate", t.handlePopState), t.options.animateHistoryBrowsing && (window.history.scrollRestoration = "manual"), t.options.native = t.options.native && !!document.startViewTransition, t.options.plugins.forEach((e)=>t.use(e));
+            for (const [e, n] of Object.entries(t.options.hooks)){
+                const [o, r] = t.hooks.parseName(e);
+                t.hooks.on(o, n, r);
+            }
+            return "swup" !== window.history.state?.source && i(null, {
+                index: t.currentHistoryIndex
+            }), Promise.resolve(f()).then(function() {
+                return Promise.resolve(t.hooks.call("enable", void 0, void 0, ()=>{
+                    const e = document.documentElement;
+                    e.classList.add("swup-enabled"), e.classList.toggle("swup-native", t.options.native);
+                })).then(function() {});
+            });
+        } catch (t) {
+            return Promise.reject(t);
+        }
+    }
+    destroy() {
+        try {
+            const t = this;
+            return t.clickDelegate.destroy(), window.removeEventListener("popstate", t.handlePopState), t.cache.clear(), t.options.plugins.forEach((e)=>t.unuse(e)), Promise.resolve(t.hooks.call("disable", void 0, void 0, ()=>{
+                const t = document.documentElement;
+                t.classList.remove("swup-enabled"), t.classList.remove("swup-native");
+            })).then(function() {
+                t.hooks.clear();
+            });
+        } catch (t) {
+            return Promise.reject(t);
+        }
+    }
+    shouldIgnoreVisit(t, { el: e, event: n } = {}) {
+        const { origin: o, url: r, hash: i } = a.fromUrl(t);
+        return o !== window.location.origin || !(!e || !this.triggerWillOpenNewWindow(e)) || !!this.options.ignoreVisit(r + i, {
+            el: e,
+            event: n
+        });
+    }
+    handleLinkClick(t) {
+        const e = t.delegateTarget, { href: n, url: o, hash: r } = a.fromElement(e);
+        if (this.shouldIgnoreVisit(n, {
+            el: e,
+            event: t
+        })) return;
+        if (this.navigating && o === this.visit.to.url) return void t.preventDefault();
+        const s = this.createVisit({
+            to: o,
+            hash: r,
+            el: e,
+            event: t
+        });
+        t.metaKey || t.ctrlKey || t.shiftKey || t.altKey ? this.hooks.callSync("link:newtab", s, {
+            href: n
+        }) : 0 === t.button && this.hooks.callSync("link:click", s, {
+            el: e,
+            event: t
+        }, ()=>{
+            const e = s.from.url ?? "";
+            t.preventDefault(), o && o !== e ? this.isSameResolvedUrl(o, e) || this.performNavigation(s) : r ? this.hooks.callSync("link:anchor", s, {
+                hash: r
+            }, ()=>{
+                i(o + r), this.scrollToContent(s);
+            }) : this.hooks.callSync("link:self", s, void 0, ()=>{
+                "navigate" === this.options.linkToSelf ? this.performNavigation(s) : (i(o), this.scrollToContent(s));
+            });
+        });
+    }
+    handlePopState(t) {
+        const e = t.state?.url ?? window.location.href;
+        if (this.options.skipPopStateHandling(t)) return;
+        if (this.isSameResolvedUrl(o(), this.location.url)) return;
+        const { url: n, hash: r } = a.fromUrl(e), i = this.createVisit({
+            to: n,
+            hash: r,
+            event: t
+        });
+        i.history.popstate = !0;
+        const s = t.state?.index ?? 0;
+        s && s !== this.currentHistoryIndex && (i.history.direction = s - this.currentHistoryIndex > 0 ? "forwards" : "backwards", this.currentHistoryIndex = s), i.animation.animate = !1, i.scroll.reset = !1, i.scroll.target = !1, this.options.animateHistoryBrowsing && (i.animation.animate = !0, i.scroll.reset = !0), this.hooks.callSync("history:popstate", i, {
+            event: t
+        }, ()=>{
+            this.performNavigation(i);
+        });
+    }
+    triggerWillOpenNewWindow(t) {
+        return !!t.matches('[download], [target="_blank"]');
+    }
+}
+
+},{"delegate-it":"8XKdG","path-to-regexp":"4T8UM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8XKdG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>(0, _delegateJsDefault.default));
+parcelHelpers.export(exports, "oneEvent", ()=>(0, _oneEventJsDefault.default));
+var _delegateJs = require("./delegate.js");
+parcelHelpers.exportAll(_delegateJs, exports);
+var _delegateJsDefault = parcelHelpers.interopDefault(_delegateJs);
+var _oneEventJs = require("./one-event.js");
+var _oneEventJsDefault = parcelHelpers.interopDefault(_oneEventJs);
+
+},{"./delegate.js":"5OGHy","./one-event.js":"iETTn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5OGHy":[function(require,module,exports) {
+/** Keeps track of raw listeners added to the base elements to avoid duplication */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const ledger = new WeakMap();
+function editLedger(wanted, baseElement, callback, setup) {
+    if (!wanted && !ledger.has(baseElement)) return false;
+    const elementMap = ledger.get(baseElement) ?? new WeakMap();
+    ledger.set(baseElement, elementMap);
+    const setups = elementMap.get(callback) ?? new Set();
+    elementMap.set(callback, setups);
+    const existed = setups.has(setup);
+    if (wanted) setups.add(setup);
+    else setups.delete(setup);
+    return existed && wanted;
+}
+function safeClosest(event, selector) {
+    let target = event.target;
+    if (target instanceof Text) target = target.parentElement;
+    if (target instanceof Element && event.currentTarget instanceof Element) {
+        // `.closest()` may match ancestors of `currentTarget` but we only need its children
+        const closest = target.closest(selector);
+        if (closest && event.currentTarget.contains(closest)) return closest;
+    }
+}
+// This type isn't exported as a declaration, so it needs to be duplicated above
+function delegate(selector, type, callback, options = {}) {
+    const { signal, base = document } = options;
+    if (signal?.aborted) return;
+    // Don't pass `once` to `addEventListener` because it needs to be handled in `delegate-it`
+    const { once, ...nativeListenerOptions } = options;
+    // `document` should never be the base, it's just an easy way to define "global event listeners"
+    const baseElement = base instanceof Document ? base.documentElement : base;
+    // Handle the regular Element usage
+    const capture = Boolean(typeof options === "object" ? options.capture : options);
+    const listenerFn = (event)=>{
+        const delegateTarget = safeClosest(event, selector);
+        if (delegateTarget) {
+            const delegateEvent = Object.assign(event, {
+                delegateTarget
+            });
+            callback.call(baseElement, delegateEvent);
+            if (once) {
+                baseElement.removeEventListener(type, listenerFn, nativeListenerOptions);
+                editLedger(false, baseElement, callback, setup);
+            }
+        }
+    };
+    const setup = JSON.stringify({
+        selector,
+        type,
+        capture
+    });
+    const isAlreadyListening = editLedger(true, baseElement, callback, setup);
+    if (!isAlreadyListening) baseElement.addEventListener(type, listenerFn, nativeListenerOptions);
+    signal?.addEventListener("abort", ()=>{
+        editLedger(false, baseElement, callback, setup);
+    });
+}
+exports.default = delegate;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iETTn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _delegateJs = require("./delegate.js");
+var _delegateJsDefault = parcelHelpers.interopDefault(_delegateJs);
+// This type isn't exported as a declaration, so it needs to be duplicated above
+async function oneEvent(selector, type, options = {}) {
+    return new Promise((resolve)=>{
+        options.once = true;
+        if (options.signal?.aborted) resolve(undefined);
+        options.signal?.addEventListener("abort", ()=>{
+            resolve(undefined);
+        });
+        (0, _delegateJsDefault.default)(selector, type, // @ts-expect-error Seems to work fine
+        resolve, options);
+    });
+}
+exports.default = oneEvent;
+
+},{"./delegate.js":"5OGHy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4T8UM":[function(require,module,exports) {
+/**
+ * Tokenize input string.
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Parse a string for the raw tokens.
+ */ parcelHelpers.export(exports, "parse", ()=>parse);
+/**
+ * Compile a string to a template function for the path.
+ */ parcelHelpers.export(exports, "compile", ()=>compile);
+/**
+ * Expose a method for transforming tokens into the path function.
+ */ parcelHelpers.export(exports, "tokensToFunction", ()=>tokensToFunction);
+/**
+ * Create path match function from `path-to-regexp` spec.
+ */ parcelHelpers.export(exports, "match", ()=>match);
+/**
+ * Create a path match function from `path-to-regexp` output.
+ */ parcelHelpers.export(exports, "regexpToFunction", ()=>regexpToFunction);
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ */ parcelHelpers.export(exports, "tokensToRegexp", ()=>tokensToRegexp);
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ */ parcelHelpers.export(exports, "pathToRegexp", ()=>pathToRegexp);
+function lexer(str) {
+    var tokens = [];
+    var i = 0;
+    while(i < str.length){
+        var char = str[i];
+        if (char === "*" || char === "+" || char === "?") {
+            tokens.push({
+                type: "MODIFIER",
+                index: i,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === "\\") {
+            tokens.push({
+                type: "ESCAPED_CHAR",
+                index: i++,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === "{") {
+            tokens.push({
+                type: "OPEN",
+                index: i,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === "}") {
+            tokens.push({
+                type: "CLOSE",
+                index: i,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === ":") {
+            var name = "";
+            var j = i + 1;
+            while(j < str.length){
+                var code = str.charCodeAt(j);
+                if (// `0-9`
+                code >= 48 && code <= 57 || // `A-Z`
+                code >= 65 && code <= 90 || // `a-z`
+                code >= 97 && code <= 122 || // `_`
+                code === 95) {
+                    name += str[j++];
+                    continue;
+                }
+                break;
+            }
+            if (!name) throw new TypeError("Missing parameter name at ".concat(i));
+            tokens.push({
+                type: "NAME",
+                index: i,
+                value: name
+            });
+            i = j;
+            continue;
+        }
+        if (char === "(") {
+            var count = 1;
+            var pattern = "";
+            var j = i + 1;
+            if (str[j] === "?") throw new TypeError('Pattern cannot start with "?" at '.concat(j));
+            while(j < str.length){
+                if (str[j] === "\\") {
+                    pattern += str[j++] + str[j++];
+                    continue;
+                }
+                if (str[j] === ")") {
+                    count--;
+                    if (count === 0) {
+                        j++;
+                        break;
+                    }
+                } else if (str[j] === "(") {
+                    count++;
+                    if (str[j + 1] !== "?") throw new TypeError("Capturing groups are not allowed at ".concat(j));
+                }
+                pattern += str[j++];
+            }
+            if (count) throw new TypeError("Unbalanced pattern at ".concat(i));
+            if (!pattern) throw new TypeError("Missing pattern at ".concat(i));
+            tokens.push({
+                type: "PATTERN",
+                index: i,
+                value: pattern
+            });
+            i = j;
+            continue;
+        }
+        tokens.push({
+            type: "CHAR",
+            index: i,
+            value: str[i++]
+        });
+    }
+    tokens.push({
+        type: "END",
+        index: i,
+        value: ""
+    });
+    return tokens;
+}
+function parse(str, options) {
+    if (options === void 0) options = {};
+    var tokens = lexer(str);
+    var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a;
+    var defaultPattern = "[^".concat(escapeString(options.delimiter || "/#?"), "]+?");
+    var result = [];
+    var key = 0;
+    var i = 0;
+    var path = "";
+    var tryConsume = function(type) {
+        if (i < tokens.length && tokens[i].type === type) return tokens[i++].value;
+    };
+    var mustConsume = function(type) {
+        var value = tryConsume(type);
+        if (value !== undefined) return value;
+        var _a = tokens[i], nextType = _a.type, index = _a.index;
+        throw new TypeError("Unexpected ".concat(nextType, " at ").concat(index, ", expected ").concat(type));
+    };
+    var consumeText = function() {
+        var result = "";
+        var value;
+        while(value = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR"))result += value;
+        return result;
+    };
+    while(i < tokens.length){
+        var char = tryConsume("CHAR");
+        var name = tryConsume("NAME");
+        var pattern = tryConsume("PATTERN");
+        if (name || pattern) {
+            var prefix = char || "";
+            if (prefixes.indexOf(prefix) === -1) {
+                path += prefix;
+                prefix = "";
+            }
+            if (path) {
+                result.push(path);
+                path = "";
+            }
+            result.push({
+                name: name || key++,
+                prefix: prefix,
+                suffix: "",
+                pattern: pattern || defaultPattern,
+                modifier: tryConsume("MODIFIER") || ""
+            });
+            continue;
+        }
+        var value = char || tryConsume("ESCAPED_CHAR");
+        if (value) {
+            path += value;
+            continue;
+        }
+        if (path) {
+            result.push(path);
+            path = "";
+        }
+        var open = tryConsume("OPEN");
+        if (open) {
+            var prefix = consumeText();
+            var name_1 = tryConsume("NAME") || "";
+            var pattern_1 = tryConsume("PATTERN") || "";
+            var suffix = consumeText();
+            mustConsume("CLOSE");
+            result.push({
+                name: name_1 || (pattern_1 ? key++ : ""),
+                pattern: name_1 && !pattern_1 ? defaultPattern : pattern_1,
+                prefix: prefix,
+                suffix: suffix,
+                modifier: tryConsume("MODIFIER") || ""
+            });
+            continue;
+        }
+        mustConsume("END");
+    }
+    return result;
+}
+function compile(str, options) {
+    return tokensToFunction(parse(str, options), options);
+}
+function tokensToFunction(tokens, options) {
+    if (options === void 0) options = {};
+    var reFlags = flags(options);
+    var _a = options.encode, encode = _a === void 0 ? function(x) {
+        return x;
+    } : _a, _b = options.validate, validate = _b === void 0 ? true : _b;
+    // Compile all the tokens into regexps.
+    var matches = tokens.map(function(token) {
+        if (typeof token === "object") return new RegExp("^(?:".concat(token.pattern, ")$"), reFlags);
+    });
+    return function(data) {
+        var path = "";
+        for(var i = 0; i < tokens.length; i++){
+            var token = tokens[i];
+            if (typeof token === "string") {
+                path += token;
+                continue;
+            }
+            var value = data ? data[token.name] : undefined;
+            var optional = token.modifier === "?" || token.modifier === "*";
+            var repeat = token.modifier === "*" || token.modifier === "+";
+            if (Array.isArray(value)) {
+                if (!repeat) throw new TypeError('Expected "'.concat(token.name, '" to not repeat, but got an array'));
+                if (value.length === 0) {
+                    if (optional) continue;
+                    throw new TypeError('Expected "'.concat(token.name, '" to not be empty'));
+                }
+                for(var j = 0; j < value.length; j++){
+                    var segment = encode(value[j], token);
+                    if (validate && !matches[i].test(segment)) throw new TypeError('Expected all "'.concat(token.name, '" to match "').concat(token.pattern, '", but got "').concat(segment, '"'));
+                    path += token.prefix + segment + token.suffix;
+                }
+                continue;
+            }
+            if (typeof value === "string" || typeof value === "number") {
+                var segment = encode(String(value), token);
+                if (validate && !matches[i].test(segment)) throw new TypeError('Expected "'.concat(token.name, '" to match "').concat(token.pattern, '", but got "').concat(segment, '"'));
+                path += token.prefix + segment + token.suffix;
+                continue;
+            }
+            if (optional) continue;
+            var typeOfMessage = repeat ? "an array" : "a string";
+            throw new TypeError('Expected "'.concat(token.name, '" to be ').concat(typeOfMessage));
+        }
+        return path;
+    };
+}
+function match(str, options) {
+    var keys = [];
+    var re = pathToRegexp(str, keys, options);
+    return regexpToFunction(re, keys, options);
+}
+function regexpToFunction(re, keys, options) {
+    if (options === void 0) options = {};
+    var _a = options.decode, decode = _a === void 0 ? function(x) {
+        return x;
+    } : _a;
+    return function(pathname) {
+        var m = re.exec(pathname);
+        if (!m) return false;
+        var path = m[0], index = m.index;
+        var params = Object.create(null);
+        var _loop_1 = function(i) {
+            if (m[i] === undefined) return "continue";
+            var key = keys[i - 1];
+            if (key.modifier === "*" || key.modifier === "+") params[key.name] = m[i].split(key.prefix + key.suffix).map(function(value) {
+                return decode(value, key);
+            });
+            else params[key.name] = decode(m[i], key);
+        };
+        for(var i = 1; i < m.length; i++)_loop_1(i);
+        return {
+            path: path,
+            index: index,
+            params: params
+        };
+    };
+}
+/**
+ * Escape a regular expression string.
+ */ function escapeString(str) {
+    return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+}
+/**
+ * Get the flags for a regexp from the options.
+ */ function flags(options) {
+    return options && options.sensitive ? "" : "i";
+}
+/**
+ * Pull out keys from a regexp.
+ */ function regexpToRegexp(path, keys) {
+    if (!keys) return path;
+    var groupsRegex = /\((?:\?<(.*?)>)?(?!\?)/g;
+    var index = 0;
+    var execResult = groupsRegex.exec(path.source);
+    while(execResult){
+        keys.push({
+            // Use parenthesized substring match if available, index otherwise
+            name: execResult[1] || index++,
+            prefix: "",
+            suffix: "",
+            modifier: "",
+            pattern: ""
+        });
+        execResult = groupsRegex.exec(path.source);
+    }
+    return path;
+}
+/**
+ * Transform an array into a regexp.
+ */ function arrayToRegexp(paths, keys, options) {
+    var parts = paths.map(function(path) {
+        return pathToRegexp(path, keys, options).source;
+    });
+    return new RegExp("(?:".concat(parts.join("|"), ")"), flags(options));
+}
+/**
+ * Create a path regexp from string input.
+ */ function stringToRegexp(path, keys, options) {
+    return tokensToRegexp(parse(path, options), keys, options);
+}
+function tokensToRegexp(tokens, keys, options) {
+    if (options === void 0) options = {};
+    var _a = options.strict, strict = _a === void 0 ? false : _a, _b = options.start, start = _b === void 0 ? true : _b, _c = options.end, end = _c === void 0 ? true : _c, _d = options.encode, encode = _d === void 0 ? function(x) {
+        return x;
+    } : _d, _e = options.delimiter, delimiter = _e === void 0 ? "/#?" : _e, _f = options.endsWith, endsWith = _f === void 0 ? "" : _f;
+    var endsWithRe = "[".concat(escapeString(endsWith), "]|$");
+    var delimiterRe = "[".concat(escapeString(delimiter), "]");
+    var route = start ? "^" : "";
+    // Iterate over the tokens and create our regexp string.
+    for(var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++){
+        var token = tokens_1[_i];
+        if (typeof token === "string") route += escapeString(encode(token));
+        else {
+            var prefix = escapeString(encode(token.prefix));
+            var suffix = escapeString(encode(token.suffix));
+            if (token.pattern) {
+                if (keys) keys.push(token);
+                if (prefix || suffix) {
+                    if (token.modifier === "+" || token.modifier === "*") {
+                        var mod = token.modifier === "*" ? "?" : "";
+                        route += "(?:".concat(prefix, "((?:").concat(token.pattern, ")(?:").concat(suffix).concat(prefix, "(?:").concat(token.pattern, "))*)").concat(suffix, ")").concat(mod);
+                    } else route += "(?:".concat(prefix, "(").concat(token.pattern, ")").concat(suffix, ")").concat(token.modifier);
+                } else if (token.modifier === "+" || token.modifier === "*") route += "((?:".concat(token.pattern, ")").concat(token.modifier, ")");
+                else route += "(".concat(token.pattern, ")").concat(token.modifier);
+            } else route += "(?:".concat(prefix).concat(suffix, ")").concat(token.modifier);
+        }
+    }
+    if (end) {
+        if (!strict) route += "".concat(delimiterRe, "?");
+        route += !options.endsWith ? "$" : "(?=".concat(endsWithRe, ")");
+    } else {
+        var endToken = tokens[tokens.length - 1];
+        var isEndDelimited = typeof endToken === "string" ? delimiterRe.indexOf(endToken[endToken.length - 1]) > -1 : endToken === undefined;
+        if (!strict) route += "(?:".concat(delimiterRe, "(?=").concat(endsWithRe, "))?");
+        if (!isEndDelimited) route += "(?=".concat(delimiterRe, "|").concat(endsWithRe, ")");
+    }
+    return new RegExp(route, flags(options));
+}
+function pathToRegexp(path, keys, options) {
+    if (path instanceof RegExp) return regexpToRegexp(path, keys);
+    if (Array.isArray(path)) return arrayToRegexp(path, keys, options);
+    return stringToRegexp(path, keys, options);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["6dc0E","6Bv9J"], "6Bv9J", "parcelRequire0d4e")
 
 //# sourceMappingURL=app.js.map

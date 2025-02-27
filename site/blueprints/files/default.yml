@@ -1,0 +1,12 @@
+title: File
+accept:
+  maxsize: 50000000 # 50MB limit
+fields:
+  alt:
+    label: Alt Text
+    type: text
+    help: Description for screen readers
+  caption:
+    label: Caption
+    type: text
+    help: Short description displayed below the file

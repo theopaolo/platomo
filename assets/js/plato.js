@@ -100,7 +100,7 @@ let addIdsToData = () => {
 
   data.forEach((d) => {
     console.log(d)
-    let laboName = d.labos[0]
+    let laboName = d.labos[0] // TO CHANGE WHEN UNIQUE LABO
     let authorName = d.author
 
     if (laboName && !isInArray(laboName, labos)) labos.push(laboName)
@@ -118,10 +118,12 @@ let addIdsToData = () => {
 
   // Add ids by checking index in arrays
   data.forEach((d) => {
-    d.laboId = 1 + labos.indexOf(d.labo)
+    let laboName = d.labos[0] // TO CHANGE WHEN UNIQUE LABO
+    let authorName = d.author
+    d.laboId = 1 + labos.indexOf(laboName)
     d.categoryIds = []
     d.categoryIds = d.categories.map((c) => 1 + categories.indexOf(c))
-    d.authorId = 1 + authors.indexOf(d.author)
+    d.authorId = 1 + authors.indexOf(authorName)
   })
 }
 
@@ -260,6 +262,7 @@ let initFilters = () => {
     } else {
       updateSearch("labo", undefined)
     }
+    updateSearchInfo("", true)
     updateSearchStatus()
   })
   categoryFilter.addEventListener("click", () => {
@@ -268,6 +271,7 @@ let initFilters = () => {
     } else {
       updateSearch("category", undefined)
     }
+    updateSearchInfo("", true)
     updateSearchStatus()
   })
   authorFilter.addEventListener("click", () => {
@@ -276,6 +280,7 @@ let initFilters = () => {
     } else {
       updateSearch("author", undefined)
     }
+    updateSearchInfo("", true)
     updateSearchStatus()
   })
 
@@ -290,6 +295,7 @@ let initFilters = () => {
 }
 
 let updateSearch = (type, id) => {
+  console.log("Updating search with type '" + type + "' and id '" + id + "'")
   // Update search state and update all Node and FilterTag objects
   search.labo =
     type == "labo" ? (id == search.labo ? undefined : id) : undefined
@@ -298,9 +304,9 @@ let updateSearch = (type, id) => {
   search.author =
     type == "author" ? (id == search.author ? undefined : id) : undefined
 
-  search.laboOpen = type == "labo" && !id
-  search.categoryOpen = type == "category" && !id
-  search.authorOpen = type == "author" && !id
+  search.laboOpen = type == "labo"
+  search.categoryOpen = type == "category"
+  search.authorOpen = type == "author"
 
   // Update active nodes
   nodes.forEach((n) => n.updateActive())

@@ -5,6 +5,7 @@
 
 // Globals
 const htmlNode = document.getElementsByTagName("html")[0]
+const boardNode = document.getElementById("board")
 const labosNode = document.getElementById("filter-labo")
 const categoriesNode = document.getElementById("filter-category")
 const authorsNode = document.getElementById("filter-author")
@@ -230,23 +231,6 @@ let updateSearchStatus = () => {
   authorTagsNode.classList.toggle("active", !!search.authorOpen)
 
 }
-
-/*
-let toggleMobileSearch = () => {
-  searchNode.classList.toggle("expanded")
-}
-*/
-
-/*
-let initMobileSearchToggle = () => {
-  document
-    .getElementById("expand-search")
-    .removeEventListener("click", toggleMobileSearch)
-  document
-    .getElementById("expand-search")
-    .addEventListener("click", toggleMobileSearch)
-}
-*/
 
 let initFilters = () => {
   // Create and inject filter tags
@@ -476,7 +460,7 @@ let initNodes = () => {
     let nodeYdist = 100
     for (let i = 0; i < nodesPop; i++) {
       let x = (w / 3) * (1 + (i % 2))
-      let y = 30 + nodeYdist * (i + 1)
+      let y = 60 + nodeYdist * (i + 1)
       nodes.push(new Node(x, y, data[nodes.length]))
     }
   }
@@ -607,7 +591,8 @@ let fullReset = () => {
   // Reset page dimensions and layers
   w = window.innerWidth
   mode = w < breakpoint ? "mobile" : "desktop"
-  h = mode == "desktop" ? window.innerHeight : 2 * 30 + (nodesPop + 1) * 100 // 30px as top&bottom margin
+  h = mode == "desktop" ? window.innerHeight : (2 * 60 + (nodesPop + 1) * 100) // 60px as top&bottom margin
+  boardNode.style.height = h + "px"
   configureCanvas(ctx1, w, h)
   configureCanvas(ctx2, w, h)
   resetBackLayer()

@@ -1,0 +1,25 @@
+Title: La contrib ultime
+
+----
+
+Text: [{"content":{"text":"<p>C'est fou</p>"},"id":"45184cb4-5754-43a7-8236-22edfe919e91","isHidden":false,"type":"text"}]
+
+----
+
+Author: - user://zpHidXtj
+
+----
+
+Tags: Outil
+
+----
+
+Labos: - page://KECNdjlWd1TvaDdW
+
+----
+
+Extra: 
+
+----
+
+Uuid: PPILANCbGupqvDtF

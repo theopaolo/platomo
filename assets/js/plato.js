@@ -130,7 +130,12 @@ let addIdsToData = () => {
 fetchData()
 
 // Filters
-let search = {}
+let search = {
+  labo: undefined,
+  category: undefined,
+  author: undefined,
+}
+
 let filterTags = []
 class FilterTag {
   type;
@@ -485,6 +490,7 @@ let step = () => {
   let shouldDraw =
     (!isSearchActive() && stepCount1 < maxStep1) ||
     (isSearchActive() && stepCount2 < maxStep2)
+  
 
   if (shouldDraw) {
     // Assign ctx, particles and selectedNodes based on filter selection
@@ -586,13 +592,6 @@ let resetFrontLayer = () => {
 }
 
 let fullReset = () => {
-  // Reset search
-  search = {
-    labo: undefined,
-    category: undefined,
-    author: undefined,
-  }
-
   // Reset page dimensions and layers
   w = window.innerWidth
   mode = w < breakpoint ? "mobile" : "desktop"
@@ -607,10 +606,6 @@ let fullReset = () => {
   // Reset nodes (position and content)
   initNodes()
 }
-
-// Boot
-fullReset()
-window.requestAnimationFrame(step)
 
 // Dark mode
 /*
@@ -637,9 +632,12 @@ filtersNavOffNode.addEventListener("click", () => {
 })
 
 // Window resize
-let timeout
-
-window.addEventListener("resize", (e) => {
-  clearTimeout(timeout)
-  timeout = setTimeout(fullReset, 150)
+let resizeTimeout
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout)
+  resizeTimeout = setTimeout(fullReset, 150)
 })
+
+// Boot
+fullReset()
+window.requestAnimationFrame(step)

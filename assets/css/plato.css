@@ -52,6 +52,7 @@ h3, p, li {
   border-bottom: 2px solid #0000;
   border: solid 1px var(--main-text-color);
   border-radius: 50px;
+  max-width: 100%;
   height: max-content;
   transition: background-color .3s ease-in, border-color .3s ease-in;
   position: relative;
@@ -62,6 +63,7 @@ h3, p, li {
   -webkit-user-select: none;
   user-select: none;
   width: max-content;
+  max-width: 100%;
   padding: .25rem 1rem;
   font-size: 1rem;
   font-weight: 500;
@@ -122,6 +124,7 @@ canvas#front-layer, #nodes-container {
 }
 
 #search {
+  width: 100%;
   margin: 0 auto;
   padding: 0 .5rem;
   position: absolute;
@@ -212,13 +215,13 @@ canvas#front-layer, #nodes-container {
   user-select: none;
   width: 100%;
   position: fixed;
-  top: 1rem;
+  top: 1.5rem;
   left: 0;
 }
 
 #search-info p {
   text-align: center;
-  padding: 0 1em;
+  padding: 0 4.5rem;
   font-size: 2rem;
   font-weight: 200;
   line-height: 1em;
@@ -291,6 +294,10 @@ canvas#front-layer, #nodes-container {
     overflow-y: inherit;
   }
 
+  .rounded-btn h3 {
+    font-size: .8rem;
+  }
+
   #dark-mode-toggle {
     top: 10px;
     right: 10px;
@@ -319,6 +326,10 @@ canvas#front-layer, #nodes-container {
     bottom: .25rem;
   }
 
+  #search #exit-nav h3 {
+    padding: .4rem .75rem;
+  }
+
   #search #filters #main-filters {
     flex-flow: column;
     padding: 0 1rem 0 2.5rem;
@@ -336,8 +347,7 @@ canvas#front-layer, #nodes-container {
   }
 
   #search-info p {
-    padding: 0 2.8rem;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 }
 

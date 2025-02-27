@@ -52,6 +52,7 @@ h3, p, li {
 	border-radius: 50px;
 	border: solid 1px var(--main-text-color);
 	height: max-content;
+	max-width: 100%;
 
 	h3 {
 		font-size: 1rem;
@@ -60,6 +61,7 @@ h3, p, li {
 		padding: .25rem 1rem;
 		user-select: none;
 		width: max-content;
+		max-width: 100%;
 		transition: color 300ms ease-in;
 	}
 
@@ -128,6 +130,7 @@ canvas#front-layer {
 	bottom: 0.5rem;
 	left: 0.5rem;
 	padding: 0 0.5rem;
+	width: 100%;
 
 	#filters-nav {
 		position: absolute;
@@ -215,7 +218,7 @@ canvas#front-layer {
 }
 #search-info {
 	position: fixed;
-	top: 1rem;
+	top: 1.5rem;
 	left: 0;
 	width: 100%;
 	user-select: none;
@@ -225,7 +228,7 @@ canvas#front-layer {
 		line-height: 1em;
 		text-align: center;
 		font-weight: 200;
-		padding: 0 1em;
+		padding: 0 4.5rem;
 	}
 }
 #pages {
@@ -300,6 +303,12 @@ canvas#front-layer {
 	html, body {
 		overflow-y: inherit;
 	}
+	.rounded-btn {
+
+		h3 {
+			font-size: .8rem;
+		}
+	}
 	#dark-mode-toggle {
 		top: 10px;
 		right: 10px;
@@ -328,6 +337,10 @@ canvas#front-layer {
 		#exit-nav {
 			bottom: 0.25rem;
 			margin: auto;
+			
+			h3 {
+				padding: 0.4rem .75rem;
+			}
 		}
 		#filters {
 			#main-filters {
@@ -352,9 +365,7 @@ canvas#front-layer {
 		}
 		
 	}
-
 	#search-info p {
-		padding: 0 2.8rem;
-		font-size: 1.7rem;
+		font-size: 1.5rem;
 	}
 }

@@ -47,16 +47,27 @@ h3, p, li {
 	border-bottom: solid 2px transparent;
 	border-top: solid 2px transparent;
 	cursor: pointer;
+	transition: background-color 300ms ease-in, border-color 300ms ease-in;
+	background-color: var(--main-background-color);
+	border-radius: 50px;
+	border: solid 1px var(--main-text-color);
 
 	h3 {
 		font-size: 1rem;
 		text-transform: uppercase;
 		font-weight: 500;
-		border-radius: 9999px;
-		border: solid 1px var(--main-text-color);
 		padding: .25rem 1rem;
 		user-select: none;
 		width: max-content;
+		transition: color 300ms ease-in;
+	}
+
+	&:hover {
+		background-color: var(--main-text-color);
+
+		h3 {
+			color: var(--main-background-color);
+		}
 	}
 }
 
@@ -139,15 +150,32 @@ canvas#front-layer {
 		left: 0;
 		right: 0;
 		margin: auto;
-		display: flex;
-		gap: 1rem;
-		flex-flow: row;
-		justify-content: center;
-		bottom: -50vh;
-		transition: bottom 500ms ease-in-out;
+		bottom: -80vh;
+		transition: bottom 500ms ease-in-out, height 500ms ease-in;
+		height: max-content;
 
-		.filter {
-		
+		#main-filters {
+			display: flex;
+			gap: 1rem;
+			flex-flow: row;
+			justify-content: center;
+		}
+		#filter-tags {
+			padding: 1rem 3rem;
+
+			ul {
+				display: flex;
+				flex-flow: row;
+				flex-wrap: wrap;
+				justify-content: center;
+
+				li {
+					margin: 0.2rem 0.3rem;
+				}
+			}
+		}
+
+		.filter {		
 			&.active {
 				border-color: var(--main-text-color);
 			}

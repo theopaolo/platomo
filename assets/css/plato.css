@@ -47,22 +47,32 @@ h3, p, li {
 
 .rounded-btn {
   cursor: pointer;
+  background-color: var(--main-background-color);
   border-top: 2px solid #0000;
   border-bottom: 2px solid #0000;
-  transition: border-color .3s ease-in;
+  border: solid 1px var(--main-text-color);
+  border-radius: 50px;
+  transition: background-color .3s ease-in, border-color .3s ease-in;
   position: relative;
 }
 
 .rounded-btn h3 {
   text-transform: uppercase;
-  border: solid 1px var(--main-text-color);
   -webkit-user-select: none;
   user-select: none;
-  border-radius: 9999px;
   width: max-content;
   padding: .25rem 1rem;
   font-size: 1rem;
   font-weight: 500;
+  transition: color .3s ease-in;
+}
+
+.rounded-btn:hover {
+  background-color: var(--main-text-color);
+}
+
+.rounded-btn:hover h3 {
+  color: var(--main-background-color);
 }
 
 html, body {
@@ -134,17 +144,35 @@ canvas#front-layer, #nodes-container {
 }
 
 #search #filters {
+  width: 100vw;
+  height: max-content;
+  margin: auto;
+  transition: bottom .5s ease-in-out, height .5s ease-in;
+  position: absolute;
+  bottom: -80vh;
+  left: 0;
+  right: 0;
+}
+
+#search #filters #main-filters {
   flex-flow: row;
   justify-content: center;
   gap: 1rem;
-  width: 100vw;
-  margin: auto;
-  transition: bottom .5s ease-in-out;
   display: flex;
-  position: absolute;
-  bottom: -50vh;
-  left: 0;
-  right: 0;
+}
+
+#search #filters #filter-tags {
+  padding: 1rem 3rem;
+}
+
+#search #filters #filter-tags ul {
+  flex-flow: wrap;
+  justify-content: center;
+  display: flex;
+}
+
+#search #filters #filter-tags ul li {
+  margin: .2rem .3rem;
 }
 
 #search #filters .filter.active {

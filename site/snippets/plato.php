@@ -18,32 +18,65 @@
 
 			<div id="filters-nav">
 				<div class="rounded-btn">
-					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Navigation</h3>
+					<h3>Navigation</h3>
 				</div>
 			</div>
 
 			<div id="exit-nav" class="rounded-btn">
-				<h3 class="hover:bg-black hover:text-white transition-colors duration-300">X</h3>
+				<h3>X</h3>
 			</div>
 
 			<div id="filters">
-				<div class="filter rounded-btn" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
-					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Laboratoires</h3>
-					<ul class="filter-tags">
-						<li data-tag="1" class="round-btn">Labo #1</li>
-					</ul>
+
+				<div id="main-filters">
+					<div class="filter rounded-btn" data-filter="labo" data-filter-name="Laboratoire" id="filter-labo">
+						<h3>Laboratoires</h3>
+					</div>
+					<div class="filter rounded-btn" data-filter="category" data-filter-name="Catégorie" id="filter-category">
+						<h3>Catégories</h3>
+					</div>
+					<div class="filter rounded-btn" data-filter="author" data-filter-name="Auteur" id="filter-author">
+						<h3>Auteur·e·s</h3>
+					</div>
 				</div>
-				<div class="filter rounded-btn" data-filter="category" data-filter-name="Catégorie" id="filter-category">
-					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Catégories</h3>
-					<ul class="filter-tags">
-						<li data-tag="1" class="round-btn">Objet</li>
+
+				<div id="filter-tags">
+
+					<ul id="filters-labo">
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Incroyable</h3></li>
 					</ul>
-				</div>
-				<div class="filter rounded-btn" data-filter="author" data-filter-name="Auteur" id="filter-author">
-					<h3 class="hover:bg-black hover:text-white transition-colors duration-300">Auteur·e·s</h3>
-					<ul class="filter-tags">
-						<li data-tag="1" class="round-btn">John Doe</li>
+
+					<ul id="filters-category">
+						<li data-tag="57" class="rounded-btn"><h3>Ouf</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Ouf</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Ouf</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Ouf</h3></li>
 					</ul>
+
+					<ul id="filters-author">
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
+					</ul>
+
 				</div>
 			</div>
 
@@ -60,7 +93,7 @@
 			?>
 				<?php foreach($items as $item): ?>
 					<div class="page-link uppercase rounded-btn">
-						<h3 class="hover:bg-black hover:text-white transition-colors duration-300">
+						<h3>
 							<a class="w-full block" <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
 						</h3>
 					</div>

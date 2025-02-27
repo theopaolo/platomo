@@ -2,7 +2,7 @@ Title: Seconde contribution
 
 ----
 
-Text: [{"content":{"text":"<p>Le mouvement corporel est le catalyseur initial de tout acte artistique. Au-delà de la danse, l'art de la marche, de la flânerie et de la psychogéographie émerge comme une critique de la mécanique moderne de l'urbanisme. En se référant aux expérimentations de la Situationniste Internationale, et à des artistes tels que Richard Long avec ses \"Land Arts\", ce mouvement artistique inscrit l'action de marcher comme un acte poétique, contemplatif, et surtout comme un moyen d'interaction directe avec le paysage, urbain ou naturel.</p>"},"id":"656fee04-7831-4ea1-a19f-6f445dd5e1d8","isHidden":false,"type":"text"},{"content":{"link":"https://unsupersite.com","text":"Nom du lien","files":[]},"id":"c2f81a2a-92a3-422d-ad68-46920a1a6dda","isHidden":false,"type":"button"},{"content":{"link":"","text":"nom du fichier audio","files":["file://199rEtaxpW0h9xJ2"]},"id":"ee2f8081-ec86-40b6-94f3-53af7b36df4c","isHidden":false,"type":"button"},{"content":{"url":"https://player.vimeo.com/video/645903440","caption":"Légende de la vidéo<br>"},"id":"e9cd71bc-8fa1-4b33-8757-bef517cd9d9b","isHidden":false,"type":"video"},{"content":{"link":"","text":"Nom du ficher pdf","files":["file://aMxeyVaSQo3bzBnz"]},"id":"3834a868-cb92-4bd7-853d-0c2180bea493","isHidden":false,"type":"button"}]
+Text: [{"content":{"text":"<p>Le mouvement corporel est le catalyseur initial de tout acte artistique. Au-delà de la danse, l'art de la marche, de la flânerie et de la psychogéographie émerge comme une critique de la mécanique moderne de l'urbanisme. En se référant aux expérimentations de la Situationniste Internationale, et à des artistes tels que Richard Long avec ses \"Land Arts\", ce mouvement artistique inscrit l'action de marcher comme un acte poétique, contemplatif, et surtout comme un moyen d'interaction directe avec le paysage, urbain ou naturel.</p>"},"id":"656fee04-7831-4ea1-a19f-6f445dd5e1d8","isHidden":false,"type":"text"},{"content":{"link":"https://unsupersite.com","text":"Nom du lien","files":[]},"id":"c2f81a2a-92a3-422d-ad68-46920a1a6dda","isHidden":false,"type":"button"},{"content":{"link":"","text":"nom du fichier audio","files":[]},"id":"ee2f8081-ec86-40b6-94f3-53af7b36df4c","isHidden":false,"type":"button"},{"content":{"location":"","url":"https://player.vimeo.com/video/645903440","video":[],"poster":[],"caption":"Légende de la vidéo<br>","autoplay":"false","muted":"true","loop":"false","controls":"true","preload":""},"id":"e9cd71bc-8fa1-4b33-8757-bef517cd9d9b","isHidden":false,"type":"video"},{"content":{"link":"","text":"Nom du ficher pdf","files":["file://aMxeyVaSQo3bzBnz"]},"id":"3834a868-cb92-4bd7-853d-0c2180bea493","isHidden":false,"type":"button"}]
 
 ----
 
@@ -11,6 +11,14 @@ Author: - user://0teAfnWa
 ----
 
 Tags: tag, tag2, CATEGORIES
+
+----
+
+Formats: 
+
+----
+
+Labos: - page://vUxqeVr1zAFSw0Yt
 
 ----
 

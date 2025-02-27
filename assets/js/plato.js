@@ -5,9 +5,9 @@
 
 // Globals
 const htmlNode = document.getElementsByTagName("html")[0]
-const labosNode = document.getElementById("filter-labo").getElementsByTagName("ul")[0]
-const categoriesNode = document.getElementById("filter-category").getElementsByTagName("ul")[0]
-const authorsNode = document.getElementById("filter-author").getElementsByTagName("ul")[0]
+const labosNode = document.getElementById("filters-labo")
+const categoriesNode = document.getElementById("filters-category")
+const authorsNode = document.getElementById("filters-author")
 const searchNode = document.getElementById("search")
 const searchInfoNode = document.getElementById("search-info").getElementsByTagName("p")[0]
 const bottomItemsNode = document.getElementById("bottom-items")
@@ -95,12 +95,16 @@ let addIdsToData = () => {
   let isInArray = (el, arr) => arr.some((n) => n === el)
 
   data.forEach((d) => {
-    if (!isInArray(d.labo, labos)) labos.push(d.title)
+    console.log(d)
+    let laboName = d.labos[0]
+    let authorName = d.author
+
+    if (laboName && !isInArray(laboName, labos)) labos.push(laboName)
     d.categories.forEach((c) => {
-      if (!isInArray(c, categories)) categories.push(c)
+      if (c && !isInArray(c, categories)) categories.push(c)
     })
 
-    if (!isInArray(d.author, authors)) authors.push(d.author)
+    if (authorName && !isInArray(authorName, authors)) authors.push(authorName)
   })
 
   console.log("Labos: ", labos)
@@ -142,7 +146,7 @@ class FilterTag {
     let liNode = document.createElement("li")
     liNode.classList.add("round-btn")
     liNode.setAttribute("data-tag", this.id)
-    liNode.innerHTML = this.content
+    //liNode.innerHTML = this.content
     this.domNode = liNode
 
     // Listeners
@@ -239,9 +243,9 @@ let initMobileSearchToggle = () => {
 let initFilters = () => {
   // Create and inject filter tags
   filterTags = []
-  labosNode.innerHTML = ""
-  categoriesNode.innerHTML = ""
-  authorsNode.innerHTML = ""
+  //labosNode.innerHTML = ""
+  //categoriesNode.innerHTML = ""
+  //authorsNode.innerHTML = ""
 
   // Labo tags
   labos.forEach((l, i) => {

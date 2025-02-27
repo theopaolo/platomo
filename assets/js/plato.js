@@ -148,9 +148,11 @@ class FilterTag {
   inject() {
     // Create node
     let liNode = document.createElement("li")
-    liNode.classList.add("round-btn")
+    liNode.classList.add("rounded-btn")
     liNode.setAttribute("data-tag", this.id)
-    //liNode.innerHTML = this.content
+    let h3node = document.createElement("h3")
+    h3node.innerHTML = this.content
+    liNode.appendChild(h3node)
     this.domNode = liNode
 
     // Listeners
@@ -170,17 +172,13 @@ class FilterTag {
     })
 
     // Append
-    if (mode == "desktop") {
-      let parentNode =
-        this.type == "labo"
-          ? labosNode
-          : this.type == "category"
-          ? categoriesNode
-          : authorsNode
-      parentNode.append(liNode)
-    } else if (mode == "mobile") {
-      mobileFiltersNode.append(liNode)
-    }
+    let parentNode =
+      this.type == "labo"
+        ? laboTagsNode
+        : this.type == "category"
+        ? categoryTagsNode
+        : authorTagsNode
+    parentNode.append(liNode)
   }
 
   setActive(isActive) {
@@ -235,9 +233,9 @@ let updateSearchStatus = () => {
 let initFilters = () => {
   // Create and inject filter tags
   filterTags = []
-  //labosNode.innerHTML = ""
-  //categoriesNode.innerHTML = ""
-  //authorsNode.innerHTML = ""
+  laboTagsNode.innerHTML = ""
+  categoryTagsNode.innerHTML = ""
+  authorTagsNode.innerHTML = ""
 
   // Labo tags
   labos.forEach((l, i) => {

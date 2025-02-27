@@ -6,7 +6,7 @@
   --dense-outline-color: #00000080;
 }
 
-html.dark-mode {
+html.dark {
   --main-background-color: black;
   --secondary-background-color: linear-gradient(#c20a0a, #c2380a);
   --main-text-color: white;
@@ -315,6 +315,7 @@ canvas#front-layer, #nodes-container {
   border-radius: 50%;
   width: 35px;
   height: 35px;
+  display: none;
   position: absolute;
   top: 1rem;
   right: 1rem;

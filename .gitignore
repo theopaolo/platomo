@@ -57,3 +57,6 @@ content/2_contribution/2
 
 # -- ENV
 .env.local
+
+# Alex: useless css map files
+*.css.map

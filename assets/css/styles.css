@@ -12,8 +12,105 @@
   font-style: normal;
 }
 
+/* Logo hover effect - makes letters and text visible only on hover */
+
+.logo-letter,
+.logo-text,
+.logo-border {
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Hide the letters (white paths) by default */
+
+.logo-letter {
+  fill: transparent !important;
+}
+
+/* Hide the "mobile" text (black paths) by default */
+
+.logo-text {
+  fill: transparent !important;
+}
+
+/* Hide the border of the mobile text container by default */
+
+.logo-border {
+  stroke: transparent !important;
+}
+
+/* Show the letters on hover */
+
+a:hover .logo-letter {
+  fill: white !important;
+}
+
+/* Show the "mobile" text on hover */
+
+a:hover .logo-text {
+  fill: black !important;
+}
+
+/* Show the border on hover */
+
+a:hover .logo-border {
+  stroke: black !important;
+}
+
 :root {
   --plyr-color-main: #ffffff;
+  --color-bg: #F9F8F8;
+  --color-text: #020617;
+  /* Add transition for theme changes */
+  transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.dark {
+  --color-bg: #171717;
+  /* Changed to neutral-900 as requested */
+  --color-text: #F9F8F8;
+}
+
+/* Ensure elements inherit the transition */
+
+*, *::before, *::after {
+  transition: inherit;
+}
+
+/* Add specific transitions for elements that change with theme */
+
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+a, button, svg, path {
+  transition: color 0.5s ease, fill 0.5s ease, stroke 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Add transitions for main content areas */
+
+.page-wrapper main,
+.page-base .page-wrapper main,
+.swup-page-home .page-wrapper main {
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Class added during theme transition */
+
+.theme-transitioning {
+  /* Prevent interaction during transition */
+  pointer-events: none;
+}
+
+/* Disable transitions for users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    transition: none;
+  }
+
+  *, *::before, *::after {
+    transition: none !important;
+  }
 }
 
 .page-wrapper {
@@ -21,6 +118,78 @@
     max-height: 100vh;
     overflow-y: auto;
   }
+}
+
+/* Contribution pill scrollbar styling */
+
+.contribution-pill::-webkit-scrollbar {
+  height: 4px;
+}
+
+.contribution-pill::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contribution-pill::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 4px;
+}
+
+.contribution-pill {
+  scrollbar-width: thin;
+  scrollbar-color: #000 transparent;
+  max-width: calc(100vw - 2rem);
+}
+
+.contribution-pill > div {
+  min-width: -moz-min-content;
+  min-width: min-content;
+}
+
+@media (min-width: 768px) {
+  .contribution-pill {
+    max-width: 100%;
+  }
+}
+
+/* Dark mode styles for page-base */
+
+.dark .page-base .page-wrapper main {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+  background-color: var(--color-bg);
+}
+
+/* Dark mode styles for swup-page-home */
+
+.dark .swup-page-home .page-wrapper main {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+  background-color: var(--color-bg);
+}
+
+/* Dark mode styles for contribution pill scrollbar */
+
+.dark .contribution-pill::-webkit-scrollbar-thumb {
+  background: #fff;
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+
+.dark .contribution-pill {
+  scrollbar-color: #fff transparent;
+  transition: scrollbar-color 0.5s ease;
+}
+
+/* Light mode scrollbar transition */
+
+.contribution-pill::-webkit-scrollbar-thumb {
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+
+.contribution-pill {
+  transition: scrollbar-color 0.5s ease;
 }
 
 nav ul{
@@ -69,6 +238,14 @@ nav ul.navout{
   border-bottom-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+}
+
+.block-type-text p a:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+
+.block-type-text p a {
   cursor: url('../images/tinyarrow.png'), auto;
 }
 
@@ -241,7 +418,7 @@ body.no-scroll {
   }
   .page-wrapper {
     main {
-      opacity: 0;
+      opacity: 0
     }
     main {
       position: absolute;
@@ -269,8 +446,15 @@ body.no-scroll {
       --tw-bg-opacity: 1;
       background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
     }
+    main:is(.dark *) {
+      --tw-border-opacity: 1;
+      border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+    }
     main {
       animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .5s forwards;
+      .dark & {
+        background-color: var(--color-bg);
+      }
     }
   }
 }
@@ -293,7 +477,7 @@ body.no-scroll {
   }
   .page-wrapper {
     main {
-      opacity: 0;
+      opacity: 0
     }
     main {
       position: absolute;
@@ -321,8 +505,15 @@ body.no-scroll {
       --tw-bg-opacity: 1;
       background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
     }
+    main:is(.dark *) {
+      --tw-border-opacity: 1;
+      border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+    }
     main {
       animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .5s forwards;
+      .dark & {
+        background-color: var(--color-bg);
+      }
     }
   }
   div.fade-out-animation {
@@ -548,9 +739,7 @@ button.plyr__control[aria-label="Play"] {
   --tw-contain-style:  ;
 }
 
-/*
-! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com
-*/
+/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -1031,9 +1220,9 @@ video {
 }
 
 body {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 248 248 / var(--tw-bg-opacity, 1));
   font-family: GeneralSans-Variable, serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .sr-only {
@@ -1046,6 +1235,10 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .fixed {
@@ -1116,8 +1309,8 @@ body {
   z-index: 50;
 }
 
-.z-\[999\] {
-  z-index: 999;
+.z-\[9999\] {
+  z-index: 9999;
 }
 
 .z-\[99\] {
@@ -1199,6 +1392,10 @@ body {
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .hidden {
   display: none;
 }
@@ -1238,6 +1435,10 @@ body {
 
 .w-11\/12 {
   width: 91.666667%;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-6 {
@@ -1392,6 +1593,10 @@ body {
   overflow-x: scroll;
 }
 
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1520,19 +1725,24 @@ body {
   padding-right: 0.5rem;
 }
 
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .py-8 {
@@ -1801,6 +2011,93 @@ body {
   stroke: #fff;
 }
 
+.dark\:block:is(.dark *) {
+  display: block;
+}
+
+.dark\:hidden:is(.dark *) {
+  display: none;
+}
+
+.dark\:border-gray-700:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-white:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+
+.dark\:bg-purple:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(223 217 235 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:bg-slate-700:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:bg-slate-800:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:fill-slate-800:is(.dark *) {
+  fill: #1e293b;
+}
+
+.dark\:fill-white:is(.dark *) {
+  fill: #fff;
+}
+
+.dark\:stroke-white:is(.dark *) {
+  stroke: #fff;
+}
+
+.dark\:text-neutral-900:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-white:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.dark\:hover\:bg-slate-700:hover:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:hover\:bg-white:hover:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:hover\:text-black:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.dark\:hover\:text-slate-950:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(2 6 23 / var(--tw-text-opacity, 1));
+}
+
+.group:hover .dark\:group-hover\:fill-black:is(.dark *) {
+  fill: #000;
+}
+
+.group:hover .dark\:group-hover\:fill-white:is(.dark *) {
+  fill: #fff;
+}
+
+.group:hover .dark\:group-hover\:stroke-black:is(.dark *) {
+  stroke: #000;
+}
+
 @media (min-width: 768px) {
   .md\:mt-20 {
     margin-top: 5rem;
@@ -1827,6 +2124,11 @@ body {
     padding-right: 1rem;
   }
 
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -1848,6 +2150,10 @@ body {
 }
 
 @media (min-width: 1280px) {
+  .xl\:fixed {
+    position: fixed;
+  }
+
   .xl\:aspect-\[3\/4\] {
     aspect-ratio: 3/4;
   }
@@ -1864,6 +2170,10 @@ body {
   .xl\:translate-x-24 {
     --tw-translate-x: 6rem;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .xl\:p-4 {
+    padding: 1rem;
   }
 }
 

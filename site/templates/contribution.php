@@ -3,7 +3,7 @@
 <div class="page-wrapper" id="swup">
 
   <div class="bg-blur blur-sm"></div>
-  <main class="px-8 z-50">
+  <main class="px-3 md:px-8 z-50">
     <aside class="sticky h-fit top-4 z-50">
           <div class="next-prev flex gap-2 my-4 items-end">
 
@@ -41,7 +41,7 @@
             <?php endif ?>
           </div>
     </aside>
-    <header class="max-w-screen-xl left-auto">
+    <header class="left-auto">
       <h1 class="uppercase text-page-title font-medium leading-none"><?= $page->title() ?></h1>
       <?php if($user = $page->author()->toUser()): ?>
         <p class="text-subtitle uppercase mt-6"><?= $user->username() ?></p>
@@ -49,7 +49,7 @@
 
       <ul class="tags flex gap-2 mt-6">
         <?php foreach ($page->tags()->split() as $category): ?>
-          <li class="text-base uppercase leading-none bg-black text-secondary rounded-full py-1 px-4"><?= $category ?></li>
+          <li class="text-base uppercase leading-none bg-black text-secondary dark:bg-purple dark:text-neutral-900 rounded-full py-1 px-4"><?= $category ?></li>
         <?php endforeach ?>
       </ul>
     </header>

@@ -17,9 +17,9 @@ html.dark {
 	background: black; /* When resizing */
 }
 h3, p, li {
-	font-family: 'Raleway', 'Comic Sans MS', serif;
+	font-family: "GeneralSans-Variable", "Comic Sans MS", serif;
 	color: var(--main-text-color);
-	font-weight: 300;
+	font-weight: 400;
 }
 .flexrow {
 	display: flex;
@@ -110,7 +110,7 @@ canvas#front-layer {
 		opacity: .15;
 		text-transform: uppercase;
 		font-size: 12px;
-		font-weight: 500;
+		font-weight: 400;
 		color: var(--main-text-color);
 		
 		&.active {
@@ -123,7 +123,6 @@ canvas#front-layer {
 		}
 	}
 }
-
 #search {
 	position: absolute;
 	margin: 0 auto;
@@ -299,10 +298,12 @@ canvas#front-layer {
 }
 
 /* Mobile */
-@media (max-width: 550px) {
-	html, body {
+html.mobile-plato {
+	&, body {
 		overflow-y: inherit;
 	}
+}
+@media (max-width: 550px) {
 	.rounded-btn {
 
 		h3 {
@@ -312,9 +313,6 @@ canvas#front-layer {
 	#dark-mode-toggle {
 		top: 10px;
 		right: 10px;
-	}
-	#mobile-search {
-		display: inherit;
 	}
 	#bottom-items.search-toggle-on #exit-nav {
 		left: .5rem;

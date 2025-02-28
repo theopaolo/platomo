@@ -166,7 +166,7 @@ class FilterTag {
     let filterText =
       this.type == "labo" ? "Laboratoire : " : this.type == "category" ? "Catégorie : " : "Auteur·e : "
     liNode.addEventListener("pointerenter", (e) => {
-      updateSearchInfo(e.target.innerHTML, false)
+      updateSearchInfo(e.target.childNodes[0].innerHTML, false)
     })
     liNode.addEventListener("pointerleave", (e) => {
       updateSearchInfo("", false)
@@ -377,7 +377,7 @@ class Node {
     } else {
       pNode.innerHTML = this.data.title
     }
-    let wid = 120
+    let wid = 115
     pNode.style.width = wid + "px"
     pNode.style.left = this.x - wid / 2 + "px"
     nodesContainer.append(pNode)
@@ -425,55 +425,49 @@ let initNodes = () => {
   nodes = []
   nodesContainer.innerHTML = ""
 
-  if (mode == "desktop") {
-    // Generate, but not to close to each other
-    let maxIterations = 2500, i = 0
-    let minDist = 100, maxDist = 230
-    let xMargin = 140, yMargin = 140
+  // Generate, but not to close to each other
+  let maxIterations = 2500, i = 0
+  let minDist = 105, maxDist = 220
 
-    // Position first node at center
-    let x0 = w / 2,
-      y0 = h / 2,
-      data0 = data[0]
-    nodes.push(new Node(w / 2, h / 2, data0))
+  // Leave space between nodes page border
+  let xMargin = mode == "desktop" ? 140 : 100
+  let yTopMargin = 140
+  let yBottomMargin = Math.min(140, 220 - w / 200)
 
-    // Position all other nodes
-    while (nodes.length < nodesPop && ++i < maxIterations) {
-      let x = xMargin + (w - 2 * xMargin) * Math.random()
-      let y = yMargin + (h - 2 * yMargin) * Math.random()
-      let keep = true
-      let minOfDists = 9999
+  // Position first node at center
+  let x0 = w / 2,
+    y0 = h / 2,
+    data0 = data[0]
+  nodes.push(new Node(w / 2, h / 2, data0))
 
-      nodes.forEach((n) => {
-        let distToN = dist(n.x, n.y, x, y)
-        if (distToN < minDist) {
-          keep = false
-        }
-        minOfDists = Math.min(minOfDists, distToN)
-      })
+  // Position all other nodes
+  while (nodes.length < nodesPop && ++i < maxIterations) {
+    let x = xMargin + (w - 2 * xMargin) * Math.random()
+    let y = yTopMargin + (h - yTopMargin - yBottomMargin) * Math.random()
+    let keep = true
+    let minOfDists = 9999
 
-      if (minOfDists > maxDist) keep = false
-
-      if (keep) {
-        nodes.push(new Node(x, y, data[nodes.length]))
+    nodes.forEach((n) => {
+      let distToN = dist(n.x, n.y, x, y)
+      if (distToN < minDist) {
+        keep = false
       }
-    }
+      minOfDists = Math.min(minOfDists, distToN)
+    })
 
-    console.log(
-      nodes.length +
-        " nodes generated within " +
-        i +
-        " iterations in initNodes()."
-    )
+    if (minOfDists > maxDist) keep = false
 
-  } else if (mode == "mobile") {
-    let nodeYdist = 100
-    for (let i = 0; i < nodesPop; i++) {
-      let x = (w / 3) * (1 + (i % 2))
-      let y = 60 + nodeYdist * (i + 1)
+    if (keep) {
       nodes.push(new Node(x, y, data[nodes.length]))
     }
   }
+
+  console.log(
+    nodes.length +
+      " nodes generated within " +
+      i +
+      " iterations in initNodes()."
+  )
 
   // Generate
   nodes.forEach((n) => {
@@ -593,11 +587,22 @@ let resetFrontLayer = () => {
 
 let fullReset = () => {
   // Reset page dimensions and layers
-  w = window.innerWidth
-  mode = w < breakpoint ? "mobile" : "desktop"
-  h = mode == "desktop" ? window.innerHeight : (2 * 60 + (nodesPop + 1) * 100) // 60px as top&bottom margin
+  let iW = window.innerWidth
+  let iH = window.innerHeight
+  let iSurface = iW * iH
+  const minSurface = 700000 // minimal surface for plato in px²
+  mode = iSurface < minSurface ? "mobile" : "desktop"
+  w = iW
+  h = mode == "desktop" ? iH : minSurface / iW // Variable screen height in case of lack of surface
   boardNode.style.height = h + "px"
+
+  // Add class to <html> for specific styling (like scroll)
+  htmlNode.classList.toggle("mobile-plato", mode == "mobile")
+  
+  // Update color mode based on <html> "dark" class
   colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
+
+  // Prepare canvases with the right dimensions
   configureCanvas(ctx1, w, h)
   configureCanvas(ctx2, w, h)
   resetBackLayer()
@@ -616,7 +621,6 @@ document.getElementById("dark-mode-toggle").addEventListener("click", (e) => {
 })
 */
 document.getElementById("theme-toggle").addEventListener("click", (e) => {
-  console.log("clickos")
   //colorMode = colorMode == "light" ? "dark" : "light"
   colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
   setTimeout(fullReset, 100)

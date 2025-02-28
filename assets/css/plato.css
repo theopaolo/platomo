@@ -17,8 +17,8 @@ html.dark {
 
 h3, p, li {
   color: var(--main-text-color);
-  font-family: Raleway, Comic Sans MS, serif;
-  font-weight: 300;
+  font-family: GeneralSans-Variable, Comic Sans MS, serif;
+  font-weight: 400;
 }
 
 .flexrow {
@@ -110,7 +110,7 @@ canvas#front-layer, #nodes-container {
   color: var(--main-text-color);
   margin: 0;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   position: absolute;
 }
 
@@ -289,11 +289,11 @@ canvas#front-layer, #nodes-container {
   box-shadow: var(--main-text-color) 0 0 6px;
 }
 
-@media (width <= 550px) {
-  html, body {
-    overflow-y: inherit;
-  }
+html.mobile-plato, html.mobile-plato body {
+  overflow-y: inherit;
+}
 
+@media (width <= 550px) {
   .rounded-btn h3 {
     font-size: .8rem;
   }
@@ -301,10 +301,6 @@ canvas#front-layer, #nodes-container {
   #dark-mode-toggle {
     top: 10px;
     right: 10px;
-  }
-
-  #mobile-search {
-    display: inherit;
   }
 
   #bottom-items.search-toggle-on #exit-nav {

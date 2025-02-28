@@ -108,12 +108,17 @@ canvas#front-layer {
 		text-align: center;
 		margin: 0;
 		user-select: none;
-		opacity: .15;
+		opacity: 0.05;
 		text-transform: uppercase;
 		font-size: 12px;
 		line-height: 13px;
 		font-weight: 375;
 		color: var(--main-text-color);
+		transition: opacity 1.5s;
+
+		a {
+			cursor: inherit;
+		}
 		
 		&.active {
 			cursor: pointer;
@@ -121,6 +126,10 @@ canvas#front-layer {
 			
 			&:hover {
 				text-shadow: var(--main-text-color) 0 0 1px;
+			}
+			
+			a {
+				cursor: pointer;
 			}
 		}
 	}
@@ -164,7 +173,7 @@ canvas#front-layer {
 		left: 0;
 		right: 0;
 		margin: auto;
-		bottom: -60vh;
+		bottom: -75vh;
 		transition: bottom 500ms ease-in-out;
 
 		#main-filters {

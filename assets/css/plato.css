@@ -106,14 +106,19 @@ canvas#front-layer, #nodes-container {
   text-align: center;
   -webkit-user-select: none;
   user-select: none;
-  opacity: .15;
+  opacity: .05;
   text-transform: uppercase;
   color: var(--main-text-color);
   margin: 0;
   font-size: 12px;
   font-weight: 375;
   line-height: 13px;
+  transition: opacity 1.5s;
   position: absolute;
+}
+
+#nodes-container p a {
+  cursor: inherit;
 }
 
 #nodes-container p.active {
@@ -123,6 +128,10 @@ canvas#front-layer, #nodes-container {
 
 #nodes-container p.active:hover {
   text-shadow: var(--main-text-color) 0 0 1px;
+}
+
+#nodes-container p.active a {
+  cursor: pointer;
 }
 
 #search {
@@ -163,7 +172,7 @@ canvas#front-layer, #nodes-container {
   margin: auto;
   transition: bottom .5s ease-in-out;
   position: absolute;
-  bottom: -60vh;
+  bottom: -75vh;
   left: 0;
   right: 0;
 }

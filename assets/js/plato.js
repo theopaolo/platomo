@@ -98,7 +98,6 @@ let addIdsToData = () => {
 	let isInArray = (el, arr) => arr.some((n) => n === el)
 
 	data.forEach((d) => {
-		console.log(d)
 		let laboName = d.labos[0] // TO CHANGE WHEN UNIQUE LABO
 		let authorName = d.author
 
@@ -379,6 +378,7 @@ class Node {
 		let wid = 115
 		pNode.style.width = wid + "px"
 		pNode.style.left = this.x - wid / 2 + "px"
+		pNode.style.transitionDelay = Math.floor(1500 * Math.random()) + "ms"
 		nodesContainer.append(pNode)
 		let hei = pNode.clientHeight
 		pNode.style.top = this.y - hei / 2 + "px"

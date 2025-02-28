@@ -22,8 +22,10 @@
 				</div>
 			</div>
 
-			<div id="exit-nav" class="rounded-btn">
-				<h3>X</h3>
+			<div id="exit-nav">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37256 18.6274 0 12 0C5.37256 0 0 5.37256 0 12C0 18.6274 5.37256 24 12 24ZM11.5 6V11.5H6V12.5H11.5V18H12.5V12.5H18V11.5H12.5V6H11.5Z"/>
+				</svg>
 			</div>
 
 			<div id="filters">

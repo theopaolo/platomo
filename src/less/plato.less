@@ -160,10 +160,19 @@ canvas#front-layer {
 		z-index: 20;
 		margin: .2rem .3rem;
 		width: 2.1rem;
+		cursor: pointer;
+		
+		svg {
+			filter: invert();
+			transition: filter 500ms ease-in;
+			width: 2rem;
+			stroke: white;
+			fill: black;
+			transform: rotate(45deg);
 
-		h3 {
-			height: 2rem;
-  			padding: .25rem .7rem;
+			&:hover {
+				filter: inherit;
+			}
 		}
 	}
 

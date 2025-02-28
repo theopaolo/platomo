@@ -27,7 +27,7 @@ const searchNode = document.getElementById("search")
 const searchInfoNode = document.getElementById("search-info").getElementsByTagName("p")[0]
 const bottomItemsNode = document.getElementById("bottom-items")
 const filtersNavOnNode = document.querySelector("#filters-nav h3")
-const filtersNavOffNode = document.querySelector("#exit-nav h3")
+const filtersNavOffNode = document.querySelector("#exit-nav")
 
 let colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
 let saturatedColors = true // false

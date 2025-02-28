@@ -426,7 +426,7 @@ let initNodes = () => {
   nodesContainer.innerHTML = ""
 
   // Generate, but not to close to each other
-  let maxIterations = 2500, i = 0
+  let maxIterations = 3000, i = 0
   let minDist = 105, maxDist = 220
 
   // Leave space between nodes page border
@@ -590,7 +590,7 @@ let fullReset = () => {
   let iW = window.innerWidth
   let iH = window.innerHeight
   let iSurface = iW * iH
-  const minSurface = 700000 // minimal surface for plato in px²
+  const minSurface = 36000 * nodesPop // minimal surface for plato in px², depends on node population heh
   mode = iSurface < minSurface ? "mobile" : "desktop"
   w = iW
   h = mode == "desktop" ? iH : minSurface / iW // Variable screen height in case of lack of surface
@@ -610,6 +610,9 @@ let fullReset = () => {
 
   // Reset nodes (position and content)
   initNodes()
+
+  // Update text background colors
+  document.querySelectorAll("#nodes-container p").forEach(e => { e.style.background = colorMode == "dark" ? 'radial-gradient(#000F, #000F, #0000, #0000)' : 'transparent' })
 }
 
 // Dark mode

@@ -110,7 +110,8 @@ canvas#front-layer, #nodes-container {
   color: var(--main-text-color);
   margin: 0;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 375;
+  line-height: 13px;
   position: absolute;
 }
 

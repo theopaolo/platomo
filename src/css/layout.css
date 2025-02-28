@@ -3,8 +3,8 @@
   --color-bg: #F9F8F8;
   --color-text: #020617;
 
-  /* Add transition for theme changes */
-  transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+  /* Add transition for theme changes - faster transitions */
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .dark {
@@ -19,18 +19,18 @@
 
 /* Add specific transitions for elements that change with theme */
 body {
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a, button, svg, path {
-  transition: color 0.5s ease, fill 0.5s ease, stroke 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+  transition: color 0.2s ease, fill 0.2s ease, stroke 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Add transitions for main content areas */
 .page-wrapper main,
 .page-base .page-wrapper main,
 .swup-page-home .page-wrapper main {
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Class added during theme transition */
@@ -104,19 +104,19 @@ a, button, svg, path {
 /* Dark mode styles for contribution pill scrollbar */
 .dark .contribution-pill::-webkit-scrollbar-thumb {
   background: #fff;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.2s ease;
 }
 
 .dark .contribution-pill {
   scrollbar-color: #fff transparent;
-  transition: scrollbar-color 0.5s ease;
+  transition: scrollbar-color 0.2s ease;
 }
 
 /* Light mode scrollbar transition */
 .contribution-pill::-webkit-scrollbar-thumb {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.2s ease;
 }
 
 .contribution-pill {
-  transition: scrollbar-color 0.5s ease;
+  transition: scrollbar-color 0.2s ease;
 }

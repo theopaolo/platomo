@@ -1,13 +1,13 @@
-<nav class="relative px-4 py-2 xl:p-4 z-50 dark:text-white w-full xl:fixed" x-data="navComponent()" @click.away="closeNav()">
+<nav class="relative px-4 py-2 xl:p-4 z-50 dark:text-white w-full xl:fixed top-0" x-data="navComponent()" @click.away="closeNav()">
 
   <div class="flex justify-between sticky top-2">
     <a href="<?= $site->url() ?>" class="flex items-center w-12" data-no-swup>
       <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
-        <!-- Black circles (background) -->
-        <circle cx="12" cy="12" r="12" fill="black"/>
-        <circle cx="32.5" cy="32.5" r="10.5" fill="black"/>
-        <circle cx="29" cy="14" r="14" fill="black"/>
-        <circle cx="11.5" cy="34.5" r="8.5" fill="black"/>
+        <!-- Circles (background) - black in light mode, white in dark mode -->
+        <circle class="logo-circle" cx="12" cy="12" r="12" fill="black"/>
+        <circle class="logo-circle" cx="32.5" cy="32.5" r="10.5" fill="black"/>
+        <circle class="logo-circle" cx="29" cy="14" r="14" fill="black"/>
+        <circle class="logo-circle" cx="11.5" cy="34.5" r="8.5" fill="black"/>
         <rect class="logo-border" x="3.25" y="45.25" width="38.5" height="10.5" rx="5.25" stroke="black" stroke-width="0.5"/>
 
         <!-- White letters (LAB) - hidden by default, visible on hover -->
@@ -24,12 +24,12 @@
         <path class="logo-text" d="M31.8001 53.9038H31.0679V47H31.8001V53.9038Z" fill="black"/>
         <path class="logo-text" d="M35.5522 54C34.004 54 32.9788 52.9327 32.9788 51.3269C32.9788 49.8462 34.0458 48.7404 35.5103 48.7404C37.0795 48.7404 38.1046 49.9038 37.9791 51.5288H33.7111C33.7739 52.7308 34.4643 53.4712 35.5417 53.4712C36.4623 53.4712 37.1004 53 37.2782 52.1923H38C37.7489 53.3173 36.8179 54 35.5522 54ZM35.4999 49.2596C34.5061 49.2596 33.8052 49.9615 33.7111 51.0673H37.2154C37.1527 49.9327 36.5146 49.2596 35.4999 49.2596Z" fill="black"/>
       </svg>
-      <span class="ml-2 text-xl font-bold text-slate-950 dark:text-white sr-only"><?= $site->title() ?></span>
+      <span class="ml-2 text-xl font-bold text-neutral-950 dark:text-white sr-only"><?= $site->title() ?></span>
     </a>
 
     <div class="flex items-center gap-2">
       <!-- Dark mode toggle button -->
-      <button id="theme-toggle" class="p-2 rounded-full border border-slate-950 dark:border-white">
+      <button id="theme-toggle" class="p-2 rounded-full border border-neutral-950 dark:border-white">
         <!-- Sun icon for dark mode (shows when in dark mode) -->
         <svg xmlns="http://www.w3.org/2000/svg" class="hidden dark:block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -41,8 +41,8 @@
       </button>
 
       <button @click="toggleNav"
-              :class="{'bg-slate-950 text-white': isOpen, 'bg-white text-black dark:bg-slate-800 dark:text-white': !isOpen}"
-              class="hidden flex items-center border-slate-950 dark:border-white border border-b text-sm font-medium uppercase pl-2 pr-1 py-1 rounded-full hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-75 group">
+              :class="{'bg-neutral-950 text-white': isOpen, 'bg-white text-black dark:bg-neutral-800 dark:text-white': !isOpen}"
+              class="hidden flex items-center border-neutral-950 dark:border-white border border-b text-sm font-medium uppercase pl-2 pr-1 py-1 rounded-full hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-neutral-950 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-75 group">
         Navigation
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             :class="{'fill-secondary': isOpen, 'rotate-45': isOpen}"
@@ -59,13 +59,13 @@
   ?>
     <ul :class="{ 'navin': isOpen }"
         x-ref="nav"
-        class="hidden border-2 dark:border-gray-700 bg-secondary dark:bg-slate-800 rounded-xl p-2 min-w-60 right-4 absolute mt-2 flex-col gap-2 z-[9999]">
+        class="hidden border-2 dark:border-gray-700 bg-secondary dark:bg-neutral-800 rounded-xl p-2 min-w-60 right-4 absolute mt-2 flex-col gap-2 z-[9999]">
     <li class="uppercase rounded-full">
-      <a class="transition-colors duration-300 hover:bg-white dark:hover:bg-slate-700 w-full block rounded-full p-2" href="<?= $site->url() ?>">Plateau</a>
+      <a class="transition-colors duration-300 hover:bg-white dark:hover:bg-neutral-700 w-full block rounded-full p-2" href="<?= $site->url() ?>">Plateau</a>
     </li>
       <?php foreach($items as $item): ?>
         <li class="uppercase rounded-full">
-          <a class="transition-colors duration-300 hover:bg-white dark:hover:bg-slate-700 w-full block rounded-full p-2" <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
+          <a class="transition-colors duration-300 hover:bg-white dark:hover:bg-neutral-700 w-full block rounded-full p-2" <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
         </li>
       <?php endforeach ?>
     </ul>

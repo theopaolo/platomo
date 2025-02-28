@@ -1,4 +1,5 @@
 <script>
+
   const adjustContainerHeight = () => {
     const title = document.querySelector('h1');
     const container = document.querySelector('.title-container');
@@ -7,6 +8,7 @@
       container.style.height = `${titleHeight}px`;
     }
   };
+
   const setupArticleAnimations = () => {
     const articles = document.querySelectorAll('.listing a');
     const INITIAL_DELAY = 0.3;
@@ -70,11 +72,39 @@
     });
   };
 
+  const enterIntro = () => {
+    const enterBtn = document.querySelector('.enter-btn');
+    const introOverlay = document.querySelector('.intro-overlay');
+
+    if (localStorage.getItem('entered') === 'true' && introOverlay) {
+      introOverlay.style.display = 'none';
+    }
+
+    if(enterBtn) {
+      enterBtn.addEventListener('click', (e) => {
+        localStorage.setItem("entered", "true");
+
+        // Add fadeOut animation from varnish.css
+        introOverlay.style.animation = 'fadeOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+
+        // After animation completes, make it invisible and remove from DOM flow
+        setTimeout(() => {
+          introOverlay.classList.add('invisible');
+          introOverlay.style.display = 'none';
+        }, 500); // Match this with the CSS animation duration
+      });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     adjustContainerHeight();
     setupArticleAnimations();
     setupThemeToggle();
+    enterIntro();
   });
+
+
+
 </script>
 
 <?= js('assets/dist/js/app.js') ?>

@@ -1429,6 +1429,10 @@ body {
   height: 100%;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
@@ -1463,6 +1467,10 @@ body {
   width: max-content;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .min-w-60 {
   min-width: 15rem;
 }
@@ -1477,6 +1485,10 @@ body {
 
 .max-w-screen-xl {
   max-width: 1280px;
+}
+
+.max-w-screen-2xl {
+  max-width: 1536px;
 }
 
 .-translate-x-10 {
@@ -1551,6 +1563,10 @@ body {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.place-content-center {
+  place-content: center;
 }
 
 .items-end {

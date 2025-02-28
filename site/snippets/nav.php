@@ -3,11 +3,11 @@
   <div class="flex justify-between sticky top-2">
     <a href="<?= $site->url() ?>" class="flex items-center w-12" data-no-swup>
       <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
-        <!-- Black circles (background) -->
-        <circle cx="12" cy="12" r="12" fill="black"/>
-        <circle cx="32.5" cy="32.5" r="10.5" fill="black"/>
-        <circle cx="29" cy="14" r="14" fill="black"/>
-        <circle cx="11.5" cy="34.5" r="8.5" fill="black"/>
+        <!-- Circles (background) - black in light mode, white in dark mode -->
+        <circle class="logo-circle" cx="12" cy="12" r="12" fill="black"/>
+        <circle class="logo-circle" cx="32.5" cy="32.5" r="10.5" fill="black"/>
+        <circle class="logo-circle" cx="29" cy="14" r="14" fill="black"/>
+        <circle class="logo-circle" cx="11.5" cy="34.5" r="8.5" fill="black"/>
         <rect class="logo-border" x="3.25" y="45.25" width="38.5" height="10.5" rx="5.25" stroke="black" stroke-width="0.5"/>
 
         <!-- White letters (LAB) - hidden by default, visible on hover -->

@@ -1,0 +1,54 @@
+/* Logo hover effect - makes letters and text visible only on hover */
+.logo-letter,
+.logo-text,
+.logo-border,
+.logo-circle {
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Logo circles - black in light mode, white in dark mode */
+.logo-circle {
+  fill: black !important;
+}
+
+.dark .logo-circle {
+  fill: white !important;
+}
+
+/* Hide the letters (white paths) by default */
+.logo-letter {
+  fill: transparent !important;
+}
+
+/* Hide the "mobile" text (black paths) by default */
+.logo-text {
+  fill: transparent !important;
+}
+
+/* Hide the border of the mobile text container by default */
+.logo-border {
+  stroke: transparent !important;
+}
+
+/* Show the letters on hover */
+a:hover .logo-letter {
+  fill: white !important;
+}
+
+/* Show the "mobile" text on hover - black in light mode, white in dark mode */
+a:hover .logo-text {
+  fill: black !important;
+}
+
+.dark a:hover .logo-text {
+  fill: white !important;
+}
+
+/* Show the border on hover - black in light mode, white in dark mode */
+a:hover .logo-border {
+  stroke: black !important;
+}
+
+.dark a:hover .logo-border {
+  stroke: white !important;
+}

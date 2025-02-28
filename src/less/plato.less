@@ -164,7 +164,7 @@ canvas#front-layer {
 		
 		svg {
 			filter: invert();
-			transition: filter 500ms ease-in;
+			transition: filter 500ms ease-in, transform 200ms ease-in-out;
 			width: 2rem;
 			stroke: white;
 			fill: black;
@@ -172,6 +172,7 @@ canvas#front-layer {
 
 			&:hover {
 				filter: inherit;
+				transform: rotate(135deg);
 			}
 		}
 	}
@@ -214,7 +215,7 @@ canvas#front-layer {
 					transition-delay: 400ms, 250ms;
 					//transition: opacity 500ms ease-in, max-height 0ms ease-in;
 					//transition-delay: 200ms, 0ms;
-					max-height: 10rem;
+					max-height: 11rem;
 				}
 
 				li {
@@ -295,7 +296,7 @@ canvas#front-layer {
 			}
 		}
 		#pages {
-			bottom: -5rem;
+			bottom: -8rem;
 			opacity: 0;
 		}
 	}

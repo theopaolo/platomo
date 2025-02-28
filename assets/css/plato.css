@@ -168,12 +168,13 @@ canvas#front-layer, #nodes-container {
   stroke: #fff;
   fill: #000;
   width: 2rem;
-  transition: filter .5s ease-in;
+  transition: filter .5s ease-in, transform .2s ease-in-out;
   transform: rotate(45deg);
 }
 
 #search #exit-nav svg:hover {
   filter: inherit;
+  transform: rotate(135deg);
 }
 
 #search #filters {
@@ -213,7 +214,7 @@ canvas#front-layer, #nodes-container {
 
 #search #filters #filter-tags ul.active {
   opacity: 1;
-  max-height: 10rem;
+  max-height: 11rem;
   transition: opacity .5s .4s, max-height .3s ease-in .25s;
 }
 
@@ -290,7 +291,7 @@ canvas#front-layer, #nodes-container {
 
 #bottom-items.search-toggle-on #pages {
   opacity: 0;
-  bottom: -5rem;
+  bottom: -8rem;
 }
 
 #dark-mode-toggle {

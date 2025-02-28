@@ -13,6 +13,7 @@ module.exports = {
         red: "#FF5A5F",
         purple: "#DFD9EB",
       },
+      safelist: ["invisible"],
       fontSize: {
         "page-title": "clamp(2rem, 4vw, 4.5rem)",
         "paragraph-title": "clamp(1.5rem, 2vw, 2.35rem)",

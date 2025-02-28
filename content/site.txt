@@ -3,3 +3,7 @@ Title: Plateau Mobile
 ----
 
 Categories: Outil, Objet, Pensée, Recit
+
+----
+
+Introtext: Labomobile est un espace d’expérimentation nomade, une zone temporaire consacrée à la recherche et au croisement de différentes disciplines des arts dans des lieux dédiés à la création. Chaque édition réunit autour d’un thème commun une équipe éphémère qui se met à l’œuvre pour explorer des approches, des théories et des dispositifs sans les contraintes d’une production. Les participant·es des labos ont la liberté à l’issue de la recherche de laisser derrières elles et eux une trace qui poursuit ou prolonge la recherche appelée Contribution. Ce site réunit ces publications en une archive qui retrace aussi la trajectoire des Labomobiles.

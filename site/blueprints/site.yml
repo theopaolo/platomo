@@ -18,3 +18,6 @@ tabs:
       categories:
         label: Catégories
         type: tags
+      intro-text:
+        Label: Intro
+        type: text

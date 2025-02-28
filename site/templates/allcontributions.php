@@ -9,13 +9,13 @@
         <article class="p-2 px-4 rounded-full overflow-x-scroll md:overflow-hidden">
 
             <div class="flex flex-row items-center gap-2 md:gap-4 justify-between w-max md:w-full">
-              <h2 class="text-sm md:text-subtitle no-effect uppercase font-medium"><?= $contribution->title() ?></h2>
+              <h2 class="text-sm md:text-subtitle no-effect uppercase font-medium dark:text-black"><?= $contribution->title() ?></h2>
 
               <?php if($user = $contribution->author()->toUser()): ?>
-                <p class="text-sm rounded-full border border-black py-1 px-2 md:px-4 w-fit"><?= $user->username() ?></p>
+                <p class="text-sm rounded-full border border-black py-1 px-2 md:px-4 w-fit dark:text-black"><?= $user->username() ?></p>
               <?php endif ?>
 
-              <p class="text-sm uppercase bg-neutral-200 rounded-full py-1 px-4 h-fit ml-auto"><?= $contribution->tags() ?></p>
+              <p class="text-sm uppercase bg-neutral-200 rounded-full py-1 px-4 h-fit ml-auto dark:text-black"><?= $contribution->tags() ?></p>
 
               <?php $labos = $contribution->labos()->toPages(); if($labos->isNotEmpty()): ?>
                 <?php foreach($labos as $labo): ?>

@@ -1,7 +1,18 @@
-// Code logic:
-// Node and FilterTag arrays are generated from data
-// A search variable stores search state
-// node and filtertag states are updated on search change by user (click on a FilterTag)
+/*
+ * Our great Plato generator, hyper responsive, very verbose, works up to 100+ items.
+ *
+ * Code logic:
+ * - json data is retrieved from server (through a Kirby PHP backend)
+ * - data is scanned to fill arrays with all occurrences of labos, categories and authors
+ * - Node and FilterTag arrays are generated from data (nodes are items on the board, filterTags are navigation buttons)
+ * - A *search* variable stores search state, and serves as the unique model for search state management
+ * - node and filterTag states are updated on search change by user (clicks on FilterTags)
+ * 
+ * TODO : at the moment, contributions can have any number of labos. It should be only 1 -> change d.labos[0] to d.labo when available
+ * 
+ * @author Alex Andrix ✨ with Theo Paolo 🤘 for Arnaud Chevalier ⚜️👑🏰🤴
+ * @since 2023-2025
+ */
 
 // Globals
 const htmlNode = document.getElementsByTagName("html")[0]
@@ -34,7 +45,6 @@ let configureCanvas = (ctx, width, height) => {
 	ctx.font = "16px Raleway"
 	ctx.textAlign = "center"
 }
-let animation
 let dist = (x1, y1, x2, y2) => {
 	return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
 }
@@ -71,19 +81,28 @@ const dataUrl = "http://localhost/platomo/contributions.json"
 let data = []
 let nodesPop = 0
 
-async function fetchData() {
+let fetchData = async () => {
 	try {
+		// Get the juice
 		const response = await fetch(dataUrl)
 		const json = await response.json()
-		data = json.data // Assuming the structure based on your JSON
+		data = json.data
 
-		addIdsToData() // Process data for IDs
+		// Process data for IDs
+		addIdsToData() 
 
+		// Update population count
 		nodesPop = data.length
 
-		initFilters() // Initialize filter tags based on the new data
-		initNodes() // Initialize nodes based on the new data
-		fullReset() // Now that data is fetched, reset/init everything
+		// Initialize filter tags based on the new data
+		initFilters()
+
+		// Initialize nodes based on the new data
+		initNodes()
+
+		// Now that data is fetched, reset/init everything
+		fullReset()
+		
 	} catch (error) {
 		console.error("Error when fetching data: ", error)
 	}
@@ -109,10 +128,10 @@ let addIdsToData = () => {
 		if (authorName && !isInArray(authorName, authors)) authors.push(authorName)
 	})
 
-	console.log("Labos: ", labos)
-	console.log("Categories: ", categories)
-	console.log("Authors: ", authors)
 	console.log("Data: ", data)
+	console.log("Data -> Labos: ", labos)
+	console.log("Data -> Categories: ", categories)
+	console.log("Data -> Authors: ", authors)
 
 	// Add ids by checking index in arrays
 	data.forEach((d) => {
@@ -124,8 +143,6 @@ let addIdsToData = () => {
 		d.authorId = 1 + authors.indexOf(authorName)
 	})
 }
-
-fetchData()
 
 // Filters
 let search = {
@@ -463,7 +480,7 @@ let initNodes = () => {
 
 	console.log(
 		nodes.length +
-			" nodes generated within " +
+			" nodes generated on board within " +
 			i +
 			" iterations in initNodes()."
 	)
@@ -480,11 +497,8 @@ let step = () => {
 	let ctx, particles, selectedNodes
 
 	// Draw on back or front layer based on filter selection
-	let shouldDraw =
-		(!isSearchActive() && stepCount1 < maxStep1) ||
-		(isSearchActive() && stepCount2 < maxStep2)
+	let shouldDraw = (!isSearchActive() && stepCount1 < maxStep1) || (isSearchActive() && stepCount2 < maxStep2)
 	
-
 	if (shouldDraw) {
 		// Assign ctx, particles and selectedNodes based on filter selection
 		if (!isSearchActive()) {
@@ -615,13 +629,6 @@ let fullReset = () => {
 }
 
 // Dark mode
-/*
-document.getElementById("dark-mode-toggle").addEventListener("click", (e) => {
-	htmlNode.classList.toggle("dark-mode")
-	colorMode = colorMode == "light" ? "dark" : "light"
-	fullReset()
-})
-*/
 document.getElementById("theme-toggle").addEventListener("click", (e) => {
 	//colorMode = colorMode == "light" ? "dark" : "light"
 	colorMode = htmlNode.classList.contains("dark") ? "dark" : "light"
@@ -645,5 +652,5 @@ window.addEventListener("resize", () => {
 })
 
 // Boot
-fullReset()
+fetchData()
 window.requestAnimationFrame(step)

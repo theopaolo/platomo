@@ -7,7 +7,7 @@
 	--main-text-color: black;
 	--main-outline-color: rgba(0, 0, 0, .15);
 	--dense-outline-color: rgba(0, 0, 0, .5);
-	
+	--search-info-text-shadow: none;
 }
 html.dark {
 	--main-background-color: black;
@@ -15,6 +15,7 @@ html.dark {
 	--main-text-color: white;
 	--main-outline-color: rgba(255, 255, 255, .5);
 	--dense-outline-color: rgba(255, 255, 255, .8);
+	--search-info-text-shadow: rgba(255, 255, 255, 0.35) 0 0 4px;
 	background: black; /* When resizing */
 }
 h3, p, li {
@@ -107,7 +108,6 @@ canvas#front-layer {
 		text-align: center;
 		margin: 0;
 		user-select: none;
-		word-wrap: auto;
 		opacity: .15;
 		text-transform: uppercase;
 		font-size: 12px;
@@ -228,8 +228,10 @@ canvas#front-layer {
 		font-size: 2rem;
 		line-height: 1em;
 		text-align: center;
-		font-weight: 200;
+		text-transform: uppercase;
+		font-weight: 300;
 		padding: 0 4.5rem;
+		text-shadow: var(--search-info-text-shadow);
 	}
 }
 #pages {

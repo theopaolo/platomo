@@ -37,7 +37,17 @@ columns:
                 label: Documents
                 multiple: false
                 type: files
-
+          audioplayer:
+            name: Audio player
+            icon: audio
+            fields:
+              audioname:
+                label: File name
+                type: text
+              files:
+                label: Audio
+                multiple: false
+                type: files
         size: large
 
   sidebar:

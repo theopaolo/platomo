@@ -1,0 +1,5 @@
+Uuid: ft3MP1CVKkLOi3O4
+
+----
+
+Template: blocks/image

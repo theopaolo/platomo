@@ -1,5 +1,0 @@
-Uuid: Wr1LBm1vk7UGyR9o
-
-----
-
-Template: avatar

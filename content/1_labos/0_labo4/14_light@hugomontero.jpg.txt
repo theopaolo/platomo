@@ -1,0 +1,5 @@
+Uuid: cenfyCHftev8td4v
+
+----
+
+Template: blocks/image

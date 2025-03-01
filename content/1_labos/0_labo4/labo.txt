@@ -1,0 +1,34 @@
+Title: Labomobile 4 - Se saisir du sensible
+
+----
+
+Text: [{"content":{"level":"h4","text":"<strong><em>&nbsp;4 au 9 janvier 2021 à L'espace Scénique Transdisciplinaire (EST) UGA Grenoble</em></strong>"},"id":"46748e9e-7360-481e-aa55-1f3390a5ca30","isHidden":false,"type":"heading"},{"content":{"level":"h4","text":"<strong><em>8 au 13 fevrier 2021 aux Subs de Lyon</em></strong>"},"id":"0b4d33e7-4e9e-4d86-b88c-fc02b1d8ec22","isHidden":false,"type":"heading"},{"content":{"level":"h2","text":"<strong>Se saisir du sensible</strong>"},"id":"f0b87c82-bd25-46d5-bbe5-316916d08a69","isHidden":false,"type":"heading"},{"content":{"level":"h2","text":"<em>Nos sens sont notre interface avec le monde, alors qu’ils nous forment, nous et le monde.</em>"},"id":"79545c04-5980-4da4-995e-b978d0f11899","isHidden":false,"type":"heading"},{"content":{"text":"<p>Vouloir s’intéresser au sensible c’est vouloir s’intéresser à ce qui est indénombrable, ce qui échappe à nos tentatives de rationalisation. La part sensorielle de notre réalité n’est pas qu’une addition de sens, ces derniers, d’ailleurs ne répondent pas à une logique binaire ; ils ne peuvent être mis sur ON comme sur OFF. Qui peut dire, lorsqu’il entre dans une cuisine à l’heure du dîner si c’est sa vue, son ouïe, ses sensations haptiques, son odorat, ou d’autres signes, qui lui ont donné l’eau à la bouche ? Ces sensations se chevauchent, se mélangent et s’influent les unes les autres pour donner lieu à notre perception.</p><p>En voulant ouvrir une recherche sur les sens nous faisons aussi le postulat qu’ils se tissent comme une mise en relation constante entre ce que nous ressentons et ce que nous en pensons. À la manière des deux brins d’une même corde tressée qui constituerait l’expérience, cette corde glisse entre les doigts de qui veut la saisir en un mouvement continu. La perception d’une expérience ne se limite pas à une image fixe, mais constitue un chemin d’observation qui se déploie dans l’espace et dans le temps.</p><p>À partir de là, une question nous met en mouvement ; comment faire pour nous saisir du sensible ? Une multiplicité de moyens existe pour capturer notre expérience, que ce soit au travers d’outils audiovisuels (caméra, microphones), informatiques (data, dispositifs génératifs, IA, réalité augmentée), scéniques (écrans, machinerie, VR, acoustique), corporels ou linguistiques (marche, écriture, immersion, transe). Mais ces outils sont-ils à même de réduire la distance qui sépare le vécu d’une expérience dite sensible au-delà de son présent ?</p><p>Une fois qu’une expérience est faite, comment la reproduire, comment la partager et la communiquer à d’autres corps ? Là aussi une multiplicité d’approches existe et leur croisement répond à la polyphonie formée par nos sens. Ces questionnements, qui sont solidement imbriqués, parcourront le déroulé de ces deux semaines : il s’agit d’une invitation à secouer, remuer, mélanger nos sensibilités pour tracer un chemin de recherche perceptif et collaboratif.</p><p>Travailler et faire travailler les sens est une ambition partagée par de nombreuses disciplines et a conduit à toutes sortes d’expérimentations et de découvertes à travers les âges. Néanmoins, ces questions ne se sont pas refermées, elles se sont constamment renouvelées par les transformations de nos pratiques, contextes et manières de faire. C’est face au précipice que représente le défi de vouloir saisir les sens et de les mettre en partage que nous avons eu l’envie d’ouvrir cette recherche, pour ce 4e LaboMobile, en invitant artistes, technicien.nes et chercheur.euses à venir faire un pas dans le vide avec nous.</p>"},"id":"106b15a6-afe4-4493-b84c-645ce469eabe","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://sjlk9UjF
+- user://COCT5Z7e
+- user://M8uzcaSH
+- user://XGFQ00Um
+- user://r5aDMUgo
+- user://iJOcnElv
+- user://hpgSWA4t
+- user://wVgf4m2D
+- user://uYqJkNqW
+- user://iHMN1Mfw
+- user://A5o7pUdA
+- user://k6FvcETG
+
+----
+
+Contributions: 
+
+----
+
+Gallery: [{"content":{"images":["file://T51EUS0Xq1Fkdunq","file://NW2IsECWWxDw06fZ"],"caption":"","ratio":"","crop":"false"},"id":"3cd3c3f4-4561-440a-bc22-7ab7ba961d2d","isHidden":false,"type":"gallery"},{"content":{"images":["file://jiDOhPsRbD4YmB2z","file://Az4HOPHKogFIOff8","file://tpAEkiKyjYCWJTdI"],"caption":"","ratio":"","crop":"false"},"id":"14cebe6f-14c4-4653-9991-f02ffa03454e","isHidden":false,"type":"gallery"},{"content":{"images":["file://bvR7xmko8c3W9rOY","file://RAN2VjidfF185TeO","file://SHQTq3Rd7gMtEX5T","file://CoLgqlehqgaFMWZu"],"caption":"","ratio":"","crop":"false"},"id":"71dcf694-b9a1-4f24-a4b6-c172adb879cd","isHidden":false,"type":"gallery"},{"content":{"images":["file://cenfyCHftev8td4v","file://Ya0YfmajFROpfWDv"],"caption":"","ratio":"","crop":"false"},"id":"e6d4d590-3874-486c-ba5f-ac1063d9f7d0","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: QW2r6q4go1Skbak7

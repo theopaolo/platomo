@@ -11,14 +11,16 @@
 
   const setupArticleAnimations = () => {
     const articles = document.querySelectorAll('.listing a');
-    const INITIAL_DELAY = 0.3;
-    const DELAY_INCREMENT = 0.2;
+    const INITIAL_DELAY = 0.1;
+    const DELAY_INCREMENT = 0.1;
     let animationDelay = INITIAL_DELAY;
+
     const startAnimation = (element) => {
       element.classList.add('article-animation');
       element.style.animationDelay = `${animationDelay}s`;
       animationDelay += DELAY_INCREMENT;
     };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -27,6 +29,7 @@
         }
       });
     });
+
     articles.forEach((article) => {
       observer.observe(article);
     });

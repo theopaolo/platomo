@@ -29,15 +29,23 @@ const controls = `
 <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play"><svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg><span class="plyr__sr-only">Play</span></button>
 `;
 
-// Initialize Swup
-const swup = new Swup();
-const pageWrapper = document.querySelector("#swup");
-let previousURL = window.location.href;
+// Initialize Swup with optimized options
+const swup = new Swup({
+  animationSelector: '[class*="transition-"]',
+  cache: true,
+  animateHistoryBrowsing: true,
+  preload: true,
+  requestHeaders: {
+    "X-Requested-With": "swup",
+  },
+});
 
+const pageWrapper = document.querySelector("#swup");
+
+let previousURL = window.location.href;
 const player = new Plyr("#player", {
   controls,
 });
-
 function goBackWithSwup() {
   const pageWrapper = document.querySelector(".swup-page-home .page-wrapper");
   document.body.classList.remove("no-scroll");
@@ -101,9 +109,3 @@ Alpine.plugin(focus);
 Alpine.start();
 
 let newUrl = 123;
-console.log(typeof null);
-console.log(typeof undefined);
-console.log(typeof "");
-console.log(typeof 0);
-console.log(typeof -1);
-console.log(typeof goBackWithSwup);

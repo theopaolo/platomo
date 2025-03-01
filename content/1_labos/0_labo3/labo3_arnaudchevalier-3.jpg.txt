@@ -1,0 +1,5 @@
+Uuid: yNMaf2MBDUBApNYE
+
+----
+
+Template: blocks/image

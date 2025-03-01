@@ -1,0 +1,43 @@
+Title: Labomobile 3 - Savoir-faire
+
+----
+
+Text: [{"content":{"level":"h4","text":"<strong><em>29 octobre – 3 novembre 2019 Le Cube, Hérisson</em></strong>"},"id":"10ff96ad-3430-49d1-8a83-454843572208","isHidden":false,"type":"heading"},{"content":{"level":"h4","text":"<strong><em>28 novembre – 3 décembre 2019 Le Studio Théâtre de Vitry, Paris</em></strong>"},"id":"c9516167-22ff-4f0b-a571-fd976a92a853","isHidden":false,"type":"heading"},{"content":{"level":"h2","text":"<strong>Savoir-faire</strong>"},"id":"2e70010f-fbe1-4496-94ce-29adebd5ac2c","isHidden":false,"type":"heading"},{"content":{"text":"<p>Le savoir-faire est une notion formée de deux mots qui, pris séparément, désignent une grande partie de l'activité humaine produite par le travail. Ses manifestations s'expriment dans nombre de métiers, si bien qu'on pourrait dire qu’elle se glisse dans toutes les pratiques dès lors qu’on s’y exerce. Pour essayer de la saisir, il est intéressant de commencer par jouer avec tout ce qu'on peut y entendre, comme autant de terrains d'expérimentations possibles.</p><p>Déclinaison :</p><p>Savoir comment faire. Le savoir peut être pris comme un ensemble de connaissances à s’approprier et à mettre en œuvre. Chez les artisans, il se traduit en une chaîne de transmissions qui relie le maître à l’apprenti dans une sorte de généalogie. Leur exemple nous apprend qu'à l'origine du savoir il y a la relation et que c'est en passant entre les mains des différentes générations qu'il se maintient en vie et en mouvement. Savoir y faire. Faisant référence à ce que l'on appelle communément « le coup de main » (ou « le tour de main ») il s'agit de la manière dont la connaissance s'acquiert dans la pratique et s'enrichit grâce à l’entraînement. Faire pour savoir donc, par la répétition qui l'imprime dans son interprète. Une répétition tendue vers la recherche, dans une quête perpétuelle de maîtrise et de perfectionnement.</p><p>S'avoir -faire. Ou dit autrement : je suis ce que je fais / ce que j’ai fait me définit / mon savoir est un empilement d’expériences intimes. Se faire en faisant donc et développer des relations particulières avec des matières, des approches, des outils. C’est dans cet espace que s’exprime le style ou la patte de chacun, rendant un travail unique, car teinté d'une sensibilité personnelle.</p><p>Savoir ce que l'on fait. Comme une invitation à penser le sens et la valeur du travail. Savoir ce que l'on fait, pour lutter contre l'abstraction qui tend à concentrer les cognitions dans les mains d'une élite managériale, au prétexte d'une organisation plus scientifique du travail, ou contre sa fragmentation en des centaines de tâches, déconnectées de finalité, de sens et de sensibilité.</p><p>Chercher ce qu’est le savoir-faire, c’est mettre l'inventivité humaine sur l’établi. C’est méditer le sens de nos pratiques, la valeur de notre travail. C’est penser l’exercice de notre relation au monde comme patrimoine et matrimoine à transmettre.</p><p>« Les savoir-faire […], se caractérisent par le fait d'être intériorisés, incorporés. Ils comportent une dimension intuitive qui permet de reconnaître les traits saillants d'une situation et d'en dégager les règles d'action. On ne consulte pas une vidéo sur Youtube pour savoir comment faire passer une poutre de cinq mètres de longueur dans une cage d'escalier, il faut avoir acquis une intuition de l'espace. Elle seule nous permettra d'orienter la poutre pour utiliser au mieux les diagonales de l'espace, elle seule aura ancré en nous la perception continue des deux extrémités de la poutre. Pour autant, il ne s'agit pas d'une aptitude magique ou innée. Bien au contraire, cette intuition est une conquête intellectuelle. L'intuition se travaille. Et dans cette élaboration, qui s'appelle l'expérience, la répétition des opérations joue un rôle décisif en permettant d'établir des liens cumulatifs entre les situations vécues et les solutions retenues. L'expérience consiste ainsi en un processus d'appropriation du vécu. » A.Lochmann, La vie solide, Payot, 2019.</p>"},"id":"910320f1-cddf-4ece-a57e-67ec0aeaf447","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://COCT5Z7e
+- user://rGOB2yXX
+- user://b72pSmng
+- user://SeCmN2Gl
+- user://syEPfdoQ
+- user://zXqvSG2t
+- user://4J2F1InE
+- user://WPUjemRE
+- user://UwpFScxY
+
+----
+
+Contributions: - page://FMKbmqzuYL7KX7uB
+
+----
+
+Gallery: [{"content":{"images":["file://hWcDJ0TUoItvx5yu","file://ft3MP1CVKkLOi3O4","file://faYoP5WWiNaR0jZ8"],"caption":"","ratio":"","crop":"false"},"id":"1ee35976-5588-437c-b0ce-bd660a487ca1","isHidden":false,"type":"gallery"},{"content":{"images":["file://yNMaf2MBDUBApNYE","file://cvopQ5BKHkcEPsn1","file://pgWyViawnKGfdD06","file://xlsxIt2B1UG1GfQp"],"caption":"","ratio":"","crop":"false"},"id":"5d377eb7-f44b-4b9c-ab57-c6dfcf1bfb5c","isHidden":false,"type":"gallery"},{"content":{"images":["file://tiUkGhJbiRhrU4cE","file://N2hYuR3paBKQAY7J"],"caption":"","ratio":"","crop":"false"},"id":"66254070-899d-4a25-a71c-f36bd1dd8b35","isHidden":false,"type":"gallery"},{"content":{"images":["file://P5CziBDWclHVrmFo","file://EC97bYpTnnUZMPgo","file://sNsAstAikiId507q"],"caption":"","ratio":"","crop":"false"},"id":"dd9b2082-1d1b-4546-9eea-4cda68e8cf59","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: xUzVmSCPYWkfN2zW
+
+----
+
+Author: 
+
+----
+
+Tags: 
+
+----
+
+Extra: 

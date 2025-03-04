@@ -23,13 +23,81 @@
   @apply text-sm text-gray-500 mt-2;
 }
 
+/* Apply aspect ratio based on data-ratio attribute */
+/* Standard ratios */
+figure[data-ratio="1/1"] img, figure[data-ratio="1:1"] img {
+  aspect-ratio: 1/1;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="16/9"] img, figure[data-ratio="16:9"] img {
+  aspect-ratio: 16/9;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="4/3"] img, figure[data-ratio="4:3"] img {
+  aspect-ratio: 4/3;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="3/2"] img, figure[data-ratio="3:2"] img {
+  aspect-ratio: 3/2;
+  @apply w-full h-auto;
+}
+
+/* Additional ratios requested */
+figure[data-ratio="10/8"] img, figure[data-ratio="10:8"] img {
+  aspect-ratio: 10/8;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="21/9"] img, figure[data-ratio="21:9"] img {
+  aspect-ratio: 21/9;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="7/5"] img, figure[data-ratio="7:5"] img {
+  aspect-ratio: 7/5;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="5/3"] img, figure[data-ratio="5:3"] img {
+  aspect-ratio: 5/3;
+  @apply w-full h-auto;
+}
+
+figure[data-ratio="3/1"] img, figure[data-ratio="3:1"] img {
+  aspect-ratio: 3/1;
+  @apply w-full h-auto;
+}
+
+/* Inverted ratios for portrait orientation */
+figure[data-ratio="9/16"] img, figure[data-ratio="9:16"] img {
+  aspect-ratio: 9/16;
+  @apply w-full h-auto;
+}
+
+/* Apply object-fit based on data-contain attribute */
+figure:not([data-contain="true"]) img {
+  @apply object-cover;
+}
+
+figure[data-contain="true"] img {
+  @apply object-contain;
+}
+
+/* For auto ratio, let the image maintain its natural aspect ratio */
+figure[data-ratio="auto"] img {
+  @apply object-contain w-full h-auto;
+}
+
 .block-type-video figcaption{
   @apply mt-2 text-sm text-center text-gray-600 dark:text-neutral-300;
 }
 
 .block-type-gallery
 {
-  @apply mb-4 mt-8;
+  @apply mb-2;
 }
 
 .block-type-gallery ul

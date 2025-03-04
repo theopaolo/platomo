@@ -1,0 +1,31 @@
+Title: Labomobile 5 - Ce que permettent les choses
+
+----
+
+Text: [{"content":{"level":"h4","text":"<strong><em>RAMDAM Un centre d’art à Sainte-Foy-Lès-Lyon - 16 au 22 janvier 2023</em></strong>"},"id":"8936c308-32c2-4796-a7da-8db14c73a83d","isHidden":false,"type":"heading"},{"content":{"level":"h4","text":"<strong><em>Journée d’Étude universitaire 23 janvier - RAMDAM Un centre d’art</em></strong>"},"id":"671486cd-c001-40ca-be57-0a346fddbbd8","isHidden":false,"type":"heading"},{"content":{"level":"h4","text":"<strong><em>Le Cube - Compagnie La Belle Meunière - Hérisson (03190) du 27 février au 5 mars 2023</em></strong>"},"id":"8f200106-704d-4071-a31b-a4940f36be5f","isHidden":false,"type":"heading"},{"content":{"level":"h4","text":"<strong><em>Echo de recherche - Scène Nationale L'Hexagone de Meylan 10 juin 2023</em></strong>"},"id":"dad03a5e-326f-46c1-af3d-38b05c61d71f","isHidden":false,"type":"heading"},{"content":{"level":"h2","text":"<strong>Ce que permettent les choses </strong>"},"id":"46afe07f-eadd-447e-8484-a4174806fd22","isHidden":false,"type":"heading"},{"content":{"level":"h2","text":"<em>Méthodologies et expérimentations en compagnie des objets</em>"},"id":"76555eb3-a9d6-44e0-ba3e-48fae6206f36","isHidden":false,"type":"heading"},{"content":{"text":"<p>L’autrice de science-fiction Ursula K. le Guin et, à sa suite, la philosophe Donna Haraway proposent de baser leurs théories visant à réinventer leurs manières d’écrire des histoires ou de penser le monde à partir d’un objet du quotidien : le sac. Omniprésent, divers et vague de contours, il se tient aux limites de notre monde. C’est un objet qui permet d’en contenir d’autres. Un sac fait d’histoires, qui contient et permet d’autres histoires. Un sac pour penser permet d’autres pensées. C’est du vide en son sein qu’il tire sa force et sa potentialité. Cette caractéristique, de contenir, en fait un objet passé sous silence dans les rouages de notre monde, des récits héroïques aux cargos de l’économie.</p><p>Pour cette nouvelle édition du laboratoire, nous proposons de nous attarder sur les processus qu’incarnent les objets plutôt qu’à leurs identités et leurs limites. Il est important pour nous de ne pas rester sur ce qu’est un objet mais sur les relations dans lesquelles il s’inscrit, dans le temps et l’espace. L’objet, comme force que l’on intime à l’action, devient alors une direction, une chose : un processus qui s’inscrit dans une relation entre les humains et les objets et qui va les former et déformer les uns et les autres. Cette réciprocité témoigne aussi d’un attachement qui prolonge la relation par le bricolage et le détournement. Les objets sont ré-imaginés comme conviviaux, réappropriables et leurs fonctionnements accessibles, formant une idée sociétale forte. Des objets ouverts qui modifient en retour nos imaginaires, à rebours des logiques consuméristes, tels qu’ils s’inventent dans les collectifs au sein des Makerspaces, Low tech labs et Repair-Café.</p><p>Ces questionnements nous invitent à repenser nos systèmes, nos mélanges, nos manières de créer, de faire de la recherche, d’organiser le monde et de laisser place aux autres, aux choses. Ainsi qu’à se laisser guider par elles et s’emplir d’histoires, de pensées et de gestes qui permettent à leur tour. C’est de ces tissages, ces lignes de relations entre ou au sein même des objets et des humains, que nous vous proposons de vous emparer pour venir composer avec nous.</p>"},"id":"582d422d-bdca-4025-a010-39ad0df4e9f1","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://COCT5Z7e
+- user://t50vHcQU
+- user://M8uzcaSH
+- user://Zr6XmSYW
+- user://T5eC1id9
+- user://zXqvSG2t
+- user://zeUG7Q8P
+- user://OGoaQzGa
+- user://Wpqqq6hP
+
+----
+
+Contributions: 
+
+----
+
+Gallery: [{"content":{"images":["file://HV0NkqXyuLvVgapb","file://WPPRjmqwlegkMJjJ","file://cNOW93OYkXWM2Eso","file://kZUbxrOUWmnx30ml"],"caption":"","ratio":"","crop":"false"},"id":"21dcd8c4-ce7b-4cbb-890c-ac88e5d77599","isHidden":false,"type":"gallery"},{"content":{"images":["file://QhXxISGPoDg5eBkk","file://urkeuvVmC4z7GYiv","file://l6hpTQQvFdvuQ7tp"],"caption":"Crédit photo Jean pierre Estournet","ratio":"","crop":"false"},"id":"3ac42789-517a-4ec7-aba1-a00ae4d4fde4","isHidden":false,"type":"gallery"},{"content":{"images":["file://p18r9Wsws68z2Mq8","file://A45PWSNr8MyyCFHE"],"caption":"","ratio":"","crop":"false"},"id":"5dadf2b1-2fe1-41e8-ada2-fabbfd9e3aae","isHidden":false,"type":"gallery"},{"content":{"images":["file://CppqysZY2iz1hi7s","file://sOwqPOCJFlQDKTyV"],"caption":"crédit photo Jean-Pierre Estournet","ratio":"","crop":"false"},"id":"420122b8-3832-4eb7-829d-19d5f4608434","isHidden":false,"type":"gallery"},{"content":{"images":["file://E4Lq2Vdl1zpKsXhA","file://SqdwP9mKpIdVGQhT","file://zxq0OeZmQ04J8Jni","file://WmHv5Bmtav8MbAqd"],"caption":"","ratio":"","crop":"false"},"id":"c7443922-2417-49e0-8cbb-34db654f5cb6","isHidden":false,"type":"gallery"},{"content":{"images":["file://LZEtRieIcO1A0kde","file://X0Sfp9XgBywXxhNC","file://E1FCUcVWyWTd4rr0","file://vhlgrWYnJIUKVFi4","file://Pa9dvZ8Mlz2ylVpK","file://vgXbAJKa9XFGwDDY"],"caption":"Echo de recherche - Scène Nationale l'Hexagone de Meylan","ratio":"","crop":"false"},"id":"597f5bcf-92c8-4dd6-8cca-82ec0c6c1961","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: Z8X0tnM4qgSxeg7P

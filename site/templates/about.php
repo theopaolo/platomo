@@ -1,7 +1,7 @@
 <?= snippet('header')?>
-
-  <main class="px-4 page mt-20">
-    <header class="max-w-screen-xl left-auto">
+<div class="page-wrapper" id="swup">
+  <main class="px-4 mt-20">
+    <header class="left-auto">
       <?= snippet('pagetitle')?>
 
       <?php if($user = $page->author()->toUser()): ?>
@@ -34,10 +34,8 @@
             <?php endif ?>
           </div>
         <?php endforeach ?>
-
       </div>
-
     </div>
   </main>
-
+</div>
 <?= snippet('footer')?>

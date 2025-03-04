@@ -7,7 +7,7 @@
 
   <ul class="flex gap-2 mt-6">
     <?php foreach ($page->tags()->split() as $category): ?>
-      <li class="text-base uppercase leading-none <?= isset($tagClasses) ? $tagClasses : 'bg-purple dark:bg-neutral-700' ?> rounded-full py-1 px-4"><?= $category ?></li>
+      <li class="category text-base uppercase leading-none <?= isset($tagClasses) ? $tagClasses : 'bg-purple dark:bg-neutral-700' ?> rounded-full py-1 px-4"><?= $category ?></li>
     <?php endforeach ?>
   </ul>
 </header>

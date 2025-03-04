@@ -102,7 +102,7 @@
 				<?php foreach($items as $item): ?>
 					<div class="page-link uppercase rounded-btn">
 						<h3>
-							<a class="w-full block" <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
+							<a class="w-full block" data-no-swup  <?php e($item->isOpen(), ' class="active"') ?> href="<?= $item->url() ?>"><?= $item->title()->html() ?></a>
 						</h3>
 					</div>
 				<?php endforeach ?>
@@ -111,7 +111,7 @@
 		</nav>
 	</div>
 
-	
+
 
 </div>
 

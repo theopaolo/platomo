@@ -1,0 +1,35 @@
+Title: Labomobile 1 - Identité·e·s
+
+----
+
+Text: [{"content":{"level":"h2","text":"Identité·e·s"},"id":"c1fd4fd4-d1fd-49e8-ac6a-bf7837c927b8","isHidden":false,"type":"heading"},{"content":{"level":"h4","text":"&nbsp;<strong><em>Théâtre de L'Elysée Lyon - 20 au 22 juin 2018</em></strong>"},"id":"be08fbeb-fe96-46ec-a3a9-7a1876b26eae","isHidden":false,"type":"heading"},{"content":{"text":"<p>Qu'est-ce que l'identité?</p><p>Autrement dit, qu'est-ce que l'appartenance ? À un territoire ? À une culture ? À un groupe social ?</p><p>Comment traduire avec les corps, les images et les sons une histoire intime ou bien l'Histoire de populations ?</p><p>Identités choisies ou innées, nous sommes amenés à nous questionner et souvent à construire nos vies dans l'acceptation ou par opposition à une identité.</p><p>Cette notion souffre aussi de récupérations par ceux-là mêmes qui se disent identitaires, tranches retranchées de populations qui estiment au point parfois d'en faire un ministère que cette notion est la clef de voûte de notre relation au monde. Elle est pourtant la source d'une énergie débordante : identités politiques, sexuelles et générationnelles, remettent en question les limites de nos définitions.</p><p>L'identité sur scène est une matière qui permet de performer de nombreux discours. De se faire aussi étranger à soi-même pour se réinventer dans les yeux des autres.</p>"},"id":"75def305-6e25-4349-beee-13688c3b5837","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://sjlk9UjF
+- user://870ODsKq
+- user://8GQT2dx1
+- user://COCT5Z7e
+- user://ecl6lDTE
+- user://R3rv7q9K
+- user://zeUG7Q8P
+- user://AfjcxnpD
+- user://0teAfnWa
+
+----
+
+Contributions:
+
+- page://DiGaRt7tE3cH9nL4
+- page://DiGdOc8tRa4nP9mL
+- page://InTrHrMn9yDe2sG7
+
+----
+
+Gallery: [{"content":{"images":["file://MqVdQSbJXYtycZKX","file://kMkvfB7Nv7jzWKKR","file://pw4BQoeIYximGgYC"],"caption":"","ratio":"","crop":"false"},"id":"0b2ca095-f2ef-4d51-b3db-027b4e2f9059","isHidden":false,"type":"gallery"},{"content":{"images":["file://mIEipZAeTcAxxgcL","file://lbJxvA45jdVNiZd9"],"caption":"","ratio":"","crop":"false"},"id":"b70dfd0b-a78d-41c8-9d62-f31f10d83943","isHidden":false,"type":"gallery"},{"content":{"images":["file://eHo2xWiQxHtmd75G","file://iQ59VpkzqHhMFZjH","file://2Zqoh6X4J8X8lCxd","file://uhKRKeLxc8DYTT57"],"caption":"","ratio":"","crop":"false"},"id":"cf4108be-e66d-4078-b9c5-80b03655f2a5","isHidden":false,"type":"gallery"},{"content":{"images":["file://GtuX4PHLA6K2j6IV","file://LO8Cqa2pzpPDeFKq"],"caption":"","ratio":"","crop":"false"},"id":"4e9b2399-db57-4e69-a33b-8cca8ba083f7","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: vUxqeVr1zAFSw0Yt

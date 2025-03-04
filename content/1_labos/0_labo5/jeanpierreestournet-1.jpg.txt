@@ -1,0 +1,5 @@
+Uuid: CppqysZY2iz1hi7s
+
+----
+
+Template: blocks/image

@@ -1,0 +1,5 @@
+Uuid: 4NetFYG8LUAOnxYY
+
+----
+
+Template: blocks/image

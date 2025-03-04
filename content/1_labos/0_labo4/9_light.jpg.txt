@@ -1,0 +1,5 @@
+Uuid: RAN2VjidfF185TeO
+
+----
+
+Template: blocks/image

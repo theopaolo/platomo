@@ -1,0 +1,33 @@
+Title: Labomobile 2 - Marcher en ville
+
+----
+
+Text: [{"content":{"level":"h4","text":"<strong><em>Le Lavoir Publique - Lyon - 11 au 15 février 2019</em></strong>"},"id":"4bc94078-b156-48a1-adfa-9189c0dc09e4","isHidden":false,"type":"heading"},{"content":{"level":"h2","text":"Marcher en ville"},"id":"c1100be4-aba1-45eb-ab9a-5a2791e89667","isHidden":false,"type":"heading"},{"content":{"text":"<p>Marcher est un engagement au monde. Il s’agit de formuler un pas, d’actionner un des mécanismes les plus automatisés de notre quotidien : la locomotion.</p><p>Mettre un pied devant l’autre c’est entretenir un équilibre, se stabiliser puis se déstabiliser à nouveau, encore et encore. Cet équilibre entretenu n’est pas sans résonner avec l’espace et le temps dans lesquels il se produit. En marchant nous traçons, nous produisons et nous créons l’espace et le temps tout autant qu’ils produisent cette marche. Marcher, consacre un rythme à notre présence, c’est un mouvement rythmé de nos pas tout autant que de nos pensées. Car cette forme de déambulation nous mène quelque part, qu’il s’agisse d’un lieu précis et déjà envisagé ou d'un état d’esprit, une rêverie, ou une rencontre.</p><p>Marcher est une confrontation avec ce qui fait monde, prendre le risque de la dispersion, de l’assimilation et de la connivence des flux. Cet investissement met en exergue l’aspect sensoriel de la marche, en traversant nous sentons, nous donnons un sens aux sens.</p><p>Ce corps à corps avec la ville est un espace-temps particulièrement sensible à l’imprévu, il est le creuset de l’inattendu, des ambiances et du changement bien qu’il nourrisse une continuité forte, invitant à déchiffrer l’urbain en observant ses oscillations et contrastes.</p><p>Hugo Montero</p>"},"id":"337e3bac-eff8-4fc9-9692-aaa70db9883d","isHidden":false,"type":"text"}]
+
+----
+
+Participants:
+
+- user://COCT5Z7e
+- user://M8uzcaSH
+- user://3RElsPGi
+- user://DLcnNobt
+- user://EqcfrNG1
+- user://QWnKiocQ
+- user://ew4eUc8Q
+- user://zpeJFrxZ
+- user://6FAyowZ9
+- user://ch5bh0JY
+- user://CzICtNpM
+
+----
+
+Contributions: 
+
+----
+
+Gallery: [{"content":{"images":["file://i3gQuxWJHfAhG5Ou","file://U037LKQEOkuqdsdE","file://W2Wc9vDkHhuykBva"],"caption":"","ratio":"","crop":"false"},"id":"d71255ee-4b40-4338-8d08-b4f0b88da917","isHidden":false,"type":"gallery"},{"content":{"images":["file://aa3LPA3jgSye4zgs","file://JCAy8AIbaLxOPeLg"],"caption":"","ratio":"","crop":"false"},"id":"c10a1fa7-e7b8-487e-9c95-be4f84009e90","isHidden":false,"type":"gallery"},{"content":{"images":["file://ZN2BlUSnJk5me5sI","file://qNjOiZjCsfH4BrEL","file://A8pc7ZHUXPUain1h","file://YCSF5DW7bLmAjJ9F"],"caption":"","ratio":"","crop":"false"},"id":"df35213b-9d88-4048-b449-69cf1d19f114","isHidden":false,"type":"gallery"}]
+
+----
+
+Uuid: jJoHtX8ETwqibrZL

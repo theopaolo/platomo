@@ -1,13 +1,5 @@
 <aside class="h-fit z-50 mt-8 mb-4">
   <div class="next-prev flex gap-2 my-4 items-end">
-    <?php if($next = $page->nextListed()): ?>
-      <a href="<?= $next->url() ?>" class="hover:rotate-45 transition-transform">
-        <svg width="42" height="42" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M127.5 64C127.5 99.0701 99.0701 127.5 64 127.5C28.9299 127.5 0.5 99.0701 0.5 64C0.5 28.9299 28.9299 0.5 64 0.5C99.0701 0.5 127.5 28.9299 127.5 64Z" fill="white" stroke="black" class="dark:fill-neutral-900 dark:stroke-white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M34 88.3428L84.3431 37.9999L34 37.9999L34 29.9998L98 29.9999L98 93.9998L90 93.9998L90 43.6567L39.6569 93.9997L34 88.3428Z" fill="#2E2420" class="dark:fill-white"/>
-        </svg>
-      </a>
-    <?php endif ?>
     <?php if($prev = $page->prevListed()): ?>
       <a href="<?= $prev->url() ?>" class="hover:rotate-45 transition-transform">
         <svg width="42" height="42" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,6 +8,16 @@
         </svg>
       </a>
     <?php endif ?>
+
+    <?php if($next = $page->nextListed()): ?>
+      <a href="<?= $next->url() ?>" class="hover:rotate-45 transition-transform">
+        <svg width="42" height="42" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M127.5 64C127.5 99.0701 99.0701 127.5 64 127.5C28.9299 127.5 0.5 99.0701 0.5 64C0.5 28.9299 28.9299 0.5 64 0.5C99.0701 0.5 127.5 28.9299 127.5 64Z" fill="white" stroke="black" class="dark:fill-neutral-900 dark:stroke-white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M34 88.3428L84.3431 37.9999L34 37.9999L34 29.9998L98 29.9999L98 93.9998L90 93.9998L90 43.6567L39.6569 93.9997L34 88.3428Z" fill="#2E2420" class="dark:fill-white"/>
+        </svg>
+      </a>
+    <?php endif ?>
+
     <?php $random = $page->siblings()->listed()->shuffle()->first(); ?>
     <?php if($random): ?>
       <a href="<?= $random->url() ?>" class="hover:rotate-12 transition-transform">

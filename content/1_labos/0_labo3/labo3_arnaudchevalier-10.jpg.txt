@@ -1,0 +1,5 @@
+Uuid: EC97bYpTnnUZMPgo
+
+----
+
+Template: blocks/image

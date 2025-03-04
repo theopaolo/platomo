@@ -3,7 +3,11 @@
 }
 
 .article-animation {
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: fadeUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.article-fadedown-animation {
+  animation: fadeDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .title-container {
@@ -13,7 +17,7 @@
 h1 {
   opacity: 0;
   transform-origin: left;
-  animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+  animation: fadeInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
 }
 
 @keyframes fadeIn {
@@ -71,6 +75,30 @@ h1 {
   }
 }
 
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate3d(0, 0, 1, 0);
+  }
+}
+
+@keyframes fadeOutUpFull {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate3d(0, 0, 1, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
 @keyframes fadeOutFull {
   0% {
     opacity: 1;
@@ -79,7 +107,7 @@ h1 {
 
   100% {
     opacity: 0;
-    transform: translateY(110vh);
+    transform: translateY(100%);
   }
 }
 
@@ -90,7 +118,7 @@ body.no-scroll {
 .text-subtitle {
   opacity: 0;
   transform-origin: left;
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
+  animation: fadeUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s forwards;
 }
 
 .no-effect {
@@ -102,31 +130,34 @@ body.no-scroll {
 .tags {
   opacity: 0;
   transform-origin: left;
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s forwards;
+  animation: fadeUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
 }
 
 .main-content {
   opacity: 0;
   transform-origin: left;
-  animation: fadeUp .8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.1s forwards;
+  animation: fadeUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
 }
 
 .page-base {
   .page-wrapper {
     @apply max-w-screen-lg relative mx-auto px-4;
 
-    main {
+    .category {
       opacity: 0;
-      @apply border border-black dark:border-white max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
-      animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .5s forwards;
+      animation: fadeUpFull .2s cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s forwards;
+    }
 
-      .dark & {
-        background-color: var(--color-bg);
+    main {
+      @apply  max-w-screen-lg;
+
+      .container > *{
+        opacity: 0;
+        animation: fadeUpFull .4s cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s forwards;
       }
     }
   }
 }
-
 
 .swup-page-home {
   .page-wrapper {
@@ -135,7 +166,7 @@ body.no-scroll {
     main {
       opacity: 0;
       @apply border border-black dark:border-white max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
-      animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .5s forwards;
+      animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s forwards;
 
       .dark & {
         background-color: var(--color-bg);
@@ -147,7 +178,7 @@ body.no-scroll {
     main {
       opacity: 1;
       animation-name: fadeOutFull;
-      animation-duration: 1s;
+      animation-duration: 0.5s;
       animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       animation-fill-mode: forwards;
     }
@@ -155,7 +186,7 @@ body.no-scroll {
     .bg-blur {
       @apply w-full h-screen absolute top-0 left-0;
       opacity: 1;
-      animation: fadeOut .5s ease-in-out 1s forwards;
+      animation: fadeOut .5s ease-in-out 0.3s forwards;
     }
   }
 
@@ -165,4 +196,31 @@ body.no-scroll {
     animation: fadeIn .5s ease-in-out forwards;
     backdrop-filter: blur(10px);
   }
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100);
+  }
+}
+
+html.is-leaving.is-changing .article-animation {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+html.is-leaving.is-changing .title-container {
+  animation: fadeOutUpFull .3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+html.is-changing .listing {
+  opacity: 1;
+  animation: fadeDown .3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }

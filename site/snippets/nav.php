@@ -27,16 +27,30 @@
       <span class="ml-2 text-xl font-bold text-neutral-950 dark:text-white sr-only"><?= $site->title() ?></span>
     </a>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-start gap-2">
       <!-- Dark mode toggle button -->
-      <button id="theme-toggle" class="p-2 rounded-full border border-neutral-950 dark:border-white">
-        <!-- Sun icon for dark mode (shows when in dark mode) -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="hidden dark:block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <!-- Moon icon for light mode (shows when in light mode) -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="block dark:hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      <button
+        id="theme-toggle"
+        class="theme-toggle rounded-full border dark:border-white"
+        type="button"
+        title="Toggle theme"
+        aria-label="Toggle theme"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          width="1.5em"
+          height="1.5em"
+          class="theme-toggle__eclipse"
+          fill="currentColor"
+          viewBox="0 0 32 32"
+        >
+          <clipPath id="theme-toggle__eclipse__cutout">
+            <path d="M0 0h64v32h-64zm36 16a1 1 0 0024 1 1 1 0 00-24-1" />
+          </clipPath>
+          <g clip-path="url(#theme-toggle__eclipse__cutout)">
+            <circle cx="16" cy="16" r="16" />
+          </g>
         </svg>
       </button>
 
@@ -97,4 +111,42 @@
             }
         }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const clipPath = document.querySelector('#theme-toggle__eclipse__cutout');
+    if (clipPath) {
+      // Set initial state based on dark mode
+      if (document.documentElement.classList.contains('dark')) {
+        clipPath.style.transform = 'translateX(-32px)';
+      } else {
+        clipPath.style.transform = 'translateX(0)';
+      }
+
+      // Watch for changes to the dark class on the html element
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'class') {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+              clipPath.style.transform = 'translateX(-32px)';
+            } else {
+              clipPath.style.transform = 'translateX(0)';
+            }
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, { attributes: true });
+    }
+  });
 </script>
+
+<style>
+  .theme-toggle__eclipse {
+    transition: transform 0.5s ease;
+  }
+
+  #theme-toggle__eclipse__cutout {
+    transition: transform 0.5s ease;
+  }
+</style>

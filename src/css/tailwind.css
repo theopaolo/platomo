@@ -16,3 +16,8 @@ body {
 }
 
 @tailwind utilities;
+
+
+b, strong {
+  font-weight: 500;
+}

@@ -1,7 +1,6 @@
 <?= snippet('header')?>
 
 <div class="page-wrapper" id="swup">
-
   <div class="bg-blur blur-sm"></div>
   <main class="px-3 md:px-8 z-50 relative">
     <?= snippet('page-header', ['page' => $page, 'tagClasses' => 'bg-black text-secondary dark:bg-purple dark:text-neutral-900']) ?>

@@ -35,7 +35,7 @@ $images  = $block->images()->toFiles();
   class="w-full h-full select-none">
 
   <div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-    <ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 lg:grid-cols-5">
+    <ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 lg:grid-cols-5 mt-4">
       <?php $index = 1; foreach ($images as $image): ?>
       <li class="relative">
         <img
@@ -53,7 +53,7 @@ $images  = $block->images()->toFiles();
   </div>
 
   <?php if ($caption->isNotEmpty()): ?>
-  <figcaption class="mt-4 text-center text-gray-600">
+  <figcaption class="mt-2 text-center text-gray-600 dark:text-neutral-300">
     <?= $caption ?>
   </figcaption>
   <?php endif ?>

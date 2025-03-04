@@ -143,18 +143,21 @@ body.no-scroll {
   .page-wrapper {
     @apply max-w-screen-lg relative mx-auto px-4;
 
-    main {
+    .category {
       opacity: 0;
-      @apply border border-black dark:border-white max-w-screen-lg rounded-xl bg-white absolute right-0 min-h-screen;
-      animation: fadeUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s forwards;
+      animation: fadeUpFull .2s cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s forwards;
+    }
 
-      .dark & {
-        background-color: var(--color-bg);
+    main {
+      @apply  max-w-screen-lg;
+
+      .container > *{
+        opacity: 0;
+        animation: fadeUpFull .4s cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s forwards;
       }
     }
   }
 }
-
 
 .swup-page-home {
   .page-wrapper {
@@ -207,11 +210,17 @@ body.no-scroll {
   }
 }
 
-html.is-changing .title-container{
-  animation: fadeOutUpFull .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+html.is-leaving.is-changing .article-animation {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
 }
 
-html.is-changing .article-animation{
+html.is-leaving.is-changing .title-container {
+  animation: fadeOutUpFull .3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+html.is-changing .listing {
   opacity: 1;
-  animation: fadeDown .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: fadeDown .3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }

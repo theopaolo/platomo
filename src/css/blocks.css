@@ -1,5 +1,13 @@
 .block-type-heading h2 {
-  @apply text-paragraph-title leading-paragraph-title font-medium mb-4;
+  @apply text-paragraph-title leading-tight font-medium mb-4 mt-8;
+}
+
+.block-type-heading h3 {
+  @apply text-subtitle leading-tight font-medium mb-3 mt-8;
+}
+
+.block-type-heading h4 {
+  @apply text-small-title leading-tight font-medium mb-2 mt-2;
 }
 
 .block-type-text p {
@@ -15,10 +23,13 @@
   @apply text-sm text-gray-500 mt-2;
 }
 
+.block-type-video figcaption{
+  @apply mt-2 text-sm text-center text-gray-600 dark:text-neutral-300;
+}
 
 .block-type-gallery
 {
-  @apply mb-4;
+  @apply mb-4 mt-8;
 }
 
 .block-type-gallery ul

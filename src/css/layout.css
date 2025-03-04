@@ -55,12 +55,12 @@ a, button, svg, path {
   }
 }
 
-.page-wrapper {
+/* .page-wrapper {
   main {
     max-height: 100vh;
     overflow-y: auto;
   }
-}
+} */
 
 /* Contribution pill scrollbar styling */
 .contribution-pill::-webkit-scrollbar {
@@ -93,11 +93,11 @@ a, button, svg, path {
 }
 
 /* Dark mode styles for page-base */
-.dark .page-base .page-wrapper main {
+/* .dark .page-base .page-wrapper main {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
   background-color: var(--color-bg);
-}
+} */
 
 /* Dark mode styles for swup-page-home */
 .dark .swup-page-home .page-wrapper main {

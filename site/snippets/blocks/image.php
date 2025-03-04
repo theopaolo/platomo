@@ -44,7 +44,7 @@ if ($block->location() == 'web') {
   <?php endif ?>
 
   <?php if ($caption->isNotEmpty()): ?>
-  <figcaption class="mt-2 text-center text-gray-600">
+  <figcaption class="mt-2 text-center text-gray-600 dark:text-neutral-300">
     <?= $caption ?>
   </figcaption>
   <?php endif ?>

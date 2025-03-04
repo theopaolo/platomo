@@ -8,6 +8,4 @@
       </svg>
     </span>
   </a>
-<?php else: ?>
-  <?= $block ?>
 <?php endif ?>

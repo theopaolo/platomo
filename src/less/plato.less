@@ -7,7 +7,7 @@
 	--main-text-color: black;
 	--main-outline-color: rgba(0, 0, 0, .15);
 	--dense-outline-color: rgba(0, 0, 0, .5);
-	--search-info-text-shadow: none;
+	--search-info-background-color: #FFFD;
 }
 html.dark {
 	--main-background-color: black;
@@ -15,7 +15,7 @@ html.dark {
 	--main-text-color: white;
 	--main-outline-color: rgba(255, 255, 255, .5);
 	--dense-outline-color: rgba(255, 255, 255, .8);
-	--search-info-text-shadow: rgba(255, 255, 255, 0.35) 0 0 4px;
+	--search-info-background-color: #000C;
 	background: black; /* When resizing */
 }
 h3, p, li {
@@ -242,10 +242,16 @@ canvas#front-layer {
 }
 #search-info {
 	position: fixed;
-	top: 1.5rem;
+	top: 2rem;
 	left: 0;
 	width: 100%;
 	user-select: none;
+	transition: all 400ms;
+
+	&.filled {
+		background: var(--search-info-background-color);
+		box-shadow: var(--search-info-background-color) 0 0 15px 15px;
+	}
 
 	p {
 		font-size: 2rem;
@@ -254,7 +260,6 @@ canvas#front-layer {
 		text-transform: uppercase;
 		font-weight: 300;
 		padding: 0 4.5rem;
-		text-shadow: var(--search-info-text-shadow);
 	}
 }
 #pages {

@@ -222,6 +222,10 @@ canvas#front-layer, #nodes-container {
   margin: .2rem .3rem;
 }
 
+#search #filters #filter-tags ul li h3 {
+  text-align: center;
+}
+
 #search #filters .filter.active {
   background: var(--main-text-color);
   border-color: var(--main-background-color);

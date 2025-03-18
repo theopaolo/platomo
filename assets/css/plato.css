@@ -4,7 +4,7 @@
   --main-text-color: black;
   --main-outline-color: #00000026;
   --dense-outline-color: #00000080;
-  --search-info-text-shadow: none;
+  --search-info-background-color: #fffd;
 }
 
 html.dark {
@@ -13,7 +13,7 @@ html.dark {
   --main-text-color: white;
   --main-outline-color: #ffffff80;
   --dense-outline-color: #fffc;
-  --search-info-text-shadow: #ffffff59 0 0 4px;
+  --search-info-background-color: #000c;
   background: #000;
 }
 
@@ -222,6 +222,10 @@ canvas#front-layer, #nodes-container {
   margin: .2rem .3rem;
 }
 
+#search #filters #filter-tags ul li h3 {
+  text-align: center;
+}
+
 #search #filters .filter.active {
   background: var(--main-text-color);
   border-color: var(--main-background-color);
@@ -235,15 +239,20 @@ canvas#front-layer, #nodes-container {
   -webkit-user-select: none;
   user-select: none;
   width: 100%;
+  transition: all .4s;
   position: fixed;
-  top: 1.5rem;
+  top: 2rem;
   left: 0;
+}
+
+#search-info.filled {
+  background: var(--search-info-background-color);
+  box-shadow: var(--search-info-background-color) 0 0 15px 15px;
 }
 
 #search-info p {
   text-align: center;
   text-transform: uppercase;
-  text-shadow: var(--search-info-text-shadow);
   padding: 0 4.5rem;
   font-size: 2rem;
   font-weight: 300;

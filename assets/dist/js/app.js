@@ -762,7 +762,7 @@ window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).start();
 let newUrl = 123;
 
-},{"@alpinejs/focus":"iY8M2","alpinejs":"69hXP","plyr":"aqcBy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","swup":"5QjrV"}],"iY8M2":[function(require,module,exports) {
+},{"@alpinejs/focus":"iY8M2","alpinejs":"69hXP","plyr":"aqcBy","swup":"5QjrV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iY8M2":[function(require,module,exports) {
 // node_modules/tabbable/dist/index.esm.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);

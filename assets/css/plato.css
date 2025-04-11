@@ -156,7 +156,7 @@ canvas#front-layer, #nodes-container {
   z-index: 20;
   cursor: pointer;
   width: 2.1rem;
-  margin: .2rem .3rem;
+  margin: .26rem .3rem;
   transition: left .3s ease-in-out, opacity .3s ease-in-out .1s;
   position: absolute;
   bottom: 0;
@@ -164,17 +164,15 @@ canvas#front-layer, #nodes-container {
 }
 
 #search #exit-nav svg {
-  filter: invert();
-  stroke: #fff;
-  fill: #000;
   width: 2rem;
   transition: filter .5s ease-in, transform .2s ease-in-out;
-  transform: rotate(45deg);
 }
 
 #search #exit-nav svg:hover {
-  filter: inherit;
-  transform: rotate(135deg);
+  stroke: #fff;
+  fill: #000;
+  filter: invert();
+  transform: rotate(90deg);
 }
 
 #search #filters {

@@ -5,8 +5,9 @@
   <main class="px-3 md:px-8 z-50 relative">
     <?= snippet('page-header', ['page' => $page, 'tagClasses' => 'bg-black text-secondary dark:bg-purple dark:text-neutral-900']) ?>
 
-    <div class="flex gap-4 left-auto justify-between main-content">
-      <div class="container max-w-screen-lg mt-4 md:mt-8">
+    <div class="flex gap-4 left-auto justify-between main-content ">
+
+      <div class="container max-w-screen-lg mt-4 md:mt-8 ">
 
       <?= snippet('content-blocks', ['blocks' => $page->text()->toBlocks()]) ?>
 
@@ -43,5 +44,5 @@
     <?= snippet('pagenav')?>
   </main>
 </div>
-
+<?php snippet('components/shared-lightbox') ?>
 <?= snippet('footer')?>

@@ -1,0 +1,29 @@
+Title: Mémoire é-maillées
+
+----
+
+Text: [{"content":{"text":"<p>C'est un minutieux patchwork, tissage d'instants vécus et collectés grâce à l'enregistrement stéréo et ambisonique. Ces souvenirs sont réactivés et interrogés par le prisme de sons de synthèse.</p><p>Ainsi, ces sons acoustiques de piano préparé et de percussion dont la mémoire qu’il nous en reste n’est plus que phénomènes électriques, voient leur souvenir ré-interprété par l'électronique. Elle vient s'y lover, les soutenir, les dégrader, les augmenter, créant une ambiguité entre les différentes textures — entre passé et présent re-composé.</p><p>Le processus de création fait écho à des expérimentations qui ont traversé ce LaboMobile : \"se saisir du sensible\"</p><p>Nous avons interrogé ce que la technologie pouvait apporter ou révéler de cette merveilleuse machine qu'est le vivant. Ce que les dispositifs de captation, d'augmentation, de retransmission racontaient de chacun au fil de la vaste palette de leur emploi à leur refus.</p><p>Dans la continuité de mes propres recherches en matière de traces du geste sonore, nous avons, aux côtés de Alex Andrix et avec le concours des chercheurs James Leonard et Jérome Villeneuve, plus précisément exploré différents modes de captations sonores plus ou moins immersifs et mouvants — notamment en ambisonie.</p><p>J’ai ainsi recueilli de cette résidence de nombreux enregistrements audio. Improvisations et expérimentations de matières sonores au cœur d'un piano préparé, percussions, portraits sensibles, etc. Ces instants par nature éphémères et intrinsèquement liés à l'expérience humaine ne subsistent aujourd'hui que grâce au secours de la technologie.</p><p>Ils sont certes toujours présents dans ma mémoire, mais de manière parcellaire, subjective, sans cesse sujets à ré-interprétation par le phénomène même de l'oubli. Et cette mémoire ne peut se partager autrement que par un dispositif technologique.</p><p>mémoires é-maillées propose un nouveau rituel, celui qui n'a pas eu lieu.</p><p></p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"}]
+
+----
+
+Author: - user://iJOcnElv
+
+----
+
+Tags: Objet
+
+----
+
+Labos: - page://QW2r6q4go1Skbak7
+
+----
+
+Extra: 
+
+----
+
+Formats: jpg, pdf, texte
+
+----
+
+Uuid: SuStDe9pR4cT6iC3

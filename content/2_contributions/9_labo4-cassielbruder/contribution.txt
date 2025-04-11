@@ -1,0 +1,29 @@
+Title: Echolalies
+
+----
+
+Text: [{"content":{"text":"<p>Vous trouverez au bout de ce lien les 9 courts textes légèrement illustrés, que je nomme capsule écholalique pour que ce soit un peu classe, qui sont mon projet de contribution.</p><p>C'est donc une série - certaines pièces ont été formées pendant la période du labo et n'y ont pas trait, d'autres à postériori et à propos de lui.</p><p>J'ai pour l'instant choisi de les garder manuscrites, mais ai du mal à en évaluer la lisibilité cette écriture étant la mienne.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"text":"<p>Capsules écholaliques</p><p>- véhicules d'expériences en forme de courts poèmes formés sur la répétition -</p><p>1 - recueillir la neige</p><p>2 - les patates</p><p>3 - le rituel</p><p>4 - latour attaque</p><p>5 - couloir</p><p>6 - cynthia maraîchère</p><p>7 - je profite</p><p>8 - marches aveugles</p><p>9 - suite à ça</p><p>10 - mon trou</p><p>11 - perchoir</p>"},"id":"1223b9c3-41e4-4b6e-a4a8-007437cce4ef","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://e8mL7zMyQwSB2rzY"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"554b5241-62e2-48c3-bcf8-9a680b62873d","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://Pf8SW3SJLWNEWSxP"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"7ab9a4c4-585e-433b-8ec7-b07175d04b68","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://exHqpODYbNBnqLVi"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"8c00c497-c527-4da2-9dbe-5f7016a10d5a","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://0KHidtSSzutjBfW0"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"c6724544-9803-46d0-87b6-fb72fb3d7bfd","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://O7ZuACEg1Vo37a7l"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"a76cd568-2ca2-4215-b220-dff020aac4cd","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://aOBhbYFVfmAmCNpk"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"bc14091f-9f9a-438c-9a68-1ee72f96c672","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://XSagP1eXtpqhrKO6"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"8a0f7672-f982-45df-a6b4-4aaa35db0e8a","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://Z3WCkWdF1iCU8nnW"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"ee61b6fb-8a2f-45b6-883a-c3c2e187b7bb","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://U5u2vCToU0eA3Ema"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"9e2efb77-a37b-45e5-9e49-1de4cad77609","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://4dlzDSOAItSDrYKQ"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"75d863fc-3361-4cd8-bc15-9f2bdf06dd76","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://AxdOJa9DL4N1ILMR"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"0081bc66-5374-41d4-bfb4-d9e41d5fdcfb","isHidden":false,"type":"image"}]
+
+----
+
+Author: - user://r5aDMUgo
+
+----
+
+Tags: Objet
+
+----
+
+Labos: - page://QW2r6q4go1Skbak7
+
+----
+
+Extra: 
+
+----
+
+Formats: jpg, video, web
+
+----
+
+Uuid: MuLtMdA9eX4pL7rT

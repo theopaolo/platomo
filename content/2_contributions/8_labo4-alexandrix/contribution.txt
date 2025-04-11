@@ -1,0 +1,25 @@
+Title: Réflexions inceptives
+
+----
+
+Text: [{"content":{"level":"h2","text":"Réflexions inceptives - Extraits"},"id":"2bec400a-a244-4fd9-b3e5-dccb1de99e54","isHidden":false,"type":"heading"},{"content":{"text":"<p>Ce texte contient un ensemble de réflexions issues d'un travail de préparation à la première semaine de résidence du LaboMobile#4 autour d'un thème : Se Saisir du Sensible. Certains extraits ont été lus à l'équipe pendant la résidence, en l'occurrence la partie 2 de la section Portrait Sensoriel ainsi que les parties 0 et 5 de la section Introductions Expérimentales.</p>"},"id":"9d2c49e0-9794-4ecf-976a-14008ee24bdd","isHidden":false,"type":"text"},{"content":{"link":"","text":"Réflexions inceptivesAA.pdf","files":["file://uMBnzduKjKK1ng4C"]},"id":"2ffc1cab-caf5-4c8f-996c-f6e1f99c80ae","isHidden":false,"type":"button"},{"content":{"level":"h2","text":"Portraits Sensoriels semaine 2"},"id":"c291e8e3-66cc-46b6-be18-246f63dc0f06","isHidden":false,"type":"heading"},{"content":{"text":"<p>Texte commencé le 1er février 2021 et complété la même semaine</p><p>Lu à l’équipe en début de seconde semaine de résidence aux SUBS</p>"},"id":"1d2314c9-fa18-4418-87ac-a869ad93b788","isHidden":false,"type":"text"},{"content":{"link":"","text":"Portrait sensorielAA.pdf","files":["file://zWTFxW2TXz39Zmia"]},"id":"2856b286-01d4-4afb-91c4-3a0f2e13c000","isHidden":false,"type":"button"},{"content":{"level":"h2","text":"Exomonde"},"id":"aa9ca3f5-1d7b-4d52-9109-dc6ba0d8e999","isHidden":false,"type":"heading"},{"content":{"text":"<p>Récit d'un parfum en seize notes</p>"},"id":"a44d03b5-17f7-4f72-a339-669e01c43c1e","isHidden":false,"type":"text"},{"content":{"link":"","text":"ExomondeAA.pdf","files":["file://x4pk42FHE4QEb4gr"]},"id":"0a057a48-a803-4173-9d4c-ca14eceb6c22","isHidden":false,"type":"button"}]
+
+----
+
+Author: - user://sjlk9UjF
+
+----
+
+Tags: Recit
+
+----
+
+Labos: - page://QW2r6q4go1Skbak7
+
+----
+
+Extra: 
+
+----
+
+Uuid: rwZ6OQKPstmR21Xf

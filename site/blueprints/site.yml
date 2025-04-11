@@ -20,4 +20,4 @@ tabs:
         type: tags
       introtext:
         Label: Intro
-        type: text
+        type: textarea

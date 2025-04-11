@@ -3,4 +3,3 @@ label: Labos
 info: "{{ page.date.toDate('d.m.Y') }}"
 template: labo
 empty: Pas de labo
-sortBy: date desc

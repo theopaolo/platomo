@@ -1,0 +1,29 @@
+Title: Le pull de Robinson
+
+----
+
+Text: [{"content":{"text":"<p>Contribution de Louise Deltrieux en forme de patron de tricot - récit du laboratoire.</p>"},"id":"1ca89f3d-0564-4dfb-b905-08203a035144","isHidden":false,"type":"text"},{"content":{"link":"","text":"Louise Deltrieux_Le pull de robinson_labomobile3","files":["file://jDnvCnfCPgHIOBGX"]},"id":"dc4aeafd-86e3-4ce0-ac8f-98a10669ec9e","isHidden":false,"type":"button"},{"content":{"location":"kirby","image":["file://GBYr9cKpE7zPOz0P"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"true"},"id":"e070f0ca-b6f3-4bd2-8d3d-456f127bba14","isHidden":false,"type":"image"}]
+
+----
+
+Author: - user://4J2F1InE
+
+----
+
+Tags: Recit
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
+
+----
+
+Extra: 
+
+----
+
+Formats: png, video, texte
+
+----
+
+Uuid: CoLmEt8dO2lG5yP1

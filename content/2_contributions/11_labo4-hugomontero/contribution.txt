@@ -1,0 +1,29 @@
+Title: L'eau de nos lumières
+
+----
+
+Text: [{"content":{"text":"<p>Six photos retouchées par Hugo Montero issues du laboratoire.</p>"},"id":"eace4801-333d-486e-a46f-59aa7b66ab29","isHidden":false,"type":"text"},{"content":{"location":"kirby","image":["file://6SRhiluBHvkJI7jt"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"146368e0-953f-4a3a-9052-dbd0caa053af","isHidden":false,"type":"image"},{"content":{"images":["file://ExJQ090RQ1U9Yfv8","file://0O2LB87tP1pne6RI"],"caption":"","ratio":"","crop":"false"},"id":"47fec78e-3a07-48e5-9f88-b42dbe8dd557","isHidden":false,"type":"gallery"},{"content":{"images":["file://D7HG23gfxMrHqEBR","file://8RqMn4wFNBPDDVXg"],"caption":"","ratio":"","crop":"true"},"id":"f3e74f8f-9450-46f0-a708-9de4166d701d","isHidden":false,"type":"gallery"}]
+
+----
+
+Author: - user://M8uzcaSH
+
+----
+
+Tags: Objet
+
+----
+
+Labos: - page://QW2r6q4go1Skbak7
+
+----
+
+Extra: 
+
+----
+
+Formats: jpg, texte, github
+
+----
+
+Uuid: VczY2mZt3stoJa9t

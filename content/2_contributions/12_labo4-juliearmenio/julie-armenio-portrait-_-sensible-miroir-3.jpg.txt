@@ -1,0 +1,5 @@
+Uuid: KM3Pksan26NWt3LZ
+
+----
+
+Template: blocks/image

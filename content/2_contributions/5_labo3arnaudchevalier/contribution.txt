@@ -1,0 +1,29 @@
+Title: Au bout du geste
+
+----
+
+Text: [{"content":{"text":"<p>Ce texte n’est ni un compte rendu, ni une synthèse de l’expérience de laboratoire que nous avons vécu, il est un prolongement très personnel dont les affirmations n’ont rien de péremptoire. Un ensemble d’impression faisant suite à la fréquentation du sujet. Une nouvelle dérive sur ce fascinant mot de savoir-faire actualisé par notre exploration collective.</p><p>Première impression</p><p>Le savoir-faire est un drôle de nom invariable formé de deux verbes. Il définit un espace de l’activité humaine dans lequel s’exerce et se transmettent des pratiques parfois depuis de nombreux siècles. Sa diffusion fonctionne au contraire du tutoriel qui nous montre en image la technique à reproduire ou de la notice qui explique en liste les opérations nécessaires à la réalisation d’une tâche. Il n’est pas décomposable et semble fonctionner de manière holistique, suivant les individus et voyageant entre les domaines : une pratique vue ici au grès du temps se retrouve là… On peut suivre son cheminement à travers le voyage des vocabulaires, par exemple, celui de la marine dans la technique du spectacle et celui de l’affutage dans la cuisine traditionnelle (céleri rémoulade).</p><p>Deuxième impression</p><p>Le savoir-faire est un acquis de l’expérience : faire=savoir ; mais dont la naissance semble prise dans un mouvement cyclique, c’est-à-dire que le faire engendre un savoir qui se transmet autorisant un autre à faire et à générer d’autres savoirs… Mais ce savoir n’est pas un produit du langage, qui s’il fait trace de sa présence et peut servir à le véhiculer, n’est pas pour autant son moteur comme l’explique bien l’article de Christel Sola (Revue Terrain, 2007). Le langage, a du mal à se faire précis et raconte avec des mots généraux ce que l’expérience et les sens distinguent sans hésiter : dans les recettes de cuisine on trouve ainsi parfois la mention d’un mélange « bien homogène », d’une préparation qui « blanchie » ou se « colore ». </p><p>Troisième impression</p><p>Le savoir-faire ne se limite pas à l’activité manuelle. L’enseignante d’arithmétique face à sa classe déploie tout un savoir-faire. Il dépasse le clivage entre savoir « manuel » et « intellectuel ». C’est un phénomène qui se véhicule depuis longtemps de manière immatérielle et par transmission orale. Dont il serait surement bien difficile de faire l’histoire, bien qu’il laisse derrière son passage une bibliothèque extraordinaire : tous les artefacts qu’a engendré son ingéniosité, et qui contiennent dans leurs scories et leurs gauchissements, encore ce mouvement du savoir-faire.</p><p>Dans des livres, des amphores, des ordinateurs, des maisons, tous types d’objets dans lesquels on peut sentir la personne qui les ont façonnés. Le savoir-faire est ainsi l’industrie d’avant la révolution industrielle. La manufacture des idées et des environnements habités.</p><p>Ces impressions sont issues de ce qu’a mobilisé le troisième LaboMobile.</p><p>Le sujet qui l’a animé n’est cependant pas tombé du ciel. </p><p>Il vient de mon histoire et de ses paradoxes. D’une maturation lente d’une réflexion sur le travail, la relation à l’outils, aux gestes. </p><p>De la rencontre des écrits de Mathew Crawford, Hugues Jacquet, Arthur Lochmann ; des conseils de Magali Berruet, Hugo Montero, Isabelle Viallet, Léa Carton de Grammont ; de l’incroyable chance d’avoir rencontré Pierre Meunier par hasard ; qui m’a accueilli ensuite au sein de la compagnie La Belle Meunière au cours de la création du spectacle Sécurilif pour observer leur manière de chercher et réfléchir à l’accompagnement de temps de recherche.</p><p>Cela m’amena aussi à présenter ce projet à Florence Kremper et à l’équipe du Studio-Théâtre de Vitry qui par leur soutient m’ont fait continuer le travail et me projeter dans un laboratoire plus ambitieux que je n’aurais pu rêver seul.</p><p>Mais ce sont les participant.es, hier inconnus, aujourd’hui familiers, qui sont venu habiter cette recherche et en ont exprimé toute la richesse qui ont laissé l’impression la plus forte qui colore aujourd’hui pour moi cette notion de savoir-faire.</p><p>Le geste éduqué de création de temps de recherche.</p><p>Le geste apprivoisé de la recherche collective et collaborative comme démarche qui ne cherche pas à créer des inventaires ou des définitions, mais à engendrer de l’expérience. L’expérience d’une certaine relation au vide. D’une relation à la matière et à la création artistique. </p><p>Au bout du geste se trouve l’outils. L’outils explore la matière. Révèle ce qui en elle était jusque là passif. Agit aussi sur la volonté qu’il interprète. L’outils interprète le savoir-faire comme une danse, un média entre l’émotion et le geste.</p><p></p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"}]
+
+----
+
+Author: - user://COCT5Z7e
+
+----
+
+Tags: Pensée
+
+----
+
+Labos: - page://xUzVmSCPYWkfN2zW
+
+----
+
+Extra: 
+
+----
+
+Formats: png, pdf
+
+----
+
+Uuid: DiGdOc8tRa4nP9mL

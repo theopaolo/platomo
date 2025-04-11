@@ -40,6 +40,10 @@ a, button, svg, path {
   pointer-events: none;
 }
 
+.swup-page-home .page-wrapper main {
+  @apply max-h-screen overflow-y-scroll;
+}
+
 .swup-page-home .page-wrapper {
   @apply pt-20 xl:pt-0;
 }
@@ -124,4 +128,9 @@ a, button, svg, path {
 
 .contribution-pill {
   transition: scrollbar-color 0.2s ease;
+}
+
+
+.intro-text p:not(:last-child) {
+  margin-bottom: 1rem;
 }

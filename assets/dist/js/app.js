@@ -643,6 +643,11 @@ document.addEventListener("click", (event)=>{
     if (event.target.matches("a[data-swup]")) document.body.classList.add("no-scroll");
     // Add event listener for page background to close swup page
     if (event.target.matches(".bg-blur")) goBackWithSwup();
+    if (event.target.matches(".go-back") || event.target.closest(".go-back")) {
+        console.log("go back");
+        event.preventDefault();
+        goBackWithSwup();
+    }
     const link = event.target.closest("a[data-instant-transition]");
     if (link) {
         // Skip animations for this specific transition
@@ -748,6 +753,16 @@ swup.hooks.on("page:view", (visit)=>{
     document.documentElement.classList.remove("is-leaving");
     console.log("newUrl", newUrl);
     console.log("prevUrl", previousURL);
+    // Show go-back button only if coming from index page
+    const goBackButton = document.querySelectorAll(".go-back");
+    if (goBackButton) {
+        // Create URL object from previousURL to properly parse the pathname
+        const prevUrlObj = new URL(previousURL);
+        const isFromIndex = prevUrlObj.pathname === "/" || prevUrlObj.pathname === "";
+        goBackButton.forEach((button)=>{
+            button.style.display = isFromIndex ? "block" : "none";
+        });
+    }
 });
 swup.hooks.on("visit:start", (visit)=>{
     console.log("visit:start", visit);
@@ -759,10 +774,154 @@ swup.hooks.on("visit:start", (visit)=>{
 // Initialize Alpine.js
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).plugin((0, _focusDefault.default));
+// Function to initialize the shared lightbox store
+function initLightboxStore() {
+    console.log("initLightboxStore");
+    (0, _alpinejsDefault.default).store("sharedLightbox", {
+        isOpen: false,
+        currentGalleryId: null,
+        currentIndex: 0,
+        currentGalleryImages: [],
+        currentImage: null,
+        allImages: [],
+        keydownHandler: null,
+        initialized: false,
+        registerGallery (images) {
+            // Add new images if they don't exist
+            images.forEach((img)=>{
+                if (!this.allImages.some((existing)=>existing.url === img.url)) this.allImages.push(img);
+            });
+            console.log("Registered gallery images, total:", this.allImages.length);
+        },
+        findImageIndex (url) {
+            return this.allImages.findIndex((img)=>img.url === url);
+        },
+        open (galleryId, index, images) {
+            // Ensure we have the latest images
+            this.currentGalleryImages = this.allImages; // Use all registered images
+            this.currentGalleryId = galleryId;
+            this.currentIndex = index;
+            this.currentImage = this.allImages[index];
+            this.isOpen = true;
+            // Create bound handler for keyboard navigation
+            this.keydownHandler = (e)=>{
+                if (!this.isOpen) return;
+                switch(e.key){
+                    case "ArrowLeft":
+                        this.prev();
+                        break;
+                    case "ArrowRight":
+                        this.next();
+                        break;
+                    case "Home":
+                        this.goToFirst();
+                        break;
+                    case "End":
+                        this.goToLast();
+                        break;
+                    case "Escape":
+                        this.close();
+                        break;
+                }
+            };
+            // Add keyboard navigation when lightbox is open
+            window.addEventListener("keydown", this.keydownHandler);
+            // Announce to screen readers
+            (0, _alpinejsDefault.default).nextTick(()=>{
+                const modalContainer = document.querySelector('[x-ref="modalContainer"]');
+                const srAnnounce = document.querySelector('[x-ref="srAnnounce"]');
+                if (modalContainer) modalContainer.focus();
+                if (srAnnounce) srAnnounce.textContent = `Gallery viewer opened. Image ${this.currentIndex + 1} of ${this.allImages.length}: ${this.currentImage.alt}`;
+            });
+        },
+        close () {
+            this.isOpen = false;
+            // Remove keyboard event listener
+            if (this.keydownHandler) {
+                window.removeEventListener("keydown", this.keydownHandler);
+                this.keydownHandler = null;
+            }
+            // Announce to screen readers
+            const srAnnounce = document.querySelector('[x-ref="srAnnounce"]');
+            if (srAnnounce) srAnnounce.textContent = "Gallery viewer closed";
+            // Return focus to the clicked image
+            (0, _alpinejsDefault.default).nextTick(()=>{
+                const clickedImage = document.querySelector(`[data-index="${this.currentIndex + 1}"]`);
+                if (clickedImage) clickedImage.focus();
+            });
+            // Reset state after animation
+            setTimeout(()=>{
+                this.currentGalleryId = null;
+                this.currentIndex = 0;
+                this.currentGalleryImages = [];
+                this.currentImage = null;
+            }, 300);
+        },
+        next () {
+            if (!this.currentGalleryImages.length) return;
+            this.currentIndex = (this.currentIndex + 1) % this.currentGalleryImages.length;
+            this.currentImage = this.currentGalleryImages[this.currentIndex];
+            this.updateAnnouncement();
+        },
+        prev () {
+            if (!this.currentGalleryImages.length) return;
+            this.currentIndex = (this.currentIndex - 1 + this.currentGalleryImages.length) % this.currentGalleryImages.length;
+            this.currentImage = this.currentGalleryImages[this.currentIndex];
+            this.updateAnnouncement();
+        },
+        goToFirst () {
+            if (!this.currentGalleryImages.length) return;
+            this.currentIndex = 0;
+            this.currentImage = this.currentGalleryImages[0];
+            this.updateAnnouncement("First image");
+        },
+        goToLast () {
+            if (!this.currentGalleryImages.length) return;
+            this.currentIndex = this.currentGalleryImages.length - 1;
+            this.currentImage = this.currentGalleryImages[this.currentIndex];
+            this.updateAnnouncement("Last image");
+        },
+        updateAnnouncement (prefix = "") {
+            const srAnnounce = document.querySelector('[x-ref="srAnnounce"]');
+            if (!srAnnounce) return;
+            const message = prefix ? `${prefix}: ${this.currentImage.alt}` : `Image ${this.currentIndex + 1} of ${this.currentGalleryImages.length}: ${this.currentImage.alt}`;
+            srAnnounce.textContent = message;
+        }
+    });
+}
+// Initialize the store for the first time
+initLightboxStore();
+// Initialize Alpine
 (0, _alpinejsDefault.default).start();
-let newUrl = 123;
+// Function to collect all gallery images from the page
+function collectGalleryImages() {
+    const galleries = document.querySelectorAll(".gallery-block");
+    const allImages = [];
+    galleries.forEach((gallery)=>{
+        try {
+            const images = JSON.parse(gallery.dataset.galleryImages);
+            allImages.push(...images);
+        } catch (e) {
+            console.error("Error parsing gallery images:", e);
+        }
+    });
+    console.log("Collected images:", allImages.length);
+    return allImages;
+}
+// Reinitialize Alpine and the lightbox store after Swup page transitions
+swup.hooks.on("content:replace", ()=>{
+    // First collect all images from the new page content
+    const newImages = collectGalleryImages();
+    // Reset Alpine and reinitialize the store
+    (0, _alpinejsDefault.default).destroyTree(document.documentElement);
+    initLightboxStore();
+    // Pre-register all images with the store
+    (0, _alpinejsDefault.default).store("sharedLightbox").allImages = newImages;
+    // Now initialize Alpine with the pre-populated store
+    (0, _alpinejsDefault.default).initTree(document.documentElement);
+});
 
-},{"@alpinejs/focus":"iY8M2","alpinejs":"69hXP","plyr":"aqcBy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","swup":"5QjrV"}],"iY8M2":[function(require,module,exports) {
+},{"@alpinejs/focus":"iY8M2","alpinejs":"69hXP","plyr":"aqcBy","swup":"5QjrV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iY8M2":[function(require,module,exports) {
 // node_modules/tabbable/dist/index.esm.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);

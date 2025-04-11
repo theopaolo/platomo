@@ -1,0 +1,29 @@
+Title: Mémoire Labomobile 1 - Identité·e·s
+
+----
+
+Text: [{"content":{"text":"<p>Suite à la première édition de Labomobile une mémoire à été rédigée par Arnaud Chevalier afin d'être partagé avec les participant·e·s. Le document ci-dessous fait le récit du laboratoire et des sources qui ont été partagées.</p>"},"id":"7353f075-4610-482b-a5c1-6a91eb5a1707","isHidden":false,"type":"text"},{"content":{"level":"h2","text":""},"id":"c906aa1c-7864-49cb-af74-847d902addda","isHidden":false,"type":"heading"},{"content":{"link":"","text":"Appuyez ici pour télécharger la contribution","files":["file://vZgbsl6IgonKd956"]},"id":"4543e3f9-acb3-486c-9411-d7bfc1ea8239","isHidden":false,"type":"button"},{"content":{"location":"kirby","image":["file://AnHVDuSQOlINKoiI"],"src":"","alt":"","caption":"crédit image : Deenesh Ghyczy","link":"","ratio":"","crop":"true"},"id":"109a139c-1162-4207-8a7c-7183e925f4a5","isHidden":false,"type":"image"}]
+
+----
+
+Author: - user://COCT5Z7e
+
+----
+
+Tags: Recit
+
+----
+
+Labos: 
+
+----
+
+Extra: 
+
+----
+
+Formats: jpg, texte
+
+----
+
+Uuid: ArChIn6vT8nP2mK9

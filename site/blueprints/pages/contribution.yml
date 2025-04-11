@@ -1,5 +1,4 @@
 title: Contribution
-num: '{{ page.date.toDate("Ymd") }}'
 icon: 📖
 
 status:

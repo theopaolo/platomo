@@ -1,0 +1,25 @@
+Title: Portraits sensibles [miroirs]
+
+----
+
+Text: [{"content":{"level":"h2","text":"Process reproductible - appropriable - transformable."},"id":"882409ff-1f11-426a-a653-a894b717b911","isHidden":false,"type":"heading"},{"content":{"link":"","text":"Portraits sensibles [miroirs].pdf","files":["file://UHOZbN62gP9gwulG"]},"id":"88d0d6f5-e740-480e-9ab0-aed1f2790d8d","isHidden":false,"type":"button"},{"content":{"location":"kirby","image":["file://OVfou93IeHzFWBay"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"ca840365-11ea-4720-b46e-7dd566374c41","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://kBf3tZJHGMM00IL0"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"f1c44f3e-2adb-41a7-b3b3-175b07a1d975","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://KM3Pksan26NWt3LZ"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"47416d4c-18e2-47d9-89cb-dcbc11325b0f","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://TIz4lUDJKfEUt9Gk"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"fe5fc164-0a17-403f-9bdc-b088a3b5ca01","isHidden":false,"type":"image"},{"content":{"location":"kirby","image":["file://QyoKrfI5bvwbBinA"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"57d5e152-8001-4dc5-8869-52814609430d","isHidden":false,"type":"image"}]
+
+----
+
+Author: - user://XGFQ00Um
+
+----
+
+Tags: Outil
+
+----
+
+Labos: - page://QW2r6q4go1Skbak7
+
+----
+
+Extra: 
+
+----
+
+Uuid: GCRs2vy4rgO1OMPL

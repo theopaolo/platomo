@@ -1,7 +1,7 @@
 <?= snippet('header')?>
 <?php $total = $page->children()->listed()->count() ?>
 <div  id="swup">
-  <main class="lg:container mx-auto mt-8 md:mt-20 px-4">
+  <main class="lg:container mx-auto mt-8 md:mt-20 px-4 mb-8 md:mb-20">
     <?= snippet('pagetitle', ['total' => $total])?>
 
     <section class="listing flex flex-col gap-4 mt-8 md:mt-20">

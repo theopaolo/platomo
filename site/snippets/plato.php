@@ -23,8 +23,9 @@
 			</div>
 
 			<div id="exit-nav">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37256 18.6274 0 12 0C5.37256 0 0 5.37256 0 12C0 18.6274 5.37256 24 12 24ZM11.5 6V11.5H6V12.5H11.5V18H12.5V12.5H18V11.5H12.5V6H11.5Z"/>
+				<svg width="32" height="32" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" >
+					<path d="M2.5 64C2.5 30.3589 30.3589 2.5 64 2.5C97.6411 2.5 125.5 30.3589 125.5 64C125.5 97.6411 97.6411 125.5 64 125.5C30.3589 125.5 2.5 97.6411 2.5 64Z" fill="white" stroke="black" stroke-width="4"/>
+					<path d="M45 45L64.2132 64.2132M64.2132 64.2132L83.4264 83.4264M64.2132 64.2132L83.4264 45M64.2132 64.2132L45 83.4264" stroke="black" stroke-width="8"/>
 				</svg>
 			</div>
 
@@ -62,6 +63,7 @@
 					</ul>
 
 					<ul id="filters-author">
+						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
 						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
 						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>
 						<li data-tag="57" class="rounded-btn"><h3>Indicible</h3></li>

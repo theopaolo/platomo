@@ -1,5 +1,9 @@
 <?php if ($block->type() == 'button'): ?>
-  <a href="<?= $block->link() ?>" class="group flex items-center gap-4 w-fit rounded-full py-1 pl-4 pr-1 border my-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300">
+  <?php
+    $file = $block->files()->toFile();
+    $url = $file ? $file->url() : $block->link();
+  ?>
+  <a href="<?= $url ?>" target="_blank" class="group flex items-center gap-4 w-fit rounded-full py-1 pl-4 pr-1 border my-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300" >
     <?= $block->text() ?>
     <span class="transition-transform duration-300 group-hover:rotate-45">
       <svg width="32" height="32" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">

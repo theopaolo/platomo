@@ -56,15 +56,15 @@
 
       <button @click="toggleNav"
               :class="{'bg-neutral-950 text-white': isOpen, 'bg-white text-black dark:bg-neutral-800 dark:text-white': !isOpen}"
-              class="flex items-center border-neutral-950 dark:border-white border border-b text-sm font-medium uppercase pl-2 pr-1 py-1 rounded-full hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-neutral-950 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-75 group">
+              class="hidden flex items-center border-neutral-950 dark:border-white border border-b text-sm font-medium uppercase pl-2 pr-1 py-1 rounded-full hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-neutral-950 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-opacity-75 group">
         Navigation
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             :class="{'fill-secondary': isOpen, 'rotate-45': isOpen}"
             class="w-8 h-8 ml-2 transition-transform group-hover:rotate-45 group-hover:fill-secondary">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37256 18.6274 0 12 0C5.37256 0 0 5.37256 0 12C0 18.6274 5.37256 24 12 24ZM11.5 6V11.5H6V12.5H11.5V18H12.5V12.5H18V11.5H12.5V6H11.5Z"/>
         </svg>
-
       </button>
+
     </div>
   </div>
 

@@ -65,8 +65,14 @@ columns:
               query: site.categories.split
 
           labos:
-            type: pages
-            query: site.find('labos')
+            label: Laboratoire
+            type: select
+            options:
+              type: query
+              query: site.find('labos').children
+              text: "{{ page.title }}"
+              value: "{{ page.uuid }}"
+
           extra:
             label: Ressources
             type: structure

@@ -771,155 +771,155 @@ swup.hooks.on("visit:start", (visit)=>{
         swup.options.animationDuration = 10; // Very short duration (milliseconds)
     } else swup.options.animationDuration = 400; // Normal duration for other transitions
 });
-// Initialize Alpine.js
+// Simple vanilla JS lightbox
+function initLightbox() {
+    // Get all gallery images
+    const galleryImages = Array.from(document.querySelectorAll('figure[aria-labelledby^="gallery-"] img')).map((img)=>({
+            src: img.src,
+            alt: img.alt
+        }));
+    if (galleryImages.length === 0) return;
+    // Create lightbox HTML
+    const lightboxHTML = `
+    <div id="lightbox" class="fixed inset-0 z-[99] hidden items-center justify-center bg-black bg-opacity-0 cursor-zoom-out transition-opacity duration-300">
+      <div class="relative flex items-center justify-center w-11/12 xl:w-4/5 h-11/12">
+        <button id="lightbox-prev" class="absolute left-0 flex items-center justify-center text-white translate-x-10 hover:rotate-45 transition-transform rounded-full xl:-translate-x-24 2xl:-translate-x-32 focus:outline-none focus:ring-4 focus:ring-white" aria-label="Previous image">
+          <svg width="42" height="42" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M0.499994 64C0.499991 28.9299 28.9299 0.500009 64 0.500006C99.0701 0.500003 127.5 28.9299 127.5 64C127.5 99.0701 99.0701 127.5 64 127.5C28.9299 127.5 0.499997 99.0701 0.499994 64Z" fill="white" stroke="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M94 39.6572L43.6569 90.0001L94 90.0001V98.0001H30L30 34.0002H38L38 84.3433L88.3431 34.0003L94 39.6572Z" fill="#2E2420"/>
+          </svg>
+        </button>
+
+        <div class="relative max-w-full max-h-[90vh]">
+          <img id="lightbox-image" class="object-contain object-center w-full h-full max-h-[90vh] cursor-zoom-out opacity-0 invisible transition-all duration-300" style="visibility: hidden;">
+        </div>
+
+        <button id="lightbox-next" class="absolute right-0 flex items-center justify-center text-white -translate-x-10 rounded-full hover:rotate-45 transition-transform xl:translate-x-24 2xl:translate-x-32 focus:outline-none focus:ring-4 focus:ring-white" aria-label="Next image">
+          <svg width="42" height="42" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M127.5 64C127.5 99.0701 99.0701 127.5 64 127.5C28.9299 127.5 0.5 99.0701 0.5 64C0.5 28.9299 28.9299 0.5 64 0.5C99.0701 0.5 127.5 28.9299 127.5 64Z" fill="white" stroke="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34 88.3428L84.3431 37.9999L34 37.9999L34 29.9998L98 29.9999L98 93.9998L90 93.9998L90 43.6567L39.6569 93.9997L34 88.3428Z" fill="#2E2420"/>
+          </svg>
+        </button>
+
+        <button id="lightbox-close" class="absolute top-4 right-4 bg-white text-black p-2 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-white" aria-label="Close gallery viewer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div id="lightbox-counter" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full opacity-0 transition-opacity duration-300"></div>
+      </div>
+    </div>
+  `;
+    // Add lightbox to body if it doesn't exist
+    if (!document.getElementById("lightbox")) document.body.insertAdjacentHTML("beforeend", lightboxHTML);
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxPrev = document.getElementById("lightbox-prev");
+    const lightboxNext = document.getElementById("lightbox-next");
+    const lightboxClose = document.getElementById("lightbox-close");
+    const lightboxCounter = document.getElementById("lightbox-counter");
+    let currentIndex = 0;
+    function showImage(index) {
+        currentIndex = index;
+        const image = galleryImages[index];
+        // Fade out current image
+        lightboxImage.style.opacity = "0";
+        lightboxImage.style.visibility = "hidden";
+        // Wait for fade out before changing image
+        setTimeout(()=>{
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightboxImage.style.visibility = "visible";
+            // Fade in new image
+            setTimeout(()=>{
+                lightboxImage.style.opacity = "1";
+            }, 50);
+        }, 300);
+        lightboxCounter.textContent = `${index + 1} / ${galleryImages.length}`;
+        // Show/hide navigation buttons
+        lightboxPrev.style.display = galleryImages.length > 1 ? "flex" : "none";
+        lightboxNext.style.display = galleryImages.length > 1 ? "flex" : "none";
+    }
+    function openLightbox(index) {
+        lightbox.classList.remove("hidden");
+        lightbox.classList.add("flex");
+        document.body.style.overflow = "hidden";
+        // Trigger reflow to ensure transition works
+        lightbox.offsetHeight;
+        // Fade in background and elements
+        lightbox.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+        lightboxCounter.style.opacity = "1";
+        // Set initial image state
+        lightboxImage.style.visibility = "visible";
+        setTimeout(()=>{
+            lightboxImage.style.opacity = "1";
+        }, 50);
+        showImage(index);
+    }
+    function closeLightbox() {
+        // Fade out background and elements
+        lightbox.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        lightboxImage.style.opacity = "0";
+        lightboxCounter.style.opacity = "0";
+        // Wait for fade out before hiding
+        setTimeout(()=>{
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+            lightboxImage.style.visibility = "hidden";
+            document.body.style.overflow = "";
+        }, 300);
+    }
+    // Add click handlers to gallery images
+    galleryImages.forEach((_, index)=>{
+        const img = document.querySelectorAll('figure[aria-labelledby^="gallery-"] img')[index];
+        img.addEventListener("click", ()=>openLightbox(index));
+    });
+    // Add navigation handlers
+    lightboxPrev.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        showImage(prevIndex);
+    });
+    lightboxNext.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        const nextIndex = (currentIndex + 1) % galleryImages.length;
+        showImage(nextIndex);
+    });
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", closeLightbox);
+    // Keyboard navigation
+    document.addEventListener("keydown", (e)=>{
+        if (!lightbox.classList.contains("flex")) return;
+        switch(e.key){
+            case "ArrowLeft":
+                const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                showImage(prevIndex);
+                break;
+            case "ArrowRight":
+                const nextIndex = (currentIndex + 1) % galleryImages.length;
+                showImage(nextIndex);
+                break;
+            case "Escape":
+                closeLightbox();
+                break;
+        }
+    });
+}
+// Initialize Alpine
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).plugin((0, _focusDefault.default));
-// Function to initialize the shared lightbox store
-function initLightboxStore() {
-    console.log("initLightboxStore");
-    (0, _alpinejsDefault.default).store("sharedLightbox", {
-        isOpen: false,
-        currentGalleryId: null,
-        currentIndex: 0,
-        currentGalleryImages: [],
-        currentImage: null,
-        allImages: [],
-        keydownHandler: null,
-        initialized: false,
-        registerGallery (images) {
-            // Add new images if they don't exist
-            images.forEach((img)=>{
-                if (!this.allImages.some((existing)=>existing.url === img.url)) this.allImages.push(img);
-            });
-            console.log("Registered gallery images, total:", this.allImages.length);
-        },
-        findImageIndex (url) {
-            return this.allImages.findIndex((img)=>img.url === url);
-        },
-        open (galleryId, index, images) {
-            // Ensure we have the latest images
-            this.currentGalleryImages = this.allImages; // Use all registered images
-            this.currentGalleryId = galleryId;
-            this.currentIndex = index;
-            this.currentImage = this.allImages[index];
-            this.isOpen = true;
-            // Create bound handler for keyboard navigation
-            this.keydownHandler = (e)=>{
-                if (!this.isOpen) return;
-                switch(e.key){
-                    case "ArrowLeft":
-                        this.prev();
-                        break;
-                    case "ArrowRight":
-                        this.next();
-                        break;
-                    case "Home":
-                        this.goToFirst();
-                        break;
-                    case "End":
-                        this.goToLast();
-                        break;
-                    case "Escape":
-                        this.close();
-                        break;
-                }
-            };
-            // Add keyboard navigation when lightbox is open
-            window.addEventListener("keydown", this.keydownHandler);
-            // Announce to screen readers
-            (0, _alpinejsDefault.default).nextTick(()=>{
-                const modalContainer = document.querySelector('[x-ref="modalContainer"]');
-                const srAnnounce = document.querySelector('[x-ref="srAnnounce"]');
-                if (modalContainer) modalContainer.focus();
-                if (srAnnounce) srAnnounce.textContent = `Gallery viewer opened. Image ${this.currentIndex + 1} of ${this.allImages.length}: ${this.currentImage.alt}`;
-            });
-        },
-        close () {
-            this.isOpen = false;
-            // Remove keyboard event listener
-            if (this.keydownHandler) {
-                window.removeEventListener("keydown", this.keydownHandler);
-                this.keydownHandler = null;
-            }
-            // Announce to screen readers
-            const srAnnounce = document.querySelector('[x-ref="srAnnounce"]');
-            if (srAnnounce) srAnnounce.textContent = "Gallery viewer closed";
-            // Return focus to the clicked image
-            (0, _alpinejsDefault.default).nextTick(()=>{
-                const clickedImage = document.querySelector(`[data-index="${this.currentIndex + 1}"]`);
-                if (clickedImage) clickedImage.focus();
-            });
-            // Reset state after animation
-            setTimeout(()=>{
-                this.currentGalleryId = null;
-                this.currentIndex = 0;
-                this.currentGalleryImages = [];
-                this.currentImage = null;
-            }, 300);
-        },
-        next () {
-            if (!this.currentGalleryImages.length) return;
-            this.currentIndex = (this.currentIndex + 1) % this.currentGalleryImages.length;
-            this.currentImage = this.currentGalleryImages[this.currentIndex];
-            this.updateAnnouncement();
-        },
-        prev () {
-            if (!this.currentGalleryImages.length) return;
-            this.currentIndex = (this.currentIndex - 1 + this.currentGalleryImages.length) % this.currentGalleryImages.length;
-            this.currentImage = this.currentGalleryImages[this.currentIndex];
-            this.updateAnnouncement();
-        },
-        goToFirst () {
-            if (!this.currentGalleryImages.length) return;
-            this.currentIndex = 0;
-            this.currentImage = this.currentGalleryImages[0];
-            this.updateAnnouncement("First image");
-        },
-        goToLast () {
-            if (!this.currentGalleryImages.length) return;
-            this.currentIndex = this.currentGalleryImages.length - 1;
-            this.currentImage = this.currentGalleryImages[this.currentIndex];
-            this.updateAnnouncement("Last image");
-        },
-        updateAnnouncement (prefix = "") {
-            const srAnnounce = document.querySelector('[x-ref="srAnnounce"]');
-            if (!srAnnounce) return;
-            const message = prefix ? `${prefix}: ${this.currentImage.alt}` : `Image ${this.currentIndex + 1} of ${this.currentGalleryImages.length}: ${this.currentImage.alt}`;
-            srAnnounce.textContent = message;
-        }
-    });
-}
-// Initialize the store for the first time
-initLightboxStore();
-// Initialize Alpine
 (0, _alpinejsDefault.default).start();
-// Function to collect all gallery images from the page
-function collectGalleryImages() {
-    const galleries = document.querySelectorAll(".gallery-block");
-    const allImages = [];
-    galleries.forEach((gallery)=>{
-        try {
-            const images = JSON.parse(gallery.dataset.galleryImages);
-            allImages.push(...images);
-        } catch (e) {
-            console.error("Error parsing gallery images:", e);
-        }
-    });
-    console.log("Collected images:", allImages.length);
-    return allImages;
-}
-// Reinitialize Alpine and the lightbox store after Swup page transitions
+// Initialize lightbox after Swup page transitions
 swup.hooks.on("content:replace", ()=>{
-    // First collect all images from the new page content
-    const newImages = collectGalleryImages();
-    // Reset Alpine and reinitialize the store
-    (0, _alpinejsDefault.default).destroyTree(document.documentElement);
-    initLightboxStore();
-    // Pre-register all images with the store
-    (0, _alpinejsDefault.default).store("sharedLightbox").allImages = newImages;
-    // Now initialize Alpine with the pre-populated store
-    (0, _alpinejsDefault.default).initTree(document.documentElement);
+    // Wait for the DOM to be ready
+    setTimeout(()=>{
+        initLightbox();
+    }, 0);
 });
+// Initialize lightbox on first load
+document.addEventListener("DOMContentLoaded", initLightbox);
 
 },{"@alpinejs/focus":"iY8M2","alpinejs":"69hXP","plyr":"aqcBy","swup":"5QjrV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iY8M2":[function(require,module,exports) {
 // node_modules/tabbable/dist/index.esm.js

@@ -13,44 +13,7 @@
   <?= Html::attr(['data-ratio' => $ratio, 'data-crop' => $crop, 'data-contain' => $contain], null, ' ') ?>
   class="w-full h-full"
   aria-labelledby="<?= $galleryId ?>-title"
-  x-data="{
-    init() {
-      // Get or initialize the shared images array in Alpine store
-      if (!$store.sharedLightbox.allImages) {
-        $store.sharedLightbox.allImages = [];
-      }
-
-      // Add this gallery's images to the shared store
-      const galleryImages = [
-        <?php foreach ($images as $image): ?>
-        {
-          url: '<?= $image->url() ?>',
-          alt: '<?= $image->alt()->isNotEmpty() ? $image->alt() : ($image->caption()->isNotEmpty() ? $image->caption() : $image->filename()) ?>',
-          title: '<?= $image->title()->isNotEmpty() ? $image->title() : '' ?>'
-        },
-        <?php endforeach ?>
-      ];
-
-      // Add these images to the shared store if they're not already there
-      galleryImages.forEach(img => {
-        if (!$store.sharedLightbox.allImages.some(existing => existing.url === img.url)) {
-          $store.sharedLightbox.allImages.push(img);
-        }
-      });
-    },
-    openLightbox(index) {
-      const globalIndex = $store.sharedLightbox.allImages.findIndex(img =>
-        img.url === [
-          <?php foreach ($images as $image): ?>
-          '<?= $image->url() ?>',
-          <?php endforeach ?>
-        ][index]
-      );
-      $store.sharedLightbox.open('all-galleries', globalIndex, $store.sharedLightbox.allImages);
-    }
-  }"
 >
-
   <div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
     <ul
       id="<?= $galleryId ?>"
@@ -58,15 +21,12 @@
       role="list"
       aria-label="<?= $galleryTitle ?>"
     >
-      <?php $index = 1; foreach ($images as $image):
+      <?php $index = 0; foreach ($images as $image):
         $imageAlt = $image->alt()->isNotEmpty()
           ? $image->alt()
           : ($image->caption()->isNotEmpty()
               ? $image->caption()
               : $image->filename());
-
-        // Get image title if available
-        $imageTitle = $image->title()->isNotEmpty() ? $image->title() : '';
       ?>
 
       <li class="relative group" role="listitem">
@@ -74,13 +34,10 @@
           <img
             src="<?= $image->url() ?>"
             alt="<?= $imageAlt ?>"
-            <?php if ($imageTitle): ?>data-title="<?= $imageTitle ?>"<?php endif ?>
-            data-index="<?= $index ?>"
-            @click="openLightbox(<?= $index - 1 ?>)"
             class="<?= $contain ? 'object-contain' : 'object-cover' ?> w-full h-full bg-gray-200 rounded cursor-zoom-in transition-all duration-300 hover:brightness-90 focus:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             tabindex="0"
             role="button"
-            aria-label="Open image <?= $index ?> of <?= count($images) ?>: <?= $imageAlt ?>"
+            aria-label="Open image <?= $index + 1 ?> of <?= count($images) ?>: <?= $imageAlt ?>"
           >
         </div>
         <?php if ($image->caption()->isNotEmpty()): ?>

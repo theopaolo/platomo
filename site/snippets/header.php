@@ -11,5 +11,5 @@
     <?= $page->title() ?> | <?= $site->title() ?>
   </title>
 </head>
-<body class="page-base <?php if($page->isHomePage()): ?>swup-page-home<?php endif ?>" @open-lightbox.window="$store.sharedLightbox.open($event.detail.galleryId, $event.detail.index, $event.detail.images)">
+<body class="page-base <?php if($page->isHomePage()): ?>swup-page-home<?php endif ?>">
 <?php snippet('nav') ?>

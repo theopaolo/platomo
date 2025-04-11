@@ -14,13 +14,13 @@ Tags: Outil
 
 ----
 
-Labos: - page://xUzVmSCPYWkfN2zW
+Labos: page://xUzVmSCPYWkfN2zW
 
 ----
 
 Extra:
 
-- 
+-
   lien: https://github.com/Feliszt
   fichier: [ ]
 

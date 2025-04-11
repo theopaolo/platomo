@@ -13,7 +13,7 @@
                 <h2 class="text-sm md:text-subtitle no-effect uppercase font-medium dark:text-black"><?= $contribution->title() ?></h2>
 
                 <?php if($user = $contribution->author()->toUser()): ?>
-                  <p class="text-sm rounded-full border border-black py-1 px-2 md:px-4 w-fit dark:text-black"><?= $user->username() ?></p>
+                  <p class="text-center text-sm rounded-full border border-black py-1 px-2 md:px-4 w-fit dark:text-black"><?= $user->username() ?></p>
                 <?php endif ?>
 
                 <p class="text-sm uppercase bg-neutral-200 rounded-full py-1 px-4 h-fit ml-auto dark:text-black"><?= $contribution->tags() ?></p>

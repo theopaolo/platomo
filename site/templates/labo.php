@@ -1,8 +1,8 @@
 <?= snippet('header')?>
 
-<div class="page-wrapper" id="swup">
+<div class="page-wrapper z-50" id="swup">
   <div class="bg-blur blur-sm"></div>
-  <main class="px-3 md:px-8 z-50 dark:text-white">
+  <main class="px-3 md:px-8 dark:text-white">
     <?= snippet('page-header', ['page' => $page, 'tagClasses' => 'bg-purple dark:bg-neutral-700']) ?>
 
     <div class="flex gap-4 left-auto justify-between">

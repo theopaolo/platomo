@@ -24,9 +24,8 @@ const laboTagsNode = document.getElementById("filters-labo");
 const categoryTagsNode = document.getElementById("filters-category");
 const authorTagsNode = document.getElementById("filters-author");
 const searchNode = document.getElementById("search");
-const searchInfoNode = document
-  .getElementById("search-info")
-  .getElementsByTagName("p")[0];
+const searchInfoNode = document.getElementById("search-info");
+const searchInfoContentNode = searchInfoNode.getElementsByTagName("p")[0];
 const bottomItemsNode = document.getElementById("bottom-items");
 const filtersNavOnNode = document.querySelector("#filters-nav h3");
 const filtersNavOffNode = document.querySelector("#exit-nav");
@@ -226,18 +225,19 @@ class FilterTag {
 }
 
 let isSearchActive = () => !!(search.labo || search.category || search.author);
-let isSearchOpen = () =>
-  !!(search.laboOpen || search.categoryOpen || search.authorOpen);
+let isSearchOpen = () => !!(search.laboOpen || search.categoryOpen || search.authorOpen);
 
 let selectedSearchInfo = "";
 let updateSearchInfo = (info = "", save = false) => {
   // save is true if info remains displayed on mouseout
 
   if (info == "" && !save) {
-    searchInfoNode.innerHTML = selectedSearchInfo;
+    searchInfoContentNode.innerHTML = selectedSearchInfo;
   } else {
-    searchInfoNode.innerHTML = info;
+    searchInfoContentNode.innerHTML = info;
   }
+
+  searchInfoNode.classList.toggle("filled", !!selectedSearchInfo || !!info.length)
 
   if (save) selectedSearchInfo = info;
 };

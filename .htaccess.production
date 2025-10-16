@@ -1,4 +1,4 @@
-# Kirby .htaccess
+# Kirby .htaccess - Production Version (for Coolify/VPS)
 # revision 2023-07-22
 
 # rewrite rules
@@ -8,19 +8,8 @@
 # http://yourdomain.com/about-us/team
 RewriteEngine on
 
-# make sure to set the RewriteBase correctly
-# if you are running the site in a subfolder;
-# otherwise links or the entire site will break.
-#
-# If your homepage is http://yourdomain.com/mysite,
-# set the RewriteBase to:
-#
-# RewriteBase /mysite
-
-# In some environments it's necessary to
-# set the RewriteBase to:
-#
-RewriteBase /platomo
+# For root installation (Coolify/VPS)
+RewriteBase /
 
 # block files and folders beginning with a dot, such as .git
 # except for the .well-known folder, which is used for Let's Encrypt and security.txt
@@ -36,7 +25,7 @@ RewriteRule ^site/(.*) index.php [L]
 RewriteRule ^kirby/(.*) index.php [L]
 
 # explicitly allow access to assets folder (CSS, JS, images, etc.)
-RewriteCond %{REQUEST_URI} ^/platomo/assets/
+RewriteCond %{REQUEST_URI} ^/assets/
 RewriteRule ^ - [L]
 
 # make site links work

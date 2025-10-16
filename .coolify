@@ -1,0 +1,10 @@
+{
+  "name": "platomo",
+  "type": "dockerfile",
+  "buildCommand": "docker build -t platomo .",
+  "port": 80,
+  "healthcheck": {
+    "path": "/",
+    "interval": 30
+  }
+}

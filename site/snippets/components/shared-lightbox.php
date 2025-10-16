@@ -1,6 +1,41 @@
 <!-- Simple Lightbox Component -->
 <div
-  x-data="lightbox"
+  x-data="{
+    images: [],
+    currentImage: null,
+    isOpen: false,
+    currentIndex: 0,
+    init() {
+      // Get all gallery images
+      this.images = Array.from(document.querySelectorAll('figure[aria-labelledby^="gallery-"] img')).map(img => ({
+        src: img.src,
+        alt: img.alt
+      }));
+
+      // Listen for open-lightbox events
+      window.addEventListener('open-lightbox', (e) => {
+        this.open(e.detail.index);
+      });
+    },
+    prev() {
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+      this.currentImage = this.images[this.currentIndex];
+    },
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+      this.currentImage = this.images[this.currentIndex];
+    },
+    close() {
+      this.isOpen = false;
+      document.body.style.overflow = '';
+    },
+    open(index) {
+      this.currentIndex = index;
+      this.currentImage = this.images[index];
+      this.isOpen = true;
+      document.body.style.overflow = 'hidden';
+    }
+  }"
   x-show="isOpen"
   x-transition:enter="transition ease-in-out duration-300"
   x-transition:enter-start="opacity-0"
@@ -71,7 +106,7 @@
 
     <!-- Image counter -->
     <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full">
-      <span x-text="images.findIndex(img => img.src === currentImage?.src) + 1"></span> / <span x-text="images.length"></span>
+      <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
     </div>
   </div>
 </div>

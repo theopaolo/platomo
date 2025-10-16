@@ -37,6 +37,7 @@
             class="<?= $contain ? 'object-contain' : 'object-cover' ?> w-full h-full bg-gray-200 rounded cursor-zoom-in transition-all duration-300 hover:brightness-90 focus:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             tabindex="0"
             role="button"
+            @click="$dispatch('open-lightbox', { index: <?= $index ?> })"
             aria-label="Open image <?= $index + 1 ?> of <?= count($images) ?>: <?= $imageAlt ?>"
           >
         </div>

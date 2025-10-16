@@ -66,5 +66,4 @@
     <?= snippet('pagenav')?>
   </main>
 </div>
-<?php snippet('components/shared-lightbox') ?>
 <?= snippet('footer')?>

@@ -57,6 +57,12 @@ content/2_contribution/2
 
 # -- ENV
 .env.local
+.env.development
+.env.production
+.env
 
 # Alex: useless css map files
 *.css.map
+
+# Docker volumes (content/media are synced via volumes)
+# Keep Dockerfile, docker-compose.yml, and .dockerignore in git

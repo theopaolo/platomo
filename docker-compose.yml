@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./content:/var/www/html/content
+      - ./media:/var/www/html/media
+    environment:
+      - PHP_ENV=production
+    restart: unless-stopped

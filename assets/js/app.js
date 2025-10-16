@@ -230,6 +230,7 @@ swup.hooks.on("page:view", (visit) => {
 
   // Show go-back button only if coming from index page
   const goBackButton = document.querySelectorAll(".go-back");
+
   if (goBackButton) {
     // Create URL object from previousURL to properly parse the pathname
     const prevUrlObj = new URL(previousURL);

@@ -1,7 +1,46 @@
-<img src="http://getkirby.com/assets/images/github/plainkit.jpg" width="300">
+# Platomo
+
+A Kirby CMS project with Tailwind CSS, Alpine.js, and modern tooling.
+
+## Local Development
+
+```bash
+# Install dependencies
+composer install
+npm install
+
+# Watch CSS changes
+npm run watch
+
+# Watch JS changes (in another terminal)
+npm run pwatchjs
+
+# Watch LESS changes (in another terminal)
+npm run pwatchless
+
+# Start PHP dev server
+composer start
+```
+
+Visit: http://localhost:8000
+
+## Deployment
+
+This project is configured for automatic deployment with **Coolify** on Netcup VPS.
+
+### Quick Deploy to Coolify
+
+1. Push to main branch: `git push origin main`
+2. Coolify automatically builds and deploys via webhook
+3. Done! ✨
+
+📖 **[Full deployment guide →](DEPLOYMENT.md)**
+
+---
+
+## About Kirby
 
 **Kirby: the CMS that adapts to any project, loved by developers and editors alike.**
-The Plainkit is a minimal Kirby setup with the basics you need to start a project from scratch. It is the ideal choice if you are already familiar with Kirby and want to start step-by-step.
 
 You can learn more about Kirby at [getkirby.com](https://getkirby.com).
 

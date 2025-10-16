@@ -32,6 +32,18 @@ git push origin main
 - **Base Directory**: / (root)
 - **Dockerfile Location**: ./Dockerfile
 
+**Stack:**
+- Alpine Linux (~150MB base)
+- Nginx web server
+- PHP 8.3 FPM
+- Supervisor (process manager)
+
+**Benefits:**
+- ⚡ Fast builds (~200MB final image)
+- 🚀 Low memory footprint
+- 🔒 Minimal attack surface
+- 💪 Production-ready
+
 #### 4. Environment Variables (if needed)
 
 Add any environment variables in the Coolify UI:
@@ -77,30 +89,31 @@ You can trigger a manual deploy from:
 
 ### Testing Locally with Docker
 
+**Build and run:**
 ```bash
-# Build
 docker build -t platomo .
-
-# Run
 docker run -p 8080:80 platomo
-
-# Visit
 open http://localhost:8080
 ```
 
-Or with docker-compose:
-
+**With docker-compose (recommended):**
 ```bash
 docker-compose up -d
 open http://localhost
 ```
 
+**Check image size:**
+```bash
+docker images platomo
+# Expected: ~200-300MB (Alpine + Nginx + PHP-FPM)
+```
+
 ### Troubleshooting
 
 **CSS/JS not loading:**
-- Check that assets are being built correctly
-- Verify `.htaccess` has correct RewriteBase
-- Check Apache error logs in Coolify
+- Check that assets are being built correctly: `npm run build`
+- Check Nginx configuration in `docker/default.conf`
+- View logs in Coolify dashboard or: `docker logs <container-id>`
 
 **Permission errors:**
 - Ensure `content/` and `media/` directories are writable
@@ -117,24 +130,44 @@ open http://localhost
 # View logs
 docker logs <container-id>
 
-# Access container shell
-docker exec -it <container-id> bash
+# Access container shell (Alpine uses sh, not bash)
+docker exec -it <container-id> sh
+
+# View Nginx logs
+docker exec -it <container-id> tail -f /var/log/nginx/access.log
+docker exec -it <container-id> tail -f /var/log/nginx/error.log
 
 # Rebuild without cache
 docker build --no-cache -t platomo .
+
+# Check running processes inside container
+docker exec -it <container-id> ps aux
 ```
 
-## Shared Hosting Issues
+## Architecture
 
-If you're still using PlanetHoster shared hosting:
+**Lightweight Stack:**
+- **OS**: Alpine Linux 3.x (~5MB base)
+- **Web Server**: Nginx (fast, efficient)
+- **PHP**: 8.3-FPM (process manager for better performance)
+- **Process Manager**: Supervisor (keeps Nginx + PHP-FPM running)
+- **Final Image**: ~200-300MB (vs 500-600MB for traditional LAMP stack)
 
-The `.htaccess` file is configured for `/platomo` subdirectory. The main issues were:
+**Why Alpine + Nginx?**
+- 50-70% smaller image size
+- Faster deployments and updates
+- Lower memory usage
+- Better for microservices architecture
+- Perfect match for Kirby's lean philosophy
+
+---
+
+## Shared Hosting Issues (Legacy)
+
+If you're still using PlanetHoster shared hosting with the `.htaccess` file:
+
+The main issues were:
 1. MIME type mismatch due to aggressive security headers
 2. CSS files being routed through index.php instead of served directly
 
-**Solutions applied:**
-- Explicit MIME type declarations for `.css`, `.js`, `.svg`
-- Modified Content-Type security header to exclude static assets
-- Added explicit rule to allow `/assets/` directory access
-
-**Recommendation**: Migrate to Coolify/VPS for better control and performance.
+**Note**: The Docker/Coolify setup doesn't use `.htaccess` - it uses Nginx configuration which is much more efficient and reliable.

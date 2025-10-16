@@ -27,7 +27,7 @@ const searchNode = document.getElementById("search");
 const searchInfoNode = document.getElementById("search-info");
 const searchInfoContentNode = searchInfoNode.getElementsByTagName("p")[0];
 const bottomItemsNode = document.getElementById("bottom-items");
-const filtersNavOnNode = document.querySelector("#filters-nav h3");
+const filtersNavOnNode = document.querySelector("#filters-nav span");
 const filtersNavOffNode = document.querySelector("#exit-nav");
 
 let colorMode = htmlNode.classList.contains("dark") ? "dark" : "light";
@@ -653,9 +653,11 @@ document.getElementById("theme-toggle").addEventListener("click", (e) => {
 
 // Bottom items interactions
 bottomItemsNode.classList = "search-toggle-off";
+
 filtersNavOnNode.addEventListener("click", () => {
   bottomItemsNode.classList = "search-toggle-on";
 });
+
 filtersNavOffNode.addEventListener("click", () => {
   bottomItemsNode.classList = "search-toggle-off";
 });

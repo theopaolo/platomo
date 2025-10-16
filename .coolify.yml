@@ -1,0 +1,20 @@
+# Coolify Configuration
+# This file helps Coolify understand your application better
+
+name: platomo
+type: dockerfile
+
+build:
+  dockerfile: Dockerfile
+  context: .
+
+deploy:
+  port: 80
+  healthcheck:
+    path: /
+    interval: 30s
+    timeout: 10s
+    retries: 3
+
+# Automatic deployment on git push to main branch
+# Coolify will rebuild the Docker image and redeploy

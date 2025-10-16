@@ -2,7 +2,14 @@ node_modules
 .git
 .gitignore
 .env.example
-README.md
+.env.local
+.env.development
+.env.production
 .DS_Store
 vendor
 media/pages
+.parcel-cache
+*.css.map
+.vscode
+.idea
+*.sublime-workspace

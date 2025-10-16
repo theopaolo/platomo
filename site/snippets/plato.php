@@ -17,8 +17,8 @@
 		<div id="search">
 
 			<div id="filters-nav">
-				<div class="rounded-btn">
-					<h3>Navigation</h3>
+				<div class="rounded-btn" role="button">
+					<span>Navigation</span>
 				</div>
 			</div>
 

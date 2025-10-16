@@ -1,25 +1,25 @@
-FROM php:8.3-apache
+FROM php:8.3-fpm-alpine
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Platomo - Lightweight Kirby CMS deployment
+# Alpine Linux + Nginx + PHP-FPM (~200MB final image)
+# Perfect for Coolify auto-deployment with git push
+
+# Install system dependencies and build tools
+RUN apk add --no-cache \
     git \
     curl \
     libpng-dev \
-    libonig-dev \
-    libxml2-dev \
+    libzip-dev \
+    oniguruma-dev \
     zip \
     unzip \
     nodejs \
-    npm
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    npm \
+    nginx \
+    supervisor
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Enable Apache modules
-RUN a2enmod rewrite headers deflate expires
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -34,23 +34,32 @@ COPY . /var/www/html
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Install Node dependencies and build assets
-RUN npm install
-RUN npm run build
+RUN npm install && \
+    npm run build && \
+    rm -rf node_modules
 
-# Use production .htaccess (without subdirectory path)
+# Use production .htaccess
 RUN if [ -f .htaccess.production ]; then cp .htaccess.production .htaccess; fi
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Configure nginx
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/default.conf /etc/nginx/http.d/default.conf
 
-# Configure Apache document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+# Configure PHP-FPM
+RUN echo "clear_env = no" >> /usr/local/etc/php-fpm.d/www.conf
+
+# Configure supervisor
+COPY docker/supervisord.conf /etc/supervisord.conf
+
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
+# Create required directories
+RUN mkdir -p /run/nginx /var/log/supervisor
 
 # Expose port
 EXPOSE 80
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Start supervisor (manages nginx + php-fpm)
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

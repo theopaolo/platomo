@@ -28,6 +28,8 @@ Visit: http://localhost:8000
 
 This project is configured for automatic deployment with **Coolify** on Netcup VPS.
 
+**Built with Alpine Linux + Nginx + PHP-FPM** - Lightweight (~200MB) and optimized for production 🚀
+
 ### Quick Deploy to Coolify
 
 1. Push to main branch: `git push origin main`
